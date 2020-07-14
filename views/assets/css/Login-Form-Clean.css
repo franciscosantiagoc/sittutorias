@@ -1,0 +1,193 @@
+.login-clean {
+  background: #f1f7fc;
+  padding: 80px 0;
+}
+
+.login-clean form {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 4px;
+  color: #505e6c;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.login-clean .illustration {
+  text-align: center;
+  padding: 0 0 20px;
+  font-size: 100px;
+  color: rgb(244,71,107);
+}
+
+.login-clean form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 8px;
+  height: 42px;
+}
+
+.login-clean form .btn-primary {
+  background: #f4476b;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 26px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
+  background: #eb3b60;
+}
+
+.login-clean form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.login-clean form .forgot {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.login-clean form .forgot:hover, .login-clean form .forgot:active {
+  opacity: 1;
+  text-decoration: none;
+}
+
+#imgreg {
+  width: 60%;
+  margin: auto;
+  display: block;
+}
+
+#importcsvregis {
+  margin-top: 50px;
+}
+
+#notificacion {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+#nameinput {
+  margin-top: 80px;
+}
+
+#table {
+  margin-top: 60px;
+}
+
+#container-alummenu {
+  margin: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#menu {
+  height: 00px;
+}
+
+@media (min-width: 768px) {
+  labelnot {
+    margin-left: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  #labelnot {
+    margin-left: 230px;
+  }
+}
+
+@media (min-width: 300px) {
+  #col-solic {
+    margin-top: 230px;
+  }
+}
+
+@media (min-width: 300px) {
+  #col-solic {
+    margin-top: 0px;
+  }
+}
+
+p {
+  text-align: center;
+}
+
+.icon-estado {
+  width: 40px;
+  margin-right: 15px;
+}
+
+#container-activities {
+  margin-top: 100px;
+}
+
+#tit-activities {
+  font-size: 30px;
+}
+
+#contenedor-edit {
+  width: 500px;
+}
+
+#form-actividad {
+  background-color: #fff;
+}
+
+#form-cambio {
+  width: 800px;
+}
+
+#cont-sol {
+  width: 100%;
+  justify-content: center;
+}
+
+#cont-sol {
+  margin-top: 50px;
+}
+
+#sol-cons {
+  margin-top: 80px;
+}
+
+#imgperf {
+  width: 250px;
+  height: 250px;
+}
+
+#dat-coord {
+  margin-top: 50px;
+}
+
+#cont-visdat {
+  margin-top: 50px;
+}
+
+.btn.btn-primary.buttons {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#form-options {
+  align-content: center;
+  display: grid;
+}
+
+.buttons {
+}
+

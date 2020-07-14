@@ -1,0 +1,3 @@
+RewriteEngine On
+Options All -Indexes #bloquea visualización de archivos desde servidor vista usuarios
+RewriteRule ^([a-zA-Z0-9/ñÑ-]+)$ index.html?views=$1
