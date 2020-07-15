@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `Persona` (
   `FechaNac` DATE NULL,
   `Sexo` VARCHAR(2) NULL,
   `Correo` VARCHAR(50) NULL,
-  `NTelefono` INT(12) NULL,
+  `NTelefono` INT(12) NULL, 
   `Direccion` VARCHAR(100) NULL,
   `Foto` VARCHAR(150) NULL,
   PRIMARY KEY (`idPersona`))
@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Trabajador` ;
 
 CREATE TABLE IF NOT EXISTS `Trabajador` (
-  `Matricula` VARCHAR(45) NOT NULL,
+  `Matricula` INT NOT NULL,
   `Persona_idPersona` INT NOT NULL,
   `Roll` VARCHAR(25) NULL,
   `Areas_idAreas` INT NOT NULL,
@@ -57,7 +57,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Carrera` ;
 
 CREATE TABLE IF NOT EXISTS `Carrera` (
-  `idCarrera` VARCHAR(15) NOT NULL,
+  `idCarrera` INT NOT NULL,
   `Areas_idAreas` INT NOT NULL,
   `Nombre` VARCHAR(45) NULL,
   PRIMARY KEY (`idCarrera`, `Areas_idAreas`),
@@ -77,7 +77,6 @@ CREATE TABLE IF NOT EXISTS `Periodo` (
   `Descripcion` VARCHAR(50) NULL,
   PRIMARY KEY (`idPeriodo`))
 ENGINE = InnoDB;
-
 
 DROP TABLE IF EXISTS `Tutorado` ;
 
@@ -129,8 +128,7 @@ CREATE TABLE IF NOT EXISTS `Actividades_Asignadas` (
 `fecha_elaboracion` DATE NULL,   
 PRIMARY KEY (`Actividades_idActividades`, 
 `Tutorado_NControl`),   
-INDEX `fk_Actividades_has_Trabajor_Actividades_id` 
-(`Actividades_idActividades` ASC),   
+INDEX `fk_Actividades_has_Trabajor_Actividades_id` (`Actividades_idActividades` ASC),   
 INDEX `fk_Actividades_Asignadas_Periodo_id` (`Periodo_idPeriodo` ASC),   
 INDEX `fk_Actividades_Asignadas_Tutorado_id` (`Tutorado_NControl` ASC),   
 CONSTRAINT `fk_Actividades_has_Trabajador_Actividades`     
@@ -140,18 +138,20 @@ ON DELETE NO ACTION     ON UPDATE NO ACTION,
 CONSTRAINT `fk_Actividades_Asignadas_Periodo`     
 FOREIGN KEY (`Periodo_idPeriodo`)     
 REFERENCES `Periodo` (`idPeriodo`)     
-ON DELETE NO ACTION     ON UPDATE NO ACTION,   
+ON DELETE NO ACTION     
+ON UPDATE NO ACTION,   
 CONSTRAINT `fk_Actividades_Asignadas_Tutorado`     
 FOREIGN KEY (`Tutorado_NControl`)     
 REFERENCES `Tutorado` (`NControl`)     
-ON DELETE NO ACTION     ON UPDATE NO ACTION) 
+ON DELETE NO ACTION     
+ON UPDATE NO ACTION) 
 ENGINE = InnoDB;
 
 
 DROP TABLE IF EXISTS `Trabajador_Tutorados` ;
 
 CREATE TABLE IF NOT EXISTS `Trabajador_Tutorados` (
-  `Trabajador_Matricula` VARCHAR(45) NOT NULL,
+  `Trabajador_Matricula` INT NOT NULL,
   `Tutorado_NControl` INT(12) NOT NULL,
   `fecha_asig` DATE NULL,
   PRIMARY KEY (`Trabajador_Matricula`, `Tutorado_NControl`),
@@ -253,3 +253,5 @@ CREATE TABLE IF NOT EXISTS `Mensajes` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
