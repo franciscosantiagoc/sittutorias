@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Persona` (
   `FechaNac` DATE NULL,
   `Sexo` VARCHAR(2) NULL,
   `Correo` VARCHAR(50) NULL,
-  `NTelefono` INT(12) NULL, 
+  `NTelefono` INT(12) NULL,
   `Direccion` VARCHAR(100) NULL,
   `Foto` VARCHAR(150) NULL,
   PRIMARY KEY (`idPersona`))
@@ -47,18 +47,12 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Areas` (
 ENGINE = InnoDB;
 
 
-<<<<<<< HEAD
-CREATE TABLE IF NOT EXISTS `Trabajador` (
-  `Matricula` INT NOT NULL,
-  `Persona_idPersona` INT NOT NULL,
-=======
 -- -----------------------------------------------------
 -- Table `Bd-Tuturias`.`Trabajador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Trabajador` (
   `Matricula` VARCHAR(45) NOT NULL,
   `Persona_idPersona` INT UNSIGNED NOT NULL UNIQUE,
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
   `Roll` VARCHAR(25) NULL,
   `Areas_idAreas` INT NOT NULL,
   `contraseña` VARCHAR(16) NULL,
@@ -79,18 +73,11 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Trabajador` (
 ENGINE = InnoDB;
 
 
-<<<<<<< HEAD
-DROP TABLE IF EXISTS `Carrera` ;
-
-CREATE TABLE IF NOT EXISTS `Carrera` (
-  `idCarrera` INT NOT NULL,
-=======
 -- -----------------------------------------------------
 -- Table `Bd-Tuturias`.`Carrera`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Carrera` (
   `idCarrera` VARCHAR(15) NOT NULL,
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
   `Areas_idAreas` INT NOT NULL,
   `Nombre` VARCHAR(45) NULL,
   PRIMARY KEY (`idCarrera`, `Areas_idAreas`),
@@ -113,15 +100,6 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Periodo` (
   PRIMARY KEY (`idPeriodo`))
 ENGINE = InnoDB;
 
-<<<<<<< HEAD
-DROP TABLE IF EXISTS `Tutorado` ;
-
-CREATE TABLE IF NOT EXISTS `Tutorado` (
-  `NControl` INT NOT NULL,
-  `Persona_idPersona` INT NOT NULL,
-  `Carrera_idCarrera` varchar(15) NOT NULL,
-  `contraseña` VARCHAR(45) NULL,
-=======
 
 -- -----------------------------------------------------
 -- Table `Bd-Tuturias`.`Tutorado`
@@ -131,7 +109,6 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Tutorado` (
   `Persona_idPersona` INT UNSIGNED NOT NULL UNIQUE,
   `Carrera_idCarrera` VARCHAR(15) NOT NULL,
   `contrasena` VARCHAR(45) NULL,
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
   `Periodo_idPeriodo` INT NOT NULL,
   PRIMARY KEY (`Persona_idPersona`, `NControl`),
   CONSTRAINT `fk_Tutorado_Persona1`
@@ -163,38 +140,6 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Actividades` (
   PRIMARY KEY (`idActividades`))
 ENGINE = InnoDB;
 
-<<<<<<< HEAD
-DROP TABLE IF EXISTS `Actividades_Asignadas` ;
-
-CREATE TABLE IF NOT EXISTS `Actividades_Asignadas` (
-   
-`Actividades_idActividades` INT NOT NULL,   
-`Tutorado_NControl` INT NOT NULL,   
-`Periodo_idPeriodo` INT NOT NULL,   
-`Fecha_asig` DATE NULL,   
-`fecha_elaboracion` DATE NULL,   
-PRIMARY KEY (`Actividades_idActividades`, 
-`Tutorado_NControl`),   
-INDEX `fk_Actividades_has_Trabajor_Actividades_id` (`Actividades_idActividades` ASC),   
-INDEX `fk_Actividades_Asignadas_Periodo_id` (`Periodo_idPeriodo` ASC),   
-INDEX `fk_Actividades_Asignadas_Tutorado_id` (`Tutorado_NControl` ASC),   
-CONSTRAINT `fk_Actividades_has_Trabajador_Actividades`     
-FOREIGN KEY (`Actividades_idActividades`)     
-REFERENCES `Actividades` (`idActividades`)     
-ON DELETE NO ACTION     ON UPDATE NO ACTION,   
-CONSTRAINT `fk_Actividades_Asignadas_Periodo`     
-FOREIGN KEY (`Periodo_idPeriodo`)     
-REFERENCES `Periodo` (`idPeriodo`)     
-ON DELETE NO ACTION     
-ON UPDATE NO ACTION,   
-CONSTRAINT `fk_Actividades_Asignadas_Tutorado`     
-FOREIGN KEY (`Tutorado_NControl`)     
-REFERENCES `Tutorado` (`NControl`)     
-ON DELETE NO ACTION     
-ON UPDATE NO ACTION) 
-ENGINE = InnoDB;
-=======
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
 
 -- -----------------------------------------------------
 -- Table `Bd-Tuturias`.`Actividades_Asignadas`
@@ -227,16 +172,11 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Actividades_Asignadas` (
 ENGINE = InnoDB;
 
 
-<<<<<<< HEAD
-CREATE TABLE IF NOT EXISTS `Trabajador_Tutorados` (
-  `Trabajador_Matricula` INT NOT NULL,
-=======
 -- -----------------------------------------------------
 -- Table `Bd-Tuturias`.`Trabajador_Tutorados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Trabajador_Tutorados` (
   `Trabajador_Matricula` VARCHAR(45) NOT NULL,
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
   `Tutorado_NControl` INT(12) NOT NULL,
   `fecha_asig` DATE NULL,
   PRIMARY KEY (`Trabajador_Matricula`, `Tutorado_NControl`),
@@ -343,9 +283,6 @@ CREATE TABLE IF NOT EXISTS `Bd-Tuturias`.`Mensajes` (
 ENGINE = InnoDB;
 
 
-<<<<<<< HEAD
-=======
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
->>>>>>> b8e8334ac16ea9a90b2139876306e78d9812b125
