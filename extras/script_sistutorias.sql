@@ -250,6 +250,7 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Mensajes` (
   `Asunto` VARCHAR(50) NULL,
   `Mensaje` VARCHAR(500) NULL,
   `Fecha` DATE NULL,
+  `Estado` BOOLEAN NOT NULL,
   `idPersonaRemitente` INT UNSIGNED NOT NULL,
   `idPersonaDestinatario` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`idMensajes`),
