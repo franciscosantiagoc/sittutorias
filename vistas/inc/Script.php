@@ -1,5 +1,6 @@
-<?php 
-    include "../config/APP.php";
+<?php
+    include "../../config/APP.php";
+
 ?>
     <script src="<?php echo SERVERURL;?>vistas/assets/js/jquery.min.js"></script>
     <script src="<?php echo SERVERURL;?>vistas/assets/bootstrap/js/bootstrap.min.js"></script>

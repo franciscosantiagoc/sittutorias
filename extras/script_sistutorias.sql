@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS `sistutorias`;
 USE `sistutorias` ;
 
 -- -----------------------------------------------------
--- Table `sistutorias`.`Persona`
+-- Table `sistutorsysias`.`Persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Persona` (
   `idPersona` INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `sistutorias`.`Areas`
--- -----------------------------------------------------
+-- -----------------------------------------------------	
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Areas` (
   `idAreas` INT NOT NULL UNIQUE,
   `Nombre` VARCHAR(45) NULL,
