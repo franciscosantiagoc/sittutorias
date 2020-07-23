@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<?php /*include "../../config/APP.php"; */?>
 
 <head>
     <meta charset="utf-8">
