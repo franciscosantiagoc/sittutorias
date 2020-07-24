@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row" id="row">
-            <div class="col"><a href="VistaTutores/informationT.html"><img style="background-image: url(&quot;assets/img/Icons/coord.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="VistaTutores/informationT.php"><img style="background-image: url(&quot;assets/img/Icons/coord.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Gestion de Coordinadores</strong></p>
             </div>
             <div class="col"><a href="CordCarrera/TutoresC.html"><img id="imgactivities" style="background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;background-image: url(&quot;assets/img/Icons/tutores.png&quot;);"></a>

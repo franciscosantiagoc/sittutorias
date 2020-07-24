@@ -4,18 +4,19 @@ CREATE DATABASE IF NOT EXISTS `sistutorias`;
 USE `sistutorias` ;
 
 -- -----------------------------------------------------
--- Table `sistutorias`.`Persona`
+-- Table `sistutorsysias`.`Persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Persona` (
   `idPersona` INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
   `Nombre` VARCHAR(45) NULL,
   `APaterno` VARCHAR(45) NULL,
   `AMaterno` VARCHAR(45) NULL,
-  `FechaNac` DATE NULL,
+  `FechaNac` date default NULL,
   `Sexo` VARCHAR(2) NULL,
   `Correo` VARCHAR(50) NULL,
-  `NTelefono` INT(12) NULL,
+  `NTelefono` VARCHAR(13) NULL,
   `Direccion` VARCHAR(100) NULL,
+  `Ciudad` VARCHAR(100) NULL,
   `Foto` VARCHAR(150) NULL,
   PRIMARY KEY (`idPersona`))
 ENGINE = InnoDB;
@@ -23,7 +24,7 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `sistutorias`.`Areas`
--- -----------------------------------------------------
+-- -----------------------------------------------------	
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Areas` (
   `idAreas` INT NOT NULL UNIQUE,
   `Nombre` VARCHAR(45) NULL,

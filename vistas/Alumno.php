@@ -25,7 +25,7 @@
             <div class="col"><a href="VistaAlumnos/Actividades.html"><img id="imgactivities" style="background-image: url(&quot;assets/img/Icons/activities.png&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Actividades</strong></p>
             </div>
-            <div class="col"><a href="VistaAlumnos/Solicitudes.html"><img style="background-image: url(&quot;assets/img/Icons/solicitudes.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="VistaAlumnos/Solicitudes.php"><img style="background-image: url(&quot;assets/img/Icons/solicitudes.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Solicitudes</strong></p>
             </div>
             <div class="col"><a href="VistaAlumnos/edit-perfil.html"><img style="background-image: url(&quot;assets/img/Icons/perfil.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
