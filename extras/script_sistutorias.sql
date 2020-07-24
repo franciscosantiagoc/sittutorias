@@ -77,13 +77,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sistutorias`.`Periodo`
+-- Table `sistutorias`.`Generacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sistutorias`.`Periodo` (
-  `idPeriodo` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sistutorias`.`Generacion` (
+  `idGeneracion` INT NOT NULL,
   `fecha_inicio` DATE NULL,
-  `Descripcion` VARCHAR(50) NULL,
-  PRIMARY KEY (`idPeriodo`))
+  `fecha_fin` DATE NULL,
+  PRIMARY KEY (`idGeneracion`))
 ENGINE = InnoDB;
 
 
@@ -91,11 +91,11 @@ ENGINE = InnoDB;
 -- Table `sistutorias`.`Tutorado`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Tutorado` (
-  `NControl` INT(12) NOT NULL UNIQUE,
+  `NControl` INT NOT NULL UNIQUE,
   `Persona_idPersona` INT UNSIGNED NOT NULL UNIQUE,
   `Carrera_idCarrera` VARCHAR(15) NOT NULL,
   `contrasena` VARCHAR(45) NULL,
-  `Periodo_idPeriodo` INT NOT NULL,
+  `Generacion_idGeneracion` INT NOT NULL,
   PRIMARY KEY (`Persona_idPersona`, `NControl`),
   CONSTRAINT `fk_Tutorado_Persona1`
     FOREIGN KEY (`Persona_idPersona`)
@@ -107,9 +107,9 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Tutorado` (
     REFERENCES `sistutorias`.`Carrera` (`idCarrera`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Tutorado_Periodo1`
-    FOREIGN KEY (`Periodo_idPeriodo`)
-    REFERENCES `sistutorias`.`Periodo` (`idPeriodo`)
+  CONSTRAINT `fk_Tutorado_Generacion1`
+    FOREIGN KEY (`Generacion_idGeneracion`)
+    REFERENCES `sistutorias`.`Generacion` (`idGeneracion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -122,6 +122,8 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Actividades` (
   `idActividades` INT NOT NULL,
   `Nombre` VARCHAR(45) NULL,
   `Descripcion` VARCHAR(200) NULL,
+  `Semestrerealizacion_sug` INT NULL,
+  `Fecha_asig` DATE NULL,
   PRIMARY KEY (`idActividades`))
 ENGINE = InnoDB;
 
@@ -131,27 +133,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Actividades_Asignadas` (
   `Actividades_idActividades` INT NOT NULL,
-  `Tutorado_NControl` INT(12) NOT NULL,
-  `Periodo_idPeriodo` INT NOT NULL,
-  `Fecha_asig` DATE NULL,
+  `Tutorado_NControl` INT NOT NULL,
   `fecha_elaboracion` DATE NULL,
   PRIMARY KEY (`Actividades_idActividades`, `Tutorado_NControl`),
   INDEX `fk_Actividades_has_Trabajador_Actividades1_idx` (`Actividades_idActividades` ASC) ,
-  INDEX `fk_Actividades_Asignadas_Periodo1_idx` (`Periodo_idPeriodo` ASC),
   INDEX `fk_Actividades_Asignadas_Tutorado1_idx` (`Tutorado_NControl` ASC),
   CONSTRAINT `fk_Actividades_has_Trabajador_Actividades1`
     FOREIGN KEY (`Actividades_idActividades`)
     REFERENCES `sistutorias`.`Actividades` (`idActividades`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Actividades_Asignadas_Periodo1`
-    FOREIGN KEY (`Periodo_idPeriodo`)
-    REFERENCES `sistutorias`.`Periodo` (`idPeriodo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Actividades_Asignadas_Tutorado1`
-    FOREIGN KEY (`Tutorado_NControl`)
-    REFERENCES `sistutorias`.`Tutorado` (`NControl`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -162,7 +151,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Trabajador_Tutorados` (
   `Trabajador_Matricula` VARCHAR(45) NOT NULL,
-  `Tutorado_NControl` INT(12) NOT NULL,
+  `Tutorado_NControl` INT NOT NULL,
   `fecha_asig` DATE NULL,
   PRIMARY KEY (`Trabajador_Matricula`, `Tutorado_NControl`),
   INDEX `fk_Trabajador_has_Tutorado_Tutorado1_idx` (`Tutorado_NControl` ASC),
@@ -184,20 +173,15 @@ ENGINE = InnoDB;
 -- Table `sistutorias`.`Bajas_Tutorados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`Bajas_Tutorados` (
-  `Tutorado_NControl` INT(12) NOT NULL,
-  `Periodo_idPeriodo` INT NOT NULL,
+  `idBaja` INT NOT NULL,
+  `Tutorado_NControl` INT NOT NULL,
   `Motivos` VARCHAR(45) NULL,
+  `Fecha_baja` DATE NULL,
   INDEX `fk_Bajas_Tutorados_Tutorado1_idx` (`Tutorado_NControl` ASC),
-  INDEX `fk_Bajas_Tutorados_Periodo1_idx` (`Periodo_idPeriodo` ASC),
-  PRIMARY KEY (`Periodo_idPeriodo`, `Tutorado_NControl`),
+  PRIMARY KEY (`idBaja`),
   CONSTRAINT `fk_Bajas_Tutorados_Tutorado1`
     FOREIGN KEY (`Tutorado_NControl`)
     REFERENCES `sistutorias`.`Tutorado` (`NControl`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Bajas_Tutorados_Periodo1`
-    FOREIGN KEY (`Periodo_idPeriodo`)
-    REFERENCES `sistutorias`.`Periodo` (`idPeriodo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -208,22 +192,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistutorias`.`SoliCambioT` (
   `idSoliCambioT` INT NOT NULL,
-  `Periodo_idPeriodo` INT NOT NULL,
   `Trabajador_Matriculaanterior` VARCHAR(45) NULL,
   `Trabajador_Matriculanuevo` VARCHAR(45) NULL,
-  `Tutorado_NControl` INT(12) NOT NULL,
+  `Tutorado_NControl` INT NOT NULL,
   `fecha_solicitud` DATE NOT NULL,
   `estado` TINYINT NOT NULL,
   PRIMARY KEY (`idSoliCambioT`),
-  INDEX `fk_SoliCambioT_Periodo1_idx` (`Periodo_idPeriodo` ASC),
   INDEX `fk_SoliCambioT_Trabajador1_idx` (`Trabajador_Matriculaanterior` ASC),
   INDEX `fk_SoliCambioT_Trabajador2_idx` (`Trabajador_Matriculanuevo` ASC),
   INDEX `fk_SoliCambioT_Tutorado1_idx` (`Tutorado_NControl` ASC),
-  CONSTRAINT `fk_SoliCambioT_Periodo1`
-    FOREIGN KEY (`Periodo_idPeriodo`)
-    REFERENCES `sistutorias`.`Periodo` (`idPeriodo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_SoliCambioT_Trabajador1`
     FOREIGN KEY (`Trabajador_Matriculaanterior`)
     REFERENCES `sistutorias`.`Trabajador` (`Matricula`)
