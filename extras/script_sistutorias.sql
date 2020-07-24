@@ -122,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Actividades` (
   `idActividades` INT NOT NULL,
   `Nombre` VARCHAR(45) NULL,
   `Descripcion` VARCHAR(200) NULL,
-  `Periodo` VARCHAR(45) NULL,
   PRIMARY KEY (`idActividades`))
 ENGINE = InnoDB;
 
