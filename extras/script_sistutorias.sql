@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Persona` (
   `Nombre` VARCHAR(45) NULL,
   `APaterno` VARCHAR(45) NULL,
   `AMaterno` VARCHAR(45) NULL,
-  `FechaNac` DATE NULL,
+  `FechaNac` date default NULL,
   `Sexo` VARCHAR(2) NULL,
   `Correo` VARCHAR(50) NULL,
   `NTelefono` VARCHAR(13) NULL,
