@@ -47,7 +47,8 @@
             </div>
         </div>
     </div>
-    <?php include "inc/Script.php" ?>
+
+    <?php include "./inc/Script.php"; ?>
 </body>
 
 </html>
