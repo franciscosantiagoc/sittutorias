@@ -477,9 +477,21 @@ INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Ge
 -- -----------------------------------------------------
 --INSERCION DE DATOS DE ACTIVIDADES
 -- -----------------------------------------------------
-
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (3774,'Ficha de identificación del tutorado','Descripcion',1,'2018-08-24','tutorias/directory/formats/Ficha de identificación del tutorado.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (4939,'Formato de entrevista','Descripcion',2,'2018-08-25','tutorias/directory/formats/Formato de entrevista.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (8123,'Linea de vida','Descripcion',3,'2018-08-26','tutorias/directory/formats/Linea de vida.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (3016,'Análisis Foda','Descripcion',4,'2018-08-27','tutorias/directory/formats/Análisis Foda.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (3875,' Encuesta habilidades de estudio','Descripcion',5,'2018-08-28','tutorias/directory/formats/ Encuesta habilidades de estudio.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (8595,'Test de Autoestima','Descripcion',6,'2018-08-29','tutorias/directory/formats/Test de Autoestima.pdf');
+INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (6009,'est de asertividad','Descripcion',7,'2018-08-30','tutorias/directory/formats/est de asertividad.pdf');
 
 
 -- -----------------------------------------------------
 --INSERCION DE DATOS DE MENSAJES
 -- -----------------------------------------------------
+INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (1,'Corrección de datos','Necesitas actualizar','2020-10-12',False,67,73);
+INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (2,'Solicitud de constancia','Datos faltantes en el documento','2020-12-12',True,67,20);
+INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (3,'Tramite de constancia','Falta dirección','2020-08-02',True,60,31);
+INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (4,'Verificación de actividad foda','Falta dato de la fortaleza','2020-05-09',True,81,46);
+INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (5,'Verificación de actividad linea de vida','Agregar el nombre del alumno','2020-04-14',False,75,30);
+
