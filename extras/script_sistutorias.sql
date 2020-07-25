@@ -248,9 +248,7 @@ ENGINE = InnoDB;
 
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE Persona
--- -----------------------------------------------------
+
 INSERT INTO persona (Nombre,APaterno,AMaterno,FechaNac,Sexo,Correo,NTelefono,Direccion,Ciudad,Foto) VALUES ('Usmar Isacc','Miguel','Lopez','1999/10/16','M','LopezMiguelUs@gmail.com','9717995120','direccion prueba','Ixtepec','/directory/img-person/UsmarIsaccMiguel.jpg');
 INSERT INTO persona (Nombre,APaterno,AMaterno,FechaNac,Sexo,Correo,NTelefono,Direccion,Ciudad,Foto) VALUES ('Giovanni Alexander','Morales','Lopez','1999/04/11','M','LopezMoralesGi@gmail.com','9714324512','direccion prueba','Ixtaltepec','/directory/img-person/GiovanniAlexanderMorales.jpg');
 INSERT INTO persona (Nombre,APaterno,AMaterno,FechaNac,Sexo,Correo,NTelefono,Direccion,Ciudad,Foto) VALUES ('Roel','Morales','Orozco','1998/05/06','M','OrozcoMoralesRo@gmail.com','9714860957','direccion prueba','Juchitán','/directory/img-person/RoelMorales.jpg');
@@ -342,18 +340,14 @@ INSERT INTO persona (Nombre,APaterno,AMaterno,FechaNac,Sexo,Correo,NTelefono,Dir
 
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE AREA
--- -----------------------------------------------------
+
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (31462,'Arquitectura y construcción','Ejemplo de descripción');
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (27313,'Contabilidad y Gestión de Impuestos','Ejemplo de descripción');
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (48193,'Ingeniería y Tecnología','Ejemplo de descripción');
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (52767,'Administración y Gestión de Empresas','Ejemplo de descripción');
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (33604,'Informática','Ejemplo de descripción');
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE TRABAJADOR
--- -----------------------------------------------------
+
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('21147',56,'Docentes',48193,'21147','Activo');
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('18828',57,'Docentes',48193,'18828','Activo');
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('107639',58,'Docentes',48193,'107639','Activo');
@@ -389,8 +383,6 @@ INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contras
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('22406',88,'Admin',48193,'22406','Inactivo');
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE CARRERA
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('46813',31462,'Arquitectura');
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('50467',27313,'Contador Público');
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('45262',31462,'Ingeniería Civil');
@@ -401,12 +393,8 @@ INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('68352',48193,'Inge
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('39281',48193,'Ingeniería Industrial');
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('73529',33604,'Ingeniería Informática');
 INSERT INTO carrera (idCarrera,Areas_idAreas,Nombre) values ('22768',48193,'Ingeniería Mecánica');
--- -----------------------------------------------------
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE GENERACION
--- -----------------------------------------------------
 INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (416,'2016-08-12','2021-07-20');
 INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (478,'2017-08-12','2022-07-20');
 INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (721,'2018-08-12','2023-07-20');
@@ -414,9 +402,7 @@ INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (161,'2019-
 INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (952,'2020-08-12','2025-07-20');
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE TUTORADO
--- -----------------------------------------------------
+
 INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190857,1,'68352','17190857',478);
 INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190605,2,'68352','17190605',478);
 INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190664,3,'68352','17190664',478);
@@ -474,9 +460,7 @@ INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Ge
 INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190763,55,'19819','18190763',952);
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE ACTIVIDADES
--- -----------------------------------------------------
+
 INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (3774,'Ficha de identificación del tutorado','Descripcion',1,'2018-08-24','tutorias/directory/formats/Ficha de identificación del tutorado.pdf');
 INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (4939,'Formato de entrevista','Descripcion',2,'2018-08-25','tutorias/directory/formats/Formato de entrevista.pdf');
 INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (8123,'Linea de vida','Descripcion',3,'2018-08-26','tutorias/directory/formats/Linea de vida.pdf');
@@ -486,9 +470,7 @@ INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_
 INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_asig, URLFormato) values (6009,'est de asertividad','Descripcion',7,'2018-08-30','tutorias/directory/formats/est de asertividad.pdf');
 
 
--- -----------------------------------------------------
---INSERCION DE DATOS DE MENSAJES
--- -----------------------------------------------------
+
 INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (1,'Corrección de datos','Necesitas actualizar','2020-10-12',False,67,73);
 INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (2,'Solicitud de constancia','Datos faltantes en el documento','2020-12-12',True,67,20);
 INSERT INTO mensajes (idMensajes,Asunto,Mensaje,Fecha,Estado,idPersonaRemitente,idPersonaDestinatario) values (3,'Tramite de constancia','Falta dirección','2020-08-02',True,60,31);
