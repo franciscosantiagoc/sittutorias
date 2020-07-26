@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title><?php echo COMPANY;?></title>
-    <?php include "../inc/styles.php"; ?>
-</head>
-
-<body>
     <?php include "../inc/navStudent.php"; ?>
     <div class="register-photo">
         <div class="container bg-white">
@@ -74,7 +64,3 @@
             <div class="form-group" id="div-msj-action"><button class="btn btn-primary" type="submit">Enviar mensaje</button><button class="btn btn-primary" id="btn-msj-cancel" type="submit">CANCELAR</button></div>
         </form>
     </div>
-    <?php include "../inc/Script.php"; ?>
-</body>
-
-</html>
