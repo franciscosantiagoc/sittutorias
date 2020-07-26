@@ -10,10 +10,18 @@
         </head>
     
         <body id="page-top">
-            <?php include "inc/navInicial.php"?>
+            <?php
+                $peticionAjax=false;
+                require_once "./controladores/viewController.php";
+                $IV = new viewController();      
+                $vistas = $IV->get_vista_controller();
+                if($vistas=="login"||$vistas=="404"){
+                    require_once "./vistas/contenidos/".$vistas.".view.php";
 
-            
-           
+                }
+                
+
+            ?>        
 
 
 

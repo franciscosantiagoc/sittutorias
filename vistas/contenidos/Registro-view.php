@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-<?php 
-    include "../config/APP.php";
-?>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title><?php echo COMPANY;?></title>
-    
-    <?php include "inc/styles.php" ?>
-</head>
-
-<body>
     <?php
         /* if(roll==coordinadorA) */ 
             include "inc/navCoordinadorA.php"; 
@@ -40,6 +26,7 @@
         <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Importar csv</button></div>
         </form>
     </div>
+
     <div class="container" id="contain">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post"><img id="imgreg" src="assets/img/meeting.jpg">
@@ -54,7 +41,10 @@
         </form>
     </div>
     <div class="col-md-12 search-table-col">
-        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div><span class="counter pull-right"></span>
+        <div class="form-group pull-right col-lg-4">
+            <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda">
+        </div>
+            <span class="counter pull-right"></span>
         <div class="table-responsive table-bordered table table-hover table-bordered results">
             <table class="table table-bordered table-hover">
                 <thead class="bg-primary bill-header cs">
@@ -105,9 +95,3 @@
         </div>
         <div class="form-group" id="div-regis"><button class="btn btn-primary btn-block" id="btn-regis" type="submit" style="background-color: rgb(245,124,56);">Registrar</button></div>
     </div>
-    </div>
-    </div>
-    <?php include "inc/Script.php" ?>
-</body>
-
-</html>
