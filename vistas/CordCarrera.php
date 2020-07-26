@@ -44,7 +44,7 @@
             <div class="col"><a href="#"><img style="background-image: url(&quot;assets/img/Icons/notification.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Notificaciones</strong></p>
             </div>
-            <div class="col"><a href="VistaTutores/informationT.php"><img style="background-image: url(&quot;assets/img/Icons/information.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="contenidos/TutorInfo-view.php"><img style="background-image: url(&quot;assets/img/Icons/information.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Información</strong></p>
             </div>
         </div>
