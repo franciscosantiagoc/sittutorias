@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\vistas"
+    "\\vistas",
+    "\\vistas\\contenidos"
   ],
-  "SelectedNode": "\\vistas\\CordCarrera",
+  "SelectedNode": "\\vistas\\contenidos\\404-view.php",
   "PreviewInSolutionExplorer": false
 }
