@@ -4,7 +4,7 @@
         
         /*-------------- Modelo obtener vistas --------------*/
         protected static function getView_model($vistas){
-            $blanklist=[];
+            $blanklist=["home"];
             if(in_array($vistas, $blanklist)){
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $content="./vistas/contenidos/".$vistas."-view.php";
