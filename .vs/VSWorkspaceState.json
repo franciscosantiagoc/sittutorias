@@ -1,9 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\views",
     "\\vistas",
-    "\\vistas\\contenidos"
+    "\\vistas\\contenidos",
+    "\\vistas\\contenidos\\cor",
+    "\\vistas\\VistaRoot"
   ],
-  "SelectedNode": "\\vistas\\contenidos\\404-view.php",
+  "SelectedNode": "\\vistas\\contenidos",
   "PreviewInSolutionExplorer": false
 }
