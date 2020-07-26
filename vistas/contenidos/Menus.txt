@@ -1,0 +1,1 @@
+"Registro","MenuAlumno","MenuCordArea","MenuCa","MenuRoot","login","home"
