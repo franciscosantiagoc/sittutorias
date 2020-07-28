@@ -1,5 +1,5 @@
 
-<?php include "../inc/navTutor.php"; ?>
+<?php include "./vistas/inc/navTutor.php"; ?>
     <div class="register-photo">
         <div class="container" id="contain">
             <div class="col-md-12 search-table-col">

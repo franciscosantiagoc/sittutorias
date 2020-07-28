@@ -1,5 +1,5 @@
 
-<?php include "../inc/navTutor.php"; ?>
+<?php include "./vistas/inc/navTutor.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
@@ -10,7 +10,7 @@
         </div>
         <div class="row people">
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/alum1.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum1.jpg" />
                     <h3 class="name">Francisco Santiago de la Cruz</h3>
                     <b>Número de Control: </b><p class="description">16190437</p>
                     <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
@@ -19,7 +19,7 @@
             </div>
             
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/alum2.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum2.jpg" />
                     <h3 class="name">Juan Carlos Fernandez Piñón</h3>
                     <b>Número de Control: </b><p class="description">16190439</p>
                     <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
@@ -28,7 +28,7 @@
             </div>
             
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/alum3.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum3.jpg" />
                     <h3 class="name">Luis Alberto Robles Parada</h3>
                     <b>Número de Control: </b><p class="description">16190359</p>
                     <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
@@ -37,7 +37,7 @@
             </div>
             
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/alum4.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum4.jpg" />
                     <h3 class="name">Emanuel Enriquez Couder</h3>
                     <b>Número de Control: </b><p class="description">16190417</p>
                     <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
@@ -46,7 +46,7 @@
             </div>
             
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/alum5.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum5.jpg" />
                     <h3 class="name">Humberto Toledo Fuentes</h3>
                     <b>Número de Control: </b><p class="description">16190331</p>
                     <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
@@ -60,7 +60,7 @@
 </div></form>
         </div>
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img id="imgreg" src="../assets/img/alum3.jpg">
+            <form method="post"><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
