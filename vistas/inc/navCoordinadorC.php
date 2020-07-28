@@ -26,12 +26,8 @@
                 <li class="nav-item menu" role="presentation">
                     <a class="nav-link js-scroll-trigger" href="">Estadisticas</a></li>
                 <li class="nav-item dropdown menu">
-<<<<<<< HEAD
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil">
                         <img class="rounded-circle" id="img-perfil" src="vistas/assets/img/coor-maribel.jpg"></a>
-=======
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="./vistas/assets/img/coor-maribel.jpg"></a>
->>>>>>> 15104936ff13ee6a2a494ef2c4e30bb85fd0493c
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item disabled" role="presentation">Maribel Castillejos Toledo</a>
                         <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
