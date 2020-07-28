@@ -18,9 +18,9 @@
                 </li>
                 <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="">Estadísticas</a></li>
                 <li class="dropdown menu">
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="assets/img/coor-ivan.jpg"></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="vistas/assets/img/coor-ivan.jpg"></a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item disabled" role="presentation">Maribel Castillejos Toledo</a>
+                        <a class="dropdown-item disabled" role="presentation">Iván Ruiz Sánchez</a>
                         <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
                         <a class="dropdown-item" role="presentation" href="Cerrar Sesión">Cerrar Sesión</a></div>
                 </li>

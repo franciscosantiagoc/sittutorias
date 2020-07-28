@@ -1,5 +1,5 @@
-    <?php include "inc/navInicial.php"; ?>
-    <header class="masthead text-center text-white d-flex" style="background-image: url('views/assets/img/platica_tutor.jpg');">
+    <?php include "./vistas/inc/navInicial.php"; ?>
+    <header class="masthead text-center text-white d-flex" style="background-image: url('vistas/assets/img/platica_tutor.jpg');">
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">

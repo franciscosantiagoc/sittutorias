@@ -12,7 +12,8 @@
                     <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="VistaTutores/ActividadesT.html">Gestion de Actividades</a><a class="dropdown-item" role="presentation" href="VistaTutores/Tutorados.html">Gestion de Tutorados</a></div>
                 </li>
 
-                <li class="dropdown menu"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="../assets/img/tutor-daniel.jpg"></a>
+                <li class="dropdown menu"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil">
+                    <img class="rounded-circle" id="img-perfil" src="vistas/assets/img/tutor-daniel.jpg"></a>
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item disabled" role="presentation">Daniel García Orozco</a>
                         <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>

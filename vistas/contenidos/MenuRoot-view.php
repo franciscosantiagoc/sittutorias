@@ -1,4 +1,4 @@
-    <?php include "inc/navRoot.php"; ?>
+    <?php include "./vistas/inc/navRoot.php"; ?>
 
     <div class="container" id="container-alummenu">
         <div class="row" id="row">
@@ -7,13 +7,13 @@
             </div>
         </div>
         <div class="row" id="row">
-            <div class="col"><a href="VistaRoot/CoordinadoresAR.html"><img style="background-image: url(&quot;assets/img/Icons/jefedepart.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="VistaRoot/CoordinadoresAR.html"><img style="background-image: url(vistas/assets/img/Icons/jefedepart.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Gestion de Jefes de departamento</strong></p>
             </div>
-            <div class="col"><a href="VistaRoot/CoordinadoresCR.html"><img id="imgactivities" style="background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;background-image: url(&quot;assets/img/Icons/coord.png&quot;);"></a>
+            <div class="col"><a href="VistaRoot/CoordinadoresCR.html"><img id="imgactivities" style="background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;background-image: url(vistas/assets/img/Icons/coord.png);"></a>
                 <p><strong>Gestion de Coordinadores</strong></p>
             </div>
-            <div class="col"><a href="VistaRoot/EstadisticosR.html"><img style="background-image: url(&quot;assets/img/Icons/estadistic.png&quot;);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="VistaRoot/EstadisticosR.html"><img style="background-image: url(vistas/assets/img/Icons/estadistic.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Estadísticas</strong></p>
             </div>
         </div>

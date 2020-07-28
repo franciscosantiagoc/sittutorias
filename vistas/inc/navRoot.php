@@ -3,14 +3,14 @@
                 aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="Alumno.html">iNICIO</a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">GESTION</a>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="Alumno.html">iNICIO</a></li>
+                    <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">GESTION</a>
                         <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" role="presentation" href="#">Gestión de Jefes de departamento</a>
                             <a class="dropdown-item" role="presentation" href="#">Gestión de Coordinadores de Area</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="assets/img/dir-victor.jpg"></a>
+                    <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="vistas/assets/img/dir-victor.jpg"></a>
                         <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item disabled" role="presentation">Ing. Víctor Manuel Jiménez Cruz<br></a>
                             <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
