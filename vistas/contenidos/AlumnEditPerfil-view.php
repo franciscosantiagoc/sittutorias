@@ -1,11 +1,11 @@
 
-<?php include "../inc/navStudent.php"; ?>
+<?php include "./vistas/inc/navStudent.php"; ?>
     <div class="register-photo">
 
         <div class="form-container">
             <form method="post">
                 <h2 class="text-center"><strong>Perfil</strong></h2>
-                <div class="form-group" id="div-img"><img id="imgperf" src="../assets/img/Icons/perfil.png"></div><input type="file" id="actualizar-foto">
+                <div class="form-group" id="div-img"><img id="imgperf" src="./vistas/assets/img/Icons/perfil.png"></div><input type="file" id="actualizar-foto">
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>

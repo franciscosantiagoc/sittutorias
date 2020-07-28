@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navStudent.php"; ?>
+    <?php include "./vistas/inc/navStudent.php"; ?>
     <div class="register-photo">
         <div class="container bg-white">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>

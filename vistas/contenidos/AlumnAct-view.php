@@ -1,5 +1,7 @@
 
-    <?php include "../inc/navStudent.php"; ?>
+
+
+<?php include "./vistas/inc/navStudent.php" ?>
     <div class="register-photo">
         <div class="container" id="contain">
             <div class="col-md-12 search-table-col">
@@ -48,7 +50,7 @@
                 <h2 class="text-center"><strong>Editar Actividad</strong></h2>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Fecha de Entrega"></div>
+                <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
                 <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Enviar actividad</button></div>

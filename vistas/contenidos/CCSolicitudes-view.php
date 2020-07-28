@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div class="container" id="contain">
             <p id="tit-activities"><strong>Solicitudes</strong></p>
@@ -8,6 +8,8 @@
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
                     <table class="table table-bordered table-hover">
                         <thead class="bg-primary bill-header cs">
+
+
                             <tr>
                                 <th id="trs-hd" class="col-lg-1"><br><strong>Nombre del Alumno</strong><br></th>
                                 <th id="trs-hd" class="col-lg-2"><br><strong>Número de control</strong><br></th>
@@ -24,6 +26,8 @@
                                 <td><br>06/06/2020<br></td>
                                 <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
                             </tr>
+
+
                             <tr>
                                 <td><br>Luis Alberto Robles Parada<br></td>
                                 <td><br>16190347<br></td>
@@ -31,6 +35,8 @@
                                 <td><br>05/05/2020<br></td>
                                 <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
                             </tr>
+
+
                             <tr>
                                 <td><br>Juan Carlos Hernandez Piñon<br></td>
                                 <td><br>16190425<br></td>
@@ -43,10 +49,12 @@
                 </div>
             </div>
         </div>
+
+
         <div class="container" id="cont-sol">
             <div id="view-cambio" class="form-container">
                 <form method="post">
-                    <p id="tit-activities"><strong>Cambio Tutor</strong></p><img id="imgreg" src="../assets/img/alum3.jpg">
+                    <p id="tit-activities"><strong>Cambio Tutor</strong></p><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
                     <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>

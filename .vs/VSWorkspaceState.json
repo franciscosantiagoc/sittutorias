@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\views",
-    "\\vistas",
-    "\\vistas\\contenidos",
-    "\\vistas\\contenidos\\cor",
-    "\\vistas\\VistaRoot"
+    "\\vistas"
   ],
-  "SelectedNode": "\\vistas\\contenidos",
+  "SelectedNode": "\\vistas\\plantilla.php",
   "PreviewInSolutionExplorer": false
 }
