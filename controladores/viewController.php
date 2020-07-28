@@ -1,8 +1,8 @@
 <?php
-    require_once "./modelos/viewModel.php";
+    require_once "./modelos/vistasModelo.php";
 
 
-    class viewController extends viewModel{
+    class viewController extends vistasModelo{
         
         /*-------------- Controlador Obtener Plantilla --------------*/
         public function get_plantilla_controller(){
@@ -10,15 +10,13 @@
         }
 
         /*-------------- Controlador Obtener vistas --------------*/
-        public function get_vista_controller(){
-            if(isset($_GET['views'])){
-                $ruta=explode("/",$_GET['views']);
-                $response=viewModel::getView_model($ruta[0]);
-
-            }else{
-                $response="home";
-
-            }
-            return $response;
-        }
+        public function obtener_vistas_controlador(){
+			if(isset($_GET['views'])){
+				$ruta=explode("/", $_GET['views']);
+				$respuesta=vistasModelo::obtener_vistas_modelo($ruta[0]);
+			}else{
+				$respuesta="login";
+			}
+			return $respuesta;
+		}
     }

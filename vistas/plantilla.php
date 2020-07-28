@@ -14,10 +14,13 @@
                 $peticionAjax=false;
                 require_once "./controladores/viewController.php";
                 $IV = new viewController();      
-                $vistas = $IV->get_vista_controller();
+                $vistas = $IV->obtener_vistas_controlador();
                 if($vistas=="login"||$vistas=="404"){
-                    require_once "./vistas/contenidos/".$vistas.".view.php";
-
+                    echo "<script>console.log('PHP: if plantilla');</script>";
+                    require_once "./vistas/contenidos/".$vistas."-view.php";
+                }else{
+                    echo "<script>console.log('PHP: else plantilla');</script>";
+                    include $vistas;
                 }
                 
 
