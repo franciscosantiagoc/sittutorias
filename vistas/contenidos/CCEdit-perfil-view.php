@@ -1,10 +1,10 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div class="form-container">
             <form method="post">
                 <h2 class="text-center"><strong>Perfil</strong></h2>
-                <div class="form-group contenedor-foto"><img id="imgperf" src="../assets/img/Icons/perfil.png"></div>
+                <div class="form-group contenedor-foto"><img id="imgperf" src="./vistas/assets/img/Icons/perfil.png"></div>
                 <div class="form-group"><input type="file" id="actualizar-foto"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>

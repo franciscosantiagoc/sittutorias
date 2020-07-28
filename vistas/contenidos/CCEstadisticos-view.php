@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
@@ -24,7 +24,7 @@
             </form>
         </div>
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="../assets/img/grafica.jpg">
+            <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
                 <div class="form-group" id="div-tipografia"><label>GRAFICA TIPO : PERIODO : SEXO : SITUACION</label></div>
             </form>
         </div>

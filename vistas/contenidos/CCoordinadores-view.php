@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
@@ -17,7 +17,7 @@
         </div>
         <div class="row people">
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/1.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/1.jpg" />
                     <h3 class="name">Alberto Ramírez Regalado</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/2.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
                     <h3 class="name">Maribel Castillejos Toledo</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/3.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
                     <h3 class="name">Angel Olivarez Perez</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>
@@ -49,7 +49,7 @@
             </form>
         </div>
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img id="imgreg" src="../assets/img/tutores.jpg">
+            <form method="post"><img id="imgreg" src="./vistas/assets/img/tutores.jpg">
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>

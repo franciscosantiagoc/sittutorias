@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div class="container bg-white">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>

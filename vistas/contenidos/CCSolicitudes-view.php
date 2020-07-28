@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div class="container" id="contain">
             <p id="tit-activities"><strong>Solicitudes</strong></p>
@@ -46,7 +46,7 @@
         <div class="container" id="cont-sol">
             <div id="view-cambio" class="form-container">
                 <form method="post">
-                    <p id="tit-activities"><strong>Cambio Tutor</strong></p><img id="imgreg" src="../assets/img/alum3.jpg">
+                    <p id="tit-activities"><strong>Cambio Tutor</strong></p><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
                     <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>

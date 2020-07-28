@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div class="container" id="contain">
             <div id="importcsvregis" class="form-container">
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img id="imgreg" src="../assets/img/alum2.jpg">
+            <form method="post"><img id="imgreg" src="./vistas/assets/img/alum2.jpg">
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
