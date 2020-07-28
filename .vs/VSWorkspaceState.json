@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views",
-    "\\vistas"
+    "\\vistas",
+    "\\vistas\\contenidos"
   ],
-  "SelectedNode": "\\vistas\\plantilla.php",
+  "SelectedNode": "\\vistas\\contenidos\\CCTutores-view.php",
   "PreviewInSolutionExplorer": false
 }

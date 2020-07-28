@@ -1,5 +1,5 @@
 
-    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC.php"; ?>
     <div class="register-photo">
         <div class="form-container">
             <form method="post">
