@@ -11,6 +11,8 @@
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
                 <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">rEGISTRAR</button></a></div>
                 <div class="form-group"><div class="team-boxed">
+
+
     <div class="container">
         <div class="intro">
             <h2 class="text-center">COORDINADORES</h2>
@@ -25,6 +27,7 @@
                     <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-4 item">
                 <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
                     <h3 class="name">Maribel Castillejos Toledo</h3>
@@ -34,6 +37,7 @@
                     <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>  
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-4 item">
                 <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
                     <h3 class="name">Angel Olivarez Perez</h3>
@@ -45,6 +49,8 @@
             </div>
         </div>
     </div>
+
+
 </div></div>
             </form>
         </div>
@@ -63,5 +69,7 @@
                 <div class="form-group" id="div-action"><button class="btn btn-primary bg-primary" id="btn-update" type="button">Actualizar</button><button class="btn btn-primary bg-primary" id="btn-cancel" type="button">CANCELAR</button></div>
             </form>
         </div>
+
+
     </div>
     

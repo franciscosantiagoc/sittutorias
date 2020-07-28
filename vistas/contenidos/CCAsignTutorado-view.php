@@ -13,6 +13,8 @@
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Asignar Tutorados a docentes (auto)</button></div>
                 </form>
             </div>
+
+
             <div class="col-md-12 search-table-col">
                 <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div><span class="counter pull-right"></span>
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
@@ -57,6 +59,8 @@
                 </div>
             </div>
         </div>
+
+
         <div id="cont-visdat" class="form-container">
             <form method="post"><img id="imgreg" src="./vistas/assets/img/alum2.jpg">
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
@@ -69,6 +73,9 @@
                 <div class="form-group"><select class="form-control"><option value="12">Seleccione Tutor a asignar</option><option value="13">Maribel Castillejos Toledo</option><option value="14">Sayonara Orozco Alvarez</option></select></div>
                 <div class="form-group"><button class="btn btn-primary btn-block bg-primary" type="button">Actualizar</button><button class="btn btn-primary btn-block bg-primary" type="button">CANCELAR</button></div>
             </form>
+
+
+
         </div>
     </div>
     

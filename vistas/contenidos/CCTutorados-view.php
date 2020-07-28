@@ -1,5 +1,5 @@
 
-     <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorC2.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
@@ -11,6 +11,8 @@
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">rEGISTRAR</button></div>
                 <div class="form-group"><div class="team-boxed">
+
+
     <div class="container">
         <div class="intro">
             <h2 class="text-center">Tutores </h2>
@@ -25,6 +27,7 @@
                 </div>
             </div>
             
+
             <div class="col-md-6 col-lg-4 item">
                 <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum2.jpg" />
                     <h3 class="name">Juan Carlos Fernandez Piñón</h3>

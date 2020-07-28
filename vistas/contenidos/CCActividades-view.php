@@ -44,7 +44,9 @@
                         </table>
                     </div>
             </div>
-        </div>
+
+
+
         <div id="importcsvregis" class="form-container">
             <form method="post">
                 <h2 class="text-center"><strong>Editar Actividad</strong></h2>
@@ -53,6 +55,9 @@
                 <div class="form-group"><select class="form-control"><option value="12">1er Semestre</option><option value="13">2do Semestre</option><option value="14">3er Semestre</option><option value="4">4to Smestre</option><option value="5">5to Semestre</option><option value="">6to Semestre</option><option value="" selected="">Semestre - Periodo a realizar</option></select></div>
                 <div
                     class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
+
+
+
         <div class="form-group file-select"><label>Archivo</label><input type="file" id="form-file" accept="image/*"></div>
         <div class="form-group" id="div-acciones"><button class="btn btn-primary" id="btn-save" type="submit" style="background-color: rgb(245,124,56);">GUARDAR</button><button class="btn btn-primary" id="btn-cancel" type="submit" style="background-color: rgb(245,124,56);">CANCELAR</button></div>
         </form>
