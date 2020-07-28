@@ -9,7 +9,6 @@
                 <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="VistaAlumnos/information.html">Contacto</a></li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="./vistas/assets/img/alum5.jpg"></a>
-
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item disabled" role="presentation">Humberto Toledo Fuentes</a>
                         <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
