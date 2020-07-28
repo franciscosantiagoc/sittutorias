@@ -1,5 +1,5 @@
 
-<?php include "../inc/navStudent.php"; ?>
+<?php include "./vistas/inc/navStudent.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <div class="form-container">
@@ -11,7 +11,7 @@
         </div>
         <div class="row people">
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/1.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/1.jpg" />
                     <h3 class="name">Alberto Ramírez Regalado</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/2.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
                     <h3 class="name">Maribel Castillejos Toledo</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="../assets/img/3.jpg" />
+                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
                     <h3 class="name">Angel Olivarez Perez</h3>
                     <b>Area: </b><p class="description">Sistemas e informática</p>
                     <b>Matrícula: </b><p class="description">25635453</p>

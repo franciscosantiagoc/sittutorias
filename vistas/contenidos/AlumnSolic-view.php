@@ -1,5 +1,5 @@
 
-    <?php include "../inc/navStudent.php"; ?>
+    <?php include "./vistas/inc/navStudent.php"; ?>
     <div class="register-photo">
         <div class="container" id="cont-sol">
             <div id="sol-cambio" class="form-container">
