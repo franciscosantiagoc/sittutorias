@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\vistas",
-    "\\vistas\\contenidos"
+    "\\vistas\\contenidos",
+    "\\vistas\\inc"
   ],
   "SelectedNode": "\\vistas\\contenidos\\CCTutores-view.php",
   "PreviewInSolutionExplorer": false
