@@ -22,11 +22,11 @@
                     echo "<script>console.log('PHP: else plantilla');</script>";
                     include $vistas;
                 }
+
+                include "inc/footer.php";
                 
 
             ?>        
-
-
 
             <?php include "inc/Script.php" ?>
         </body>
