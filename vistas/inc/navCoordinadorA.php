@@ -5,7 +5,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item menu" role="presentation">
-                    <a class="nav-link js-scroll-trigger" href="Alumno.html">Inicio</a>
+                    <a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>MenuCordArea">Inicio</a>
                 </li>
                 <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Gestion</a>
                     <div class="dropdown-menu" role="menu">

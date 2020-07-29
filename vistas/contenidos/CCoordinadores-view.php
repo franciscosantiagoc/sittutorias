@@ -1,5 +1,5 @@
 
-    <?php include "./vistas/inc/navCoordinadorC.php"; ?>
+    <?php include "./vistas/inc/navCoordinadorA.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
