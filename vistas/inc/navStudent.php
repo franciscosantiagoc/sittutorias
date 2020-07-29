@@ -4,15 +4,17 @@
             aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="Alumno.html">Inicio</a></li>
-                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="">Objetivos</a></li>
-                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="VistaAlumnos/information.html">Contacto</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>MenuAlumno">Inicio</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>AlumnAct">Actividades</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>AlumnSolic">Solicitudes</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>AlumnInfo">Contacto</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>AlumnNotif">Notificaciones</a></li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="./vistas/assets/img/alum5.jpg"></a>
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item disabled" role="presentation">Humberto Toledo Fuentes</a>
-                        <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
-                        <a class="dropdown-item" role="presentation" href="Cerrar Sesión">Cerrar Sesión</a>
+                        <a class="dropdown-item" role="presentation" href="AlumnEditPerfil">Editar Perfil</a>
+                        <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>

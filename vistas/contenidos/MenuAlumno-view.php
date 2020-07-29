@@ -7,19 +7,19 @@
             </div>
         </div>
         <div class="row" id="row">
-            <div class="col"><a href="VistaAlumnos/Actividades.html"><img id="imgactivities" style="background-image: url(vistas/assets/img/Icons/activities.png);background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="contenidos/AlumnAct-view.php"><img id="imgactivities" style="background-image: url(vistas/assets/img/Icons/activities.png);background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Actividades</strong></p>
             </div>
-            <div class="col"><a href="contenidos/AlumnSolic-view.php"><img style="background-image: url(vistas/assets/img/Icons/solicitudes.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
-                <p><strong>Solicitudes</strong></p>
+
+                <div class="col"><a href="contenidos/AlumnSolic-view.php"><img style="background-image: url(vistas/assets/img/Icons/solicitudes.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a><p><strong>Solicitudes</strong></p>
             </div>
-            <div class="col"><a href="VistaAlumnos/edit-perfil.html"><img style="background-image: url(vistas/assets/img/Icons/perfil.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="contenidos/AlumnEditPerfil-view.php"><img style="background-image: url(vistas/assets/img/Icons/perfil.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Perfil</strong></p>
             </div>
             <div class="col"><a href="#"><img style="background-image: url(vistas/assets/img/Icons/notification.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Notificaciones</strong></p>
             </div>
-            <div class="col"><a href="VistaAlumnos/information.html"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="contenidos/AlumnInfo-view"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Información</strong></p>
             </div>
         </div>
