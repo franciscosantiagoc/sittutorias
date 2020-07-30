@@ -11,9 +11,12 @@
                     <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
-                    <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">rEGISTRAR</button></a></div>
-                    <div class="form-group"><div class="team-boxed">
-
+                <div class="form-group">
+                
+                <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
+                
+                </div>
+                <div class="form-group"><div class="team-boxed">
 
     <div class="container">
         <div class="intro">
