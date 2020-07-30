@@ -3,18 +3,18 @@
                 aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="Alumno.html">iNICIO</a></li>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="MenuRoot">INICIO</a></li>
                     <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">GESTION</a>
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">Gestión de Jefes de departamento</a>
-                            <a class="dropdown-item" role="presentation" href="#">Gestión de Coordinadores de Area</a>
+                            <a class="dropdown-item" role="presentation" href="RootCoordinadoresAR">Gestión de Jefes de departamento</a>
+                            <a class="dropdown-item" role="presentation" href="RootCoordinadoresCR">Gestión de Coordinadores de Area</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" id="div-img-perfil"><img class="rounded-circle" id="img-perfil" src="vistas/assets/img/dir-victor.jpg"></a>
                         <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item disabled" role="presentation">Ing. Víctor Manuel Jiménez Cruz<br></a>
-                            <a class="dropdown-item" role="presentation" href="CordCarrera/edit-perfilC.html">Editar Perfil</a>
-                            <a class="dropdown-item" role="presentation" href="Cerrar Sesión">Cerrar Sesión</a></div>
+                            <a class="dropdown-item" role="presentation" href="RootCoordinadoresAR">Editar Perfil</a>
+                            <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a></div>
                     </li>
                 </ul>
             </div>
