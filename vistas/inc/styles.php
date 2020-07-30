@@ -11,3 +11,4 @@
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Table-With-Search.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Footer-Base-3.css">
