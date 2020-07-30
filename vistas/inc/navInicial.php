@@ -3,10 +3,10 @@
                 aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="">Inicio</a></li>
-                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="">Objetivos</a></li>
-                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="">Contacto</a></li>
-                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="login.html">Ingresa</a></li>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>home">Inicio</a></li>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>home#about">Objetivos</a></li>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>home#footer">Contacto</a></li>
+                    <li class="nav-item menu" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo SERVERURL;?>login">Ingresa</a></li>
                     <li class="nav-item menu" role="presentation"></li>
                 </ul>
             </div>
