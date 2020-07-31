@@ -45,20 +45,27 @@
         <div
             class="collapse navbar-collapse text-center d-md-flex justify-content-md-end" id="navcol-1">
             <ul class="nav navbar-nav">
-                <li class="nav-item menu" role="presentation"><a class="nav-link active" href="#" style="color: #ffffffff;">Inicio</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link active" href="<?php echo SERVERURL;?>MenuCordCa" style="color: #ffffffff;">Inicio</a></li>
                 <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">Gestión</a>
-                    <div class="dropdown-menu" role="menu" style="background-color: #fffff;"><a class="dropdown-item" role="presentation" href="#">Gestión de Tutores</a><a class="dropdown-item" role="presentation" href="#">Gestión de Tutorados</a><a class="dropdown-item" role="presentation" href="#">Gestión de Actividades</a></div>
+                    <div class="dropdown-menu" role="menu" style="background-color: #fffff;">
+                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutores">Gestión de Tutores</a>
+                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutorados">Gestión de Tutorados</a>
+                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCActividades">Gestión de Actividades</a></div>
                 </li>
                 <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">Tutor</a>
-                    <div class="dropdown-menu" role="menu" style="background-color: #fffff;"><a class="dropdown-item" role="presentation" href="#">Seguimiento Actividades</a><a class="dropdown-item" role="presentation" href="#">Tutorados Asignados</a></div>
+                    <div class="dropdown-menu" role="menu" style="background-color: #fffff;">
+                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCActividades">Seguimiento Actividades</a>
+                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutorados">Tutorados Asignados</a></div>
                 </li>
-                <li class="nav-item menu" role="presentation"><a class="nav-link" href="#" style="color: #ffffffff;">Estadísticas</a></li>
-                <li class="nav-item menu" role="presentation"><a class="nav-link" href="#" style="color: #ffffffff;"><i class="material-icons">notifications</i></a></li>
-                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="assets/img/d.png"></a>
+                <li class="nav-item menu" role="presentation"><a class="nav-link" href="<?php echo SERVERURL;?>CCEstadisticos" style="color: #ffffffff;">Estadísticas</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link" href="<?php echo SERVERURL;?>CCNotification" style="color: #ffffffff;"><i class="material-icons">notifications</i></a></li>
+                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="vistas/assets/img/coor-maribel.jpg"></a>
                     <div class="dropdown-menu" role="menu"
-                        id="menu-perfil"><a class="dropdown-item" role="presentation" href="#">Maribel Castillejos Toledo</a><a class="dropdown-item" role="presentation" href="#">Editar Perfil</a><a class="dropdown-item" role="presentation" href="#">Cerrar Sesión</a></div>
+                        id="menu-perfil"><a class="dropdown-item disabled" role="presentation" href="#">Maribel Castillejos Toledo</a><a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCEdit-perfil">Editar Perfil</a><a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>login">Cerrar Sesión</a></div>
                 </li>
             </ul>
     </div>
     </div>
 </nav>
+
+<?php include "./vistas/inc/alert-notificacion.php"; ?>
