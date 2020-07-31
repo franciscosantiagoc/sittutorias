@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-primary coorCA" id="mainNav">
+<!--<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-primary coorCA" id="mainNav">
     <div class="container"><a class="navbar-brand js-scroll-trigger" id="tit_pag" href="#page-top">Tutorias</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
 
@@ -27,5 +27,28 @@
             </ul>
             
         </div>
+    </div>
+</nav>-->
+
+<nav class="navbar navbar-light navbar-expand-md navbar-side" id="nav-menu">
+    <div class="container-fluid">
+        <div id="div-mobilemenu"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" id="icon-menu"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div><a class="navbar-brand d-sm-flex" href="" style="color: #ffffffff;">Sistema de Tutorias Itistmo</a>
+        <div
+            class="collapse navbar-collapse text-center d-md-flex justify-content-md-end" id="navcol-1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item menu" role="presentation"><a class="nav-link active" href="#" style="color: #ffffffff;">Inicio</a></li>
+                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">Gestión</a>
+                    <div class="dropdown-menu" role="menu" style="background-color: #fffff;"><a class="dropdown-item" role="presentation" href="#">Gestión de Coordinadores</a><a class="dropdown-item" role="presentation" href="#">Gestión de Tutores</a><a class="dropdown-item" role="presentation" href="#">Gestión de Tutorados</a>
+                        <a
+                            class="dropdown-item" role="presentation" href="#">Gestión de Solicitudes</a><a class="dropdown-item" role="presentation" href="#">Gestión de Actividades</a></div>
+                </li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link" href="#" style="color: #ffffffff;">Estadísticas</a></li>
+                <li class="nav-item menu" role="presentation"><a class="nav-link" href="#" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li>
+                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="assets/img/d.png"></a>
+                    <div class="dropdown-menu" role="menu"
+                        id="menu-perfil"><a class="dropdown-item" role="presentation" href="#">Iván Ruiz Sánchéz</a><a class="dropdown-item" role="presentation" href="#">Editar Perfil</a><a class="dropdown-item" role="presentation" href="#">Cerrar Sesión</a></div>
+                </li>
+            </ul>
+    </div>
     </div>
 </nav>
