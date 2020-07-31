@@ -20,7 +20,6 @@
                     require_once "./vistas/contenidos/".$vistas."-view.php";
                 }else{
                     echo "<script>console.log('PHP: else plantilla');</script>";
-                    echo "<script>console.log('PHP: ".$vistas." plantilla');</script>";
                     include $vistas;
                 }
 

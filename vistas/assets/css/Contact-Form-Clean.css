@@ -250,11 +250,6 @@ div-img-perfil {
     padding: 0px 0px 0px 0px;
 }
 
-.menu {
-    display: flex;
-    align-items: center;
-}
-
 #div-msj-action {
     display: flex;
     justify-content: center;
@@ -274,12 +269,13 @@ div-img-perfil {
     justify-content: center;
 }
 
-img,
+
+/*img,
 svg {
-    /*width: 150px;
+    width: 150px;
     height: 150px;
-    */
-}
+    
+}*/
 
 #text-title {
     font-size: 60px;
@@ -302,5 +298,12 @@ svg {
 @media (max-width: 800px) {
     #text-title {
         font-size: 40px;
+    }
+}
+
+@media (min-width: 818px) {
+    .menu {
+        display: flex;
+        align-items: center;
     }
 }

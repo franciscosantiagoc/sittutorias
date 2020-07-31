@@ -59,7 +59,7 @@ footer {
     }
 }
 
-a {
+.icon {
     color: #ffffff;
     text-decoration: none;
     background-color: transparent;
@@ -86,10 +86,6 @@ a:hover {
     #title-nav {
         margin-left: 100px;
     }
-}
-
-#img-perfil {
-    width: 40px;
 }
 
 .menu {
