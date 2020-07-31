@@ -101,3 +101,7 @@
 .team-boxed .social a:hover {
     opacity: 1;
 }
+
+.team-boxed .container .people {
+    margin-bottom: 20px;
+}
