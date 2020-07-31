@@ -43,11 +43,14 @@
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">
                         <img class="rounded-circle" id="img-perfil" src="./vistas/assets/img/alum5.jpg"></a>
                         <div class="dropdown-menu" role="menu" id="menu-perfil">
-                            <a class="dropdown-item" role="presentation" href="#">Humberto Toledo Fuentes</a>
+                            <a class="dropdown-item" role="presentation">Humberto Toledo Fuentes</a>
                             <a class="dropdown-item" role="presentation" href="AlumnEditPerfil">Editar Perfil</a>
                             <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a></div>
                     </li>
                 </ul>
         </div>
         </div>
+
     </nav>
+
+<?php include "alert-notificacion.php"; ?>
