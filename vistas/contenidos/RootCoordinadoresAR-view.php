@@ -8,8 +8,8 @@
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Matrícula"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);"><a href="<?php echo SERVERURL;?>Registro">REGISTRAR</a></button></div><div class="team-boxed">
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Buscar</button></div>
+                <div class="form-group"><a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a></div><div class="team-boxed">
     <div class="container">
         <div class="intro">
             <h2 class="text-center">Tutores </h2>
