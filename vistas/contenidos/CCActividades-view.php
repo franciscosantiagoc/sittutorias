@@ -4,7 +4,7 @@
         <div class="container bg-white">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
-                <div class="form-group pull-right col-lg-4"><button class="btn btn-primary btn-block border rounded" type="submit" style="background-color: rgb(245,124,56);">agregar NUEVA ACTIVIDAD</button><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div>
+                <div class="form-group pull-right col-lg-4"><button class="btn btn-primary btn-block border rounded" type="submit" >agregar NUEVA ACTIVIDAD</button><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div>
                 <span
                     class="counter pull-right"></span>
                     <div class="table-responsive table-bordered table table-hover table-bordered results">
@@ -59,7 +59,7 @@
 
 
         <div class="form-group file-select"><label>Archivo</label><input type="file" id="form-file" accept="image/*"></div>
-        <div class="form-group" id="div-acciones"><button class="btn btn-primary" id="btn-save" type="submit" style="background-color: rgb(245,124,56);">GUARDAR</button><button class="btn btn-primary" id="btn-cancel" type="submit" style="background-color: rgb(245,124,56);">CANCELAR</button></div>
+        <div class="form-group" id="div-acciones"><button class="btn btn-primary" id="btn-save" type="submit" >GUARDAR</button><button class="btn btn-primary" id="btn-cancel" type="submit" >CANCELAR</button></div>
         </form>
     </div>
     </div>

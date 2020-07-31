@@ -64,7 +64,7 @@
                     <div
                         class="form-group"><select class="form-control"><option value="" selected="">Tipo Solicitud</option><option value="13">Maribel Castillejos Toledo</option><option value="14">Sayonara Orozco Álvarez</option><option value="15">Alberto Martínez Regalado</option><option value="16">Luis Ángel Olivarez Pérez</option></select></div>
             <div
-                class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">VALIDAR</button><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">CANCELAR</button></div>
+                class="form-group"><button class="btn btn-primary btn-block" type="submit" >VALIDAR</button><button class="btn btn-primary btn-block" type="submit" >CANCELAR</button></div>
         </form>
     </div>
     </div>

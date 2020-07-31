@@ -19,8 +19,8 @@
                             <option value="14">Mujeres</option>
                             <option value="">Ambos</option>
                             </select><label>Seleccione la Situación</label><select class="form-control"><option value="12" selected="">Situación</option><option value="13">Bajas</option><option value="14">Altas</option></select></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Generar grafica</button></div>
-                <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">IMPRIMIR</button></a></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Generar grafica</button></div>
+                <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" >IMPRIMIR</button></a></div>
             </form>
 
         </div>
