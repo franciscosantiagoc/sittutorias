@@ -45,7 +45,7 @@
             </form>
         </div>
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="../assets/img/grafica.jpg">
+            <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
                 <div class="form-group"><label>GRAFICA TIPO : PERIODO : SEXO : SITUACION</label></div>
             </form>
         </div>
