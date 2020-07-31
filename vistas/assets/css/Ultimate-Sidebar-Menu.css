@@ -171,7 +171,7 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
     margin-top: 20px;
 }
 
-#btn-aceptar {
+#btnaceptar {
     margin-top: 25px;
     background-color: #fe6839;
     color: #ffffff;
@@ -193,7 +193,7 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
     #modal-desc {
         font-size: 19px;
     }
-    #btn-aceptar {
+    #btnaceptar {
         margin-bottom: 20px;
     }
 }
