@@ -24,7 +24,7 @@
                                 <td>12/05/2020</td>
                                 <td><br>11/05/2020<br></td>
                                 <td><i class="fa fa-remove"></i></td>
-                                <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
+                                <td><button class="btn btn-success bg-primary" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Análisis Foda</td>
@@ -53,7 +53,7 @@
                 <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
                 <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Enviar actividad</button></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button></div>
             </form>
         </div>
     </div>

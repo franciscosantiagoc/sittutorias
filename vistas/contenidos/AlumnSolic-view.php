@@ -13,12 +13,12 @@
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group"><select class="form-control"><option value="" selected="">Seleccione Tutor</option><option value="13">Maribel Castillejos Toledo</option><option value="14">Sayonara Orozco Álvarez</option><option value="15">Alberto Martínez Regalado</option><option value="16">Luis Ángel Olivarez Pérez</option></select></div>
                     <div
-                        class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Enviar solicitud</button></div>
+                        class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar solicitud</button></div>
             </form>
         </div>
         <div id="sol-cons" class="form-container">
             <form method="post">
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Solicitar constancia</button></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Solicitar constancia</button></div>
             </form>
         </div>
     </div>

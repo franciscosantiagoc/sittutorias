@@ -18,7 +18,7 @@
                 <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
                 <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Contraseña Nueva"></div>
                 <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Repita contraseña"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Actualizar</button></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Actualizar</button></div>
             </form>
         </div>
     </div>
