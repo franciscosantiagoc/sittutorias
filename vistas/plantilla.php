@@ -9,7 +9,7 @@
             <?php include "inc/styles.php" ?>
         </head>
     
-        <body id="page-top">
+        <body>
             <?php
                 $peticionAjax=false;
                 require_once "./controladores/viewController.php";

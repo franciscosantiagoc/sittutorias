@@ -8,7 +8,11 @@
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
+<<<<<<< HEAD
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Buscar</button></div>
+=======
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Buscar</button></div>
+>>>>>>> 9e0864a85e9fdfdce1c2f190a095cb3b56d18707
                 <div class="form-group">
                 
                 <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
