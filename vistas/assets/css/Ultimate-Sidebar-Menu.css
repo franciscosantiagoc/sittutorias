@@ -139,3 +139,61 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
 .sidebar.active {
     left: 0;
 }
+
+.modalcontent {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: -76px;
+    z-index: 100;
+}
+
+.modal {
+    position: relative;
+    width: 500px;
+    height: 250px;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#modal-title {
+    margin-top: 20px;
+    color: #fe6839;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+#modal-desc {
+    margin: 0 20px;
+    margin-top: 20px;
+}
+
+#btn-aceptar {
+    margin-top: 25px;
+    background-color: #fe6839;
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .modalcontent {
+        padding: 0 10%;
+        margin-top: -50px;
+    }
+    .modal {
+        position: relative;
+        width: 100%;
+        height: 100%px;
+    }
+    #modal-title {
+        font-size: 22px;
+    }
+    #modal-desc {
+        font-size: 19px;
+    }
+    #btn-aceptar {
+        margin-bottom: 20px;
+    }
+}

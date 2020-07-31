@@ -1,10 +1,10 @@
 jQuery(document).ready(function() {
- 
+
     $('.dismiss, .overlay').on('click', function() {
         $('.sidebar').removeClass('active');
         $('.overlay').removeClass('active');
     });
- 
+
     $('.open-menu').on('click', function(e) {
         e.preventDefault();
         $('.sidebar').addClass('active');
