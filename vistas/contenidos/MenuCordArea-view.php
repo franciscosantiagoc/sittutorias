@@ -1,5 +1,5 @@
 
-    <?php include "./vistas/inc/navCoordinadorA.php"; ?>
+<?php include "./vistas/inc/navCoordinadorA.php"; ?>
     <div class="container" id="container-alummenu">
         <div class="row" id="row">
             <div class="col">

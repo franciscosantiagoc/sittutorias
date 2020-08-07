@@ -115,7 +115,7 @@
                         </li>';
             }else{
                 $tabla.='<li class="page-item">
-                            <a class="page-link" hreft="'.$url.'1/">
+                            <a class="page-link" href="'.$url.'1/">
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
@@ -124,6 +124,28 @@
                             <a class="page-link" href="'.$url.($pagina-1).'/">Anterior</a>
                         </li>
                         ';
+            }
+
+            $ci=0;
+            for($i=$pagina;$i<=$Npaginas;$i++){
+                if($ci>=$botones){
+                    break;
+                }
+
+                if($pagina=$i){
+                    $tabla.='
+                    <li class="page-item">
+                            <a class="page-link active" href="'.$url.$i.'/">'.$i.'
+                            </a>
+                        </li>';
+                }else{
+                    $tabla.='
+                    <li class="page-item">
+                            <a class="page-link" href="'.$url.$i.'/">'.$i.'
+                            </a>
+                        </li>';                    
+                }
+                $ci++;
             }
 
             if($pagina==$Npaginas){
@@ -134,16 +156,20 @@
                         </li>';
             }else{
                 $tabla.='<li class="page-item">
-                            <a class="page-link" hreft="'.$url.'1/">
-                                <i class="fas fa-angle-double-left"></i>
-                            </a>
+                            <a class="page-link" href="'.$url.($pagina+1).'/">Siguiente</a>
                         </li>
 
                         <li class="page-item">
-                            <a class="page-link" href="'.$url.($pagina-1).'/">Anterior</a>
+                            <a class="page-link" hreft="'.$url.$Npaginas.'/">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
                         </li>
+
+                        
                         ';
             }
+            $tabla.='</ul></nav>';
+            return $tabla;
         }
     }
 

@@ -1,11 +1,11 @@
 <?php
-        /* if(roll==coordinadorA) */ 
-            include "./vistas/inc/navCoordinadorC.php"; 
-        /*elseif(roll==coordinadorC)
-            include "inc/navCoordinadorC.php"; 
-        */
+    /* if(roll==coordinadorA) */ 
+        include "./vistas/inc/navCoordinadorC.php"; 
+    /*elseif(roll==coordinadorC)
+        include "inc/navCoordinadorC.php"; 
+    */
     
-    ?>
+?>
 <div class="register-photo">
     <div class="form-container">
         <form method="post"><img id="imgreg" src="vistas/assets/img/meeting.jpg">
