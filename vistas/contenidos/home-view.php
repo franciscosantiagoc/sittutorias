@@ -38,7 +38,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col"><img class="img-fluid" id="desc" src="views/assets/img/platicas.jpg"></div>
+                <div class="col"><img class="img-fluid" id="desc" src="vistas/assets/img/platicas.jpg"></div>
             </div>
         </div>
         <div class="container">

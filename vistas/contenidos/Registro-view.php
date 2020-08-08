@@ -8,21 +8,63 @@
 ?>
 <div class="register-photo">
     <div class="form-container">
-        <form method="post"><img id="imgreg" src="vistas/assets/img/meeting.jpg">
+        <form class="FormularioAjax" action="" method="POST" data-form="save" autocomplete="off">
+            <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
-            <div class="form-group"><select class="form-control"><option value="" selected="">Seleccione el tipo de usuario a registrar</option><option value="15">Tutor</option><option value="16">Tutorado</option></select></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
-            <div class="form-group"><label>Fecha de Nacimiento</label><input class="form-control" type="date"></div>
-            <div class="form-group"><select class="form-control"><option value="" selected="">Sexo</option><option value="1">Hombre</option><option value="2">Mujer</option></select></div>
-            <div class="form-group"><input class="form-control" type="tel" placeholder="Número de Telefono"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Dirección"></div>
-            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><select class="form-control"><option value="" selected="">Carrera</option><option value="13">Arquitectura</option><option value="14">Informatica</option><option value="15">Ingenieria Civil</option><option value="16">Ingenieria en Sistemas Computacionales</option></select></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Registrar</button></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Importar csv</button></div>
+            <div class="form-group">
+                <select class="form-control">
+                    <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
+                    <option value="15">Tutor</option>
+                    <option value="16">Tutorado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Nombre" name="name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Apellido Paterno">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Apellido Materno">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Nacimiento</label>
+                <input class="form-control" type="date">
+            </div>
+            <div class="form-group">
+                <select class="form-control">
+                    <option value="" selected="">Sexo</option>
+                    <option value="1">Hombre</option>
+                    <option value="2">Mujer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="tel" placeholder="Número de Telefono">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <select class="form-control">
+                    <option value="" selected="">Carrera</option>
+                    <option value="13">Arquitectura</option>
+                    <option value="14">Informatica</option>
+                    <option value="15">Ingenieria Civil</option>
+                    <option value="16">Ingenieria en Sistemas Computacionales</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Numero de Control">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Registrar</button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" style="background-color: rgb(245,124,56);">Importar csv</button>
+            </div>
         </form>
     </div>
 

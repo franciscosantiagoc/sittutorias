@@ -13,3 +13,5 @@
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Team-Boxed.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Footer-Base-3.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Ultimate-Sidebar-Menu.css">
+    <!-- sweetalert v8.13.0 -->
+     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/sweetalert2.min.css">

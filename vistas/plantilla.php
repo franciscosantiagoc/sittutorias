@@ -16,10 +16,9 @@
                 $IV = new viewController();      
                 $vistas = $IV->obtener_vistas_controlador();
                 if($vistas=="login"||$vistas=="404"){
-                    echo "<script>console.log('PHP: if plantilla');</script>";
                     require_once "./vistas/contenidos/".$vistas."-view.php";
                 }else{
-                    echo "<script>console.log('PHP: else plantilla');</script>";
+                    
                     include $vistas;
                 }
 

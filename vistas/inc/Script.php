@@ -7,8 +7,7 @@
     <script src="<?php echo SERVERURL;?>vistas/assets/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
-    <script src="<?php echo SERVERURL;?>vistas/assets/js/Vertical-Navigation-with-double-sub-menu--scroll-enable-by-Jigar-Mistry.js"></script>
-
+    <script src="<?php echo SERVERURL;?>vistas/assets/js/sweetalert2.min.js"></script>
     <script src="<?php echo SERVERURL;?>vistas/assets/js/alertas.js"></script>
     
     <script> 
