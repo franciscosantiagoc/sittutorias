@@ -17,6 +17,13 @@
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+.table-container {
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
 .register-photo form {
     display: table-cell;
     width: 400px;
@@ -25,7 +32,7 @@
     color: #505e6c;
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .register-photo form {
         padding: 40px;
     }

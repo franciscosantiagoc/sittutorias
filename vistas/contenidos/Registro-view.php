@@ -80,7 +80,7 @@
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Buscar</button></div>
             </form>
         </div>
-        <div class="col-md-12 search-table-col">
+        <div class="table-container col-md-12 search-table-col">
             <div class="form-group pull-right col-lg-4">
                 <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda">
             </div>
@@ -101,7 +101,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><br>Francisco<br></td>
+                            <td>Francisco</td>
                             <td>Santiago</td>
                             <td>de la Cruz</td>
                             <td>23</td>
