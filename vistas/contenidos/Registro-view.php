@@ -8,7 +8,7 @@
 ?>
 <div class="register-photo">
     <div class="form-container">
-        <form class="FormularioAjax" action="" method="POST" data-form="save" autocomplete="off">
+        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="save" autocomplete="off">
             <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
             <div class="form-group">
@@ -22,33 +22,33 @@
                 <input class="form-control" type="text" placeholder="Nombre" name="name">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Apellido Paterno">
+                <input class="form-control" type="text" placeholder="Apellido Paterno" name="apellidop">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Apellido Materno">
+                <input class="form-control" type="text" placeholder="Apellido Materno" name="apellidom">
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
-                <input class="form-control" type="date">
+                <input class="form-control" name="registro_fecha" type="date">
             </div>
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="registro_sexo">
                     <option value="" selected="">Sexo</option>
                     <option value="1">Hombre</option>
                     <option value="2">Mujer</option>
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="tel" placeholder="Número de Telefono">
+                <input class="form-control" type="tel" placeholder="Número de Telefono" name="numero_tel">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Dirección">
+                <input class="form-control" type="text" placeholder="Dirección" name="direccion">
             </div>
             <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email">
+                <input class="form-control" type="email" placeholder="Email" name="email">
             </div>
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="registro_carrera">
                     <option value="" selected="">Carrera</option>
                     <option value="13">Arquitectura</option>
                     <option value="14">Informatica</option>
@@ -57,7 +57,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Numero de Control">
+                <input class="form-control" type="text" placeholder="Numero de Control" name="no_ctrl">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Registrar</button>
