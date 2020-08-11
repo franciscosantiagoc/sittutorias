@@ -3,11 +3,13 @@
       require_once "../modelos/usuarioModel.php";
    }else{
       require_once "./modelos/usuarioModel.php";
+      /*require_once "./modelos/usuarioModel.php";*/
    }
 
    class usuarioController extends usuarioModel{
       /*-------------- Controlador agregar usuario --------------*/
       public function agregar_usuario_controlador(){
+          $select_usuario=mainModel::limpiar_cadena($_POST['select_user']);
           $nombre=mainModel::limpiar_cadena($_POST['name']);
           $apellido_paterno=mainModel::limpiar_cadena($_POST['apellidop']);
           $apellido_materno=mainModel::limpiar_cadena($_POST['apellidom']);
@@ -26,7 +28,7 @@
                   "Alerta"=>"simple",
                   "Titulo"=>"Ocurrio un error inesperado",
                   "Texto"=>"No has llenado todos los campos que son obligatorios",
-                  "Tipo"=>"error"
+                  "Tipo"=>"error",
               ];
               echo json_encode($alerta);
               exit();

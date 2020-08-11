@@ -15,7 +15,7 @@ function enviar_formulario_ajax(e) {
     headers: encabezados,
     mode: "cors",
     cache: "no-cache",
-    body: data,
+    body: data
   };
 
   let texto_alerta;
@@ -44,19 +44,19 @@ function enviar_formulario_ajax(e) {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Aceptar",
-    cancelButtonText: "Cancelar",
+    cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.value) {
       fetch(action, config)
-        .then((respuesta) => respuesta.json())
-        .then((respuesta) => {
+        .then(respuesta => respuesta.json())
+        .then(respuesta => {
           return alertas_ajax(respuesta);
         });
     }
   });
 }
 
-formularios_ajax.forEach((formularios) => {
+formularios_ajax.forEach(formularios => {
   formularios.addEventListener("submit", enviar_formulario_ajax);
 });
 
@@ -66,14 +66,14 @@ function alertas_ajax(alerta) {
       title: alerta.Titulo,
       text: alerta.Texto,
       type: alerta.Tipo,
-      confirmButtonText: "Aceptar",
+      confirmButtonText: 'Aceptar'
     });
   } else if (alerta.Alerta === "recargar") {
     Swal.fire({
       title: alerta.Titulo,
       text: alerta.Texto,
       type: alerta.Tipo,
-      confirmButtonText: "Aceptar",
+      confirmButtonText: "Aceptar"
     }).then((result) => {
       if (result.value) {
         location.reload();
@@ -84,7 +84,7 @@ function alertas_ajax(alerta) {
       title: alerta.Titulo,
       text: alerta.Texto,
       type: alerta.Tipo,
-      confirmButtonText: "Aceptar",
+      confirmButtonText: "Aceptar"
     }).then((result) => {
       if (result.value) {
         document.querySelector(".FormularioAjax").reset();

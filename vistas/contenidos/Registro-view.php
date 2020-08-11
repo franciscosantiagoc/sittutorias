@@ -8,11 +8,11 @@
 ?>
 <div class="register-photo">
     <div class="form-container">
-        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="save" autocomplete="off">
+        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">
             <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="select_user">
                     <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
                     <option value="15">Tutor</option>
                     <option value="16">Tutorado</option>
