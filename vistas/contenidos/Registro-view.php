@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
                 <input class="form-control" name="registro_fecha" type="date">
-            </div>
+            </div> 
             <div class="form-group">
                 <select class="form-control" name="registro_sexo">
                     <option value="" selected="">Sexo</option>
@@ -60,15 +60,15 @@
                 <input class="form-control" type="text" placeholder="Numero de Control" name="no_ctrl">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Registrar</button>
+                <button class="btn btn-primary btn-block" type="submit">Registrar</button>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" style="background-color: rgb(245,124,56);">Importar csv</button>
+                <a class="btn btn-primary btn-block">Importar csv</a>
             </div>
         </form>
     </div>
 
-    <div class="container" id="contain">
+    <div id="contain">
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post"><img id="imgreg" src="vistas/assets/img/meeting.jpg">
                 <h2 class="text-center"><strong>Importar Docentes</strong></h2>

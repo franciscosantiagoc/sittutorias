@@ -7,8 +7,8 @@
       require_once "../controladores/usuarioController.php";
       $ins_usuario = new usuarioController();
 
-       /*-------------- Agregar un usuario --------------*/
-      if(isset($_POST['name'])){
+       /*-------------- Agregar un usuario -------------apellidop-*/
+      if(isset($_POST['name']) && isset($_POST['apellidop'])){
           echo $ins_usuario->agregar_usuario_controlador();
 
       }
