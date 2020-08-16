@@ -13,7 +13,7 @@
 
       }
 
-   }else{
+   }else{ 
       session_start(['name'=>'STI']);
       session_unset();
       session_destroy();

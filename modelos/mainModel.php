@@ -1,9 +1,9 @@
 <?php
     if($peticionAjax){
 
-        require_once "../config/SERVER";
+        require_once "../config/SERVER.php";
     }else{
-        require_once "./config/SERVER";
+        require_once "./config/SERVER.php";
     }
 
     class mainModel{

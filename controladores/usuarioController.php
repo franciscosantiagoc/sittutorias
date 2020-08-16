@@ -3,7 +3,7 @@
       require_once "../modelos/usuarioModel.php";
    }else{
       require_once "./modelos/usuarioModel.php";
-      /*require_once "./modelos/usuarioModel.php";*/
+
    }
 
    class usuarioController extends usuarioModel{
