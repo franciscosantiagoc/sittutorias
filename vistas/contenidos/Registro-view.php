@@ -19,13 +19,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Nombre" name="name">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Nombre" name="name" required="">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Apellido Paterno" name="apellidop">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Paterno" name="apellidop" required="">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Apellido Materno" name="apellidom">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Materno" name="apellidom" required="">
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
@@ -38,11 +38,11 @@
                     <option value="2">Mujer</option>
                 </select>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="tel" placeholder="Número de Telefono" name="numero_tel">
+            <div class="form-group">    
+                <input class="form-control" type="tel" pattern="[0-9()+]{8,20}" placeholder="Número de Telefono" name="numero_tel">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Dirección" name="direccion">
+                <input class="form-control" type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" placeholder="Dirección" name="direccion" required="">
             </div>
             <div class="form-group">
                 <input class="form-control" type="email" placeholder="Email" name="email">
@@ -57,7 +57,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Numero de Control" name="no_ctrl">
+                <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl" required="">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Registrar</button>

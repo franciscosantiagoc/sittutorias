@@ -84,9 +84,9 @@
         /*-------------- Funcion verificar datos --------------*/
         protected static function verificar_datos($filtro,$cadena){
             if(preg_match("/^".$filtro."$/",$cadena)){/* /^0-9$/ */
-                return true;//valido
+                return false;//valido
             }else{
-                return false;//no valido
+                return true;//no valido
 
             }
 
@@ -96,9 +96,9 @@
         protected static function verificar_fecha($fecha){
             $valores=explode('-',$fecha);
             if(count($valores)==3 && checkdate($valores[1], $valores[2],$valores[0])){
-                return true; //valido
+                return false; //valido
             }else{
-                return false; //no valido
+                return true; //no valido
             }
 
         }
