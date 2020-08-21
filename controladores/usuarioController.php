@@ -34,6 +34,20 @@
               exit();
 
           }
+          
+          
+          /* == Comprobando usuario == */
+          if($select_usuario<15 || $select_usuario>16){
+            $alerta=[
+               "Alerta"=>"simple",
+               "Titulo"=>"Ocurrio un error inesperado",
+               "Texto"=>"El usuario seleccionado no es válido",
+               "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+
+          }
 
           /* == Verificando integridad de los datos ==*/
 
@@ -108,8 +122,18 @@
 
           }
 
-          /* == comprbando No. Ctrl. ==*/
-          $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT NControl FROM persona WHERE NControl='noctrl'" );
+          /* == comprbando No. Ctrl. == 
+          if($select_usuario==16){//tutorado*/
+            $columdb="NControl";
+            $tabledb="tutorado";
+            
+          /*}elseif($select_usuario>=13 || $select_usuario<=15){
+            $columdb="Matricula";
+            $tabledb="trabajador";
+          }*/
+           $condicion="'$columdb' = '$noctrl'";
+          /* $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT '$columdb' FROM '$tabledb' WHERE '$condicion'" ); */
+          $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT NControl FROM tutorado WHERE NControl ='$noctrl'");
           if($check_no_ctrl->rowCount()>0){
             $alerta=[
                "Alerta"=>"simple",
@@ -119,12 +143,12 @@
            ];
            echo json_encode($alerta);
            exit();
-          }
+          } 
 
           /*== Comprobando email ==*/
           if($email!=""){
              if(filter_var($email,FILTER_VALIDATE_EMAIL)){
-               $check_email = mainModel::ejecutar_consulta_simple("SELECT Correo FROM persona WHERE Correo='email'" );
+               $check_email = mainModel::ejecutar_consulta_simple("SELECT Correo FROM persona WHERE Correo='$email'" );
                if($check_email->rowCount()>0){
                  $alerta=[
                     "Alerta"=>"simple",
@@ -134,34 +158,31 @@
                 ];
                 echo json_encode($alerta);
                 exit();
-               }
+               } 
 
              }else{
-                  $alerta=[
-                     "Alerta"=>"simple",
-                     "Titulo"=>"Ocurrio un error inesperado",
-                     "Texto"=>"Ha ingresado un CORREO no válido",
-                     "Tipo"=>"error"
+               $alerta=[
+                  "Alerta"=>"simple",
+                  "Titulo"=>"Ocurrio un error inesperado",
+                  "Texto"=>"Ha ingresado un CORREO no válido",
+                  "Tipo"=>"error"
                ];
                echo json_encode($alerta);
                exit();
-
              }
 
-          }
+          }else{
+               $alerta=[
+                  "Alerta"=>"simple",
+                  "Titulo"=>"Ocurrio un error inesperado",
+                  "Texto"=>"Ingrese un correo para continuar",
+                  "Tipo"=>"error"
+               ];
+               echo json_encode($alerta);
+               exit();
+            }
 
-          /* == Comprobando usuario == */
-          if($select_usuario<15 || $select_usuario>16){
-            $alerta=[
-               "Alerta"=>"simple",
-               "Titulo"=>"Ocurrio un error inesperado",
-               "Texto"=>"El usuario seleccionado no es válido",
-               "Tipo"=>"error"
-            ];
-         echo json_encode($alerta);
-         exit();
-
-          }
+          
 
           $datos_usuario_reg=[
              "Nombre"=>$nombre,
@@ -174,7 +195,7 @@
              "Direccion"=>$direccion
             ];
 
-          $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos);
+          /*$agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
 
           if($agregar_usuario->rowCount()==1){
             $alerta=[
@@ -191,7 +212,7 @@
                "Tipo"=>"error"
             ];
           }
-          echo json_encode($alerta);
+          echo json_encode($alerta);*/
 
       }/*FIN CONTROLADOR*/
    }
