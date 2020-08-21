@@ -71,7 +71,7 @@
 
           }
           if($numero_telefono!=""){
-            if(mainModel::verificar_datos("[0-9()+]{8,13}",$numero_telefono)){
+            if(mainModel::verificar_datos("[0-9()+]{8,20}",$numero_telefono)){
                $alerta=[
                   "Alerta"=>"simple",
                   "Titulo"=>"Ocurrio un error inesperado",
@@ -80,7 +80,7 @@
               ];
               echo json_encode($alerta);
               exit();
-   
+
              }
           }
 
@@ -96,7 +96,7 @@
 
           }
 
-          if(mainModel::verificar_datos("[0-9-]{8,11}",$noctrl)){
+          if(mainModel::verificar_datos("[0-9-]{8,10}",$noctrl)){
             $alerta=[
                "Alerta"=>"simple",
                "Titulo"=>"Ocurrio un error inesperado",
@@ -109,7 +109,7 @@
           }
 
           /* == comprbando No. Ctrl. ==*/
-          $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT NControl FROM persona WHERE NControl='noctrl'" );
+          $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT NControl FROM persona WHERE NControl='noctrl" );
           if($check_no_ctrl->rowCount()>0){
             $alerta=[
                "Alerta"=>"simple",
@@ -124,7 +124,7 @@
           /*== Comprobando email ==*/
           if($email!=""){
              if(filter_var($email,FILTER_VALIDATE_EMAIL)){
-               $check_email = mainModel::ejecutar_consulta_simple("SELECT Correo FROM persona WHERE Correo='email'" );
+               $check_email = mainModel::ejecutar_consulta_simple("SELECT Correo FROM persona WHERE Correo='$email'" );
                if($check_email->rowCount()>0){
                  $alerta=[
                     "Alerta"=>"simple",
@@ -174,7 +174,7 @@
              "Direccion"=>$direccion
             ];
 
-          $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos);
+          $agregar_usuario=usuarioModelo::agregar_usuario_modelo($datos);
 
           if($agregar_usuario->rowCount()==1){
             $alerta=[
