@@ -1,8 +1,8 @@
 <?php
-    const SERVER="localhost:8080";
+    const SERVER="localhost";
     const DB="sistutorias";
     const USER="root";
-    const PASS="root";
+    const PASS="";
 
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;

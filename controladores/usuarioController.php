@@ -110,7 +110,7 @@
 
           }
 
-          if(mainModel::verificar_datos("[0-9-]{8,11}",$noctrl)){
+          if(mainModel::verificar_datos("[0-9-]{6,11}",$noctrl)){
             $alerta=[
                "Alerta"=>"simple",
                "Titulo"=>"Ocurrio un error inesperado",
@@ -121,29 +121,6 @@
            exit();
 
           }
-
-          /* == comprbando No. Ctrl. == 
-          if($select_usuario==16){//tutorado*/
-            $columdb="NControl";
-            $tabledb="tutorado";
-            
-          /*}elseif($select_usuario>=13 || $select_usuario<=15){
-            $columdb="Matricula";
-            $tabledb="trabajador";
-          }*/
-           $condicion="'$columdb' = '$noctrl'";
-          /* $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT '$columdb' FROM '$tabledb' WHERE '$condicion'" ); */
-          $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT NControl FROM tutorado WHERE NControl ='$noctrl'");
-          if($check_no_ctrl->rowCount()>0){
-            $alerta=[
-               "Alerta"=>"simple",
-               "Titulo"=>"Ocurrio un error inesperado",
-               "Texto"=>"El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
-               "Tipo"=>"error"
-           ];
-           echo json_encode($alerta);
-           exit();
-          } 
 
           /*== Comprobando email ==*/
           if($email!=""){
@@ -182,8 +159,31 @@
                exit();
             }
 
-          
-
+         /* == comprbando No. Ctrl. == */
+          if($select_usuario==16){//tutorado
+            $columdb="NControl";
+            $tabledb="tutorado";
+            $dat_reg='Control';
+            
+          }elseif($select_usuario>=13 || $select_usuario<=15){
+            $columdb="Matricula";
+            $tabledb="trabajador";
+            $dat_reg='Matrícula';
+          }
+         $condicion="{$columdb} = {$noctrl}";
+         $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT {$columdb} FROM {$tabledb} WHERE {$condicion}" ); 
+         /*$check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT * FROM tutorado WHERE NControl ='$noctrl'");*/
+         if($check_no_ctrl->rowCount()>0){
+            $alerta=[
+               "Alerta"=>"simple",
+               "Titulo"=>"Ocurrio un error inesperado",
+               "Texto"=>"El Número de ".$dat_reg." ya se encuentra registrado",
+               "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+         }
+         
           $datos_usuario_reg=[
              "Nombre"=>$nombre,
              "APaterno"=>$apellido_paterno,
@@ -195,7 +195,7 @@
              "Direccion"=>$direccion
             ];
 
-          /*$agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
+          $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
 
           if($agregar_usuario->rowCount()==1){
             $alerta=[
@@ -212,7 +212,7 @@
                "Tipo"=>"error"
             ];
           }
-          echo json_encode($alerta);*/
+          echo json_encode($alerta);
 
-      }/*FIN CONTROLADOR*/
+      }/*FIN CONTROLADOR AGREGAR USUARIO*/
    }
