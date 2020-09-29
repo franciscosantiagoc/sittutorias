@@ -14,7 +14,7 @@
       }
 
    }else{ 
-      session_start(['name'=>'STI']);
+      session_start(['name'=>'SMP']);
       session_unset();
       session_destroy();
       header("Location: ".SERVERURL."login");

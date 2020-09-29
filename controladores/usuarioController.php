@@ -85,7 +85,7 @@
 
           }
           if($numero_telefono!=""){
-            if(mainModel::verificar_datos("[0-9()+]{8,13}",$numero_telefono)){
+            if(mainModel::verificar_datos("[0-9()+]{8,20}",$numero_telefono)){
                $alerta=[
                   "Alerta"=>"simple",
                   "Titulo"=>"Ocurrio un error inesperado",
@@ -94,7 +94,7 @@
               ];
               echo json_encode($alerta);
               exit();
-   
+
              }
           }
 
@@ -205,6 +205,7 @@
                "Tipo"=>"success"
             ];             
           }else{
+          
             $alerta=[
                "Alerta"=>"simple",
                "Titulo"=>"Ocurrio un error inesperado",
