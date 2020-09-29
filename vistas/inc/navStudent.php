@@ -1,7 +1,12 @@
 
 <nav class="navbar navbar-light navbar-expand-md navbar-side" id="nav-menu">
         <div class="container-fluid">
-            <div id="div-mobilemenu"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" id="icon-menu"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div><a class="navbar-brand d-sm-flex" href="" style="color: #ffffffff;">Sistema de Tutorias Itistmo</a>
+            <div id="div-mobilemenu"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" id="icon-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+            <a class="navbar-brand d-sm-flex" href="" style="color: #ffffffff;">Sistema de Tutorias Itistmo</a>
             <div
                 class="collapse navbar-collapse text-center d-md-flex justify-content-md-end" id="navcol-1">
                 <ul class="nav navbar-nav">
@@ -20,6 +25,7 @@
                         <img class="rounded-circle" id="img-perfil" src="./vistas/assets/img/alum5.jpg"></a>
                         <div class="dropdown-menu" role="menu" id="menu-perfil">
                             <a class="dropdown-item" role="presentation">Humberto Toledo Fuentes</a>
+                            
                             <a class="dropdown-item" role="presentation" href="AlumnEditPerfil">Editar Perfil</a>
                             <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a></div>
                     </li>
