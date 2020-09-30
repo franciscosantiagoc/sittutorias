@@ -5,8 +5,8 @@
       /*-------------- Modelo iniciar sesion --------------*/
       protected static function iniciar_sesion_modelo($datos)
       {
-         $sql=mainModel::conectar()->prepare("SELECT * FROM trabajador WHERE Matriculas=:Usuario 
-         AND contraseña=:Clave AND Estado='Activo' ");
+         $sql=mainModel::conectar()->prepare("SELECT * FROM trabajador WHERE Matricula=:Usuario 
+         AND contraseña=:Clave");
          $sql->bindParam(":Usuario",$datos['Usuario']);
          $sql->bindParam(":Clave",$datos['Clave']);
          $sql->execute();

@@ -2,7 +2,7 @@
     const SERVER="localhost:3306";
     const DB="sistutorias";
     const USER="root";
-    const PASS="root";
+    const PASS="";
 
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;
