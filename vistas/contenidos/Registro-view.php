@@ -136,8 +136,24 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(e){
-        
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        reloadlist();
+        $('#select_user').change(function(){
+            reloadlist();
+        });
     })
+</script>
+<script type="text/javascript">
+    function reloadlist(){
+        $.ajax({
+            type:"POST",
+            url: "datos.php",
+            data: "continente=" + $($lista1).val(),
+            success:function(r){
+                $('')
+            }
+        });
+    }
 </script>

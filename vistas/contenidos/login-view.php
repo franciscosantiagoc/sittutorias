@@ -17,8 +17,8 @@
     </div>
 
     <?php
-        if(isset($_POST['numcont']) && isset($_POST['password'])){
-            require_once "../controladores/loginControlador.php";
+        if(isset($_POST['numcont']) && isset($_POST['pass'])){
+            require_once "./controladores/loginControlador.php";
 
             $ins_login= new loginControlador();
 

@@ -8,13 +8,13 @@
       $ins_usuario = new usuarioController();
 
        /*-------------- Agregar un usuario --------------*/
-      if(isset($_POST['name']) && isset($_POST['apellidop'])){
-          echo $ins_usuario->agregar_usuario_controlador();
+      if(isset($_POST['name_upd']) && isset($_POST['apellidop_upd'])){
+         echo $ins_usuario->actualizar_trabajador_controlador();
 
-      }
+     }
 
    }else{ 
-      session_start(['name'=>'SMP']);
+      session_start(['name'=>'STI']);
       session_unset();
       session_destroy();
       header("Location: ".SERVERURL."login");
