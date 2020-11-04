@@ -16,9 +16,9 @@
                 </li>
                 <li class="nav-item menu" role="presentation"><a class="nav-link" href="<?php echo SERVERURL;?>CCEstadisticos" style="color: #ffffffff;">Estadísticas</a></li>
                 <li class="nav-item menu" role="presentation"><a class="nav-link" href="<?php echo SERVERURL;?>CCNotification" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li>
-                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="vistas/assets/img/coor-ivan.jpg"></a>
+                <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="<?php echo SERVERURL.$_SESSION['imgperfil_sti'];?>"></a>
                     <div class="dropdown-menu" role="menu"
-                        id="menu-perfil"><a class="dropdown-item disabled" role="presentation" href="#">Iván Ruiz Sánchéz</a>
+                        id="menu-perfil"><a class="dropdown-item disabled" role="presentation" href="#"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a>
                         <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCEdit-perfil">Editar Perfil</a>
                         <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>login">Cerrar Sesión</a></div>
                 </li>

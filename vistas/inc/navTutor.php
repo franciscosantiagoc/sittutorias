@@ -15,10 +15,10 @@
 
                 <li class="dropdown menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color: #ffffffff;">
-                        <img class="rounded-circle" id="img-perfil" src="vistas/assets/img/tutor-daniel.jpg"></a>
+                        <img class="rounded-circle" id="img-perfil" src="<?php echo SERVERURL.$_SESSION['imgperfil_sti'];?>"></a>
                     <div class="dropdown-menu" role="menu"
                         id="menu-perfil">
-                        <a class="dropdown-item" role="presentation">Daniel García Orozco</a>
+                        <a class="dropdown-item disabled" role="presentation"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a>
                         <a class="dropdown-item" role="presentation" href="TutorEditPerfil">Editar Perfil</a>
                         <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a></div>
                 </li>

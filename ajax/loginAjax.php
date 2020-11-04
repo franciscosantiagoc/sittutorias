@@ -4,10 +4,10 @@
    if(){
 
    }else {
-      session_start(['name'=>'SPM']);
+      /* session_start(['name'=>'STI']); */
       session_unset();
       session_destroy();
-      header("Location: ".SERVERURL."/tutorias/login/")
+      header("Location: ".SERVERURL."/login/")
       exit();
       
    }

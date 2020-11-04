@@ -5,7 +5,7 @@
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-contact-outline" style="color: rgb(238,75,40);"></i></div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[0-9-]{6,10}" name="numcont" placeholder="Num Control">
+                <input class="form-control" type="text" pattern="[0-9-]{4,10}" name="numcont" placeholder="Num Control">
             </div>
             <div class="form-group">
                 <input class="form-control" type="password" name="pass" placeholder="Contraseña">
