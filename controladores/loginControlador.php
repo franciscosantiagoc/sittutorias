@@ -69,12 +69,16 @@
             
             $row=$datos_cuenta->fetch();
             /* print_r($row); */
+
+            $imgen = file_get_contents(SERVERURL.$row['Foto']);
+            $img_base64= chunk_split(base64_encode($imgen ));
+            $img_perfil = "data:image/jpeg;base64,$img_base64";
             session_start(['name'=>'STI']);
 
             $_SESSION['nombre_sti']=$row['Nombre'];
             $_SESSION['apellPat_sti']=$row['APaterno'];
             $_SESSION['apellMat_sti']=$row['AMaterno'];
-            $_SESSION['imgperfil_sti']=$row['Foto'];
+            $_SESSION['imgperfil_sti']=$img_perfil;
             $_SESSION['id_sti']=$row['Persona_idPersona'];
             
             if($user == false){

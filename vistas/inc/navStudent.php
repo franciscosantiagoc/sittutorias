@@ -22,7 +22,7 @@
                         <a class="nav-link" href="<?php echo SERVERURL;?>AlumnNotif" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li>
                     <li class="nav-item dropdown menu">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">
-                        <img class="rounded-circle" id="img-perfil" src="<?php echo SERVERURL.$_SESSION['imgperfil_sti'];?>"></a>
+                        <img class="rounded-circle" id="img-perfil" src="<?php echo $_SESSION['imgperfil_sti']; ?>"></a>
                         <div class="dropdown-menu" role="menu" id="menu-perfil">
                             <a class="dropdown-item disabled"  role="presentation"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a>
                             
