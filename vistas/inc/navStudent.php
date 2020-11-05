@@ -27,7 +27,7 @@
                             <a class="dropdown-item disabled"  role="presentation"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a>
                             
                             <a class="dropdown-item" role="presentation" href="AlumnEditPerfil">Editar Perfil</a>
-                            <a class="dropdown-item" role="presentation" href="login">Cerrar Sesión</a></div>
+                            <a class="dropdown-item logout-sesion" role="presentation" >Cerrar Sesión</a></div>
                     </li>
                 </ul>
         </div>

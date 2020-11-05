@@ -17,7 +17,7 @@
                 <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link menu" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;"><img class="rounded-circle" id="img-perfil" src="<?php echo SERVERURL.$_SESSION['imgperfil_sti'];?>"></a>
                     <div class="dropdown-menu" role="menu"
                         id="menu-perfil"><a class="dropdown-item disabled" role="presentation"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a><a class="dropdown-item" role="presentation" href=CCEdit-perfil>Editar Perfil</a>
-                        <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>login">Cerrar Sesión</a></div>
+                        <a class="dropdown-item logout-sesion" role="presentation" >Cerrar Sesión</a></div>
                 </li>
             </ul>
     </div>

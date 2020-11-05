@@ -20,7 +20,7 @@
                     <div class="dropdown-menu" role="menu"
                         id="menu-perfil"><a class="dropdown-item disabled" role="presentation" href="#"><?php echo  $_SESSION['nombre_sti']." ".$_SESSION['apellPat_sti']." ".$_SESSION['apellMat_sti'];?></a>
                         <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCEdit-perfil">Editar Perfil</a>
-                        <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>login">Cerrar Sesión</a></div>
+                        <a class="dropdown-item logout-sesion" role="presentation" ><!-- href="<?php /* echo SERVERURL; */?>login" -->Cerrar Sesión</a></div>
                 </li>
             </ul>
     </div>

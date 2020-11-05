@@ -35,7 +35,9 @@
 
             ?>        
 
-            <?php include "inc/Script.php" ?>
+            <?php 
+            include "./vistas/inc/LogOut.php";
+            include "inc/Script.php"; ?>
         </body>
     
     </html>

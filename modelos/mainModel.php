@@ -33,7 +33,7 @@
         }
         
         /*-------------- Desencriptacion de cadenas --------------*/
-		protected function decryption($string){
+		protected static function decryption($string){
 			$key=hash('sha256', SKEY);
 			$iv=substr(hash('sha256', SIV), 0, 16);
 			$output=openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
