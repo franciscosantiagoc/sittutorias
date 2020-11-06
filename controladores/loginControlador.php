@@ -60,6 +60,8 @@
          $datos_cuenta=loginModelo::iniciar_sesion_modelo($datos_login);
          if($datos_cuenta->rowCount()==1){
             $row=$datos_cuenta->fetch();
+            print_r ($row);
+            
             session_start(['name'=>'STI']);
             $_SESSION['matricula_sti']=$row['Matricula'];
             $_SESSION['id_sti']=$row['Persona_idPersona'];
@@ -68,7 +70,7 @@
             $_SESSION['Estado']=$row['Estado'];
             $_SESSION['token_sti']=md5(uniqid(mt_rand(),true));
 
-            return header("Location: ".SERVERURL."home");
+            return header("Location: ".SERVERURL."home");/**/
          }else{
             echo '
             <script> 
@@ -83,3 +85,4 @@
          }
       }
    }
+?>
