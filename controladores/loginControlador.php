@@ -90,9 +90,6 @@
             }
             $_SESSION['token_sti']=md5(uniqid(mt_rand(),true));
 
-<<<<<<< HEAD
-            return header("Location: ".SERVERURL."home");/**/
-=======
             /*return header("Location: ".SERVERURL."MenuTutor"); */
             if($_SESSION['roll_sti'] == "Tutorado"){
                echo'<script type="text/javascript"> 
@@ -107,7 +104,6 @@
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuCordArea";</script>';
             }
->>>>>>> 21d46118edd4bcd4c36b9d0359b3d3d8bbf33400
          }else{
             echo '
             <script> 
@@ -120,11 +116,6 @@
             </script>
             ';
          }
-<<<<<<< HEAD
-      }
-   }
-?>
-=======
       }/*-------------- fin controlador iniciar sesion --------------*/
 
       /*-------------- controlador forzar cierre de sesion --------------*/
@@ -166,4 +157,3 @@
         
       }/*-------------- fin controlador cierre de sesion --------------*/
    }
->>>>>>> 21d46118edd4bcd4c36b9d0359b3d3d8bbf33400
