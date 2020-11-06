@@ -1,4 +1,18 @@
-    <?php include "./vistas/inc/navInicial.php"; ?>
+<?php 
+if(isset($_SESSION['roll_sti'])){
+    if($_SESSION['roll_sti'] == "Admin"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+    }else if($_SESSION['roll_sti'] == "Docente"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+    }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+    }else  if($_SESSION['roll_sti'] == "Tutorado"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+    }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+    }
+}
+include "./vistas/inc/navInicial.php"; ?>
     
     <div class="login-clean" style="background-image: url(<?php echo SERVERURL; ?>vistas/assets/img/entrada-tec.png);background-size: 100% 100%;background-repeat: no-repeat;height: 900px;">
         <form action='' method="post" autocomplete="off" style="margin-top: 120px;" >

@@ -66,7 +66,7 @@
          }
          
          if($datos_cuenta->rowCount()==1){
-            
+            //GIT RESET HEAD
             $row=$datos_cuenta->fetch();
             /* print_r($row); */
 
