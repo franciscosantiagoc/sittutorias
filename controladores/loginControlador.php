@@ -26,7 +26,7 @@
          }
 
          /* == Verificando integridad de los datos ==*/
-         if(mainModel::verificar_datos("[0-9-]{6,13}",$usuario)){
+         if(mainModel::verificar_datos("[0-9-]{4,13}",$usuario)){
             echo '
             <script> 
                Swal.fire({
@@ -52,25 +52,62 @@
             ';
          }
          /* $clave=mainModel::encryption($clave); */
-
+         $user = false;
          $datos_login=[
             "Usuario"=>$usuario,
             "Clave"=>$clave
          ];
-         $datos_cuenta=loginModelo::iniciar_sesion_modelo($datos_login);
+         $datos_cuenta=loginModelo::iniciar_sesion_modelo_trab($datos_login);
+         if($datos_cuenta->rowCount()==0){
+            $datos_cuenta=loginModelo::iniciar_sesion_modelo_tut($datos_login);
+            if($datos_cuenta->rowCount()==1){
+               $user = true;
+            }
+         }
+         
          if($datos_cuenta->rowCount()==1){
+            //GIT RESET HEAD
             $row=$datos_cuenta->fetch();
-            print_r ($row);
-            
+            /* print_r($row); */
+
+            $imgen = file_get_contents(SERVERURL.$row['Foto']);
+            $img_base64= chunk_split(base64_encode($imgen ));
+            $img_perfil = "data:image/jpeg;base64,$img_base64";
             session_start(['name'=>'STI']);
-            $_SESSION['matricula_sti']=$row['Matricula'];
+
+            $_SESSION['nombre_sti']=$row['Nombre'];
+            $_SESSION['apellPat_sti']=$row['APaterno'];
+            $_SESSION['apellMat_sti']=$row['AMaterno'];
+            $_SESSION['imgperfil_sti']=$img_perfil;
             $_SESSION['id_sti']=$row['Persona_idPersona'];
-            $_SESSION['roll_sti']=$row['Roll'];
-            $_SESSION['IdAreas_sti']=$row['Areas_idAreas'];
-            $_SESSION['Estado']=$row['Estado'];
+            
+            if($user == false){
+               $_SESSION['matricula_sti']=$row['Matricula'];
+               $_SESSION['roll_sti']=$row['Roll'];
+            }else{
+               $_SESSION['NControl_sti']=$row['NControl'];
+               $_SESSION['roll_sti']="Tutorado";
+            }
             $_SESSION['token_sti']=md5(uniqid(mt_rand(),true));
 
+<<<<<<< HEAD
             return header("Location: ".SERVERURL."home");/**/
+=======
+            /*return header("Location: ".SERVERURL."MenuTutor"); */
+            if($_SESSION['roll_sti'] == "Tutorado"){
+               echo'<script type="text/javascript"> 
+               window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+            }elseif($_SESSION['roll_sti'] == "Docente"){
+               echo'<script type="text/javascript"> 
+               window.location.href="'.SERVERURL.'MenuTutor";</script>';
+            }elseif($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+               echo'<script type="text/javascript"> 
+               window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+            }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+               echo'<script type="text/javascript"> 
+               window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+            }
+>>>>>>> 21d46118edd4bcd4c36b9d0359b3d3d8bbf33400
          }else{
             echo '
             <script> 
@@ -83,6 +120,50 @@
             </script>
             ';
          }
+<<<<<<< HEAD
       }
    }
 ?>
+=======
+      }/*-------------- fin controlador iniciar sesion --------------*/
+
+      /*-------------- controlador forzar cierre de sesion --------------*/
+      public function forzar_cierre_sesion_controlador(){
+         session_unset();
+         session_destroy();
+         /* if(headers_sent()){ */
+         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'";</script>';
+         /* }else{
+            return header("Location: ".SERVERURL);
+         } */
+
+      }/*-------------- fin controlador cierre de sesion --------------*/
+
+
+      /*-------------- controlador cierre de sesion --------------*/
+      public function cierre_sesion_controlador(){
+         session_start(['name'=>'STI']);
+         $token=mainModel::decryption($_POST['token']);
+         $usuario=mainModel::decryption($_POST['usuario']);
+
+         if($token==$_SESSION['token_sti']){
+            session_unset();
+            session_destroy();
+            $alerta=[
+               "Alerta"=>"redireccionar",
+               "URL"=>SERVERURL
+            ];
+
+         }else{
+            $alerta=[
+                 "Alerta"=>"simple",
+                 "Titulo"=>"Ocurrio un error inesperado",
+                 "Texto"=>"No se pudo cerrar la sesion",
+                 "Tipo"=>"error"
+             ];
+         }
+         echo json_encode($alerta);
+        
+      }/*-------------- fin controlador cierre de sesion --------------*/
+   }
+>>>>>>> 21d46118edd4bcd4c36b9d0359b3d3d8bbf33400

@@ -18,7 +18,15 @@
                 if($vistas=="login"||$vistas=="404"){
                     require_once "./vistas/contenidos/".$vistas."-view.php";
                 }else{
+                    /* session_start(['name'=>'STI']); */
+                     require_once "./controladores/loginControlador.php";
+                    $lc = new loginControlador();
                     
+            
+                    if(!isset($_SESSION['nombre_sti']) || !isset($_SESSION['apellPat_sti']) || !isset($_SESSION['id_sti'])){
+                        echo $lc->forzar_cierre_sesion_controlador();
+                        exit();
+                    }/* */
                     include $vistas;
                 }
 
@@ -27,7 +35,9 @@
 
             ?>        
 
-            <?php include "inc/Script.php" ?>
+            <?php 
+            include "./vistas/inc/LogOut.php";
+            include "inc/Script.php"; ?>
         </body>
     
     </html>

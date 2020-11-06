@@ -1,5 +1,5 @@
 <?php
-    const SERVER="localhost:3306";
+    const SERVER="localhost";
     const DB="sistutorias";
     const USER="root";
     const PASS="";

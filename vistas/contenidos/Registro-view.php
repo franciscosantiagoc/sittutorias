@@ -49,11 +49,8 @@
             </div>
             <div class="form-group">
                 <select class="form-control" name="registro_carrera">
-                    <option value="" selected="">Carrera</option>
-                    <option value="13">Arquitectura</option>
-                    <option value="14">Informatica</option>
-                    <option value="15">Ingenieria Civil</option>
-                    <option value="16">Ingenieria en Sistemas Computacionales</option>
+                    <option selected="">Carrera</option>
+                    
                 </select>
             </div>
             <div class="form-group">
@@ -72,7 +69,9 @@
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post"><img id="imgreg" src="vistas/assets/img/meeting.jpg">
                 <h2 class="text-center"><strong>Importar Docentes</strong></h2>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Importar</button></div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" style="background-color: rgb(245,124,56);">Importar</button>
+                </div>
                 <div class="form-group"><input class="form-control" type="text" id="nameinput" placeholder="Nombre" name="name"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><select class="form-control"><option value="" selected="">Area</option><option value="13">Arquitectura</option><option value="14">Informatica</option><option value="15">Ingenieria Civil</option><option value="16">Ingenieria en Sistemas Computacionales</option></select></div>
@@ -137,3 +136,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        reloadlist();
+        $('#select_user').change(function(){
+            reloadlist();
+        });
+    })
+</script>
+<script type="text/javascript">
+    function reloadlist(){
+        $.ajax({
+            type:"POST",
+            url: "datos.php",
+            data: "continente=" + $($lista1).val(),
+            success:function(r){
+                $('')
+            }
+        });
+    }
+</script>
