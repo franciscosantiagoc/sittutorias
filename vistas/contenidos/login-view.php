@@ -10,7 +10,7 @@ if(isset($_SESSION['roll_sti'])){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
     }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-    }
+    }/**/
 }
 include "./vistas/inc/navInicial.php"; ?>
     

@@ -1,6 +1,7 @@
 <?php 
-if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] == "Admin"){
+/*if(isset($_SESSION['roll_sti'])){
+    echo 'Sesion: '.$_SESSION['roll_sti'];
+     if($_SESSION['roll_sti'] == "Admin"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
     }else if($_SESSION['roll_sti'] == "Docente"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
@@ -10,8 +11,8 @@ if(isset($_SESSION['roll_sti'])){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
     }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-    }
-}
+    } 
+}*/
 include "./vistas/inc/navInicial.php"; ?>
     <header class="masthead text-center text-white d-flex" style="background-image: url('vistas/assets/img/platica_tutor.jpg');">
         <div class="container my-auto">

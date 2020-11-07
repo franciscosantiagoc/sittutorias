@@ -57,18 +57,23 @@
             "Usuario"=>$usuario,
             "Clave"=>$clave
          ];
+         
          $datos_cuenta=loginModelo::iniciar_sesion_modelo_trab($datos_login);
          if($datos_cuenta->rowCount()==0){
+            echo 'trabajador';
             $datos_cuenta=loginModelo::iniciar_sesion_modelo_tut($datos_login);
+            echo 'tutorados';
             if($datos_cuenta->rowCount()==1){
                $user = true;
+            }else{
+               echo 'tutorados no existe';
             }
          }
          
          if($datos_cuenta->rowCount()==1){
             //GIT RESET HEAD
             $row=$datos_cuenta->fetch();
-            /* print_r($row); */
+             /*print_r($row); */
 
             $imgen = file_get_contents(SERVERURL.$row['Foto']);
             $img_base64= chunk_split(base64_encode($imgen ));
@@ -90,7 +95,7 @@
             }
             $_SESSION['token_sti']=md5(uniqid(mt_rand(),true));
 
-            /*return header("Location: ".SERVERURL."MenuTutor"); */
+            /*return header("Location: ".SERVERURL."MenuTutor");*/
             if($_SESSION['roll_sti'] == "Tutorado"){
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuAlumno";</script>';
@@ -105,7 +110,8 @@
                window.location.href="'.SERVERURL.'MenuCordArea";</script>';
             }
          }else{
-            echo '
+            echo 'NO EXISTE USUARIO';
+           /* echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -114,7 +120,7 @@
                   confirmButtonText: "Aceptar"
                });
             </script>
-            ';
+            ';*/
          }
       }/*-------------- fin controlador iniciar sesion --------------*/
 
