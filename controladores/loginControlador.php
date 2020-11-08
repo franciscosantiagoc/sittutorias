@@ -60,18 +60,15 @@
          
          $datos_cuenta=loginModelo::iniciar_sesion_modelo_trab($datos_login);
          if($datos_cuenta->rowCount()==0){
-            echo 'trabajador';
+            /*echo 'trabajador';*/
             $datos_cuenta=loginModelo::iniciar_sesion_modelo_tut($datos_login);
-            echo 'tutorados';
+            /*echo 'tutorados';*/
             if($datos_cuenta->rowCount()==1){
                $user = true;
-            }else{
-               echo 'tutorados no existe';
             }
          }
          
          if($datos_cuenta->rowCount()==1){
-            //GIT RESET HEAD
             $row=$datos_cuenta->fetch();
              /*print_r($row); */
 
@@ -79,6 +76,8 @@
             $img_base64= chunk_split(base64_encode($imgen ));
             $img_perfil = "data:image/jpeg;base64,$img_base64";
             session_start(['name'=>'STI']);
+
+            $_SESSION['last_time_sti'] = time();
 
             $_SESSION['nombre_sti']=$row['Nombre'];
             $_SESSION['apellPat_sti']=$row['APaterno'];
@@ -110,8 +109,8 @@
                window.location.href="'.SERVERURL.'MenuCordArea";</script>';
             }
          }else{
-            echo 'NO EXISTE USUARIO';
-           /* echo '
+            /* echo 'NO EXISTE USUARIO';*/
+           echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -120,7 +119,7 @@
                   confirmButtonText: "Aceptar"
                });
             </script>
-            ';*/
+            ';
          }
       }/*-------------- fin controlador iniciar sesion --------------*/
 
@@ -160,6 +159,27 @@
              ];
          }
          echo json_encode($alerta);
+        
+      }/*-------------- fin controlador cierre de sesion --------------*/
+
+      public function cierre_sesiontiempo_controlador(){
+         session_unset();
+         session_destroy();
+
+         /*echo '<script> 
+               Swal.fire({
+                  title: "Sesion Caducada",
+                  text: "Su sesion ha caducado, por favor inicie sesion nuevamente",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               });
+               
+            </script>
+            ';*/
+         echo'<script type="text/javascript"> 
+         alert("Su sesion ha caducado, por favor inicie sesion nuevamente);
+         window.location.href="'.SERVERURL.'";</script>';
+         
         
       }/*-------------- fin controlador cierre de sesion --------------*/
    }

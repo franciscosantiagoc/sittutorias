@@ -1,4 +1,6 @@
 
+
+
 <?php include "./vistas/inc/navStudent.php"; ?>
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">

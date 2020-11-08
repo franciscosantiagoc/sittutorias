@@ -10,6 +10,10 @@
 	if( !defined( 'COMPANY' ) ) { 
 		define( 'COMPANY', "SISTEMAS DE TUTORIAS" ); 
 	}
+
+	if( !defined( 'TIMESESSION' ) ) { 
+		define( 'TIMESESSION', 3600); //seg 1hr=60*60
+	}
 	#define("SERVERURL","http://localhost:8081/tutorias/");
 
 	#define("COMPANY","SISTEMAS DE TUTORIAS");
