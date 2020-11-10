@@ -1,13 +1,5 @@
     
     <?php 
-    if($_SESSION['last_time_sti'] < time()-TIMESESSION) {
-        $lc = new loginControlador();
-        echo $lc->cierre_sesiontiempo_controlador();
-        exit();
-    } else{ //if we haven't expired:
-        $_SESSION['last_time_sti'] = time(); //this was the moment of last activity.
-    }
-
     if($_SESSION['roll_sti'] != "Tutorado"){
         if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';

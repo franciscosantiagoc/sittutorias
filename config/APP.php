@@ -12,7 +12,7 @@
 	}
 
 	if( !defined( 'TIMESESSION' ) ) { 
-		define( 'TIMESESSION', 3600); //seg 1hr=60*60
+		define( 'TIMESESSION', 60); //seg 1hr=60*60=3600
 	}
 	#define("SERVERURL","http://localhost:8081/tutorias/");
 
