@@ -2,20 +2,21 @@
 <?php 
 if(isset($_SESSION['roll_sti'])){
     if($_SESSION['roll_sti'] != "Tutorado"){
-        if($_SESSION['roll_sti'] == "Admin"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
-        }else if($_SESSION['roll_sti'] == "Docente"){
+        if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
         }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+        }else  if($_SESSION['roll_sti'] == "Admin"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
         }
     }
+
 }
 
-
-include "./vistas/inc/navStudent.php" ?>
+include "./vistas/inc/navStudent.php" 
+?>
 
     <div class="register-photo">
         <div class="container" id="contain">

@@ -1,4 +1,13 @@
 <?php
+
+
+if(isset($_SESSION['roll_sti'])){
+    if($_SESSION['roll_sti'] == "Tutorado"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+    }
+
+
+}
     /* if(roll==coordinadorA) */ 
         include "./vistas/inc/navCoordinadorC.php"; 
     /*elseif(roll==coordinadorC)

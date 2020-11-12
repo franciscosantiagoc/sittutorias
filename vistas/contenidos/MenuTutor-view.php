@@ -1,5 +1,25 @@
    
-    <?php include "./vistas/inc/navTutor.php" ?>  
+    <?php 
+    
+    if(isset($_SESSION['roll_sti'])){
+        if($_SESSION['roll_sti'] != "Docente"){
+            if($_SESSION['roll_sti'] == "Tutorado"){
+                echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+            }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+                echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+            }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+                echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+            }else  if($_SESSION['roll_sti'] == "Admin"){
+                echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+            }
+        }
+
+    }
+
+    include "./vistas/inc/navTutor.php"; 
+    
+    
+    ?>  
         
     
     <div class="container" id="container-alummenu">

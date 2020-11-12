@@ -107,7 +107,11 @@
             }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+            }elseif($_SESSION['roll_sti'] == "Admin"){
+               echo'<script type="text/javascript"> 
+               window.location.href="'.SERVERURL.'MenuRoot";</script>';
             }
+
          }else{
             /* echo 'NO EXISTE USUARIO';*/
            echo '
