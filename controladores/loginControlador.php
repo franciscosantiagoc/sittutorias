@@ -167,9 +167,6 @@
       }/*-------------- fin controlador cierre de sesion --------------*/
 
       public function cierre_sesiontiempo_controlador(){
-         session_unset();
-         session_destroy();
-
          /*echo '<script> 
                Swal.fire({
                   title: "Sesion Caducada",
@@ -181,9 +178,12 @@
             </script>
             ';*/
          echo'<script type="text/javascript"> 
-         alert("Su sesion ha caducado, por favor inicie sesion nuevamente);
-         window.location.href="'.SERVERURL.'";</script>';
+         alert("Su sesion ha caducado, por favor inicie sesion nuevamente");
+         window.location.href="'.SERVERURL.'home";</script>';
+         session_unset();
+         session_destroy();
+
          
-        
+
       }/*-------------- fin controlador cierre de sesion --------------*/
    }
