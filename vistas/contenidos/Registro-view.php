@@ -28,42 +28,42 @@ if(isset($_SESSION['roll_sti'])){
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Nombre" name="name" required="">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Nombre" name="name_reg" required="">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Paterno" name="apellidop" required="">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Paterno" name="apellidop_reg" required="">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Materno" name="apellidom" required="">
+                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Materno" name="apellidom_reg" required="">
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
-                <input class="form-control" name="registro_fecha" type="date">
+                <input class="form-control" name="fecha_reg" type="date">
             </div> 
             <div class="form-group">
-                <select class="form-control" name="registro_sexo">
+                <select class="form-control" name="sexo_reg">
                     <option value="" selected="">Sexo</option>
                     <option value="1">Hombre</option>
                     <option value="2">Mujer</option>
                 </select>
             </div>
             <div class="form-group">    
-                <input class="form-control" type="tel" pattern="[0-9()+]{8,20}" placeholder="Número de Telefono" name="numero_tel">
+                <input class="form-control" type="tel" pattern="[0-9()+]{8,20}" placeholder="Número de Telefono" name="numero_tel_reg">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" placeholder="Dirección" name="direccion" required="">
+                <input class="form-control" type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" placeholder="Dirección" name="direccion_reg" required="">
             </div>
             <div class="form-group">
-                <input class="form-control" type="email" placeholder="Email" name="email">
+                <input class="form-control" type="email" placeholder="Email" name="email_reg">
             </div>
             <div class="form-group">
-                <select class="form-control" name="registro_carrera">
+                <select class="form-control" name="carrera_reg">
                     <option selected="">Carrera</option>
                     
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl" required="">
+                <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl_reg" required="">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Registrar</button>

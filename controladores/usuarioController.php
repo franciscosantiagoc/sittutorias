@@ -9,19 +9,19 @@
    class usuarioController extends usuarioModel{
       /*-------------- Controlador agregar usuario --------------*/
 
-      /* == controlador actualizar trabajador */
-      public function actualizar_trabajador_controlador(){
+      /* == controlador registrar trabajador */
+      public function registrar_trabajador_controlador(){
         
-         $nombre=mainModel::limpiar_cadena($_POST['name_upd']);
-         $apellido_paterno=mainModel::limpiar_cadena($_POST['apellidop_upd']);
-         $apellido_materno=mainModel::limpiar_cadena($_POST['apellidom_upd']);
-         $fecha_nac=mainModel::limpiar_cadena($_POST['fecha_upd']);
-         $sexo=mainModel::limpiar_cadena($_POST['sexo_upd']);
-         $numero_telefono=mainModel::limpiar_cadena($_POST['numero_tel_upd']);
-         $direccion=mainModel::limpiar_cadena($_POST['direccion_upd']);
-         $email=mainModel::limpiar_cadena($_POST['email_upd']);
-         $carrera=mainModel::limpiar_cadena($_POST['carrera_upd']);
-         $noctrl=mainModel::limpiar_cadena($_POST['no_ctrl_upd']);
+         $nombre=mainModel::limpiar_cadena($_POST['name_reg']);
+         $apellido_paterno=mainModel::limpiar_cadena($_POST['apellidop_reg']);
+         $apellido_materno=mainModel::limpiar_cadena($_POST['apellidom_reg']);
+         $fecha_nac=mainModel::limpiar_cadena($_POST['fecha_reg']);
+         $sexo=mainModel::limpiar_cadena($_POST['sexo_reg']);
+         $numero_telefono=mainModel::limpiar_cadena($_POST['numero_tel_reg']);
+         $direccion=mainModel::limpiar_cadena($_POST['direccion_reg']);
+         $email=mainModel::limpiar_cadena($_POST['email_reg']);
+         $carrera=mainModel::limpiar_cadena($_POST['carrera_reg']);
+         $noctrl=mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
 
          /* == comprobar campos vacíos ==*/
 
