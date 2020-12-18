@@ -1,6 +1,6 @@
     
-    <?php 
-  if(isset($_SESSION['roll_sti'])){
+<?php 
+if(isset($_SESSION['roll_sti'])){
     if($_SESSION['roll_sti'] != "Tutorado"){
         if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';

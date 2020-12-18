@@ -36,10 +36,6 @@
              exit();
 
          }
-         
-         
-        
-
          /* == Verificando integridad de los datos ==*/
 
          if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}",$nombre)){
@@ -187,6 +183,21 @@
 
            
 
+      }
+
+      protected function obtener_datos_usuario($tipo,$id,$roll,$desc,$rolla){ //tipoconsulta, IDusuari, rollAseleccionar y boolean para determinar si es seleccion por roll unico o de forma descendente
+         if($tipo == "unico"){
+
+         }else{
+
+            if($desc){ //si la seleccion por roll descentente es verdadera buscara usuarios de roll descentente es decir Coordinador area, coordinador carrera, docente...
+
+            }else{//caso contrario hara una seleccion por roll unico ya sea docentes o alumnos o coordinadores
+
+            }
+
+         }
+         
       }
 
      
