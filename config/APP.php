@@ -16,6 +16,6 @@
 	}
 	#define("SERVERURL","http://localhost:8081/tutorias/");
 
-	#define("COMPANY","SISTEMAS DE TUTORIAS");
+	#define("COMPANY","SISTEMAS DE TUTORIAS");gi
 
 	date_default_timezone_set("America/Mexico_City");
