@@ -165,6 +165,7 @@ class usuarioController extends usuarioModel
          exit();
       }
 
+<<<<<<< HEAD
 
       $datos_usuario_reg = [
          "Nombre" => $nombre,
@@ -178,3 +179,22 @@ class usuarioController extends usuarioModel
       ];
    }
 }
+=======
+      protected function obtener_datos_usuario($tipo,$id,$roll,$desc,$rolla){ //tipoconsulta, IDusuari, rollAseleccionar y boolean para determinar si es seleccion por roll unico o de forma descendente
+         if($tipo == "unico"){
+
+         }else{
+
+            if($desc){ //si la seleccion por roll descentente es verdadera buscara usuarios de roll descentente es decir Coordinador area, coordinador carrera, docente...
+
+            }else{//caso contrario hara una seleccion por roll unico ya sea docentes o alumnos o coordinadores
+
+            }
+
+         }
+         
+      }
+
+     
+   }
+>>>>>>> 4171508dd7fdb6b6c549e57ebee1f2121821e6ed

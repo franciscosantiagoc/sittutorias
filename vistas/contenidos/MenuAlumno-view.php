@@ -1,5 +1,6 @@
     
-    <?php 
+<?php 
+if(isset($_SESSION['roll_sti'])){
     if($_SESSION['roll_sti'] != "Tutorado"){
         if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
@@ -11,8 +12,12 @@
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
         }
     }
-    
-    include "./vistas/inc/navStudent.php" ?>
+}
+
+include "./vistas/inc/navStudent.php"; 
+
+
+?>
     
     <div class="container" id="container-alummenu">
         <div class="row" id="row">

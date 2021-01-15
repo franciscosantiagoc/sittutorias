@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `sistutorias`.`Tutorado` (
   `NControl` INT NOT NULL UNIQUE,
   `Persona_idPersona` INT UNSIGNED NOT NULL UNIQUE,
   `Carrera_idCarrera` VARCHAR(15) NOT NULL,
-  `contrasena` VARCHAR(45) NULL,
+  `contraseña` VARCHAR(45) NULL,
   `Generacion_idGeneracion` INT NOT NULL,
   PRIMARY KEY (`Persona_idPersona`, `NControl`),
   CONSTRAINT `fk_Tutorado_Persona1`
@@ -348,38 +348,38 @@ INSERT INTO areas (idAreas,Nombre,Descripcion) values (52767,'Administración y 
 INSERT INTO areas (idAreas,Nombre,Descripcion) values (33604,'Informática','Ejemplo de descripción');
 
 
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('21147',56,'Docentes',48193,'21147','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('18828',57,'Docentes',48193,'18828','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('107639',58,'Docentes',48193,'107639','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('71179',59,'Docentes',48193,'71179','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('47818',60,'Docentes',48193,'47818','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96451',61,'Docentes',48193,'96451','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('8026',62,'Docentes',48193,'8026','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('107776',63,'Docentes',48193,'107776','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('43231',64,'Docentes',48193,'43231','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('93510',65,'Docentes',48193,'93510','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('81823',66,'Docentes',48193,'81823','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('21147',56,'Docente',48193,'21147','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('18828',57,'Docente',48193,'18828','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('107639',58,'Docente',48193,'107639','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('71179',59,'Docente',48193,'71179','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('47818',60,'Docente',48193,'47818','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96451',61,'Docente',48193,'96451','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('8026',62,'Docente',48193,'8026','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('107776',63,'Docente',48193,'107776','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('43231',64,'Docente',48193,'43231','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('93510',65,'Docente',48193,'93510','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('81823',66,'Docente',48193,'81823','Activo');
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('1114',67,'Coordinador De Carrera',48193,'1114','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('19703',68,'Docentes',48193,'19703','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96850',69,'Docentes',48193,'96850','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('103910',70,'Docentes',48193,'103910','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('69113',71,'Docentes',48193,'69113','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('2265',72,'Docentes',48193,'2265','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('85748',73,'Docentes',48193,'85748','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('14636',74,'Docentes',48193,'14636','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96163',75,'Docentes',48193,'96163','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('85067',76,'Docentes',48193,'85067','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('45957',77,'Docentes',48193,'45957','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('52000',78,'Docentes',48193,'52000','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('74899',79,'Docentes',48193,'74899','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('45356',80,'Docentes',48193,'45356','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('106482',81,'Docentes',48193,'106482','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('19703',68,'Docente',48193,'19703','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96850',69,'Docente',48193,'96850','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('103910',70,'Docente',48193,'103910','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('69113',71,'Docente',48193,'69113','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('2265',72,'Docente',48193,'2265','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('85748',73,'Docente',48193,'85748','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('14636',74,'Docente',48193,'14636','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('96163',75,'Docente',48193,'96163','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('85067',76,'Docente',48193,'85067','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('45957',77,'Docente',48193,'45957','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('52000',78,'Docente',48193,'52000','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('74899',79,'Docente',48193,'74899','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('45356',80,'Docente',48193,'45356','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('106482',81,'Docente',48193,'106482','Activo');
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('78949',82,'Coordinador De Area',48193,'78949','Inactivo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('90699',83,'Docentes',48193,'90699','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('29956',84,'Docentes',48193,'29956','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('38721',85,'Docentes',48193,'38721','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('59341',86,'Docentes',48193,'59341','Activo');
-INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('99173',87,'Docentes',48193,'99173','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('90699',83,'Docente',48193,'90699','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('29956',84,'Docente',48193,'29956','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('38721',85,'Docente',48193,'38721','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('59341',86,'Docente',48193,'59341','Activo');
+INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('99173',87,'Docente',48193,'99173','Activo');
 INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas, contraseña, Estado) values ('22406',88,'Admin',48193,'22406','Inactivo');
 
 
@@ -403,61 +403,61 @@ INSERT INTO generacion (idGeneracion, Fecha_inicio,Fecha_Fin) values (952,'2020-
 
 
 
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190857,1,'68352','17190857',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190605,2,'68352','17190605',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190664,3,'68352','17190664',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190458,4,'68352','17190458',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190856,5,'68352','17190856',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190573,6,'68352','17190573',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190536,7,'68352','17190536',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190849,8,'68352','17190849',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190615,9,'68352','17190615',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190722,10,'68352','17190722',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190815,11,'68352','17190815',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190867,12,'68352','17190867',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190810,13,'68352','17190810',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190836,14,'68352','17190836',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190577,15,'68352','17190577',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190461,16,'68352','17190461',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190790,17,'68352','17190790',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190019,18,'68352','17190019',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190005,19,'68352','17190005',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190574,20,'68352','17190574',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190575,21,'68352','17190575',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190521,22,'68352','17190521',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190476,23,'68352','17190476',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190459,24,'68352','17190459',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (17190775,25,'68352','17190775',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (16190437,26,'68352','16190437',416);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (16190359,27,'68352','16190359',416);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (16190439,28,'68352','16190439',416);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (16190417,29,'68352','16190417',416);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (16190331,30,'68352','16190331',416);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190684,31,'68352','18190684',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190887,32,'68352','18190887',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190588,33,'68352','18190588',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190832,34,'68352','18190832',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190854,35,'68352','18190854',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190867,36,'46813','18190867',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190776,37,'46813','18190776',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190712,38,'46813','18190712',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190522,39,'46813','18190522',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190666,40,'50467','18190666',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190791,41,'50467','18190791',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190611,42,'45262','18190611',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190568,43,'45262','18190568',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190767,44,'74816','18190767',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190667,45,'74816','18190667',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190491,46,'19819','18190491',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190580,47,'45504','18190580',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190534,48,'68352','18190534',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190853,49,'39281','18190853',721);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190707,50,'73529','18190707',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190863,51,'22768','18190863',478);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190774,52,'22768','18190774',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190495,53,'19819','18190495',161);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190665,54,'45504','18190665',952);
-INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contrasena,Generacion_idGeneracion) values (18190763,55,'19819','18190763',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190857,1,'68352','17190857',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190605,2,'68352','17190605',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190664,3,'68352','17190664',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190458,4,'68352','17190458',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190856,5,'68352','17190856',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190573,6,'68352','17190573',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190536,7,'68352','17190536',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190849,8,'68352','17190849',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190615,9,'68352','17190615',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190722,10,'68352','17190722',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190815,11,'68352','17190815',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190867,12,'68352','17190867',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190810,13,'68352','17190810',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190836,14,'68352','17190836',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190577,15,'68352','17190577',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190461,16,'68352','17190461',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190790,17,'68352','17190790',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190019,18,'68352','17190019',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190005,19,'68352','17190005',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190574,20,'68352','17190574',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190575,21,'68352','17190575',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190521,22,'68352','17190521',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190476,23,'68352','17190476',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190459,24,'68352','17190459',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (17190775,25,'68352','17190775',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (16190437,26,'68352','16190437',416);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (16190359,27,'68352','16190359',416);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (16190439,28,'68352','16190439',416);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (16190417,29,'68352','16190417',416);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (16190331,30,'68352','16190331',416);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190684,31,'68352','18190684',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190887,32,'68352','18190887',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190588,33,'68352','18190588',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190832,34,'68352','18190832',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190854,35,'68352','18190854',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190867,36,'46813','18190867',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190776,37,'46813','18190776',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190712,38,'46813','18190712',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190522,39,'46813','18190522',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190666,40,'50467','18190666',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190791,41,'50467','18190791',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190611,42,'45262','18190611',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190568,43,'45262','18190568',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190767,44,'74816','18190767',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190667,45,'74816','18190667',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190491,46,'19819','18190491',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190580,47,'45504','18190580',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190534,48,'68352','18190534',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190853,49,'39281','18190853',721);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190707,50,'73529','18190707',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190863,51,'22768','18190863',478);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190774,52,'22768','18190774',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190495,53,'19819','18190495',161);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190665,54,'45504','18190665',952);
+INSERT INTO tutorado (NControl,Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion) values (18190763,55,'19819','18190763',952);
 
 
 
