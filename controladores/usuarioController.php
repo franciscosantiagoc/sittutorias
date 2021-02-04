@@ -177,4 +177,19 @@ class usuarioController extends usuarioModel
          "Direccion" => $direccion
       ];
    }
+
+   public function selectRegistro_selectArEs(){
+      $rol=$_POST['rol'];
+      if($rol=='13' || $rol=='15'){
+      
+      $consult_select = mainModel::ejecutar_consulta_simple("SELECT idAreas,Nombre FROM areas;");
+
+      }else if($rol=='14'){
+
+         $consult_select = mainModel::ejecutar_consulta_simple("SELECT idCarrera,Nombre FROM carrera;");
+         
+
+      }
+      return $consult_select;
+   }
 }

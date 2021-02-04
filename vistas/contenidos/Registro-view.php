@@ -15,16 +15,32 @@ if(isset($_SESSION['roll_sti'])){
     */
     
 ?>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div class="register-photo">
     <div class="form-container">
         <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">
             <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
             <div class="form-group">
-                <select class="form-control" name="select_user">
-                    <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
-                    <option value="15">Tutor</option>
-                    <option value="16">Tutorado</option>
+                <select id="select_user" class="form-control" name="select_user">
+                    <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
+                    <?php            
+                        if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+                          echo '<option value="15">Tutor</option>
+                                <option value="16">Tutorado</option> ';
+                        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+                             echo '<option value="14">Coordinador de Carrera</option>
+                                   <option value="15">Tutor</option>
+                                   <option value="16">Tutorado</option> 
+                                   ';
+                        }else  if($_SESSION['roll_sti'] == "Admin"){
+                            echo '<option value="13">Coordinador de Area</option>
+                                  <option value="14">Coordinador de Carrera</option>
+                                  <option value="15">Tutor</option>
+                                  <option value="16">Tutorado</option> 
+                                   ';
+                        }
+                    ?>     
                 </select>
             </div>
             <div class="form-group">
@@ -57,10 +73,11 @@ if(isset($_SESSION['roll_sti'])){
                 <input class="form-control" type="email" placeholder="Email" name="email_reg">
             </div>
             <div class="form-group">
-                <select class="form-control" name="carrera_reg">
+                <!-- <select class="form-control" name="carrera_reg">
                     <option selected="">Carrera</option>
                     
-                </select>
+                </select> -->
+                <div id="selectArEs"></div>
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl_reg" required="">
@@ -158,10 +175,10 @@ if(isset($_SESSION['roll_sti'])){
     function reloadlist(){
         $.ajax({
             type:"POST",
-            url: "datos.php",
-            data: "continente=" + $($lista1).val(),
+            url: "registroAjax.php",
+            data: "user=" + $('#select_user').val(),
             success:function(r){
-                $('')
+                $('#selectArEs').html(r);
             }
         });
     }
