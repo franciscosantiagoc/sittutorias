@@ -22,7 +22,7 @@ if(isset($_SESSION['roll_sti'])){
             <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
             <div class="form-group">
-                <select id="select_user" class="form-control" name="select_user">
+                <select id="select_user" class="form-control js-example-basic-single" name="select_user">
                     <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
                     <?php            
                         if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
@@ -163,7 +163,7 @@ if(isset($_SESSION['roll_sti'])){
     </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function(){
         reloadlist();
         $('#select_user').change(function(){
@@ -182,4 +182,11 @@ if(isset($_SESSION['roll_sti'])){
             }
         });
     }
-</script>
+</script> -->
+<script> $(document).ready(function() {
+
+
+            $('.js-example-basic-single').select2();
+            console.log('select activado');
+            /* listar_departamento(); */
+        });</script>

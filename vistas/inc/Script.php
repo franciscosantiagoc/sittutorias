@@ -10,6 +10,12 @@
     <script src="<?php echo SERVERURL;?>vistas/assets/js/sweetalert2.min.js"></script>
     <script src="<?php echo SERVERURL;?>vistas/assets/js/alertas.js"></script>
     
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="../js/console_ubigeo.js"></script>
+   
     <script> 
         function cerrar() {
             document.getElementById("ventmodal").style.display = "none";
