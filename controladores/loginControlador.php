@@ -11,7 +11,7 @@
          $clave=mainModel::limpiar_cadena($_POST['pass']);
 
          /* == comprobar campos vacíos ==*/
-
+         
          if($usuario=="" || $clave=="" ){
             echo '
             <script> 
@@ -23,6 +23,7 @@
                });
             </script>
             ';
+            exit();
          }
 
          /* == Verificando integridad de los datos ==*/
@@ -37,6 +38,7 @@
                });
             </script>
             ';
+            exit();
          }
          
          if(mainModel::verificar_datos("[a-zA-Z0-9]{8,16}",$clave)){
@@ -50,6 +52,7 @@
                });
             </script>
             ';
+            exit();
          }
          /* $clave=mainModel::encryption($clave); */
          $user = false;
@@ -75,6 +78,7 @@
             $imgen = file_get_contents(SERVERURL.$row['Foto']);
             $img_base64= chunk_split(base64_encode($imgen ));
             $img_perfil = "data:image/jpeg;base64,$img_base64";
+            
             session_start(['name'=>'STI']);
 
             $_SESSION['last_time_sti'] = time();
@@ -124,6 +128,7 @@
                });
             </script>
             ';
+            exit();
          }
       }/*-------------- fin controlador iniciar sesion --------------*/
 
@@ -131,11 +136,11 @@
       public function forzar_cierre_sesion_controlador(){
          session_unset();
          session_destroy();
-         /* if(headers_sent()){ */
-         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'";</script>';
-         /* }else{
-            return header("Location: ".SERVERURL);
-         } */
+         if(headers_sent()){ /**/
+            return "<script> window.location.href='".SERVERURL."login';</script>";
+         }else{
+            return header("Location: ".SERVERURL."login");
+         }
 
       }/*-------------- fin controlador cierre de sesion --------------*/
 
