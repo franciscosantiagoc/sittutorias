@@ -21,10 +21,10 @@
                     require_once "./controladores/loginControlador.php";
                     $lc = new loginControlador();
                                
-                    if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
+                    /* if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
                         echo $lc->forzar_cierre_sesion_controlador();
                         exit();
-                    }
+                    } */
 
 
                     
@@ -40,16 +40,14 @@
                 }
 
                 include "inc/footer.php";
-                
+                include "inc/Script.php"; 
                 
 
             ?>
 
    <?php 
-            include "./vistas/inc/LogOut.php";
-            include "inc/Script.php"; 
-            
-            ?>
+        include "./vistas/inc/LogOut.php";
+    ?>
 
 
 </body>

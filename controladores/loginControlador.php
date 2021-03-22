@@ -117,7 +117,11 @@
             }
 
          }else{
-            /* echo 'NO EXISTE USUARIO';*/
+
+            /*echo'<script> 
+               alert("usuario o clave incorrectos");
+               </script>';
+             echo 'NO EXISTE USUARIO';*/
            echo '
             <script> 
                Swal.fire({
@@ -129,6 +133,9 @@
             </script>
             ';
             exit();
+           /* echo "<script>
+               alertify.alert('El usuario o claves son incorrectos');
+            </script>";*/
          }
       }/*-------------- fin controlador iniciar sesion --------------*/
 
