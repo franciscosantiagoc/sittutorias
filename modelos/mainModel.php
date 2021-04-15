@@ -132,7 +132,7 @@
                     break;
                 }
 
-                if($pagina=$i){
+                if($pagina==$i){
                     $tabla.='
                     <li class="page-item">
                             <a class="page-link active" href="'.$url.$i.'/">'.$i.'
@@ -160,7 +160,7 @@
                         </li>
 
                         <li class="page-item">
-                            <a class="page-link" hreft="'.$url.$Npaginas.'/">
+                            <a class="page-link" href="'.$url.$Npaginas.'/">
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
                         </li>

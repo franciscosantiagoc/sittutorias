@@ -1,6 +1,27 @@
-<!-- <?php include "./vistas/inc/navCoordinadorC.php"; ?> -->
+
+<?php
+
+if(isset($_SESSION['roll_sti'])){
+    if($_SESSION['roll_sti'] != "Coordinador De Carrera"){
+        if($_SESSION['roll_sti'] == "Docente"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+        }else  if($_SESSION['roll_sti'] == "Tutorado"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+        }else  if($_SESSION['roll_sti'] == "Admin"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+        }
+    }
+}
+
+include "./vistas/inc/navCoordinadorC.php";
+
+?>
+
 <div class="register-photo">
-    <div class="form-container">
+    <div class="form-containe
+    r">
         <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="update" autocomplete="off">
             <h2 class="text-center"><strong>Perfil</strong></h2>
             <div class="form-group contenedor-foto">

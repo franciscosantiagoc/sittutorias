@@ -1,3 +1,4 @@
+
 //Table with search
 $(document).ready(function() {
   $(".search").keyup(function () {

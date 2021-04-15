@@ -19,78 +19,100 @@ include "./vistas/inc/navCoordinadorC.php"
 
 
 ?>
-
-
-
     <div class="register-photo">
+        <?php           // name_var y vista
+        if(!isset($_SESSION['busqueda_CC']) && empty($_SESSION['busqueda_CC'])){  // si la variable, no esta definida, no existe
+
+        ?>
+        <!-- Búsqueda -->
+        <div class="form-container">
+            <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="default" autocomplete="off">
+                <input type="hidden" name="modulo" value="CC">
+                <h2 class="text-center"><strong>Búsqueda</strong></h2>
+                <div class="container-fluid">
+                    <div class="row justify-content-md-center">
+                        <div class="">
+                            <div class="form-group">
+                                <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
+                                <input type="text"  placeholder="Nctrl o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch" maxlength="30">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <p class="text-center" ">
+                            <button type="submit" class="btn btn-primary btn-block"> BUSCAR </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <?php }else{ ?>
+
+        <!-- Eliminar búsqueda-->
+        <div  class="form-container">
+            <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
+                <input type="hidden" name="modulo" value="CC">
+                <input type="hidden" name="eliminar_busqueda" value="eliminar">
+                <div class="container-fluid">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-md-6">
+                            <p class="text-center" style="font-size: 20px;">
+                                Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CC']; ?>"</strong>
+                            </p>
+                        </div>
+                        <div class="col-12">
+                            <p class="text-center" style="margin-top: 20px;">
+                                <button type="submit" class="btn btn-raised btn-danger">
+                                    ELIMINAR BÚSQUEDA
+                                </button>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <?php
+                require_once "./controladores/usuarioController.php";
+                $ins_usuario = new usuarioController();
+
+                // 0 es el índice que tiene la vista
+                echo $ins_usuario->paginador_usuario_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CC']);
+                ?>
+            </form>
+
+        </div>
+
+
+
+        <?php }?>
+
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
-                <h2 class="text-center"><strong>Tutorados</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" id="nameinput" placeholder="Nombre" name="name"></div>
+                <h2 class="text-center"><strong>Registrar</strong></h2>
+
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Buscar</button></div>
+
                 <div class="form-group">
-                
+
                 <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
-                
+
                 </div>
+
                 <div class="form-group"><div class="team-boxed">
 
     <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Tutores </h2>
-        </div>
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum1.jpg" />
-                    <h3 class="name">Francisco Santiago de la Cruz</h3>
-                    <b>Número de Control: </b><p class="description">16190437</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
+            <h2 class="text-center">Tutorados </h2>
+            <?php
+            require_once "./controladores/usuarioController.php";
+            $ins_usuario = new usuarioController();
 
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum2.jpg" />
-                    <h3 class="name">Juan Carlos Fernandez Piñón</h3>
-                    <b>Número de Control: </b><p class="description">16190439</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum3.jpg" />
-                    <h3 class="name">Luis Alberto Robles Parada</h3>
-                    <b>Número de Control: </b><p class="description">16190359</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum4.jpg" />
-                    <h3 class="name">Emanuel Enriquez Couder</h3>
-                    <b>Número de Control: </b><p class="description">16190417</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum5.jpg" />
-                    <h3 class="name">Humberto Toledo Fuentes</h3>
-                    <b>Número de Control: </b><p class="description">16190331</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            
-        </div>
+            // 0 es el índice que tiene la vista
+            echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+            ?>
+
+        <!-- Aqui iba la visualización de tutores - tutorados que tenía -->
     </div>
 </div></div>
             </form>
