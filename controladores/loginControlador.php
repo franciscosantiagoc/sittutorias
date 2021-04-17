@@ -41,7 +41,7 @@
             exit();
          }
          
-         if(mainModel::verificar_datos("[a-zA-Z0-9]{8,16}",$clave)){
+         if(mainModel::verificar_datos("[a-zA-Z0-9]{4,16}",$clave)){
             echo '
             <script> 
                Swal.fire({
@@ -88,7 +88,7 @@
             $_SESSION['apellMat_sti']=$row['AMaterno'];
             $_SESSION['imgperfil_sti']=$img_perfil;
             $_SESSION['id_sti']=$row['Persona_idPersona'];
-            
+            $_SESSION['status']=$row['Estado'];
             if($user == false){
                $_SESSION['matricula_sti']=$row['Matricula'];
                $_SESSION['roll_sti']=$row['Roll'];

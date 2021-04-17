@@ -151,6 +151,13 @@
     justify-content: center;
 }
 
+#img-prev {
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    border-style: solid;
+}
+
 @media (max-width: 1000px) {
     .btn-delete {
         margin-top: 10px;

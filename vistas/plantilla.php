@@ -18,31 +18,26 @@
                     require_once "./vistas/contenidos/".$vistas."-view.php";
                 }else{
                     /* session_start(['name'=>'STI']);*/ //no funciona debidamente por lo que se coloco en index
-                    require_once "./controladores/loginControlador.php";
+                    /*require_once "./controladores/loginControlador.php";
                     $lc = new loginControlador();
                                
-                    /* if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
+                    if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){//verifica que la sesion no este corrupta
                         echo $lc->forzar_cierre_sesion_controlador();
                         exit();
-                    } */
-
-
-                    
-                    if((time()-$_SESSION['last_time_sti']) > TIMESESSION) {
+                    }
+                    if((time()-$_SESSION['last_time_sti']) > TIMESESSION) { //verifica el tiempo de inactividad en la sesion
                         $lc = new loginControlador();
                         echo $lc->cierre_sesiontiempo_controlador();
                         exit();
                     } else{ 
-                        $_SESSION['last_time_sti'] = time(); //this was the moment of last activity.
-                    } 
+                        $_SESSION['last_time_sti'] = time(); //actualiza el tiempo de la ultima actividad en la sesion
+                    } */
 
                     include $vistas;
                 }
 
                 include "inc/footer.php";
                 include "inc/Script.php"; 
-                
-
             ?>
 
    <?php 
