@@ -41,36 +41,18 @@ include "./vistas/inc/navCoordinadorC.php"
         <div class="intro">
             <h2 class="text-center">Tutores </h2>
         </div>
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/1.jpg" />
-                    <h3 class="name">Alberto Ramírez Regalado</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
+     
+        <?php
+        require_once "./controladores/usuarioController.php";
+        $ins_usuario = new usuarioController();
+
+        // 0 es el índice que tiene la vista
+        echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+        ?>
+        
 
 
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
-                    <h3 class="name">Maribel Castillejos Toledo</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>  
-                </div>
-            </div>
 
-
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
-                    <h3 class="name">Angel Olivarez Perez</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>      
-                </div>
-            </div>
-        </div>
     </div>
 </div></div>
 

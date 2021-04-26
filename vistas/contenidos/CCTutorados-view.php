@@ -19,9 +19,11 @@ include "./vistas/inc/navCoordinadorC.php"
 
 
 ?>
+
+
     <div class="register-photo">
         <?php           // name_var y vista
-        if(!isset($_SESSION['busqueda_CC']) && empty($_SESSION['busqueda_CC'])){  // si la variable, no esta definida, no existe
+       if(!isset($_SESSION['busqueda_CC']) && empty($_SESSION['busqueda_CC'])){  // si la variable, no esta definida, no existe
 
         ?>
         <!-- Búsqueda -->
@@ -49,7 +51,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
         <?php }else{ ?>
 
-        <!-- Eliminar búsqueda-->
+         <!-- Eliminar búsqueda -->
         <div  class="form-container">
             <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
                 <input type="hidden" name="modulo" value="CC">
@@ -76,7 +78,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 $ins_usuario = new usuarioController();
 
                 // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_usuario_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CC']);
+              echo $ins_usuario->paginador_usuario_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CC']);
                 ?>
             </form>
 
@@ -105,15 +107,15 @@ include "./vistas/inc/navCoordinadorC.php"
     <div class="container">
             <h2 class="text-center">Tutorados </h2>
             <?php
-            require_once "./controladores/usuarioController.php";
-            $ins_usuario = new usuarioController();
-
-            // 0 es el índice que tiene la vista
-            echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                require_once "./controladores/usuarioController.php";
+                $ins_usuario = new usuarioController();
+                // 0 es el índice que tiene la vista
+                echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
             ?>
-
         <!-- Aqui iba la visualización de tutores - tutorados que tenía -->
     </div>
+
+
 </div></div>
             </form>
         </div>

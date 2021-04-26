@@ -110,8 +110,8 @@
             if($pagina==1){
                 $tabla.='<li class="page-item disabled">
                             <a class="page-link">
-                                <i class="fas fa-angle-double-left"></i>
-                            </a>
+                                <i class="fas fa-angle-double-left"></i>                    
+                            </a>  
                         </li>';
             }else{
                 $tabla.='<li class="page-item">
@@ -137,7 +137,7 @@
                     <li class="page-item">
                             <a class="page-link active" href="'.$url.$i.'/">'.$i.'
                             </a>
-                        </li>';
+                    </li>';
                 }else{
                     $tabla.='
                     <li class="page-item">

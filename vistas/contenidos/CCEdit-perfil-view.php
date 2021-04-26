@@ -20,8 +20,7 @@ include "./vistas/inc/navCoordinadorC.php";
 ?>
 
 <div class="register-photo">
-    <div class="form-containe
-    r">
+    <div class="form-container">
         <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php" method="POST" data-form="update" autocomplete="off">
             <h2 class="text-center"><strong>Perfil</strong></h2>
             <div class="form-group contenedor-foto">

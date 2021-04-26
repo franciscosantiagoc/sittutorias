@@ -193,11 +193,11 @@ class usuarioController extends usuarioModel
 
         /* == búsqueda== */
         if(isset($busqueda) && $busqueda!=""){
-            $consulta="SELECT SQL_CALC_FOUND_ROWS c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono from persona p , tutorado c  WHERE ((p.idPersona= c.Persona_idPersona) AND (c.NControl LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
+         $consulta="SELECT SQL_CALC_FOUND_ROWS c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , tutorado c  WHERE ((p.idPersona= c.Persona_idPersona) AND (c.NControl LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
         }else{
             /* == listado normal== */
 
-            $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono from persona p , tutorado c  WHERE p.idPersona=c.Persona_idPersona order by p.Nombre  LIMIT $inicio,$registros";
+            $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , tutorado c  WHERE p.idPersona=c.Persona_idPersona ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
 
         }
 
@@ -208,7 +208,7 @@ class usuarioController extends usuarioModel
         $datos = $datos->fetchAll();  // todos los registros de nuestra tabla de usuarios
         $total = $conexion->query("SELECT FOUND_ROWS()"); // Cuenta todos los registros de cualquiera de las 2 consultas
 
-        $total = (int) $total->fetchColumn(); // total registros, cuenta los registros que hacen cualquiera de las 2 consultas
+        $total = (int) $total->fetchColumn(); //Convertirlo a int, total registros, contar las columnas que tenemos en nuestra bd
 
         $Npaginas = ceil($total/$registros);// ALmacenamos el numero total de paginas que puede generar todos los registros que tenemos en nuestra tabla de la base de datos
 
@@ -222,17 +222,19 @@ class usuarioController extends usuarioModel
 					<th>APELLIDO PATERNO</th>
 					<th>APELLIDO MATERNO</th>
 					<th>TELEFONO</th>
-					<th>ACTUALIZAR</th>
+					<th>ACTUALIZAR</th> 
 					<th>ELIMINAR</th>
 				</tr>
 			</thead>
 			<tbody>';
         if($total>=1 && $pagina<=$Npaginas){  // Comprobación si hay registros
-
-
-            $contador= $inicio+1;
+            echo "hay registros";
+            //global $reg_inicio;
+           // global $reg_final;
+            $contador=$inicio+1;
             $reg_inicio=$inicio+1;
             foreach ($datos as $rows){
+
                 $tabla.='
                     <tr class="text-center" >
                         <td>'.$contador.'</td>
@@ -248,8 +250,7 @@ class usuarioController extends usuarioModel
                         </td>
                         <td>
                             <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
-                                
-                               
+                            
                                 <button type="submit" class="btn btn-warning">
                                         <i class="far fa-trash-alt"></i>
                                 </button>
@@ -257,27 +258,24 @@ class usuarioController extends usuarioModel
                         </td>
 				    </tr>';
                 $contador++;
-
-                //echo "Fin $contador..";
             }
             $reg_final=$contador-1;
             // inicio tiene la posición del array , si empieza de 1 primero empezara desde cero
             // La parte cuando no hay registros
         }else{
-
             if($total>=1){ // recargar el listado cuando el usuario este manipulando la url, y coloque una rul que no existe
                 $tabla.='<tr class="text-center" ><td colspan="9">
                 <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
                 </td> </tr>';
-
             }else{
                 $tabla.='<tr class="text-center" ><td colspan="9">No hay registros en el sistema</td> </tr>';
             }
         }
         $tabla.='</tbody></table></div>';
 
-        // Mostrando total de usuarios
-        if($total>=1){
+        // Mostrando total de usuarios,
+        if($total>=1 && $pagina<=$Npaginas){ // Mostrará eel txt cuando estemos en una página válida
+
             $tabla.='<p class="text-right">Mostrando usuario '.$reg_inicio.' al '.$reg_final.' de un total de '.$total.'</p>';
 
         }

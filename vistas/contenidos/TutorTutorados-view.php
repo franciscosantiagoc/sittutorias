@@ -23,56 +23,16 @@ include "./vistas/inc/navTutor.php";
             <form id="regisTutcsv" method="post">
                 <h2 class="text-center"><strong>Tutorados</strong></h2><div class="team-boxed">
     <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Tutores </h2>
-        </div>
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum1.jpg" />
-                    <h3 class="name">Francisco Santiago de la Cruz</h3>
-                    <b>Número de Control: </b><p class="description">16190437</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum2.jpg" />
-                    <h3 class="name">Juan Carlos Fernandez Piñón</h3>
-                    <b>Número de Control: </b><p class="description">16190439</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum3.jpg" />
-                    <h3 class="name">Luis Alberto Robles Parada</h3>
-                    <b>Número de Control: </b><p class="description">16190359</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum4.jpg" />
-                    <h3 class="name">Emanuel Enriquez Couder</h3>
-                    <b>Número de Control: </b><p class="description">16190417</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/alum5.jpg" />
-                    <h3 class="name">Humberto Toledo Fuentes</h3>
-                    <b>Número de Control: </b><p class="description">16190331</p>
-                    <b>Carrera: </b><p class="description">Ingeniería en Sistemas Computacionales</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            
-        </div>
+        
+       
+        <?php
+            require_once "./controladores/usuarioController.php";
+            $ins_usuario = new usuarioController();
+
+            // 0 es el índice que tiene la vista
+            echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+            ?>
+    
     </div>
 </div></form>
         </div>
