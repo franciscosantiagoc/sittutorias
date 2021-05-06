@@ -100,14 +100,14 @@
             <div class="form-group">
                 <input type="file"  id="file_input_st" class="form-control" />
             </div>
-            <div class="form-group contadores" wfd-id="12">
-                <span>Registros: 100</span>
-                <span class="error">Errores: 10</span>
+            <div class="form-group contadores" id="cont__infodat">
+                <!-- <span>Registros: 100</span>
+                <span class="error">Errores: 10</span> -->
             </div>
             <div class="form-group pull-right col-lg-4">
-                <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda">
+                
+                <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda" id="searchTerm" onkeyup="doSearch()">
             </div>
-            <span class="counter pull-right"></span>
             <div class="table-responsive table-bordered table table-hover table-bordered results">
                 <table class="table table-bordered table-hover" id="table_dat_es">
                     <thead class="bg-primary bill-header cs">
@@ -136,80 +136,7 @@
 </div>
 
 <script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
-<script language="JavaScript">
-    var C_Error=0;
-    var oFileIn;
-    //Código JQuery
-    $(function() {
-        oFileIn = document.getElementById('file_input_st');
-        if (oFileIn.addEventListener) {
-            oFileIn.addEventListener('change', filePicked, false);
-        }
-    });
-
-    //Método que hace el proceso de importar excel a html
-    function filePicked(oEvent) {
-        // Obtener el archivo del input
-        var oFile = oEvent.target.files[0];
-        var sFilename = oFile.name;
-        // Crear un Archivo de Lectura HTML5
-        var reader = new FileReader();
-
-        // Leyendo los eventos cuando el archivo ha sido seleccionado
-        reader.onload = function(e) {
-            var data = e.target.result;
-            var cfb = XLS.CFB.read(data, {
-                type: 'binary'
-            });
-            var wb = XLS.parse_xlscfb(cfb);
-            // Iterando sobre cada sheet
-            wb.SheetNames.forEach(function(sheetName) {
-                // Obtener la fila actual como CSV
-                var sCSV = XLS.utils.make_csv(wb.Sheets[sheetName]);
-                var data = XLS.utils.sheet_to_json(wb.Sheets[sheetName], {
-                    header: 1
-                });
-                var cont=1;//contador filas
-                var contE=0;//Contador de errores
-                var N_Cont=[];
-                var erro=false;
-                $.each(data, function(indexR, valueR) {
-                    if(cont!=1){
-                        var conc=1;
-                        var headRow="<tr class='correct'>";
-                        var sRow = "<td>"+(cont-1)+"</td>";
-                        $.each(data[indexR], function(indexC, valueC) {
-                            sRow = sRow + "<td>" + valueC + "</td>";
-                            if(conc==5){
-                                for (var i=0;i<N_Cont.length; i++){
-                                    if(N_Cont[i]==valueC){
-                                        headRow="<tr class='error'>";
-                                        erro=true;
-                                        break;
-                                    }
-                                }
-                                N_Cont.push(valueC);
-                                /* console.log(cont+" N_control "+valueC); */
-                            }
-                            conc +=1;
-                            if(erro==true)
-                                contE +=1;
-                        });
-                        sRow = headRow + " " + sRow + "</tr>";
-                        $("#table_dat_es").append(sRow);
-                    }
-                    cont +=1;
-                });
-                C_Error = contE;
-                alert('cantidad de filas: '+cont-1)
-            });
-            /* $("#imgImport"). css("display", "none"); */
-        };
-
-
-        // Llamar al JS Para empezar a leer el archivo .. Se podría retrasar esto si se desea
-        reader.readAsBinaryString(oFile);
-    }
+<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js">
 </script>
 
 

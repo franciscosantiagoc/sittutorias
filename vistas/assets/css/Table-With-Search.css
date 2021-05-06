@@ -100,3 +100,11 @@ tr.error {
     background-color: #ff0000;
     color: #fff;
 }
+
+.hide {
+    display: none;
+}
+
+.red {
+    color: yellow;
+}
