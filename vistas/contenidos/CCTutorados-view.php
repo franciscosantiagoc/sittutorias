@@ -23,13 +23,13 @@ include "./vistas/inc/navCoordinadorC.php"
 
     <div class="register-photo">
         <?php           // name_var y vista
-       if(!isset($_SESSION['busqueda_CC']) && empty($_SESSION['busqueda_CC'])){  // si la variable, no esta definida, no existe
+       if(!isset($_SESSION['busqueda_CCTutora2']) && empty($_SESSION['busqueda_CCTutora2'])){  // si la variable, no esta definida, no existe
 
         ?>
         <!-- Búsqueda -->
         <div class="form-container">
             <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="default" autocomplete="off">
-                <input type="hidden" name="modulo" value="CC">
+                <input type="hidden" name="modulo" value="CCTutora2">
                 <h2 class="text-center"><strong>Búsqueda</strong></h2>
                 <div class="container-fluid">
                     <div class="row justify-content-md-center">
@@ -40,7 +40,7 @@ include "./vistas/inc/navCoordinadorC.php"
                             </div>
                         </div>
                         <div class="col-12">
-                            <p class="text-center" ">
+                            <p class="text-center">
                             <button type="submit" class="btn btn-primary btn-block"> BUSCAR </button>
                             </p>
                         </div>
@@ -53,14 +53,14 @@ include "./vistas/inc/navCoordinadorC.php"
 
          <!-- Eliminar búsqueda -->
         <div  class="form-container">
-            <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
-                <input type="hidden" name="modulo" value="CC">
+            <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
+                <input type="hidden" name="modulo" value="CCTutora2">
                 <input type="hidden" name="eliminar_busqueda" value="eliminar">
                 <div class="container-fluid">
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-md-6">
                             <p class="text-center" style="font-size: 20px;">
-                                Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CC']; ?>"</strong>
+                                Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CCTutora2']; ?>"</strong>
                             </p>
                         </div>
                         <div class="col-12">
@@ -78,7 +78,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 $ins_usuario = new usuarioController();
 
                 // 0 es el índice que tiene la vista
-              echo $ins_usuario->paginador_usuario_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CC']);
+              echo $ins_usuario->paginador_tutorados_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutora2']);
                 ?>
             </form>
 
@@ -91,7 +91,7 @@ include "./vistas/inc/navCoordinadorC.php"
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
                 <h2 class="text-center"><strong>Registrar</strong></h2>
-
+                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
@@ -110,7 +110,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 require_once "./controladores/usuarioController.php";
                 $ins_usuario = new usuarioController();
                 // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_usuario_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                echo $ins_usuario->paginador_tutorados_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
             ?>
         <!-- Aqui iba la visualización de tutores - tutorados que tenía -->
     </div>
