@@ -178,6 +178,53 @@ class usuarioController extends usuarioModel
       ];
    }
 
+   /* == controlador registro multiple de usuario  */
+   public function registro_multU_controlador(){
+      require "../library/PHPExcel/Classes/PHPExcel.php";
+      $tmpfname = $_FILES['archivoexcel']['tmp_name'];
+      $readexcel = PHPExcel_IOFactory::createReaderForFile($tmpfname);
+      $excelobj = $readexcel->load($tmpfname);
+      
+      $hoja = $excelobj->getSheet(0);//leer 1ra hoja del archivo
+      $filas = $hoja->getHighestRow();
+       for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
+          $nom = $hoja ->getCell('A',$row)->getValue();
+          $apep = $hoja ->getCell('B',$row)->getValue();
+          $apem = $hoja ->getCell('C',$row)->getValue();
+           /*$sex = $hoja ->getCell('D',$row)->getValue();
+          $ncont = $hoja ->getCell('E',$row)->getValue();
+          $esp = $hoja ->getCell('F',$row)->getValue();
+          $gen = $hoja ->getCell('G',$row)->getValue();
+          $email = $hoja ->getCell('H',$row)->getValue();*/
+      } 
+
+      $alerta = [
+            "Alerta" => "simple",
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
+            "Tipo" => "error"
+         ];
+       /*return $alerta;*/
+       return $filas; 
+
+
+
+      /*
+      $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trbajador WHERE Matricula ='$noctrl'");
+      if ($check_no_ctrl->rowCount() > 0) {
+         $alerta = [
+            "Alerta" => "simple",
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+      */
+      
+   }
+
     /* == controlador paginador usuario  */
     public function paginador_usuario_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
@@ -304,4 +351,6 @@ class usuarioController extends usuarioModel
       }
       return $consult_select;
    }
+
+   
 }
