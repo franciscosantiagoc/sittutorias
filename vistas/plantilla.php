@@ -40,10 +40,9 @@
        include "inc/footer.php";
        include "inc/Script.php";
        ?>
-
-   <?php 
-        include "./vistas/inc/LogOut.php";
-    ?>
+<?php
+    include "./vistas/inc/LogOut.php";
+?>
 
 
 </body>
