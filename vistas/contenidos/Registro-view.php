@@ -8,8 +8,8 @@
 
 
 } */
-    /* if(roll==coordinadorA) */ 
-        include "./vistas/inc/navCoordinadorC.php"; 
+    /* if(roll==coordinadorA) 
+        include "./vistas/inc/navCoordinadorC.php"; */ 
     /*elseif(roll==coordinadorC)
         include "inc/navCoordinadorC.php"; 
     */
@@ -97,15 +97,21 @@
 
         <div class="table-container col-md-12 search-table-col">
             <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
-            <div class="form-group">
-                <input type="file"  id="file_input_st" class="form-control" />
-            </div>
+            <form class="form-group" id="form_imp" action='#' enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".csv,xlsx,.xls"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="submit" name="btnsub" value="Cargar archivo">
+                        <!-- <button class="btn-danger" onclick="loadExcel()">Cargar archivo</button> -->
+                    </div>
+                </div>
+                
+            </form>
             <div class="form-group contadores" id="cont__infodat">
-                <!-- <span>Registros: 100</span>
-                <span class="error">Errores: 10</span> -->
             </div>
             <div class="form-group pull-right col-lg-4">
-                
                 <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda" id="searchTerm" onkeyup="doSearch()">
             </div>
             <div class="table-responsive table-bordered table table-hover table-bordered results">
@@ -135,9 +141,67 @@
     </div>
 </div>
 
-<script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
-<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js">
+<script>
+   $('#file_input_st').on('change', function(){
+        var ext = $( this ).val().split('.').pop();
+        if ($( this ).val() != '') {
+            if(ext == "xls" || ext == "xlsx" || ext == "csv"){
+                Swal.fire("Exitoso","Archivo cargado: ." + ext+"","success");
+            }else{
+                $( this ).val('');
+                Swal.fire("Advertencia","La extensión del archivo no esta permitida: ." + ext+"","error");
+            }
+        }
+    }); 
+    $(document).ready(function(){
+        $("form").submit(function(event){
+            event.preventDefault();
+            if(excel===""){
+            Swal.fire("Advertencia","Seleccione un documento para continuar","error");
+        }
+            var formData = new FormData();
+            var files = $('#file_input_st')[0].files[0];
+            formData.append('archivoexcel',files);
+            $.ajax({
+                url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (resp){
+                    
+                    alert(resp);
+                }
+            });
+        })
+    });
+
+   /*  function loadExcel(){
+        var exc= $('#file_input_st').val();
+        if(excel===""){
+            Swal.fire("Advertencia","Seleccione un documento para continuar","error");
+        }
+        var formData = new FormData();
+        var files = $('#file_input_st')[0].files[0];
+        formData.append('archivoexcel',files);
+        alert('ajax a enviar');
+        $.ajax({
+            url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (resp){
+                alert(resp);
+            }
+        });
+        return false;
+    } */
 </script>
+
+<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
+<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js"> 
+</script>-->
 
 
 <!-- <script type="text/javascript">
@@ -147,23 +211,23 @@
             reloadlist();
         });
     })
-</script>
-<script type="text/javascript">
-    function reloadlist(){
-        $.ajax({
-            type:"POST",
-            url: "registroAjax.php",
-            data: "user=" + $('#select_user').val(),
-            success:function(r){
-                $('#selectArEs').html(r);
-            }
-        });
-    }
-</script> 
-<script> $(document).ready(function() {
+    </script>
+    <script type="text/javascript">
+        function reloadlist(){
+            $.ajax({
+                type:"POST",
+                url: "registroAjax.php",
+                data: "user=" + $('#select_user').val(),
+                success:function(r){
+                    $('#selectArEs').html(r);
+                }
+            });
+        }
+    </script> 
+    <script> $(document).ready(function() {
 
 
-            $('.js-example-basic-single').select2();
-            console.log('select activado');
-            /* listar_departamento(); */
-        });</script>-->
+        $('.js-example-basic-single').select2();
+        console.log('select activado');
+        /* listar_departamento(); */
+});</script>-->
