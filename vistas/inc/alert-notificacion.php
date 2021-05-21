@@ -1,4 +1,4 @@
-<div id="ventmodal" class="modalcontent">
+<!--<div id="ventmodal" class="modalcontent">
     <div id="modal1" class="modal">
         <div class="modal-content">
             <center><h4 id="modal-title">Atención</h4></center>
@@ -6,4 +6,4 @@
             <center><br><a id="btnaceptar" href="javascript:cerrar()" class="btn">Aceptar</a></center>
         </div>
     </div>
-</div>
+</div>-->
