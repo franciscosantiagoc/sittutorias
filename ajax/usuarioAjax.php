@@ -14,7 +14,7 @@ if (isset($_POST['name'])) {
 }elseif (is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0) {
    $ins_usuario = new usuarioController();
    echo $ins_usuario->registro_multU_controlador();
-   /* echo 'archivo ajax ejecutado'; */
+    /*echo 'archivo ajax ejecutado'; */
 } else {
    session_start(['name' => 'STI']);
    session_unset();

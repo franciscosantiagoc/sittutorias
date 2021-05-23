@@ -118,7 +118,7 @@ class usuarioController extends usuarioModel
          }*/
       $condicion = "'$columdb' = '$noctrl'";
       /* $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT '$columdb' FROM '$tabledb' WHERE '$condicion'" ); */
-      $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trbajador WHERE Matricula ='$noctrl'");
+      $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl'");
       if ($check_no_ctrl->rowCount() > 0) {
          $alerta = [
             "Alerta" => "simple",
@@ -178,49 +178,75 @@ class usuarioController extends usuarioModel
       ];
    }
 
+   public static function datos_usuario_controlador($tipo,$tabla,$condicion){
+      $tipo=mainModel::limpiar_cadena($tipo);
+      $tabla=mainModel::limpiar_cadena($tabla);
+      $condicion=mainModel::limpiar_cadena($condicion);
+
+
+
+      return usuarioModel::datos_usuario_modelo($tipo,$tabla,$condicion);
+   
+   }
+
    /* == controlador registro multiple de usuario  */
    public function registro_multU_controlador(){
       require "../library/PHPExcel/Classes/PHPExcel.php";
       $tmpfname = $_FILES['archivoexcel']['tmp_name'];
+      $typo_us = $_POST['type_us'];
       $readexcel = PHPExcel_IOFactory::createReaderForFile($tmpfname);
       $excelobj = $readexcel->load($tmpfname);
       
       $hoja = $excelobj->getSheet(0);//leer 1ra hoja del archivo
       $filas = $hoja->getHighestRow();
-       for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
+      $html = " <thead>"; 
+      $datos = array();
+      for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
           $nom = $hoja ->getCell('A',$row)->getValue();
           $apep = $hoja ->getCell('B',$row)->getValue();
           $apem = $hoja ->getCell('C',$row)->getValue();
-           /*$sex = $hoja ->getCell('D',$row)->getValue();
+          $sex = $hoja ->getCell('D',$row)->getValue();
           $ncont = $hoja ->getCell('E',$row)->getValue();
           $esp = $hoja ->getCell('F',$row)->getValue();
           $gen = $hoja ->getCell('G',$row)->getValue();
-          $email = $hoja ->getCell('H',$row)->getValue();*/
+          $email = $hoja ->getCell('H',$row)->getValue();
+          if($typo_us==18){
+            $consulta = "SELECT NControl FROM tutorado WHERE NControl ='$noctrl' ";
+          }else{
+            $consulta = "SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl' ";
+          }
+         /*$check_no_ctrl = mainModel::ejecutar_consulta_simple($consulta);
+         
+         $repet=false; 
+         $foreach($datos['ncont'] as $key){
+            if(key==$ncont){
+               $repet = true;
+               break;
+            }
+         }
+         if($repet){
+            
+            $status = 'Dato Repetido';
+         }else if ($check_no_ctrl->rowCount() > 0) {
+            $status = 'Dato Existente';
+         }
+          array_push('ID'=>($row-1), 'nom'=>$nom,'apellp'=>$apep,'apellm'=>$apem,'sex'=>$sex,'ncont'=>$ncont,'esp'=>$esp,'gen'=>$gen,'email'=>$email,'status'=>$status)*/ 
       } 
-
+      $html +="</thead>";
+      /*
       $alerta = [
             "Alerta" => "simple",
             "Titulo" => "Ocurrio un error inesperado",
             "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
             "Tipo" => "error"
-         ];
+         ];*/
        /*return $alerta;*/
        return $filas; 
 
 
 
       /*
-      $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trbajador WHERE Matricula ='$noctrl'");
-      if ($check_no_ctrl->rowCount() > 0) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit();
-      }
+      
       */
       
    }

@@ -53,5 +53,17 @@
 
            return $sql;
        }
+       /*------------------------Modelo datos usuario------------------------*/
+       protected static function datos_usuario_modelo($tipo,$tabla,$condicion){
+          if($tipo=="Unico"){
+            $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
+          }elseif($tipo=="Conteo"){
+            $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
+            /* $sql->bindParam(":ID",$id); */
+          }
+
+          $sql->execute();
+          return $sql;
+       }
    }
    

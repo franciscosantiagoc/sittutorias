@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Team-Boxed.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Footer-Base-3.css">
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/Ultimate-Sidebar-Menu.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- sweetalert v8.13.0 -->
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/sweetalert2.min.css">

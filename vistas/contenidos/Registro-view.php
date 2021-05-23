@@ -97,7 +97,20 @@
 
         <div class="table-container col-md-12 search-table-col">
             <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
-            <form class="form-group" id="form_imp" action='#' enctype="multipart/form-data">
+            <form id="form_imp" action='#' enctype="multipart/form-data">
+                <div class="form-group">
+                    <select id="select_type_user" class="form-control">
+                        <?php
+                            if($_SESSION['roll_sti'] != "Admin"){
+                                echo '<option value="14">Coordinadores Area</option>';
+                            }else  if($_SESSION['15'] == "Coordinador De Area"){
+                                echo'<option value="16">Coordinadores Carrera</option>';
+                            }
+                        ?>
+                        <option value="17">Tutores</option>
+                        <option value="18">Tutorados</option>                 
+                    </select>
+                </div>
                 <div class="row">
                     <div class="col-lg-10">
                         <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".csv,xlsx,.xls"/>
@@ -156,23 +169,27 @@
     $(document).ready(function(){
         $("form").submit(function(event){
             event.preventDefault();
-            if(excel===""){
-            Swal.fire("Advertencia","Seleccione un documento para continuar","error");
-        }
+            /*alert ('submit detectado');
+             if(excel===""){
+                Swal.fire("Advertencia","Seleccione un documento para continuar","error");
+            } */
             var formData = new FormData();
             var files = $('#file_input_st')[0].files[0];
+            var select = $('#select_type_user').val();
             formData.append('archivoexcel',files);
+            formData.append('type_us',select);
             $.ajax({
                 url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
                 type: 'post',
                 data: formData,
+                dataType: 'json',
                 contentType: false,
                 processData: false,
                 success: function (resp){
                     
                     alert(resp);
                 }
-            });
+            });/**/
         })
     });
 

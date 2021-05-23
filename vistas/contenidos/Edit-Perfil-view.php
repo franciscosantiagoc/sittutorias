@@ -25,7 +25,7 @@ include "./vistas/inc/navTutor.php";
             require_once './controladores/usuarioController.php';
             $ins_user = new usuarioController();
         ?>
-            <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">
+            <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="update" autocomplete="off">
                 <h2 class="text-center"><strong>Perfil</strong></h2>
                 <div class="form-group" id="div-img">
                     <img id="img-prev" src="<?php echo $_SESSION['imgperfil_sti']; ?>">
@@ -65,7 +65,7 @@ include "./vistas/inc/navTutor.php";
                     <input class="form-control" type="email" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" name="carrera_upd" placeholder="Carrera">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl_upd">
+                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl_upd">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="password" name="password" placeholder="Contraseña Nueva">
@@ -91,9 +91,27 @@ include "./vistas/inc/navTutor.php";
                   confirmButtonText: "Aceptar"
             });
             const archivos = $selecfile.files;
-            const primerArchivo = archivos[0];
-            const objectURL = URL.createObjectURL(primerArchivo);
-            $imagenPrevisualizacion.src = objectURL;
+            const imagen = archivos[0];
+            if(imagen["type"]!="image/jpeg" && imagen["type"]!="image/jpeg"){
+                 Swal.fire({
+                    title: "Advertencia",
+                    text: "El formato de la foto no es admitida, solo se admiten JPG o PNG",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+            }else if(imagen["size"] > 2000000){
+                Swal.fire({
+                    title: "Advertencia",
+                    text: "El peso de la imagen no debe superar los 2MB!",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+
+            }else{
+                const objectURL = URL.createObjectURL(imagen);
+                $imagenPrevisualizacion.src = objectURL;
+            }
+            
         });
     </script>
     
