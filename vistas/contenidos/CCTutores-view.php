@@ -18,6 +18,8 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navCoordinadorC.php" 
 
 ?>
+<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js">
+</script>
 
 
     <div class="register-photo">
@@ -27,68 +29,7 @@ include "./vistas/inc/navCoordinadorC.php"
         if(!isset($_SESSION['busqueda_CCTutor']) && empty($_SESSION['busqueda_CCTutor'])){
 
         ?>
-            <!-- Búsqueda -->
-            <div class="form-container">
-                <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="default" autocomplete="off">
-                    <input type="hidden" name="modulo" value="CCTutor">
-                    <h2 class="text-center"><strong>Búsqueda</strong></h2>
-                    <div class="container-fluid">
-                        <div class="row justify-content-md-center">
-                            <div class="">
-                                <div class="form-group">
-                                    <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
-                                    <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch" maxlength="30">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <p class="text-center">
-                                <button type="submit" class="btn btn-primary btn-block"> BUSCAR </button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
-        <?php }else{ ?>
-
-        <!-- Eliminar búsqueda -->
-        <div  class="form-container">
-            <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
-                <input type="hidden" name="modulo" value="CCTutor">
-                <input type="hidden" name="eliminar_busqueda" value="eliminar">
-                <div class="container-fluid">
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 col-md-6">
-                            <p class="text-center" style="font-size: 20px;">
-                                Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CCTutor']; ?>"</strong>
-                            </p>
-                        </div>
-                        <div class="col-12">
-                            <p class="text-center" style="margin-top: 20px;">
-                                <button type="submit" class="btn btn-raised btn-danger">
-                                    ELIMINAR BÚSQUEDA
-                                </button>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-                <?php
-                require_once "./controladores/usuarioController.php";
-                $ins_usuario = new usuarioController();
-
-                // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_tutores_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutor']);
-                ?>
-
-            </form>
-
-        </div>
-
-
-
-        <?php }?>
 
         <!--<div>-->
             <div id="importcsvregis" class="form-container">
@@ -109,8 +50,65 @@ include "./vistas/inc/navCoordinadorC.php"
 
                             <div class="container">
                                 <div class="intro">
-                                    <h2 class="text-center">Tutores </h2>
+                                    <h2 class="text-center"><strong>Tutores</strong></h2>
                                 </div>
+                                <!-- Búsqueda -->
+                                <div class="form-container">
+                                    <form class="form-neon"  method="POST" data-form="default" autocomplete="off">
+                                        <input type="hidden" name="modulo" value="CCTutor">
+                                        <h2 class="text-center">Búsqueda</h2>
+                                        <div class="container-fluid">
+                                            <div class="row justify-content-md-center">
+                                                <div class="">
+                                                    <div class="form-group">
+                                                        <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
+                                                        <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_CCTres" onkeyup="doSearchCCTres()" maxlength="30">
+                                                    </div>
+                                                </div>
+                                                <!--<div class="col-12">
+                                                    <p class="text-center">
+                                                        <button type="submit" class="btn btn-primary btn-block"> BUSCAR </button>
+                                                    </p>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <?php }else{ ?>
+
+                                    <!-- Eliminar búsqueda -->
+                                    <div  class="form-container">
+                                        <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
+                                            <input type="hidden" name="modulo" value="CCTutor">
+                                            <input type="hidden" name="eliminar_busqueda" value="eliminar">
+                                            <div class="container-fluid">
+                                                <div class="row justify-content-md-center">
+                                                    <div class="col-12 col-md-6">
+                                                        <p class="text-center" style="font-size: 20px;">
+                                                            Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CCTutor']; ?>"</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="text-center" style="margin-top: 20px;">
+                                                            <button type="submit" class="btn btn-raised btn-danger">
+                                                                ELIMINAR BÚSQUEDA
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            require_once "./controladores/usuarioController.php";
+                                            $ins_usuario = new usuarioController();
+
+                                            // 0 es el índice que tiene la vista
+                                            echo $ins_usuario->paginador_tutores_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutor']);
+                                            ?>
+                                        </form>
+                                    </div>
+
+                                <?php }?>
 
                                 <?php
                                 //listado

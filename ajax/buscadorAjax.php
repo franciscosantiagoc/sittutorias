@@ -10,9 +10,8 @@ if(isset($_POST['busqueda_inicial']) || isset($_POST['eliminar_busqueda'])  ){  
         "CCTutora2"=>"CCTutorados",
         "CCTutor"=>"CCTutores",
         "CoordinadoresRoot"=>"RootCoordinadoresCR",
-        "JefesDeptRoot"=>"RootCoordinadoresAR"
-
-
+        "JefesDeptRoot"=>"RootCoordinadoresAR",
+        "CoordinadorCarreraCArea"=>"CCoordinadores"
     ];
     // url , las vistas, vista donde se está enviando el valor
 

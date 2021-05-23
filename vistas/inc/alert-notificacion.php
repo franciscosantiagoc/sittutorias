@@ -6,4 +6,3 @@
             <center><br><a id="btnaceptar" href="javascript:cerrar()" class="btn">Aceptar</a></center>
         </div>
     </div>
-</div> -->
