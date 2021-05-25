@@ -15,7 +15,7 @@
     }
 } */
   
-include "./vistas/inc/navCoordinadorC.php" 
+/* include "./vistas/inc/navCoordinadorC.php"  */
 
 ?>
 
@@ -38,7 +38,8 @@ include "./vistas/inc/navCoordinadorC.php"
                         <div class="tile-tittle">Trabajadores</div>
                         <div class="tile-icon">
                             <i class="fas fa-chalkboard-teacher fa-fw"></i>
-                            <p><?php echo $total_usuarios->rowCount(); ?> Registrados</p>
+                            <p><?php
+                             echo $total_usuarios->rowCount(); ?> Registrados</p>
                         </div>
                     </div>
                     <?php
@@ -101,21 +102,63 @@ include "./vistas/inc/navCoordinadorC.php"
                     </div>
 
                 </div>
-                <div class="form-group"><label>Seleccione Tipo de Gráfica</label><select class="form-control"><option value="undefined" selected="">Tipo de Grafica</option><option value="12">Barras</option><option value="13">Dispersión</option><option value="14">Pastel</option></select><label>Seleccione Periodo escolar</label>
+
+                
+                <div class="form-group">
+                    <label>Seleccione Tipo de Gráfica</label>
+                    <select class="form-control">
+                        <option value="undefined" selected="">Tipo de Grafica</option>
+                        <option value="10">Barras</option>
+                        <!-- <option value="11">Linea</option>
+                        <option value="12">Pastel</option> -->
+                    </select>
+                    <label>Seleccione Periodo escolar</label>
+                    
+                    <select class="form-control">
+                    <option value="" selected="">Periodo</option>
+                        <?php
+                            $dat_info = $ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
+
+                              $dat_info=$dat_info->fetchAll(); 
+                            foreach($dat_info as $row){
+                                /*$n=$dat_info->rowCount(); */
+                                $id = $row['idgeneracion'];
+                                $da_in = $row['date_ini'];
+                                $da_fn = $row['date_fin'];
+                                echo "<option value='$id'>$da_in-$da_fn</option>";
+                            }
+                                
+                                                    
+                        
+                        ?>
+                    </select>
+                    <!-- <label>Seleccione Carrera</label>
+                    <select class="form-control">
+                        <option value="undefined" selected="">Carrera</option>
+                        <option value="12">Ingeniería en Sistemas</option>
+                        <option value="13">Ingenieria Civil</option>
+                        <option value="14">Ingeniería en Informatica</option>
+                        <option value="">Ingeniería en Mecatronica</option>
+                        <option value="">Ingeniería Electrica</option>
+                        <option value="">Arquitectura</option>
+                        <option value="">Contaduria</option>
+                        <option value="">Ingenieria en Gestion Empresarial</option>
+                        <option value="">Todos</option>
+                    </select>
+                    <label>Seleccione el tipo de Sexo</label>
                     <select
                         class="form-control">
-                        <option value="undefined" selected="">Periodo</option>
-                        <option value="12">Enero-Junio2020</option>
-                        <option value="13">Agosto-Diciembre2020</option>
-                        <option value="14">Enero-Junio2019</option>
-                        </select><label>Seleccione Carrera</label><select class="form-control"><option value="undefined" selected="">Carrera</option><option value="12">Ingeniería en Sistemas</option><option value="13">Ingenieria Civil</option><option value="14">Ingeniería en Informatica</option><option value="">Ingeniería en Mecatronica</option><option value="">Ingeniería Electrica</option><option value="">Arquitectura</option><option value="">Contaduria</option><option value="">Ingenieria en Gestion Empresarial</option><option value="">Todos</option></select><label>Seleccione el tipo de Sexo</label>
-                        <select
-                            class="form-control">
-                            <option value="12" selected="">Genero</option>
-                            <option value="13">Hombres</option>
-                            <option value="14">Mujeres</option>
-                            <option value="">Ambos</option>
-                            </select><label>Seleccione la Situación</label><select class="form-control"><option value="12" selected="">Situación</option><option value="13">Bajas</option><option value="14">Altas</option></select></div>
+                        <option value="12" selected="">Genero</option>
+                        <option value="13">Hombres</option>
+                        <option value="14">Mujeres</option>
+                        <option value="">Ambos</option>
+                    </select>
+                    <label>Seleccione la Situación</label>
+                    <select class="form-control"><option value="12" selected="">Situación</option>
+                        <option value="13">Bajas</option>
+                        <option value="14">Altas</option>
+                    </select> -->
+                </div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Generar grafica</button></div>
                 <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" >IMPRIMIR</button></a></div>
             </form>

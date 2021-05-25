@@ -183,10 +183,15 @@ class usuarioController extends usuarioModel
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
 
-
-
       return usuarioModel::datos_usuario_modelo($tipo,$tabla,$condicion);
    
+   }
+   public static function datos_ta_controlador($campos,$tabla,$condicion){
+      $campos=mainModel::limpiar_cadena($campos);
+      $tabla=mainModel::limpiar_cadena($tabla);
+      /* $condicion=mainModel::limpiar_cadena($condicion); */
+
+      return usuarioModel::datos_ta_modelo($campos,$tabla,$condicion);
    }
 
    /* == controlador registro multiple de usuario  */

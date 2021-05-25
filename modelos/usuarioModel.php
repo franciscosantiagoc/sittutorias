@@ -65,5 +65,12 @@
           $sql->execute();
           return $sql;
        }
+
+       protected static function datos_ta_modelo($campos,$tabla,$condicion){
+         /*$sql="SELECT $campos FROM $tabla $condicion";*/
+          $sql=mainModel::conectar()->prepare("SELECT $campos FROM $tabla $condicion");
+          $sql->execute(); 
+          return $sql;
+       }
    }
    

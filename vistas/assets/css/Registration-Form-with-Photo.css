@@ -127,6 +127,9 @@
 	border-bottom: 1px solid #f8640e;
 	transition: all .2s ease-in-out;
 	font-family: 'roboto_medium_regular';
+    background-color: #f8640e;
+    color: #ffffff;
+    
 }
 /* .tile:hover .tile-tittle{
 	color: #FFF;
