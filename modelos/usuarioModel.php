@@ -23,16 +23,24 @@
 
       protected static function actualizar_usuario_modelo($datos){
          $condfoto='';
-         $condID='Ncontrol';
+         $campo='NControl';
          $condNpass='';
+         $condicionNPass = '';
+         $tabla = ','.$datos['Tabla'];
+         if($datos['Tabla']!="tutorado")
+            $campo='Matricula';
          if($datos['Foto']!="")
             $condfoto= ', Foto=:Foto';
-         /* if($datos['NPass']!="")
-            $condNpass= ', contraseña=:NPass';
-         if($datos['Tabla']!="tutorado")
-            $condID='Matricula'; */
+          if($datos['NPass']!=""){
+             $condNpass= ', contraseña=:NPass';
+             $condicionNPass = 'AND '.$campo.'=:IDUS AND contraseña=:Pass';
+          }else{
+             $tabla = '';
+          }
+            
          
-          $sql = mainModel::conectar()->prepare("UPDATE persona SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto WHERE idPersona=:ID");
+         
+          $sql = mainModel::conectar()->prepare("UPDATE persona $tabla SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto $condNpass WHERE idPersona=:ID $condicionNPass");
    
    
          $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -46,11 +54,14 @@
 
           if($condfoto!="")
             $sql->bindParam(":Foto",$datos['Foto']);
-         /*if($condNpass!="")
-            $sql->bindParam(":NPass",$datos['NPass']);  */
+         if($condNpass!=""){
+            $sql->bindParam(":IDUS",$datos['IDUS']);
+            $sql->bindParam(":Pass",$datos['Pass']);
+            $sql->bindParam(":NPass",$datos['NPass']);
+         }
         
-         $sql->execute(); /* */
-         /*$sql ="UPDATE persona, ".$datos['Tabla'] ." SET (Nombre=".$datos['Nombre'].", APaterno=".$datos['APaterno'].", AMaterno=".$datos['AMaterno'].", FechaNac=".$datos['FechaNac'].", Sexo=".$datos['Sexo'].", Correo=".$datos['Correo'].", NTelefono=".$datos['NTelefono'].", Direccion=".$datos['Direccion']." , Foto=:".$datos['Foto'].") WHERE $condID=".$datos['ID']." AND contraseña=".$datos['Pass']." AND idPersona=Persona_idPersona"; */
+         $sql->execute();
+
 
          return $sql;
       }

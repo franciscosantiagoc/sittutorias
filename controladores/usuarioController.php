@@ -455,7 +455,11 @@ class usuarioController extends usuarioModel
          "NTelefono" => $num_tel,
          "Direccion" => $direccion,
          "Foto" => $link_img,
-         "ID" => $idper
+         "IDUS" => $iduser,
+         "NPass" =>$passn,
+         "Tabla" =>$tabla,
+         "ID" => $idper,
+         "Pass" => $pass
       ];  
 
       
