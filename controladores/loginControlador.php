@@ -75,9 +75,12 @@
             $row=$datos_cuenta->fetch();
              /*print_r($row); */
 
-            $imgen = file_get_contents(SERVERURL.$row['Foto']);
-            $img_base64= chunk_split(base64_encode($imgen ));
-            $img_perfil = "data:image/jpeg;base64,$img_base64";
+            /* $imgen = file_get_contents(SERVERURL.$row['Foto']);
+            $img_base64= chunk_split(base64_encode($imgen )); */
+            $img_perfil = SERVERURL.$row['Foto'];/* "data:image/jpeg;base64, $img_base64";*/
+            if(SERVERURL.$row['Foto']==""){
+               $img_perfil=SERVERURL."directory/img-person/default.png";
+            }
             
             session_start(['name'=>'STI']);
 

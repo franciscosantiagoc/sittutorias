@@ -112,13 +112,38 @@
                         <!-- <option value="11">Linea</option>
                         <option value="12">Pastel</option> -->
                     </select>
+
+                    <label>Seleccione Dato a Graficar</label>
+                    <select class="form-control">
+                        <option value="undefined" selected="">Dato a Graficar</option>
+                        <!-- <option value="10">Actividades</option> -->
+                        <option value="11">Alumnos</option>
+                        <option value="12">Bajas</option>
+                    </select>
+
+
+                    <label>Seleccione Carrera</label>
+                    <select class="form-control">
+                        <option value="" selected="">Carrera</option>
+                        <option value="10">Todo</option>
+                        <?php
+                            $dat_info = $ins_usuario->datos_ta_controlador("idCarrera,Nombre","carrera",";");
+                            $dat_info=$dat_info->fetchAll(); 
+                            foreach($dat_info as $row){
+                                /*$n=$dat_info->rowCount(); */
+                                $id = $row['idCarrera'];
+                                $name_ca = $row['Nombre'];
+                                echo "<option value='$id'>$name_ca</option>";
+                            }                                  
+                        ?>
+                    </select>
+
                     <label>Seleccione Periodo escolar</label>
                     
                     <select class="form-control">
-                    <option value="" selected="">Periodo</option>
+                        <option value="" selected="" id="sel_per">Periodo</option>
                         <?php
                             $dat_info = $ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
-
                               $dat_info=$dat_info->fetchAll(); 
                             foreach($dat_info as $row){
                                 /*$n=$dat_info->rowCount(); */
@@ -126,26 +151,10 @@
                                 $da_in = $row['date_ini'];
                                 $da_fn = $row['date_fin'];
                                 echo "<option value='$id'>$da_in-$da_fn</option>";
-                            }
-                                
-                                                    
-                        
+                            }                                  
                         ?>
                     </select>
-                    <!-- <label>Seleccione Carrera</label>
-                    <select class="form-control">
-                        <option value="undefined" selected="">Carrera</option>
-                        <option value="12">Ingeniería en Sistemas</option>
-                        <option value="13">Ingenieria Civil</option>
-                        <option value="14">Ingeniería en Informatica</option>
-                        <option value="">Ingeniería en Mecatronica</option>
-                        <option value="">Ingeniería Electrica</option>
-                        <option value="">Arquitectura</option>
-                        <option value="">Contaduria</option>
-                        <option value="">Ingenieria en Gestion Empresarial</option>
-                        <option value="">Todos</option>
-                    </select>
-                    <label>Seleccione el tipo de Sexo</label>
+                    <!--<label>Seleccione el tipo de Sexo</label>
                     <select
                         class="form-control">
                         <option value="12" selected="">Genero</option>

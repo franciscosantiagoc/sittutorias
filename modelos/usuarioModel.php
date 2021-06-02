@@ -56,11 +56,11 @@
        /*------------------------Modelo datos usuario------------------------*/
        protected static function datos_usuario_modelo($tipo,$tabla,$condicion){
           if($tipo=="Unico"){
-            $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
+            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion,Ciudad FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
           }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
-            /* $sql->bindParam(":ID",$id); */
           }
+          
 
           $sql->execute();
           return $sql;

@@ -5,4 +5,4 @@
             <p id="modal-desc">Usted tiene nuevos mensajes en su bandeja de entrada, puede visualizarlo pulsando en la opción del menu (<i class="material-icons">notifications</i>)</p>
             <center><br><a id="btnaceptar" href="javascript:cerrar()" class="btn">Aceptar</a></center>
         </div>
-    </div>
+    </div>-->

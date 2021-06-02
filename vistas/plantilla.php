@@ -20,7 +20,7 @@
         }else{
             /* session_start(['name'=>'STI']);*/ //no funciona debidamente por lo que se coloco en index
            $pagina=explode("/",$_GET['views']); // variable get, tiene todos los parametros de la url, pagina ahhora los tendrá
-           /*  require_once "./controladores/loginControlador.php";
+            require_once "./controladores/loginControlador.php";
            $lc = new loginControlador();
 
             if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
@@ -33,14 +33,14 @@
                 exit();
             } else{
                 $_SESSION['last_time_sti'] = time(); //this was the moment of last activity.
-            }
- */
+            }/**/
+ 
              include $vistas;
        }
        include "inc/footer.php";
        include "inc/Script.php";
 
-       include "./vistas/inc/LogOut.php";
+        include "./vistas/inc/LogOut.php";/**/
        ?>
 
 

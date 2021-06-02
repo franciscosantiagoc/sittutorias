@@ -125,7 +125,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
                 </form>
             </div>
-            <div id="cont-visdat" class="form-container">
+            <div id="cont-visdat" class="form-container modal">
                 <form method="post"><img id="imgreg" src="./vistas/assets/img/tutores.jpg">
                     <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>

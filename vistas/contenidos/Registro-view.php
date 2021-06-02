@@ -44,13 +44,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Nombre" name="name_reg" required="">
+                <input class="form-control" type="text" placeholder="Nombre" name="name_reg" >
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Paterno" name="apellidop_reg" required="">
+                <input class="form-control" type="text"  placeholder="Apellido Paterno" name="apellidop_reg">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" placeholder="Apellido Materno" name="apellidom_reg" required="">
+                <input class="form-control" type="text"  placeholder="Apellido Materno" name="apellidom_reg">
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
@@ -64,10 +64,10 @@
                 </select>
             </div>
             <div class="form-group">    
-                <input class="form-control" type="tel" pattern="[0-9()+]{8,20}" placeholder="Número de Telefono" name="numero_tel_reg">
+                <input class="form-control" type="tel" placeholder="Número de Telefono" name="numero_tel_reg">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" placeholder="Dirección" name="direccion_reg" required="">
+                <input class="form-control" type="text"  placeholder="Dirección" name="direccion_reg">
             </div>
             <div class="form-group">
                 <input class="form-control" type="email" placeholder="Email" name="email_reg">
@@ -80,7 +80,7 @@
                 <div id="selectArEs"></div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" pattern="[0-9-]{8,10}" placeholder="Numero de Control" name="no_ctrl_reg" required="">
+                <input class="form-control" type="text" placeholder="Numero de Control" name="no_ctrl_reg">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Registrar</button>
@@ -190,7 +190,7 @@
                     alert(resp);
                 }
             });/**/
-        })
+        });
     });
 
    /*  function loadExcel(){

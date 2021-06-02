@@ -35,4 +35,3 @@
 
     </nav>
 
-<?php include "alert-notificacion.php"; ?>
