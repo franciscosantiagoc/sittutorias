@@ -54,10 +54,6 @@ include "./vistas/inc/navTutor.php"; */
                     <input class="form-control" type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" value="<?php echo $row['Amaterno'];?>" placeholder="Apellido Materno" name="apellidom_upd">
                 </div>
                 <div class="form-group">
-                    <label>Fecha de Nacimiento</label>
-                    <input class="form-control" name="fecha_upd" type="date" value="<?php echo date('Y-m-d', strtotime($row['FechaNac'])); ?>" >
-                </div>
-                <div class="form-group">
                     <label>Sexo</label>
                     <select name="sexo_upd">
                       <option value="M" <?php if($row['Sexo']=='M') echo 'Selected=""';?> >Hombre</option>
@@ -75,6 +71,9 @@ include "./vistas/inc/navTutor.php"; */
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $_SESSION['NControl_sti'];?>" name="no_upd">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $row['idPersona'];?>" name="noUs_upd">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="password" placeholder="Ingrese su contraseña para realizar cambios" name="pass_upd">

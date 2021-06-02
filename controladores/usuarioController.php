@@ -206,7 +206,6 @@ class usuarioController extends usuarioModel
       $nombre = mainModel::limpiar_cadena($_POST['name_upd']);
       $apellido_paterno = mainModel::limpiar_cadena($_POST['apellidop_upd']);
       $apellido_materno = mainModel::limpiar_cadena($_POST['apellidom_upd']);
-      $fecha_nac = mainModel::limpiar_cadena($_POST['fecha_upd']);
       $sexo = mainModel::limpiar_cadena($_POST['sexo_upd']);
       $num_tel = mainModel::limpiar_cadena($_POST['numtel_upd']);
       $direccion = mainModel::limpiar_cadena($_POST['direc_upd']);
@@ -217,6 +216,7 @@ class usuarioController extends usuarioModel
        
         /*$img = $_FILES['imgperfil_upd']; */
       $iduser = mainModel::limpiar_cadena($_POST['no_upd']);
+      $idper = mainModel::limpiar_cadena($_POST['noUs_upd']);
 
       
        /*$alerta = [
@@ -363,10 +363,12 @@ class usuarioController extends usuarioModel
         exit();
       }
     }
+      $tabla='tutorado';
       $condicion="WHERE NControl='".$iduser."' AND contraseña='".$pass."';";
       $total_usuarios= usuarioModel::datos_usuario_modelo("Conteo","tutorado",$condicion);
       $total=$total_usuarios->rowCount();
       if($total==0){
+        $tabla='trabajador';
         $condicion = "WHERE Matricula='".$iduser."' AND contraseña='".$pass."';";
         $total_usuarios= usuarioModel::datos_usuario_modelo("Conteo","trabajador",$condicion);
         $total=$total_usuarios->rowCount();
@@ -412,8 +414,9 @@ class usuarioController extends usuarioModel
       }
       /* echo 'Condicionales terminadas'; */
       $link_img='';
-       if(isset($_FILES['image_upd'])){
-         $name = $_FILES['image_upd']['name'];
+      $name = $_FILES['image_upd']['name'];
+       if(isset($_FILES['image_upd']) && $name!=""){
+         
          if(strpos($name, 'jpg')){
             $tipo='.jpg';
          }elseif(strpos($name, 'jpeg')){
@@ -425,7 +428,7 @@ class usuarioController extends usuarioModel
          $link_img='/directory/img-person/'.$nombre.'_'.$iduser.$tipo;
          $link_img=str_replace(' ', '', $link_img);
          $archivo = '.'.$link_img;
-         if (move_uploaded_file($temp, $archivo)) {
+         if (move_uploaded_file($temp, $archivo) ) {
             //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
             chmod($archivo, 0777);
          }else{
@@ -441,10 +444,47 @@ class usuarioController extends usuarioModel
             '; 
             exit();
          }
-      } 
-
+      }
+      
+      $datos_usuario_upd = [
+         "Nombre" => $nombre,
+         "APaterno" => $apellido_paterno,
+         "AMaterno" => $apellido_materno,
+         "Sexo" => $sexo,
+         "Correo" => $email,
+         "NTelefono" => $num_tel,
+         "Direccion" => $direccion,
+         "Foto" => $link_img,
+         "ID" => $idper
+      ];  
 
       
+      /* echo $actualizar_usuario;
+      exit(); */
+      if($actualizar_usuario=usuarioModel::actualizar_usuario_modelo($datos_usuario_upd)){
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Usuario Actualizado",
+                  text: "Los datos se han actualizado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            '; 
+
+      }else{
+           echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al actualizar los datos, intente nuevamente recargando la pagina",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            '; 
+      }
 
    }
 
