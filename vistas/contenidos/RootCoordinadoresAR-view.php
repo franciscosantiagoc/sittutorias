@@ -39,9 +39,7 @@
                 <div class="form-group"><a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a></div>
                 <div class="team-boxed">
                     <div class="container">
-                        <div class="intro">
-                            <h2 class="text-center"><strong>Tutores</strong> </h2>
-                        </div>
+
                         <!-- Búsqueda -->
                         <div class="form-container">
                             <div class="form-neon " method="POST" data-form="" autocomplete="off">
@@ -52,7 +50,7 @@
                                         <div class="">
                                             <div class="form-group">
                                                 <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
-                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_jd" onkeyup="doSearchJD()"  maxlength="30">
+                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_jd" onkeyup="doSearchRootCCarrera()"  maxlength="30">
                                             </div>
                                         </div>
                                         <!--<div class="col-12">
@@ -107,7 +105,7 @@
                         $ins_usuario = new usuarioController();
 
                         // PAGINACÍON, 0 es el índice que tiene la vista
-                        echo $ins_usuario->paginador_tutores_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                        echo $ins_usuario->paginador_rootjefesdepto_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
                         ?>
 
 

@@ -45,9 +45,6 @@ include "./vistas/inc/navRoot.php";
                 <div class="team-boxed">
 
                     <div class="container">
-                        <div class="intro">
-                            <h2 class="text-center"><strong>Tutores</strong> </h2>
-                        </div>
 
                         <!-- Búsqueda -->
                         <div class="form-container">
@@ -59,7 +56,7 @@ include "./vistas/inc/navRoot.php";
                                         <div class="">
                                             <div class="form-group">
                                                 <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
-                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_cc" onkeyup="doSearchCC()" maxlength="30">
+                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_cc" onkeyup="doSearchRootCCarrera()" maxlength="30">
                                             </div>
                                         </div>
                                         <!--<div class="col-12">
@@ -101,7 +98,7 @@ include "./vistas/inc/navRoot.php";
                                     $ins_usuario = new usuarioController();
 
                                     // 0 es el índice que tiene la vista
-                                    echo $ins_usuario->paginador_tutores_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CoordinadoresRoot']);
+                                    echo $ins_usuario->paginador_ccarrera_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CoordinadoresRoot']);
                                     ?>
 
                                 </form>
@@ -116,7 +113,7 @@ include "./vistas/inc/navRoot.php";
                         $ins_usuario = new usuarioController();
 
                         // 0 es el índice que tiene la vista
-                        echo $ins_usuario->paginador_tutores_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                        echo $ins_usuario->paginador_ccarrera_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
                         ?>
 
                     </div>

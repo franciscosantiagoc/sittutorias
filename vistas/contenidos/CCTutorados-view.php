@@ -101,7 +101,7 @@ include "./vistas/inc/navCoordinadorC.php"
                     $ins_usuario = new usuarioController();
 
                     // 0 es el índice que tiene la vista
-                    echo $ins_usuario->paginador_tutorados_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutora2']);
+                    echo $ins_usuario->paginador_rootjefesdepto_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutora2']);
                     ?>
                 </form>
 
@@ -114,7 +114,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 require_once "./controladores/usuarioController.php";
                 $ins_usuario = new usuarioController();
                 // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_tutorados_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                echo $ins_usuario->paginador_rootjefesdepto_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
             ?>
         <!-- Aqui iba la visualización de tutores - tutorados que tenía -->
     </div>

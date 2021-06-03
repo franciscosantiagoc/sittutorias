@@ -45,9 +45,7 @@
                 <div class="form-group">
                     <div class="team-boxed">
                         <div class="container">
-                            <div class="intro">
-                                <h2 class="text-center"><strong>COORDINADORES</strong></h2>
-                            </div><!-- Búsqueda -->
+                            <!-- Búsqueda -->
                             <div class="form-container">
                                 <div class="form-neon " method="POST" data-form="" autocomplete="off">
                                     <input type="hidden" name="modulo" value="CoordinadorCarreraCArea">
