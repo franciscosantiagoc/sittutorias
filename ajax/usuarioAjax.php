@@ -14,6 +14,12 @@ require_once "../controladores/usuarioController.php";
    }
 }elseif (isset($_POST['name_upd'])) {
    echo 'actualizacion';//$ins_usuario->actualizar_usuario_controlador();
+}elseif(isset($_POST['selectCarReg'])){
+   $ins_usuario = new usuarioController();
+   echo $ins_usuario->selectRegistro_selectArEs();
+
+
+
 }elseif (is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0) {
    $ins_usuario = new usuarioController();
    echo $ins_usuario->registro_multU_controlador();

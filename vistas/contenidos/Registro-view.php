@@ -18,11 +18,12 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div class="register-photo">
     <div class="form-container">
-        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">
+        <!-- <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off"> -->
+        <form class="FormularioAjax" action=""  method="post" autocomplete="off">
             <img id="imgreg" src="vistas/assets/img/meeting.jpg">
             <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
             <div class="form-group">
-                <select id="select_user" class="form-control js-example-basic-single" name="select_user">
+                <select id="select_user" class="form-control js-example-basic-single" name="select_usertype" onchange="ShowCarAr(this.value);">
                     <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
                     <?php            
                         if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
@@ -73,10 +74,10 @@
                 <input class="form-control" type="email" placeholder="Email" name="email_reg">
             </div>
             <div class="form-group">
-                <!-- <select class="form-control" name="carrera_reg">
-                    <option selected="">Carrera</option>
+                <select id="Sel_CarrA" class="form-control" name="carrera_reg">
+                   <!--  <option selected="">Carrera</option> -->
                     
-                </select> -->
+                </select> <!---->
                 <div id="selectArEs"></div>
             </div>
             <div class="form-group">
@@ -91,8 +92,17 @@
         </form>
     </div>
 </div>
+<?php
+        if(isset($_POST['name_reg'])){
+             require_once "./controladores/usuarioController.php";
 
-<div class="container-modal__regst">
+            $ins_usuario= new usuarioController(); 
+
+            echo $ins_usuario->registro_usuario_controlador();
+        }
+    ?>
+
+<div class="container-modal__regst modalcontent" style="display:none;">
     <div class="modal_reg_st">
 
         <div class="table-container col-md-12 search-table-col">
@@ -153,7 +163,24 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    function ShowCarAr(x){
+        var userType = document.getElementById("select_user").value=x;
+        var dataus = 'selectCarReg='+userType;
+        const sel = document.querySelector("#Sel_CarrA");
+        $.ajax({
+                url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
+                type: 'post',
+                data: dataus,
+                success: function (resp){
+                    /*alert(resp);*/
+                     sel.innerHTML =resp; 
+                }
+            });/**/
+        
+        
+    }    
+</script>
 <script>
    $('#file_input_st').on('change', function(){
         var ext = $( this ).val().split('.').pop();

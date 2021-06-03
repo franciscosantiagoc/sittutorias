@@ -904,18 +904,23 @@ class usuarioController extends usuarioModel
     }
 
    public function selectRegistro_selectArEs(){
-      $rol=$_POST['rol'];
-      if($rol=='13' || $rol=='15'){
-      
-      $consult_select = mainModel::ejecutar_consulta_simple("SELECT idAreas,Nombre FROM areas;");
-
-      }else if($rol=='14'){
-
+      $rol=$_POST['selectCarReg'];
+      $code_html='';
+      if($rol=="16"){
          $consult_select = mainModel::ejecutar_consulta_simple("SELECT idCarrera,Nombre FROM carrera;");
-         
-
+         $code_html = '<option selected="">Selecciona una carrera</option>';
+      }else{
+         $consult_select = mainModel::ejecutar_consulta_simple("SELECT idAreas,Nombre FROM areas;");
+         $code_html = '<option selected="">Selecciona un area</option>';
       }
-      return $consult_select;
+       $dat_info=$consult_select->fetchAll(); 
+       
+       foreach($dat_info as $row){
+          $id = $row[0];
+          $name = $row[1];
+          $code_html = $code_html."<option value='$id'>$name</option>";
+       }
+      return $code_html;
    }
 
    
