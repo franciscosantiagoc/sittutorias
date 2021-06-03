@@ -21,46 +21,59 @@
          return $sql;
       }
 
-      protected static function actualizar_trabajador_modelo($datos){
-         $sql = mainModel::conectar()->prepare("UPDATE persona SET (Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, FechaNac=:FechaNac, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion, Ciudad=:Ciudad) ");
+      protected static function actualizar_usuario_modelo($datos){
+         $condfoto='';
+         $campo='NControl';
+         $condNpass='';
+         $condicionNPass = '';
+         $tabla = ','.$datos['Tabla'];
+         if($datos['Tabla']!="tutorado")
+            $campo='Matricula';
+         if($datos['Foto']!="")
+            $condfoto= ', Foto=:Foto';
+          if($datos['NPass']!=""){
+             $condNpass= ', contraseña=:NPass';
+             $condicionNPass = 'AND '.$campo.'=:IDUS AND contraseña=:Pass';
+          }else{
+             $tabla = '';
+          }
+            
+         
+         
+          $sql = mainModel::conectar()->prepare("UPDATE persona $tabla SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto $condNpass WHERE idPersona=:ID $condicionNPass");
+   
    
          $sql->bindParam(":Nombre", $datos['Nombre']);
          $sql->bindParam(":APaterno",$datos['APaterno']);
          $sql->bindParam(":AMaterno",$datos['AMaterno']);
-         $sql->bindParam(":FechaNac",$datos['FechaNac']);
+         $sql->bindParam(":Sexo",$datos['Sexo']);
          $sql->bindParam(":Correo",$datos['Correo']);
          $sql->bindParam(":NTelefono", $datos['NTelefono']);
          $sql->bindParam(":Direccion", $datos['Direccion']);
-         $sql->bindParam(":Ciudad",$datos['Ciudad']);
+         $sql->bindParam(":ID", $datos['ID']);
+
+          if($condfoto!="")
+            $sql->bindParam(":Foto",$datos['Foto']);
+         if($condNpass!=""){
+            $sql->bindParam(":IDUS",$datos['IDUS']);
+            $sql->bindParam(":Pass",$datos['Pass']);
+            $sql->bindParam(":NPass",$datos['NPass']);
+         }
+        
          $sql->execute();
-   
+
+
          return $sql;
       }
 
-
-       protected static function actualizar_tutorado_modelo($datos){
-           $sql = mainModel::conectar()->prepare("UPDATE persona SET (Nombre=':Nombre', APaterno=':APaterno', AMaterno=':AMaterno', FechaNac=':FechaNac', Correo=':Correo', NTelefono=':NTelefono', Direccion=':Direccion', Ciudad=':Ciudad') ");
-
-           $sql->bindParam(":Nombre", $datos['Nombre']);
-           $sql->bindParam(":APaterno",$datos['APaterno']);
-           $sql->bindParam(":AMaterno",$datos['AMaterno']);
-           $sql->bindParam(":FechaNac",$datos['FechaNac']);
-           $sql->bindParam(":Correo",$datos['Correo']);
-           $sql->bindParam(":NTelefono", $datos['NTelefono']);
-           $sql->bindParam(":Direccion", $datos['Direccion']);
-           $sql->bindParam(":Ciudad",$datos['Ciudad']);
-           $sql->execute();
-
-           return $sql;
-       }
        /*------------------------Modelo datos usuario------------------------*/
        protected static function datos_usuario_modelo($tipo,$tabla,$condicion){
           if($tipo=="Unico"){
-            $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
+            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion,Ciudad FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
           }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
-            /* $sql->bindParam(":ID",$id); */
           }
+          
 
           $sql->execute();
           return $sql;

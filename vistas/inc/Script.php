@@ -8,16 +8,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
 <script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
 <script src="<?php echo SERVERURL;?>vistas/assets/js/alertas.js"></script>
-
-
-<!--<script src="<?php echo SERVERURL;?>vistas/assets/js/alertify.js"></script>
- <script src="<?php echo SERVERURL;?>vistas/assets/js/sweetalert2.min.js"> -->
-
+    
+ </script>
+ <!--
  <script>
    function cerrar() {
       document.getElementById("ventmodal").style.display = "none";
    }
-</script> <!---->
+</script>-->
 
 <!-- <script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
    $(function() {

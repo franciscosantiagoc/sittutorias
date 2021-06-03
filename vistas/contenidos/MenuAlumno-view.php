@@ -19,7 +19,7 @@ include "./vistas/inc/navStudent.php";
 
 ?>
     
-    <div class="container" id="container-alummenu">
+    <div class="container" >
         <div class="row" id="row">
             <div class="col">
                 <p><strong class="encabezado">ALUMNO</strong></p>
