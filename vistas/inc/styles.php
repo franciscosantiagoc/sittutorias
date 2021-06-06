@@ -19,3 +19,4 @@
     <!-- sweetalert v8.13.0 -->
     <link rel="stylesheet" href="<?php echo SERVERURL;?>vistas/assets/css/sweetalert2.min.css">
     <script src="<?php echo SERVERURL;?>vistas/assets/js/sweetalert2.min.js"></script>
+    <script src="<?php echo SERVERURL;?>vistas/assets/js/alertas.js"></script>

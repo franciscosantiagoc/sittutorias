@@ -13,8 +13,9 @@
 
 
 -- Volcando estructura de base de datos para sistutorias
-CREATE DATABASE IF NOT EXISTS `sistutorias` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sistutorias`;
+/*CREATE DATABASE IF NOT EXISTS `sistutorias` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+/*USE `u760563657_sistutorias`;*/
 
 -- Volcando estructura para tabla sistutorias.actividades
 CREATE TABLE IF NOT EXISTS `actividades` (
@@ -268,26 +269,27 @@ INSERT INTO `persona` (`idPersona`, `Nombre`, `APaterno`, `AMaterno`, `FechaNac`
 	(88, 'VICTOR MANUEL', 'JIMÉNEZ', 'CRUZ', '1957-06-11', 'M', 'CRUZJIMÉNEZVI@gmail.com', '9715765171', 'direccion de prueba', 'Juchitán', '/directory/img-person/VICTORMANUELJIMENEZ.jpg');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.solicambiot
-CREATE TABLE IF NOT EXISTS `solicambiot` (
-  `idSoliCambioT` int(11) NOT NULL,
+-- Volcando estructura para tabla sistutorias.solicitudes
+CREATE TABLE IF NOT EXISTS `solicitudes` (
+  `idSolicitud` int(11) NOT NULL,
+  `Tutorado_NControl` int(11) NOT NULL,
+  `tipo_solicitud` varchar(150) NOT NULL,
   `Trabajador_Matriculaanterior` varchar(45) DEFAULT NULL,
   `Trabajador_Matriculanuevo` varchar(45) DEFAULT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
   `fecha_solicitud` date NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  PRIMARY KEY (`idSoliCambioT`),
-  KEY `fk_SoliCambioT_Trabajador1_idx` (`Trabajador_Matriculaanterior`),
-  KEY `fk_SoliCambioT_Trabajador2_idx` (`Trabajador_Matriculanuevo`),
-  KEY `fk_SoliCambioT_Tutorado1_idx` (`Tutorado_NControl`),
-  CONSTRAINT `fk_SoliCambioT_Trabajador1` FOREIGN KEY (`Trabajador_Matriculaanterior`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SoliCambioT_Trabajador2` FOREIGN KEY (`Trabajador_Matriculanuevo`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SoliCambioT_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idSolicitud`),
+  KEY `fk_solicitudes_Trabajador1_idx` (`Trabajador_Matriculaanterior`),
+  KEY `fk_solicitudes_Trabajador2_idx` (`Trabajador_Matriculanuevo`),
+  KEY `fk_solicitudes_Tutorado1_idx` (`Tutorado_NControl`),
+  CONSTRAINT `fk_solicitudes_Trabajador1` FOREIGN KEY (`Trabajador_Matriculaanterior`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_solicitudes_Trabajador2` FOREIGN KEY (`Trabajador_Matriculanuevo`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_solicitudes_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.solicambiot: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `solicambiot` DISABLE KEYS */;
-/*!40000 ALTER TABLE `solicambiot` ENABLE KEYS */;
+-- Volcando datos para la tabla sistutorias.solicitudes: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sistutorias.trabajador
 CREATE TABLE IF NOT EXISTS `trabajador` (
@@ -297,8 +299,8 @@ CREATE TABLE IF NOT EXISTS `trabajador` (
   `Areas_idAreas` int(11) NOT NULL,
   `contraseña` varchar(16) NOT NULL,
   `Estado` varchar(45) NOT NULL,
-  `Disponibilidad` varchar(45) DEFAULT NULL,
-  `Disp_Def` varchar(45) DEFAULT NULL,
+  `Disponibilidad` varchar(45) DEFAULT NULL,/*Docente quiere gestionar tutorados nuevos*/
+  `Disp_Def` varchar(45) DEFAULT NULL, /*Nuevo usuario, sugerir cambio de contraseña*/
   PRIMARY KEY (`Matricula`,`Persona_idPersona`),
   UNIQUE KEY `Persona_idPersona` (`Persona_idPersona`),
   KEY `fk_Trabajador_Persona_idx` (`Persona_idPersona`),
@@ -369,8 +371,6 @@ CREATE TABLE IF NOT EXISTS `tutorado` (
   `contraseña` varchar(45) NOT NULL,
   `Generacion_idGeneracion` int(11) NOT NULL,
   `Estado` varchar(45) NOT NULL,
-  `Permisos` varchar(45) DEFAULT NULL,
-  `Trabajador_Per` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Persona_idPersona`,`NControl`),
   UNIQUE KEY `NControl` (`NControl`),
   UNIQUE KEY `Persona_idPersona` (`Persona_idPersona`),
@@ -383,62 +383,62 @@ CREATE TABLE IF NOT EXISTS `tutorado` (
 
 -- Volcando datos para la tabla sistutorias.tutorado: ~55 rows (aproximadamente)
 /*!40000 ALTER TABLE `tutorado` DISABLE KEYS */;
-INSERT INTO `tutorado` (`NControl`, `Persona_idPersona`, `Carrera_idCarrera`, `contraseña`, `Generacion_idGeneracion`, `Estado`, `Permisos`, `Trabajador_Per`) VALUES
-	(17190857, 1, '68352', '17190857', 478, '', NULL, NULL),
-	(17190605, 2, '68352', '17190605', 478, '', NULL, NULL),
-	(17190664, 3, '68352', '17190664', 478, '', NULL, NULL),
-	(17190458, 4, '68352', '17190458', 478, '', NULL, NULL),
-	(17190856, 5, '68352', '17190856', 478, '', NULL, NULL),
-	(17190573, 6, '68352', '17190573', 721, '', NULL, NULL),
-	(17190536, 7, '68352', '17190536', 721, '', NULL, NULL),
-	(17190849, 8, '68352', '17190849', 721, '', NULL, NULL),
-	(17190615, 9, '68352', '17190615', 721, '', NULL, NULL),
-	(17190722, 10, '68352', '17190722', 721, '', NULL, NULL),
-	(17190815, 11, '68352', '17190815', 161, '', NULL, NULL),
-	(17190867, 12, '68352', '17190867', 161, '', NULL, NULL),
-	(17190810, 13, '68352', '17190810', 161, '', NULL, NULL),
-	(17190836, 14, '68352', '17190836', 721, '', NULL, NULL),
-	(17190577, 15, '68352', '17190577', 721, '', NULL, NULL),
-	(17190461, 16, '68352', '17190461', 721, '', NULL, NULL),
-	(17190790, 17, '68352', '17190790', 952, '', NULL, NULL),
-	(17190019, 18, '68352', '17190019', 952, '', NULL, NULL),
-	(17190005, 19, '68352', '17190005', 952, '', NULL, NULL),
-	(17190574, 20, '68352', '17190574', 161, '', NULL, NULL),
-	(17190575, 21, '68352', '17190575', 161, '', NULL, NULL),
-	(17190521, 22, '68352', '17190521', 478, '', NULL, NULL),
-	(17190476, 23, '68352', '17190476', 478, '', NULL, NULL),
-	(17190459, 24, '68352', '17190459', 952, '', NULL, NULL),
-	(17190775, 25, '68352', '17190775', 952, '', NULL, NULL),
-	(16190437, 26, '68352', '16190437', 416, '', NULL, NULL),
-	(16190359, 27, '68352', '16190359', 416, '', NULL, NULL),
-	(16190439, 28, '68352', '16190439', 416, '', NULL, NULL),
-	(16190417, 29, '68352', '16190417', 416, '', NULL, NULL),
-	(16190331, 30, '68352', '16190331', 416, '', NULL, NULL),
-	(18190684, 31, '68352', '18190684', 478, '', NULL, NULL),
-	(18190887, 32, '68352', '18190887', 721, '', NULL, NULL),
-	(18190588, 33, '68352', '18190588', 161, '', NULL, NULL),
-	(18190832, 34, '68352', '18190832', 952, '', NULL, NULL),
-	(18190854, 35, '68352', '18190854', 721, '', NULL, NULL),
-	(18190867, 36, '46813', '18190867', 721, '', NULL, NULL),
-	(18190776, 37, '46813', '18190776', 721, '', NULL, NULL),
-	(18190712, 38, '46813', '18190712', 161, '', NULL, NULL),
-	(18190522, 39, '46813', '18190522', 952, '', NULL, NULL),
-	(18190666, 40, '50467', '18190666', 952, '', NULL, NULL),
-	(18190791, 41, '50467', '18190791', 952, '', NULL, NULL),
-	(18190611, 42, '45262', '18190611', 478, '', NULL, NULL),
-	(18190568, 43, '45262', '18190568', 478, '', NULL, NULL),
-	(18190767, 44, '74816', '18190767', 952, '', NULL, NULL),
-	(18190667, 45, '74816', '18190667', 952, '', NULL, NULL),
-	(18190491, 46, '19819', '18190491', 721, '', NULL, NULL),
-	(18190580, 47, '45504', '18190580', 952, '', NULL, NULL),
-	(18190534, 48, '68352', '18190534', 952, '', NULL, NULL),
-	(18190853, 49, '39281', '18190853', 721, '', NULL, NULL),
-	(18190707, 50, '73529', '18190707', 478, '', NULL, NULL),
-	(18190863, 51, '22768', '18190863', 478, '', NULL, NULL),
-	(18190774, 52, '22768', '18190774', 161, '', NULL, NULL),
-	(18190495, 53, '19819', '18190495', 161, '', NULL, NULL),
-	(18190665, 54, '45504', '18190665', 952, '', NULL, NULL),
-	(18190763, 55, '19819', '18190763', 952, '', NULL, NULL);
+INSERT INTO `tutorado` (`NControl`, `Persona_idPersona`, `Carrera_idCarrera`, `contraseña`, `Generacion_idGeneracion`, `Estado`) VALUES
+	(17190857, 1, '68352', '17190857', 478, ''),
+	(17190605, 2, '68352', '17190605', 478, ''),
+	(17190664, 3, '68352', '17190664', 478, ''),
+	(17190458, 4, '68352', '17190458', 478, ''),
+	(17190856, 5, '68352', '17190856', 478, ''),
+	(17190573, 6, '68352', '17190573', 721, ''),
+	(17190536, 7, '68352', '17190536', 721, ''),
+	(17190849, 8, '68352', '17190849', 721, ''),
+	(17190615, 9, '68352', '17190615', 721, ''),
+	(17190722, 10, '68352', '17190722', 721, ''),
+	(17190815, 11, '68352', '17190815', 161, ''),
+	(17190867, 12, '68352', '17190867', 161, ''),
+	(17190810, 13, '68352', '17190810', 161, ''),
+	(17190836, 14, '68352', '17190836', 721, ''),
+	(17190577, 15, '68352', '17190577', 721, ''),
+	(17190461, 16, '68352', '17190461', 721, ''),
+	(17190790, 17, '68352', '17190790', 952, ''),
+	(17190019, 18, '68352', '17190019', 952, ''),
+	(17190005, 19, '68352', '17190005', 952, ''),
+	(17190574, 20, '68352', '17190574', 161, ''),
+	(17190575, 21, '68352', '17190575', 161, ''),
+	(17190521, 22, '68352', '17190521', 478, ''),
+	(17190476, 23, '68352', '17190476', 478, ''),
+	(17190459, 24, '68352', '17190459', 952, ''),
+	(17190775, 25, '68352', '17190775', 952, ''),
+	(16190437, 26, '68352', '16190437', 416, ''),
+	(16190359, 27, '68352', '16190359', 416, ''),
+	(16190439, 28, '68352', '16190439', 416, ''),
+	(16190417, 29, '68352', '16190417', 416, ''),
+	(16190331, 30, '68352', '16190331', 416, ''),
+	(18190684, 31, '68352', '18190684', 478, ''),
+	(18190887, 32, '68352', '18190887', 721, ''),
+	(18190588, 33, '68352', '18190588', 161, ''),
+	(18190832, 34, '68352', '18190832', 952, ''),
+	(18190854, 35, '68352', '18190854', 721, ''),
+	(18190867, 36, '46813', '18190867', 721, ''),
+	(18190776, 37, '46813', '18190776', 721, ''),
+	(18190712, 38, '46813', '18190712', 161, ''),
+	(18190522, 39, '46813', '18190522', 952, ''),
+	(18190666, 40, '50467', '18190666', 952, ''),
+	(18190791, 41, '50467', '18190791', 952, ''),
+	(18190611, 42, '45262', '18190611', 478, ''),
+	(18190568, 43, '45262', '18190568', 478, ''),
+	(18190767, 44, '74816', '18190767', 952, ''),
+	(18190667, 45, '74816', '18190667', 952, ''),
+	(18190491, 46, '19819', '18190491', 721, ''),
+	(18190580, 47, '45504', '18190580', 952, ''),
+	(18190534, 48, '68352', '18190534', 952, ''),
+	(18190853, 49, '39281', '18190853', 721, ''),
+	(18190707, 50, '73529', '18190707', 478, ''),
+	(18190863, 51, '22768', '18190863', 478, ''),
+	(18190774, 52, '22768', '18190774', 161, ''),
+	(18190495, 53, '19819', '18190495', 161, ''),
+	(18190665, 54, '45504', '18190665', 952, ''),
+	(18190763, 55, '19819', '18190763', 952, '');
 /*!40000 ALTER TABLE `tutorado` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sistutorias.tutorado_privilegios

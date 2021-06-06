@@ -18,7 +18,7 @@ include "./vistas/inc/navInicial.php"; ?>
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase"><strong>Sistema de tutorias del iTISTMO</strong></h1>
+                    <h1 class="text-uppercase"><strong>Sistema institucional de tutorias del ITI</strong></h1>
                     <hr>
                 </div>
             </div>
@@ -65,13 +65,13 @@ include "./vistas/inc/navInicial.php"; ?>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-wechat fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-wechat fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true" ></i>
                         <h3 class="mb-3">Dialogar</h3>
                         <p class="text-muted mb-0">El sistema permitira interactuar de forma online entre alumnos y sus respectivos tutores</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
                         <h3 class="mb-3">Enterarte</h3>
                         <p class="text-muted mb-0">Recibir información indispensable con respecto a Tutorias</p>
                     </div>

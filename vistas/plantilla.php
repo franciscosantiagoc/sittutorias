@@ -4,6 +4,7 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
    <title><?php echo COMPANY;?></title>
    <?php include "inc/styles.php" ?>
 </head>
@@ -20,7 +21,7 @@
         }else{
             /* session_start(['name'=>'STI']);*/ //no funciona debidamente por lo que se coloco en index
            $pagina=explode("/",$_GET['views']); // variable get, tiene todos los parametros de la url, pagina ahhora los tendrá
-            require_once "./controladores/loginControlador.php";
+           /* require_once "./controladores/loginControlador.php";
            $lc = new loginControlador();
 
             if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
