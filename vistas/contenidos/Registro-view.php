@@ -10,8 +10,8 @@
 } */
     /* if(roll==coordinadorA) 
         include "./vistas/inc/navCoordinadorC.php"; */ 
-    /*elseif(roll==coordinadorC)*/
-        include "./vistas/inc/navCoordinadorC.php"; 
+    /*elseif(roll==coordinadorC)
+        include "./vistas/inc/navCoordinadorC.php";*/ 
     
     
 ?>
@@ -120,7 +120,7 @@
         }  /**/
     ?>
 
-<div class="container-modal__regst modalcontent" style="display:none;">
+<div class="container-modal__regst" >
     <div class="modal_reg_st">
 
         <div class="table-container col-md-12 search-table-col">
@@ -152,11 +152,11 @@
             </form>
             <div class="form-group contadores" id="cont__infodat">
             </div>
-            <div class="form-group pull-right col-lg-4">
+            <!-- <div class="form-group pull-right col-lg-4">
                 <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda" id="searchTerm" onkeyup="doSearch()">
-            </div>
+            </div> -->
             <div class="table-responsive table-bordered table table-hover table-bordered results">
-                <table class="table table-bordered table-hover" id="table_dat_es">
+                <table class="table table-bordered table-hover tablas">
                     <thead class="bg-primary bill-header cs">
                         <tr>
                             <th id="trs-hd"><br><strong>No.</strong><br></th>
@@ -171,6 +171,10 @@
                             <th id="trs-hd"><br>Acciones</th>
                         </tr>
                     </thead>
+                    <tbody id="table_dat_es">
+                            
+                        
+                    </tbody>
                     
                 </table>
             </div>
@@ -181,6 +185,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     function ShowCarAr(x){
          console.log("select tipo");  
@@ -195,12 +200,12 @@
                     /*alert(resp);*/ 
                      sel.innerHTML =resp;
                 }
-        });
-    
-        
+        });   
     }    
 </script>
-<!-- <script>
+    
+
+<script>
    $('#file_input_st').on('change', function(){
         var ext = $( this ).val().split('.').pop();
         if ($( this ).val() != '') {
@@ -212,13 +217,10 @@
             }
         }
     }); 
+
     $(document).ready(function(){
         $("form").submit(function(event){
             event.preventDefault();
-            /*alert ('submit detectado');
-             if(excel===""){
-                Swal.fire("Advertencia","Seleccione un documento para continuar","error");
-            } */
             var formData = new FormData();
             var files = $('#file_input_st')[0].files[0];
             var select = $('#select_type_user').val();
@@ -239,7 +241,7 @@
         });
     });
 
-   /*  function loadExcel(){
+    function loadExcel(){
         var exc= $('#file_input_st').val();
         if(excel===""){
             Swal.fire("Advertencia","Seleccione un documento para continuar","error");
@@ -259,9 +261,10 @@
             }
         });
         return false;
-    } */
-</script> -->
+    } 
 
-<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
+</script> 
+
+<!----> <script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
 <script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js"> 
-</script>-->
+</script>

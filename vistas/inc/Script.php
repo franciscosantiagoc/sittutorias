@@ -1,11 +1,24 @@
 <script src="<?php echo SERVERURL;?>vistas/assets/js/jquery.min.js"></script>
 <script src="<?php echo SERVERURL;?>vistas/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script> -->
 
-<script src="<?php echo SERVERURL;?>vistas/assets/js/creative.js"></script>
-<script src="<?php echo SERVERURL;?>vistas/assets/js/bs-animation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+<script>
+    $(document).ready(function() {
+        $('.tablas').DataTable();
+    } );
+</script>
+<!-- <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/responsive.bootstrap.min.js"></script> -->
+
+
+<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/creative.js"></script> -->
+<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/bs-animation.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script> -->
 <script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
 
     
