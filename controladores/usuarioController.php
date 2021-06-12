@@ -10,7 +10,7 @@ class usuarioController extends usuarioModel
    /*-------------- Controlador agregar usuario --------------*/
 
    /* == controlador actualizar trabajador */
-   public function registro_usuario_controlador()
+   static public function registro_usuario_controlador()
    {
 
       $select_usuario = mainModel::limpiar_cadena($_POST['select_usertype']);
@@ -44,6 +44,10 @@ class usuarioController extends usuarioModel
                   text: "No has llenado todos los campos que son obligatorios",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"Registro";
+                  }
                });
             </script>
             ';
@@ -57,6 +61,10 @@ class usuarioController extends usuarioModel
                   text: "Error al seleccionar el tipo de usuario, recargue la pagina para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -76,6 +84,10 @@ class usuarioController extends usuarioModel
                   text: "El NOMBRE no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -89,6 +101,10 @@ class usuarioController extends usuarioModel
                   text: "El APELLIDO PATERNO no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -102,6 +118,10 @@ class usuarioController extends usuarioModel
                   text: "El APELLIDO MATERNO no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -115,6 +135,10 @@ class usuarioController extends usuarioModel
                   text: "Ha ocurrido un error, recargue la pagina para continuar,sexo",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -129,6 +153,10 @@ class usuarioController extends usuarioModel
                      text: "El TELÉFONO no coincide con el formato solicitado",
                      type: "error",
                      confirmButtonText: "Aceptar"
+                  }).then((result)=>{
+                     if(result.value){
+                        window.location="'.SERVERURL.'Registro"
+                     }
                   });
                </script>
                ';
@@ -144,6 +172,10 @@ class usuarioController extends usuarioModel
                   text: "La DIRECCION no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -162,6 +194,10 @@ class usuarioController extends usuarioModel
                            text: "El CORREO ya se encuentra registrado en el sistema, intente con otro",
                            type: "error",
                            confirmButtonText: "Aceptar"
+                        }).then((result)=>{
+                           if(result.value){
+                              window.location="'.SERVERURL.'Registro"
+                           }
                         });
                      </script>
                      ';
@@ -185,6 +221,10 @@ class usuarioController extends usuarioModel
                   text: "Ingrese un correo válido para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -209,6 +249,10 @@ class usuarioController extends usuarioModel
                   text: "El area / carrera seleccionada no existe",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -223,6 +267,10 @@ class usuarioController extends usuarioModel
                   text: "El NUMERO DE CONTROL no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -249,6 +297,10 @@ class usuarioController extends usuarioModel
                   text: "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -301,6 +353,10 @@ class usuarioController extends usuarioModel
                   text: "El usuario ha sido registrado correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -314,6 +370,10 @@ class usuarioController extends usuarioModel
                   text: "Error al registrar el usuario",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
                });
             </script>
             ';
@@ -321,7 +381,7 @@ class usuarioController extends usuarioModel
       }
    }
 
-   public function actualizar_usuario_controlador()
+   static public function actualizar_usuario_controlador()
    {
 
       $nombre = mainModel::limpiar_cadena($_POST['name_upd']);
@@ -614,7 +674,7 @@ class usuarioController extends usuarioModel
 
    }
 
-   public static function datos_usuario_controlador($tipo,$tabla,$condicion){
+   static public static function datos_usuario_controlador($tipo,$tabla,$condicion){
       $tipo=mainModel::limpiar_cadena($tipo);
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
@@ -622,7 +682,8 @@ class usuarioController extends usuarioModel
       return usuarioModel::datos_usuario_modelo($tipo,$tabla,$condicion);
    
    }
-   public static function datos_ta_controlador($campos,$tabla,$condicion){
+
+   static public static function datos_ta_controlador($campos,$tabla,$condicion){
       $campos=mainModel::limpiar_cadena($campos);
       $tabla=mainModel::limpiar_cadena($tabla);
       /* $condicion=mainModel::limpiar_cadena($condicion); */
@@ -631,7 +692,7 @@ class usuarioController extends usuarioModel
    }
 
    /* == controlador registro multiple de usuario  */
-   public function registro_multU_controlador(){
+   static public function registro_multU_controlador(){
       require "../library/PHPExcel/Classes/PHPExcel.php";
       $tmpfname = $_FILES['archivoexcel']['tmp_name'];
       $typo_us = $_POST['type_us'];
@@ -693,7 +754,7 @@ class usuarioController extends usuarioModel
    }
 
     /* == controlador paginador usuario - visualiza tutorados  */
-    public function paginador_tutorados_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_tutorados_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -804,7 +865,7 @@ class usuarioController extends usuarioModel
     } /* Fin controlador */
 
     /* == controlador paginador coordinadores - Visualiza tutores */
-    public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -914,7 +975,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador coordinadores - Visualiza coordinadores de carrera */
-    public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -1024,7 +1085,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador root - Visualiza jefes de departamento */
-    public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -1135,7 +1196,7 @@ class usuarioController extends usuarioModel
     }
 
     /* == controlador coordinador de carrera - Visualiza actividades */
-    public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -1248,7 +1309,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
 
-   public function selectRegistro_selectArEs(){
+   static public function selectRegistro_selectArEs(){
       $rol=$_POST['selectCarReg'];
       $code_html='';
       if($rol=="16"){

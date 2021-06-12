@@ -6,7 +6,7 @@
    }
    class loginControlador extends loginModelo{
       /*-------------- controlador iniciar sesion --------------*/
-      public function iniciar_sesion_controlador(){
+      static public function iniciar_sesion_controlador(){
          $usuario=mainModel::limpiar_cadena($_POST['numcont']);
          $clave=mainModel::limpiar_cadena($_POST['pass']);
 
@@ -20,6 +20,10 @@
                   text: "No has llenado todos los campos que son requeridos",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"
+                  }
                });
             </script>
             ';
@@ -35,9 +39,12 @@
                   text: "El numero de control no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"
+                  }
                });
-            </script>
-            ';
+            </script>';
             exit();
          }
          
@@ -49,9 +56,12 @@
                   text: "El numero de control no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"
+                  }
                });
-            </script>
-            ';
+            </script>';
             exit();
          }
          /* $clave=mainModel::encryption($clave); */
@@ -132,9 +142,12 @@
                   text: "El USUARIO o CLAVES son incorrectos",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"
+                  }
                });
-            </script>
-            ';
+            </script>';
             exit();
            /* echo "<script>
                alertify.alert('El usuario o claves son incorrectos');
@@ -143,7 +156,7 @@
       }/*-------------- fin controlador iniciar sesion --------------*/
 
       /*-------------- controlador forzar cierre de sesion --------------*/
-      public function forzar_cierre_sesion_controlador(){
+      static public function forzar_cierre_sesion_controlador(){
          session_unset();
          session_destroy();
          if(headers_sent()){ /**/
@@ -156,7 +169,7 @@
 
 
       /*-------------- controlador cierre de sesion --------------*/
-      public function cierre_sesion_controlador(){
+      static public function cierre_sesion_controlador(){
          session_start(['name'=>'STI']);
          $token=mainModel::decryption($_POST['token']);
          $usuario=mainModel::decryption($_POST['usuario']);
@@ -181,7 +194,7 @@
         
       }/*-------------- fin controlador cierre de sesion --------------*/
 
-      public function cierre_sesiontiempo_controlador(){
+      static public function cierre_sesiontiempo_controlador(){
          /*echo '<script> 
                Swal.fire({
                   title: "Sesion Caducada",
