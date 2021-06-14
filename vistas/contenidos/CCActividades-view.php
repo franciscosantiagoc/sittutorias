@@ -23,7 +23,6 @@ include "./vistas/inc/navCoordinadorC.php"
 
     <div class="register-photo">
 
-
         <?php
 
         if(!isset($_SESSION['busqueda_CoordinadorCarrera']) && empty($_SESSION['busqueda_CoordinadorCarrera'])){

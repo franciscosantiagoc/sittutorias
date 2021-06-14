@@ -143,7 +143,3 @@ include "./vistas/inc/navCoordinadorC.php"
         <!--</div>-->
     </div>
     
-
-   
-</div>
-    
