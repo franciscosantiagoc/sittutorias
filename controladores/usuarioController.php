@@ -674,11 +674,7 @@ class usuarioController extends usuarioModel
 
    }
 
-<<<<<<< HEAD
    public function datos_usuario_controlador($tipo,$tabla,$condicion){
-=======
-    static public static function datos_usuario_controlador($tipo,$tabla,$condicion){
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $tipo=mainModel::limpiar_cadena($tipo);
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
@@ -687,11 +683,7 @@ class usuarioController extends usuarioModel
    
    }
 
-<<<<<<< HEAD
    public function datos_ta_controlador($campos,$tabla,$condicion){
-=======
-    static public static function datos_ta_controlador($campos,$tabla,$condicion){
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $campos=mainModel::limpiar_cadena($campos);
       $tabla=mainModel::limpiar_cadena($tabla);
       /* $condicion=mainModel::limpiar_cadena($condicion); */
@@ -700,11 +692,7 @@ class usuarioController extends usuarioModel
    }
 
    /* == controlador registro multiple de usuario  */
-<<<<<<< HEAD
    public function registro_multU_controlador(){
-=======
-    static public function registro_multU_controlador(){
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       require "../library/PHPExcel/Classes/PHPExcel.php";
       $tmpfname = $_FILES['archivoexcel']['tmp_name'];
       $typo_us = $_POST['type_us'];
@@ -877,15 +865,9 @@ class usuarioController extends usuarioModel
     } /* Fin controlador */
 
     /* == controlador paginador coordinadores - Visualiza tutores */
-<<<<<<< HEAD
     public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
-=======
-    static public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
-        $pagina=mainModel::limpiar_cadena($pagina);
-        $registros=mainModel::limpiar_cadena($registros);
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
         $id=mainModel::limpiar_cadena($id);
         $url=mainModel::limpiar_cadena($url);
@@ -989,15 +971,9 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador coordinadores - Visualiza coordinadores de carrera */
-<<<<<<< HEAD
     public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
-=======
-    static public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
-        $pagina=mainModel::limpiar_cadena($pagina);
-        $registros=mainModel::limpiar_cadena($registros);
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
         $id=mainModel::limpiar_cadena($id);
         $url=mainModel::limpiar_cadena($url);
@@ -1102,15 +1078,9 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador root - Visualiza jefes de departamento */
-<<<<<<< HEAD
     public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
-=======
-    static public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
-        $pagina=mainModel::limpiar_cadena($pagina);
-        $registros=mainModel::limpiar_cadena($registros);
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
         $id=mainModel::limpiar_cadena($id);
         $url=mainModel::limpiar_cadena($url);
@@ -1217,15 +1187,9 @@ class usuarioController extends usuarioModel
     }
 
     /* == controlador coordinador de carrera - Visualiza actividades */
-<<<<<<< HEAD
     public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
-=======
-    static public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
-        $pagina=mainModel::limpiar_cadena($pagina);
-        $registros=mainModel::limpiar_cadena($registros);
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
         $id=mainModel::limpiar_cadena($id);
         $url=mainModel::limpiar_cadena($url);
@@ -1400,11 +1364,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
 
-<<<<<<< HEAD
    public function selectRegistro_selectArEs(){
-=======
-    static public function selectRegistro_selectArEs(){
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $rol=$_POST['selectCarReg'];
       $code_html='';
       if($rol=="16"){
