@@ -4,7 +4,7 @@
    class usuarioModel extends mainModel{
       /*-------------- Modelo agregar usuario --------------*/
       protected static function agregar_usuario_modelo($datos){
-         $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Ciudad,Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion, :Ciudad,:Foto)");
+         $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion,'')");
 
          $sql->bindParam(":Nombre", $datos['Nombre']);
          $sql->bindParam(":APaterno",$datos['APaterno']);
@@ -14,9 +14,30 @@
          $sql->bindParam(":Correo",$datos['Correo']);
          $sql->bindParam(":NTelefono", $datos['NTelefono']);
          $sql->bindParam(":Direccion", $datos['Direccion']);
-         $sql->bindParam(":Ciudad",$datos['Ciudad']);
-         $sql->bindParam(":Foto", $datos['Foto']);
          $sql->execute();
+
+          if($sql->rowCount() == 1){
+           $sql=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
+            $sql->execute();
+            $row=$sql->fetch();
+            $iduser=$row['idPersona'];
+            if($datos['TipoUs']==16){
+               $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Estado) VALUES(:NoUser,$iduser,:CarrAr,:contra,:Estado)";
+            }else{
+              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1,:Roll,:CarrAr,:contra,:estatus)"; 
+            }
+            $sql = mainModel::conectar()->prepare($sentencia);
+            $sql->bindParam(":NoUser", $datos['NoUser']);
+            if($datos['TipoUs']!='16'){
+               $sql->bindParam(":Roll",$datos['Roll']);
+            }
+               
+            $sql->bindParam(":CarrAr",$datos['CarrAr']);
+            $sql->bindParam(":contra",$datos['Passw']); 
+            $sql->bindParam(":Estado", $datos['status']);/**/
+           
+            $sql->execute();
+         } /**/
 
          return $sql;
       }

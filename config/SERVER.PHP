@@ -6,7 +6,12 @@
 
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;
-
+    if( !defined( 'TIMESESSION' ) ) { 
+		define( 'TIMESESSION', 900); //seg 1hr=60*60=3600
+	}
+    if( !defined( 'DBNAME' ) ) { 
+		define( 'DBNAME', DB); //seg 1hr=60*60=3600
+	}
 
     const METHOD="AES-256-CBC";
     const SKEY='$SISTUTORIAS@ITISTMO2020';

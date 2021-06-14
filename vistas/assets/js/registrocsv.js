@@ -33,7 +33,7 @@ function filePicked(oEvent) {
             var cont = 0; //contador filas
             var contE = 0; //Contador de errores
             var N_Cont = [];
-
+            $("#table_dat_es tr").remove(); 
             $.each(data, function(indexR, valueR) {
                 if (cont != 0) {
                     var conc = 1; //contador de columnas

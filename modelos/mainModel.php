@@ -9,10 +9,14 @@
     class mainModel{
         /*-------------- Funcion conectar a BD --------------*/
         protected static function conectar(){
-            $conexion = new PDO(SGBD,USER, PASS);
-            $conexion->exec("SET CHARACTER SET utf8");
-            return $conexion;
-
+            try {
+                $conexion = new PDO(SGBD,USER, PASS);
+                /*die("conexion con ".DBNAME." exitosa");*/
+                 $conexion->exec("SET CHARACTER SET utf8"); 
+                return $conexion;
+            } catch (PDOException $pe) {
+                die("Error al conectar con la base de datos ".DBNAME." :" . $pe->getMessage());
+            }
         }
 
         /*-------------- Funcion ejecutar consultas simples --------------*/

@@ -10,9 +10,10 @@ class usuarioController extends usuarioModel
    /*-------------- Controlador agregar usuario --------------*/
 
    /* == controlador actualizar trabajador */
-   public function registro_usuario_controlador()
+    static public function registro_usuario_controlador()
    {
 
+      $select_usuario = mainModel::limpiar_cadena($_POST['select_usertype']);
       $nombre = mainModel::limpiar_cadena($_POST['name_reg']);
       $apellido_paterno = mainModel::limpiar_cadena($_POST['apellidop_reg']);
       $apellido_materno = mainModel::limpiar_cadena($_POST['apellidom_reg']);
@@ -23,18 +24,51 @@ class usuarioController extends usuarioModel
       $email = mainModel::limpiar_cadena($_POST['email_reg']);
       $carrera = mainModel::limpiar_cadena($_POST['carrera_reg']);
       $noctrl = mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
+      $pass = mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
 
       /* == comprobar campos vacíos ==*/
 
-      if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "") {
-         $alerta = [
+      if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "" || $carrera=="" || $fecha_nac=="") {
+          $alerta = [
             "Alerta" => "simple",
             "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "No has llenado todos los campos que son obligatorios",
+            "Texto" => "Se han detectado campos vacios",
             "Tipo" => "error"
          ];
          echo json_encode($alerta);
-         exit();
+         exit(); /**/
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "No has llenado todos los campos que son obligatorios",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'"Registro";
+                  }
+               });
+            </script>
+            ';
+        exit();
+      }
+      if($select_usuario!="13" && $select_usuario!="14" && $select_usuario!="15" && $select_usuario!="16"){
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al seleccionar el tipo de usuario, recargue la pagina para continuar",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
       }
 
 
@@ -43,105 +77,130 @@ class usuarioController extends usuarioModel
       /* == Verificando integridad de los datos ==*/
 
       if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $nombre)) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NOMBRE no coincide con el formato solicitado",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit();
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El NOMBRE no coincide con el formato solicitado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
       }
       if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $apellido_paterno)) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El APELLIDO PATERNO no coincide con el formato solicitado",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El APELLIDO PATERNO no coincide con el formato solicitado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
          exit();
       }
       if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $apellido_materno)) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El APELLIDO MATERNO no coincide con el formato solicitado",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El APELLIDO MATERNO no coincide con el formato solicitado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+         exit();
+      }
+      if ($sexo!="M" && $sexo!="F") {
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ha ocurrido un error, recargue la pagina para continuar,sexo",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
          exit();
       }
       if ($numero_telefono != "") {
          if (mainModel::verificar_datos("[0-9()+]{8,20}", $numero_telefono)) {
-            $alerta = [
-               "Alerta" => "simple",
-               "Titulo" => "Ocurrio un error inesperado",
-               "Texto" => "El TELÉFONO no coincide con el formato solicitado",
-               "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
+            echo '
+               <script> 
+                  Swal.fire({
+                     title: "Ocurrio un error inesperado",
+                     text: "El TELÉFONO no coincide con el formato solicitado",
+                     type: "error",
+                     confirmButtonText: "Aceptar"
+                  }).then((result)=>{
+                     if(result.value){
+                        window.location="'.SERVERURL.'Registro"
+                     }
+                  });
+               </script>
+               ';
             exit();
          }
       }
 
       if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "La DIRECCION no coincide con el formato solicitado",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "La DIRECCION no coincide con el formato solicitado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
          exit();
       }
-
-      if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NUMERO DE CONTROL no coincide con el formato solicitado",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit();
-      }
-
-      /* == comprbando No. Ctrl. == 
-         if($select_usuario==16){//tutorado*/
-      $columdb = "Matricula";
-      $tabledb = "trabajador";
-
-      /*}elseif($select_usuario>=13 || $select_usuario<=15){
-           $columdb="Matricula";
-           $tabledb="trabajador";
-         }*/
-      $condicion = "'$columdb' = '$noctrl'";
-      /* $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT '$columdb' FROM '$tabledb' WHERE '$condicion'" ); */
-      $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl'");
-      if ($check_no_ctrl->rowCount() > 0) {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit();
-      }
-
       /*== Comprobando email ==*/
       if ($email != "") {
          if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $check_email = mainModel::ejecutar_consulta_simple("SELECT Correo FROM persona WHERE Correo='$email'");
             if ($check_email->rowCount() > 0) {
-               $alerta = [
-                  "Alerta" => "simple",
-                  "Titulo" => "Ocurrio un error inesperado",
-                  "Texto" => "El CORREO ya se encuentra registrado en el sistema",
-                  "Tipo" => "error"
-               ];
-               echo json_encode($alerta);
+
+               echo '
+                     <script> 
+                        Swal.fire({
+                           title: "Ocurrio un error inesperado",
+                           text: "El CORREO ya se encuentra registrado en el sistema, intente con otro",
+                           type: "error",
+                           confirmButtonText: "Aceptar"
+                        }).then((result)=>{
+                           if(result.value){
+                              window.location="'.SERVERURL.'Registro"
+                           }
+                        });
+                     </script>
+                     ';
                exit();
             }
          } else {
@@ -155,16 +214,104 @@ class usuarioController extends usuarioModel
             exit();
          }
       } else {
-         $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "Ingrese un correo para continuar",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ingrese un correo válido para continuar",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
+      }
+      
+
+      /*== Comprobando area/carrera ==*/
+      if($select_usuario=="16"){
+         $dbtable="carrera";
+         $dbcolum="idCarrera";
+      }else{
+         $dbtable="areas";
+         $dbcolum="idAreas";
+      }
+      $check_email = mainModel::ejecutar_consulta_simple("SELECT * FROM $dbtable WHERE $dbcolum=$carrera");
+         if ($check_email->rowCount() == 0) {
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El area / carrera seleccionada no existe",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+         exit();
+         }
+
+      if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El NUMERO DE CONTROL no coincide con el formato solicitado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
          exit();
       }
 
+      /* == comprbando No. Ctrl. == */
+      if($select_usuario==16){//tutorado
+         $columdb = "NControl";
+         $tabledb = "tutorado";
+
+      }elseif($select_usuario>=13 && $select_usuario<=15){
+           $columdb="Matricula";
+           $tabledb="trabajador";
+      }/**/
+      $condicion = "'$columdb' = '$noctrl'";
+       $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT $columdb FROM $tabledb WHERE $condicion" ); 
+      /*$check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl'");*/
+      if ($check_no_ctrl->rowCount() > 0) {
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
+      }
+      $passw='';
+      $passw=$noctrl;   
+      $roll='';   
+      if($select_usuario=="13") $roll="Coordinador De Area";
+      if($select_usuario=="14") $roll="Coordinador De Carrera";
+      if($select_usuario=="14") $roll="Docente";
 
       $datos_usuario_reg = [
          "Nombre" => $nombre,
@@ -174,33 +321,67 @@ class usuarioController extends usuarioModel
          "Sexo" => $sexo,
          "Correo" => $email,
          "NTelefono" => $numero_telefono,
-         "Direccion" => $direccion
+         "Direccion" => $direccion,
+         "CarrAr" => $carrera,
+         "NoUser" => $noctrl,
+         "Passw" => $passw,
+         "TipoUs"=> $select_usuario,
+         "Roll"=>$roll,
+         "status"=>"Inactivo"
       ];
 
-      $agregar_usuario=mainModel::agregar_usuario_modelo($datos_usuario_reg);
+      $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
+      //$agregar_usuario=$agregar_usuario->rowCount();
+      /*$row=$agregar_usuario->fetch();
+      $agregar_usuario=$row['idPersona'];
+       echo '
+            <script> 
+               Swal.fire({
+                  title: "Usuario Registrado",
+                  text: "El idperson del ultimo usuario es: '.$agregar_usuario.'",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            ';
+        exit(); */
       if($agregar_usuario->rowCount()==1){
-          $alerta = [
-            "Alerta" => "limpiar",
-            "Titulo" => "Usuario Registrado",
-            "Texto" => "El usuario ha sido registrado correctamente",
-            "Tipo" => "success"
-         ];
-         echo json_encode($alerta);
-         exit();
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Usuario Registrado",
+                  text: "El usuario ha sido registrado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
 
       }else{
-          $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "Error al registrar el usuario",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit();
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al registrar el usuario",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
       }
    }
 
-   public function actualizar_usuario_controlador()
+    static public function actualizar_usuario_controlador()
    {
 
       $nombre = mainModel::limpiar_cadena($_POST['name_upd']);
@@ -252,7 +433,8 @@ class usuarioController extends usuarioModel
             </script>
             ';
         exit();
-
+        
+         }
         if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "" || $email == "") {
          echo '
             <script> 
@@ -279,7 +461,7 @@ class usuarioController extends usuarioModel
             </script>
             ';
         exit();
-      }
+         }
       if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $apellido_paterno)) {
          echo '
             <script> 
@@ -306,21 +488,21 @@ class usuarioController extends usuarioModel
             ';
         exit();
       }
-      if ($numero_telefono != "") {
-         if (mainModel::verificar_datos("[0-9()+]{8,20}", $numero_telefono)) {
-            echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "El formato del numero telefonico, no es válido",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               });
-            </script>
-            ';
-        exit();
-         }
+      
+      if (mainModel::verificar_datos("[0-9()+]{8,20}", $numero_telefono)) {
+         echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "El formato del numero telefonico, no es válido",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            });
+         </script>
+         ';
+      exit();
       }
+      
 
       if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
          echo '
@@ -362,7 +544,7 @@ class usuarioController extends usuarioModel
             ';
         exit();
       }
-    }
+    
       $tabla='tutorado';
       $condicion="WHERE NControl='".$iduser."' AND contraseña='".$pass."';";
       $total_usuarios= usuarioModel::datos_usuario_modelo("Conteo","tutorado",$condicion);
@@ -492,7 +674,7 @@ class usuarioController extends usuarioModel
 
    }
 
-   public static function datos_usuario_controlador($tipo,$tabla,$condicion){
+    static public static function datos_usuario_controlador($tipo,$tabla,$condicion){
       $tipo=mainModel::limpiar_cadena($tipo);
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
@@ -500,7 +682,8 @@ class usuarioController extends usuarioModel
       return usuarioModel::datos_usuario_modelo($tipo,$tabla,$condicion);
    
    }
-   public static function datos_ta_controlador($campos,$tabla,$condicion){
+
+    static public static function datos_ta_controlador($campos,$tabla,$condicion){
       $campos=mainModel::limpiar_cadena($campos);
       $tabla=mainModel::limpiar_cadena($tabla);
       /* $condicion=mainModel::limpiar_cadena($condicion); */
@@ -509,7 +692,7 @@ class usuarioController extends usuarioModel
    }
 
    /* == controlador registro multiple de usuario  */
-   public function registro_multU_controlador(){
+    static public function registro_multU_controlador(){
       require "../library/PHPExcel/Classes/PHPExcel.php";
       $tmpfname = $_FILES['archivoexcel']['tmp_name'];
       $typo_us = $_POST['type_us'];
@@ -571,7 +754,7 @@ class usuarioController extends usuarioModel
    }
 
     /* == controlador paginador usuario - visualiza tutorados  */
-    public function paginador_tutorados_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_tutorados_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
         $rol=mainModel::limpiar_cadena($rol);
@@ -682,7 +865,7 @@ class usuarioController extends usuarioModel
     } /* Fin controlador */
 
     /* == controlador paginador coordinadores - Visualiza tutores */
-    public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina);
         $registros=mainModel::limpiar_cadena($registros);
         $rol=mainModel::limpiar_cadena($rol);
@@ -788,7 +971,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador coordinadores - Visualiza coordinadores de carrera */
-    public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina);
         $registros=mainModel::limpiar_cadena($registros);
         $rol=mainModel::limpiar_cadena($rol);
@@ -895,7 +1078,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador root - Visualiza jefes de departamento */
-    public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina);
         $registros=mainModel::limpiar_cadena($registros);
         $rol=mainModel::limpiar_cadena($rol);
@@ -1004,7 +1187,7 @@ class usuarioController extends usuarioModel
     }
 
     /* == controlador coordinador de carrera - Visualiza actividades */
-    public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina);
         $registros=mainModel::limpiar_cadena($registros);
         $rol=mainModel::limpiar_cadena($rol);
@@ -1096,7 +1279,7 @@ class usuarioController extends usuarioModel
     }
 
     /* == controlador coordinador Area - Visualiza Solicitudes */
-    public function paginador_solicitudes_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+    static public function paginador_solicitudes_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina);
         $registros=mainModel::limpiar_cadena($registros);
         $rol=mainModel::limpiar_cadena($rol);
@@ -1181,7 +1364,7 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
 
-   public function selectRegistro_selectArEs(){
+    static public function selectRegistro_selectArEs(){
       $rol=$_POST['selectCarReg'];
       $code_html='';
       if($rol=="16"){

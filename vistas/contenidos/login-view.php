@@ -42,3 +42,4 @@ include "./vistas/inc/navInicial.php"; ?>
             echo $ins_login->iniciar_sesion_controlador();
         }
     ?>
+
