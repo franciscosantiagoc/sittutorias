@@ -9,39 +9,23 @@ footer {
     text-align: center;
     display: block;
     padding: 20px;
+    
 }
-
-@media (max-width: 800px) {
-    footer {
-        margin-top: 280px;
-    }
-}
-
-@media (max-width: 600px) {
-    footer {
-        margin-top: 350px;
-    }
-}
-
-@media (max-width: 400px) {
-    footer {
-        margin-top: 350px;
-        text-align: center;
-    }
-}
-
 #footerinfo {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 20px;
+    color:#ffffff;
 }
+
 
 @media (max-width: 576px) {
     #footerinfo {
         margin-right: auto;
         margin-left: auto;
         margin-top: 20px;
+        font-size: 12px;
     }
 }
 

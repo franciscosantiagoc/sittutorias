@@ -6,7 +6,7 @@
    }
    class loginControlador extends loginModelo{
       /*-------------- controlador iniciar sesion --------------*/
-      static public function iniciar_sesion_controlador(){
+      public function iniciar_sesion_controlador(){
          $usuario=mainModel::limpiar_cadena($_POST['numcont']);
          $clave=mainModel::limpiar_cadena($_POST['pass']);
 
@@ -156,7 +156,7 @@
       }/*-------------- fin controlador iniciar sesion --------------*/
 
       /*-------------- controlador forzar cierre de sesion --------------*/
-      static public function forzar_cierre_sesion_controlador(){
+      public function forzar_cierre_sesion_controlador(){
          session_unset();
          session_destroy();
          if(headers_sent()){ /**/
@@ -169,7 +169,7 @@
 
 
       /*-------------- controlador cierre de sesion --------------*/
-      static public function cierre_sesion_controlador(){
+      public function cierre_sesion_controlador(){
          session_start(['name'=>'STI']);
          $token=mainModel::decryption($_POST['token']);
          $usuario=mainModel::decryption($_POST['usuario']);
@@ -194,7 +194,7 @@
         
       }/*-------------- fin controlador cierre de sesion --------------*/
 
-      static public function cierre_sesiontiempo_controlador(){
+      public function cierre_sesiontiempo_controlador(){
          /*echo '<script> 
                Swal.fire({
                   title: "Sesion Caducada",
