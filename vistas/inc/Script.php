@@ -52,15 +52,15 @@
 
     
 
- <!--
+ 
  <script>
-   function cerrar() {
+   /* function cerrar() {
       document.getElementById("ventmodal").style.display = "none";
-   }
-</script>-->
+   } */
+</script>
 
-<!-- <script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
-   $(function() {
+<script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
+/*    $(function() {
       function timeChecker() {
          setInterval(function() {
             var storedTimeStamp = sessionStorage.getItem("lastTimeStamp");
@@ -93,5 +93,5 @@
 
          timeChecker();
       }
-   });
-</script> -->
+   }); */
+</script>

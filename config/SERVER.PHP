@@ -1,8 +1,8 @@
 <?php
-    /* const SERVER="localhost";
+    /*const SERVER="localhost";
     const DB="sistutorias";
     const USER="root";
-    const PASS=""; */
+    const PASS="";*/ 
 
     const SERVER="localhost";
     const DB="u760563657_sistutorias";
