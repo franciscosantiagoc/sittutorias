@@ -381,7 +381,11 @@ class usuarioController extends usuarioModel
       }
    }
 
+<<<<<<< HEAD
    public function actualizar_usuario_controlador()
+=======
+    static public function actualizar_usuario_controlador()
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
    {
 
       $nombre = mainModel::limpiar_cadena($_POST['name_upd']);
@@ -674,7 +678,11 @@ class usuarioController extends usuarioModel
 
    }
 
+<<<<<<< HEAD
    public function datos_usuario_controlador($tipo,$tabla,$condicion){
+=======
+    static public static function datos_usuario_controlador($tipo,$tabla,$condicion){
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $tipo=mainModel::limpiar_cadena($tipo);
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
@@ -683,7 +691,11 @@ class usuarioController extends usuarioModel
    
    }
 
+<<<<<<< HEAD
    public function datos_ta_controlador($campos,$tabla,$condicion){
+=======
+    static public static function datos_ta_controlador($campos,$tabla,$condicion){
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $campos=mainModel::limpiar_cadena($campos);
       $tabla=mainModel::limpiar_cadena($tabla);
       /* $condicion=mainModel::limpiar_cadena($condicion); */
@@ -692,7 +704,11 @@ class usuarioController extends usuarioModel
    }
 
    /* == controlador registro multiple de usuario  */
+<<<<<<< HEAD
    public function registro_multU_controlador(){
+=======
+    static public function registro_multU_controlador(){
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       require "../library/PHPExcel/Classes/PHPExcel.php";
       $tmpfname = $_FILES['archivoexcel']['tmp_name'];
       $typo_us = $_POST['type_us'];
@@ -865,25 +881,28 @@ class usuarioController extends usuarioModel
     } /* Fin controlador */
 
     /* == controlador paginador coordinadores - Visualiza tutores */
+<<<<<<< HEAD
     public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
+=======
+    static public function paginador_tutores_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+        $pagina=mainModel::limpiar_cadena($pagina);
+        $registros=mainModel::limpiar_cadena($registros);
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
-        $id=mainModel::limpiar_cadena($id);  //id del usuario que ha iniciado sesión
-        $url=mainModel::limpiar_cadena($url); // la url los enlaces de los botones,
-        $url=SERVERURL.$url."/"; // toda la url
-        $busqueda=mainModel::limpiar_cadena($busqueda);// busqueda para identificar si es el listado normal o es el dde búsqueda
+        $id=mainModel::limpiar_cadena($id);
+        $url=mainModel::limpiar_cadena($url);
+        $url=SERVERURL.$url."/";
+        $busqueda=mainModel::limpiar_cadena($busqueda);
         $tabla="";
-        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1; // para que no manipule el usuario  ejmp. 1.5 si no el controlador puede ddejar de funcionar
-        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0; // para saber desde que registro vamos a empezar a contar
+        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1;
+        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0;
 
-        /* == búsqueda== Tutores*/
+
         if(isset($busqueda) && $busqueda!=""){
             $consulta="SELECT SQL_CALC_FOUND_ROWS t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE ((p.idPersona= t.Persona_idPersona) AND (p.idPersona!='$id') AND (t.Roll!='Admin') AND (t.Roll!='Coordinador De Carrera') AND (t.Roll!='Coordinador De Area') AND (t.Matricula LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
-            //$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM tutorado WHERE ((Persona_idPersona!='$id' AND Persona_idPersona!='1') AND (NControl LIKE '%$busqueda%' OR Nombre LIKE '%$busqueda%' OR APaterno LIKE '%$busqueda%' OR AMaterno LIKE '%$busqueda%' OR NTelefono LIKE '%$busqueda%' )) ORDER BY Nombre ASC LIMIT $inicio,$registros";
-            // AND (p.idPersona!='$id')
         }else{
-            /* == listado normal== */
             $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE p.idPersona=t.Persona_idPersona AND p.idPersona!='$id' AND t.Roll!='Admin' AND t.Roll!='Coordinador De Carrera' AND t.Roll!='Coordinador De Area'  ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
         }
 
@@ -891,12 +910,12 @@ class usuarioController extends usuarioModel
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
-        $datos = $datos->fetchAll();  // todos los registros de nuestra tabla de usuarios
-        $total = $conexion->query("SELECT FOUND_ROWS()"); // Cuenta todos los registros de cualquiera de las 2 consultas
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
 
-        $total = (int) $total->fetchColumn(); //Convertirlo a int, total registros, contar las columnas que tenemos en nuestra bd
+        $total = (int) $total->fetchColumn();
 
-        $Npaginas = ceil($total/$registros);// ALmacenamos el numero total de paginas que puede generar todos los registros que tenemos en nuestra tabla de la base de datos
+        $Npaginas = ceil($total/$registros);
 
         $tabla.='<div class="table-responsive">
 		<table id="tabla_tutores" class="table table-dark table-sm">
@@ -913,8 +932,8 @@ class usuarioController extends usuarioModel
 				</tr>
 			</thead>
 			<tbody>';
-        if($total>=1 && $pagina<=$Npaginas){  // Comprobación si hay registros
-            //echo "hay registros";
+        if($total>=1 && $pagina<=$Npaginas){
+
 
             $contador=$inicio+1;
             $reg_inicio=$inicio+1;
@@ -945,10 +964,9 @@ class usuarioController extends usuarioModel
                 $contador++;
             }
             $reg_final=$contador-1;
-            // inicio tiene la posición del array , si empieza de 1 primero empezara desde cero
-            // La parte cuando no hay registros
+
         }else{
-            if($total>=1){ // recargar el listado cuando el usuario este manipulando la url, y coloque una rul que no existe
+            if($total>=1){
                 $tabla.='<tr class="text-center" ><td colspan="9">
                 <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
                 </td> </tr>';
@@ -959,7 +977,7 @@ class usuarioController extends usuarioModel
         $tabla.='</tbody></table></div>';
 
         // Mostrando total de usuarios,
-        if($total>=1 && $pagina<=$Npaginas){ // Mostrará eel txt cuando estemos en una página válida
+        if($total>=1 && $pagina<=$Npaginas){
 
             $tabla.='<p class="text-right">Mostrando usuario '.$reg_inicio.' al '.$reg_final.' de un total de '.$total.'</p>';
 
@@ -975,25 +993,29 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador coordinadores - Visualiza coordinadores de carrera */
+<<<<<<< HEAD
     public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
+=======
+    static public function paginador_ccarrera_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+        $pagina=mainModel::limpiar_cadena($pagina);
+        $registros=mainModel::limpiar_cadena($registros);
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
-        $id=mainModel::limpiar_cadena($id);  //id del usuario que ha iniciado sesión
-        $url=mainModel::limpiar_cadena($url); // la url los enlaces de los botones,
-        $url=SERVERURL.$url."/"; // toda la url
-        $busqueda=mainModel::limpiar_cadena($busqueda);// busqueda para identificar si es el listado normal o es el dde búsqueda
+        $id=mainModel::limpiar_cadena($id);
+        $url=mainModel::limpiar_cadena($url);
+        $url=SERVERURL.$url."/";
+        $busqueda=mainModel::limpiar_cadena($busqueda);
         $tabla="";
-        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1; // para que no manipule el usuario  ejmp. 1.5 si no el controlador puede ddejar de funcionar
-        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0; // para saber desde que registro vamos a empezar a contar
+        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1;
+        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0;
 
-        /* == búsqueda== Coordinadores*/
         if(isset($busqueda) && $busqueda!=""){
             $consulta="SELECT SQL_CALC_FOUND_ROWS t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE ((p.idPersona= t.Persona_idPersona) AND (p.idPersona!='$id') AND (t.Roll!='Admin') AND (t.Roll='Coordinador De Carrera') AND (t.Roll!='Coordinador De Area') AND (t.Matricula LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
-            //$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM tutorado WHERE ((Persona_idPersona!='$id' AND Persona_idPersona!='1') AND (NControl LIKE '%$busqueda%' OR Nombre LIKE '%$busqueda%' OR APaterno LIKE '%$busqueda%' OR AMaterno LIKE '%$busqueda%' OR NTelefono LIKE '%$busqueda%' )) ORDER BY Nombre ASC LIMIT $inicio,$registros";
-            // AND (p.idPersona!='$id')
+
         }else{
-            /* == listado normal== */
+
             $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE p.idPersona=t.Persona_idPersona AND p.idPersona!='$id' AND t.Roll!='Admin' AND t.Roll='Coordinador De Carrera' AND t.Roll!='Coordinador De Area'  ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
         }
 
@@ -1001,12 +1023,12 @@ class usuarioController extends usuarioModel
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
-        $datos = $datos->fetchAll();  // todos los registros de nuestra tabla de usuarios
-        $total = $conexion->query("SELECT FOUND_ROWS()"); // Cuenta todos los registros de cualquiera de las 2 consultas
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
 
-        $total = (int) $total->fetchColumn(); //Convertirlo a int, total registros, contar las columnas que tenemos en nuestra bd
+        $total = (int) $total->fetchColumn();
 
-        $Npaginas = ceil($total/$registros);// ALmacenamos el numero total de paginas que puede generar todos los registros que tenemos en nuestra tabla de la base de datos
+        $Npaginas = ceil($total/$registros);
 
         $tabla.='<div class="table-responsive">
 		<table id="tabla_ccarrera" class="table table-dark table-sm">
@@ -1023,8 +1045,8 @@ class usuarioController extends usuarioModel
 				</tr>
 			</thead>
 			<tbody>';
-        if($total>=1 && $pagina<=$Npaginas){  // Comprobación si hay registros
-            //echo "hay registros";
+        if($total>=1 && $pagina<=$Npaginas){
+
 
             $contador=$inicio+1;
             $reg_inicio=$inicio+1;
@@ -1055,10 +1077,9 @@ class usuarioController extends usuarioModel
                 $contador++;
             }
             $reg_final=$contador-1;
-            // inicio tiene la posición del array , si empieza de 1 primero empezara desde cero
-            // La parte cuando no hay registros
+
         }else{
-            if($total>=1){ // recargar el listado cuando el usuario este manipulando la url, y coloque una rul que no existe
+            if($total>=1){
                 $tabla.='<tr class="text-center" ><td colspan="9">
                 <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
                 </td> </tr>';
@@ -1068,8 +1089,8 @@ class usuarioController extends usuarioModel
         }
         $tabla.='</tbody></table></div>';
 
-        // Mostrando total de usuarios,
-        if($total>=1 && $pagina<=$Npaginas){ // Mostrará eel txt cuando estemos en una página válida
+
+        if($total>=1 && $pagina<=$Npaginas){
 
             $tabla.='<p class="text-right">Mostrando usuario '.$reg_inicio.' al '.$reg_final.' de un total de '.$total.'</p>';
 
@@ -1085,25 +1106,30 @@ class usuarioController extends usuarioModel
         return $tabla;
     }
     /* == controlador paginador root - Visualiza jefes de departamento */
+<<<<<<< HEAD
     public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
+=======
+    static public function paginador_rootjefesdepto_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+        $pagina=mainModel::limpiar_cadena($pagina);
+        $registros=mainModel::limpiar_cadena($registros);
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
-        $id=mainModel::limpiar_cadena($id);  //id del usuario que ha iniciado sesión
-        $url=mainModel::limpiar_cadena($url); // la url los enlaces de los botones,
-        $url=SERVERURL.$url."/"; // toda la url
-        $busqueda=mainModel::limpiar_cadena($busqueda);// busqueda para identificar si es el listado normal o es el dde búsqueda
+        $id=mainModel::limpiar_cadena($id);
+        $url=mainModel::limpiar_cadena($url);
+        $url=SERVERURL.$url."/";
+        $busqueda=mainModel::limpiar_cadena($busqueda);
         $tabla="";
-        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1; // para que no manipule el usuario  ejmp. 1.5 si no el controlador puede ddejar de funcionar
-        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0; // para saber desde que registro vamos a empezar a contar
+        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1;
+        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0;
 
-        /* == búsqueda== Coordinadores*/
+
         if(isset($busqueda) && $busqueda!=""){
             $consulta="SELECT SQL_CALC_FOUND_ROWS t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE ((p.idPersona= t.Persona_idPersona) AND (p.idPersona!='$id') AND (t.Roll!='Admin') AND (t.Roll!='Coordinador De Carrera') AND (t.Roll='Coordinador De Area') AND (t.Matricula LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
-            //$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM tutorado WHERE ((Persona_idPersona!='$id' AND Persona_idPersona!='1') AND (NControl LIKE '%$busqueda%' OR Nombre LIKE '%$busqueda%' OR APaterno LIKE '%$busqueda%' OR AMaterno LIKE '%$busqueda%' OR NTelefono LIKE '%$busqueda%' )) ORDER BY Nombre ASC LIMIT $inicio,$registros";
-            // AND (p.idPersona!='$id')
+
         }else{
-            /* == listado normal== */
+
             $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE p.idPersona=t.Persona_idPersona AND p.idPersona!='$id' AND t.Roll!='Admin' AND t.Roll!='Coordinador De Carrera' AND t.Roll='Coordinador De Area'  ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
         }
 
@@ -1111,12 +1137,12 @@ class usuarioController extends usuarioModel
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
-        $datos = $datos->fetchAll();  // todos los registros de nuestra tabla de usuarios
-        $total = $conexion->query("SELECT FOUND_ROWS()"); // Cuenta todos los registros de cualquiera de las 2 consultas
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
 
-        $total = (int) $total->fetchColumn(); //Convertirlo a int, total registros, contar las columnas que tenemos en nuestra bd
+        $total = (int) $total->fetchColumn();
 
-        $Npaginas = ceil($total/$registros);// ALmacenamos el numero total de paginas que puede generar todos los registros que tenemos en nuestra tabla de la base de datos
+        $Npaginas = ceil($total/$registros);
 
         $tabla.='<div class="table-responsive">
 		<table id="tabla_jefesdepto" class="table table-dark table-sm">
@@ -1133,8 +1159,8 @@ class usuarioController extends usuarioModel
 				</tr>
 			</thead>
 			<tbody>';
-        if($total>=1 && $pagina<=$Npaginas){  // Comprobación si hay registros
-            //echo "hay registros";
+        if($total>=1 && $pagina<=$Npaginas){
+
 
             $contador=$inicio+1;
             $reg_inicio=$inicio+1;
@@ -1165,10 +1191,9 @@ class usuarioController extends usuarioModel
                 $contador++;
             }
             $reg_final=$contador-1;
-            // inicio tiene la posición del array , si empieza de 1 primero empezara desde cero
-            // La parte cuando no hay registros
+
         }else{
-            if($total>=1){ // recargar el listado cuando el usuario este manipulando la url, y coloque una rul que no existe
+            if($total>=1){
                 $tabla.='<tr class="text-center" ><td colspan="9">
                 <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
                 </td> </tr>';
@@ -1178,8 +1203,8 @@ class usuarioController extends usuarioModel
         }
         $tabla.='</tbody></table></div>';
 
-        // Mostrando total de usuarios,
-        if($total>=1 && $pagina<=$Npaginas){ // Mostrará eel txt cuando estemos en una página válida
+
+        if($total>=1 && $pagina<=$Npaginas){
 
             $tabla.='<p class="text-right">Mostrando usuario '.$reg_inicio.' al '.$reg_final.' de un total de '.$total.'</p>';
 
@@ -1196,42 +1221,40 @@ class usuarioController extends usuarioModel
     }
 
     /* == controlador coordinador de carrera - Visualiza actividades */
+<<<<<<< HEAD
     public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
         $pagina=mainModel::limpiar_cadena($pagina); // recibirá la página actual donde nos encontramos
         $registros=mainModel::limpiar_cadena($registros); // cuantos registros se muestren por cada página
+=======
+    static public function paginador_actividades_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+        $pagina=mainModel::limpiar_cadena($pagina);
+        $registros=mainModel::limpiar_cadena($registros);
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
         $rol=mainModel::limpiar_cadena($rol);
-        $id=mainModel::limpiar_cadena($id);  //id del usuario que ha iniciado sesión
-        $url=mainModel::limpiar_cadena($url); // la url los enlaces de los botones,
-        $url=SERVERURL.$url."/"; // toda la url
-        $busqueda=mainModel::limpiar_cadena($busqueda);// busqueda para identificar si es el listado normal o es el dde búsqueda
+        $id=mainModel::limpiar_cadena($id);
+        $url=mainModel::limpiar_cadena($url);
+        $url=SERVERURL.$url."/";
+        $busqueda=mainModel::limpiar_cadena($busqueda);
         $tabla="";
-        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1; // para que no manipule el usuario  ejmp. 1.5 si no el controlador puede ddejar de funcionar
-        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0; // para saber desde que registro vamos a empezar a contar
+        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1;
+        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0;
 
-        /* == búsqueda== Coordinadores*/
+
         if(isset($busqueda) && $busqueda!=""){
-           // $consulta="SELECT SQL_CALC_FOUND_ROWS t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE ((p.idPersona= t.Persona_idPersona) AND (p.idPersona!='$id') AND (t.Roll!='Admin') AND (t.Roll='Coordinador De Carrera') AND (t.Roll!='Coordinador De Area') AND (t.Matricula LIKE '%$busqueda%' OR p.idPersona LIKE '%$busqueda%' OR p.Nombre LIKE '%$busqueda%' OR p.APaterno LIKE '%$busqueda%' OR p.AMaterno LIKE '%$busqueda%' )) ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
-            //$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM tutorado WHERE ((Persona_idPersona!='$id' AND Persona_idPersona!='1') AND (NControl LIKE '%$busqueda%' OR Nombre LIKE '%$busqueda%' OR APaterno LIKE '%$busqueda%' OR AMaterno LIKE '%$busqueda%' OR NTelefono LIKE '%$busqueda%' )) ORDER BY Nombre ASC LIMIT $inicio,$registros";
-            // AND (p.idPersona!='$id')
             $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM actividades WHERE Nombre LIKE '%$busqueda%' OR Semestrerealizacion_sug LIKE '%$busqueda%' OR Fecha_registro LIKE '%$busqueda%'  ORDER BY Semestrerealizacion_sug ASC LIMIT $inicio,$registros";
         }else{
-            /* == listado normal== */
-        $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM actividades  ORDER BY Semestrerealizacion_sug ASC LIMIT $inicio,$registros";
+            $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM actividades  ORDER BY Semestrerealizacion_sug ASC LIMIT $inicio,$registros";
 
         }
-
-        //$consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , trabajador t  WHERE p.idPersona=t.Persona_idPersona AND p.idPersona!='$id' AND t.Roll!='Admin' AND t.Roll='Coordinador De Carrera' AND t.Roll!='Coordinador De Area'  ORDER BY p.Nombre ASC LIMIT $inicio,$registros";
-
-
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
-        $datos = $datos->fetchAll();  // todos los registros de nuestra tabla de usuarios
-        $total = $conexion->query("SELECT FOUND_ROWS()"); // Cuenta todos los registros de cualquiera de las 2 consultas
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
 
-        $total = (int) $total->fetchColumn(); //Convertirlo a int, total registros, contar las columnas que tenemos en nuestra bd
+        $total = (int) $total->fetchColumn();
 
-        $Npaginas = ceil($total/$registros);// ALmacenamos el numero total de paginas que puede generar todos los registros que tenemos en nuestra tabla de la base de datos
+        $Npaginas = ceil($total/$registros);
 
         $tabla.='<div class="table-responsive">
 		<table id="tabla_ccactvidades" class="table table-dark table-sm">
@@ -1247,8 +1270,8 @@ class usuarioController extends usuarioModel
 				</tr>
 			</thead>
 			<tbody>';
-        if($total>=1 && $pagina<=$Npaginas){  // Comprobación si hay registros
-            //echo "hay registros";
+        if($total>=1 && $pagina<=$Npaginas){
+
 
             $contador=$inicio+1;
             $reg_inicio=$inicio+1;
@@ -1278,10 +1301,9 @@ class usuarioController extends usuarioModel
                 $contador++;
             }
             $reg_final=$contador-1;
-            // inicio tiene la posición del array , si empieza de 1 primero empezara desde cero
-            // La parte cuando no hay registros
+
         }else{
-            if($total>=1){ // recargar el listado cuando el usuario este manipulando la url, y coloque una rul que no existe
+            if($total>=1){
                 $tabla.='<tr class="text-center" ><td colspan="9">
                 <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
                 </td> </tr>';
@@ -1290,26 +1312,103 @@ class usuarioController extends usuarioModel
             }
         }
         $tabla.='</tbody></table></div>';
-        /*
-        // Mostrando total de usuarios - PAGINACION
-        if($total>=1 && $pagina<=$Npaginas){ // Mostrará eel txt cuando estemos en una página válida
 
-            $tabla.='<p class="text-right">Mostrando usuario '.$reg_inicio.' al '.$reg_final.' de un total de '.$total.'</p>';
-
-        }
-        */
-
-        /*
-        if($total>=1 && $pagina<=$Npaginas){
-            $tabla.=mainModel::paginador_tabla($pagina,$Npaginas,$url,5);
-
-        }*/
 
 
         return $tabla;
     }
 
+    /* == controlador coordinador Area - Visualiza Solicitudes */
+    static public function paginador_solicitudes_controlador($pagina,$registros,$rol,$id,$url,$busqueda){
+        $pagina=mainModel::limpiar_cadena($pagina);
+        $registros=mainModel::limpiar_cadena($registros);
+        $rol=mainModel::limpiar_cadena($rol);
+        $id=mainModel::limpiar_cadena($id);
+        $url=mainModel::limpiar_cadena($url);
+        $url=SERVERURL.$url."/";
+        $busqueda=mainModel::limpiar_cadena($busqueda);
+        $tabla="";
+        $pagina=(isset($pagina) && $pagina>0) ? (int) $pagina: 1;
+        $inicio= ($pagina>0) ?(($pagina*$registros)-$registros) : 0;
+
+        if(isset($busqueda) && $busqueda!=""){
+          //  $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM solicitudes WHERE tipo_solicitud LIKE '%$busqueda%' OR Tutorado_NControl LIKE '%$busqueda%' OR fecha_solicitud LIKE '%$busqueda%'  ORDER BY fecha_solicitud ASC LIMIT $inicio,$registros";
+
+
+        }else{
+            //$consulta="SELECT SQL_CALC_FOUND_ROWS * FROM solicitudes  ORDER BY fecha_solicitud ASC LIMIT $inicio,$registros";
+            $consulta="SELECT SQL_CALC_FOUND_ROWS  s.Tutorado_NControl,p.Nombre,p.APaterno,p.AMaterno, s.tipo_solicitud, s.fecha_solicitud FROM persona p ,tutorado c ,solicitudes s  WHERE p.idPersona=c.Persona_idPersona AND p.idPersona!='$id' AND c.NControl=s.Tutorado_NControl ORDER BY s.fecha_solicitud ASC LIMIT $inicio,$registros";
+        }
+        $conexion = mainModel::conectar();
+        $datos = $conexion->query($consulta);
+        $datos = $datos->fetchAll();
+        $total = $conexion->query("SELECT FOUND_ROWS()");
+        $total = (int) $total->fetchColumn();
+        $Npaginas = ceil($total/$registros);
+        $tabla.='<div class="table-responsive">
+		<table id="tabla_solicitudes" class="table table-dark table-sm">
+			<thead>
+				<tr class="text-center roboto-medium">
+					<th>#</th>
+					<th>NOMBRE</th>
+					<th>APELLIDO PATERNO</th>
+					<th>APELLIDO MATERNO</th>
+					<th>NÚMERO DE CONTROL</th>
+					<th>TIPO DE SOLICITUD</th>
+					<th>FECHA DE SOLICITUD</th>
+					<th>ACTUALIZAR</th> 
+					<th>ELIMINAR</th>
+				</tr>
+			</thead>
+			<tbody>';
+        if($total>=1 && $pagina<=$Npaginas){
+            $contador=$inicio+1;
+            $reg_inicio=$inicio+1;
+            foreach ($datos as $rows){
+                $tabla.='
+                    <tr class="text-center roboto-medium" >
+                        <td>'.$contador.'</td>
+                        <td>'.$rows['Nombre'].'</td>
+                        <td>'.$rows['APaterno'].'</td>
+                        <td>'.$rows['AMaterno'].'</td>
+                        <td>'.$rows['Tutorado_NControl'].'</td>
+                        <td>'.$rows['tipo_solicitud'].'</td>
+                        <td>'.$rows['fecha_solicitud'].'</td>
+                        <td>
+                            <a href="#Actualizar" class="btn btn-success">
+                                    <i class="fas fa-sync-alt"></i>	
+                            </a>
+                        </td>
+                        <td>
+                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
+                            
+                                <button type="submit" class="btn btn-warning">
+                                        <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>         
+				    </tr>';
+                $contador++;
+            }
+            $reg_final=$contador-1;
+        }else{
+            if($total>=1){
+                $tabla.='<tr class="text-center" ><td colspan="9">
+                <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>                
+                </td> </tr>';
+            }else{
+                $tabla.='<tr class="text-center" ><td colspan="9">No hay registros en el sistema</td> </tr>';
+            }
+        }
+        $tabla.='</tbody></table></div>';
+        return $tabla;
+    }
+
+<<<<<<< HEAD
    public function selectRegistro_selectArEs(){
+=======
+    static public function selectRegistro_selectArEs(){
+>>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
       $rol=$_POST['selectCarReg'];
       $code_html='';
       if($rol=="16"){

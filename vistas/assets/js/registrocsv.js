@@ -126,18 +126,14 @@ function doSearchJD() {
     const searchText = document.getElementById("inputSearch_jd").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -146,13 +142,10 @@ function doSearchJD() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             tableReg.rows[i].style.display = "none";
         }
     }
 
-    // mostramos las coincidencias
     const lastTR = tableReg.rows[tableReg.rows.length - 1];
     const td = lastTR.querySelector("td");
     lastTR.classList.remove("hide", "red");
@@ -173,18 +166,14 @@ function doSearchCC() {
     const searchText = document.getElementById("inputSearch_cc").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -193,13 +182,9 @@ function doSearchCC() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             tableReg.rows[i].style.display = "none";
         }
     }
-
-    // mostramos las coincidencias
     const lastTR = tableReg.rows[tableReg.rows.length - 1];
     const td = lastTR.querySelector("td");
     lastTR.classList.remove("hide", "red");
@@ -219,19 +204,14 @@ function doSearchCCTdos() {
     const tableReg = document.getElementById("tabla_tutorados");
     const searchText = document.getElementById("inputSearch_CCTdos").value.toLowerCase();
     let total = 0;
-
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -240,13 +220,9 @@ function doSearchCCTdos() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             tableReg.rows[i].style.display = "none";
         }
     }
-
-    // mostramos las coincidencias
     const lastTR = tableReg.rows[tableReg.rows.length - 1];
     const td = lastTR.querySelector("td");
     lastTR.classList.remove("hide", "red");
@@ -267,18 +243,14 @@ function doSearchCCTres() {
     const searchText = document.getElementById("inputSearch_CCTres").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -287,45 +259,53 @@ function doSearchCCTres() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             tableReg.rows[i].style.display = "none";
         }
     }
-    /*
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
-    }*/
+
 }
 
+
+
+// Metodo para busqueda coordinadores carrera - RootCoordinadoresCR
+function doSearchRootCCarrera() {
+    const tableReg = document.getElementById("tabla_ccarrera");
+    const searchText = document.getElementById("inputSearch_rootcc").value.toLowerCase();
+    let total = 0;
+    for (let i = 1; i < tableReg.rows.length; i++) {
+        if (tableReg.rows[i].classList.contains("noSearch")) {
+            continue;
+        }
+        let found = false;
+        const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
+        for (let j = 0; j < cellsOfRow.length && !found; j++) {
+            const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+            if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+                found = true;
+                total++;
+            }
+        }
+        if (found) {
+            tableReg.rows[i].style.display = "";
+        } else {
+            tableReg.rows[i].style.display = "none";
+        }
+    }
+}
 // Metodo para busqueda coordinadores carrera- CCordinadores
 function doSearchCAreaC() {
     const tableReg = document.getElementById("tabla_ccarrera");
     const searchText = document.getElementById("inputSearch_CCarrera").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -334,45 +314,27 @@ function doSearchCAreaC() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
+
             tableReg.rows[i].style.display = "none";
         }
     }
-    /*
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
-    }*/
+
 }
 
-// Metodo para busqueda coordinadores carrera - RootCoordinadoresCR
-function doSearchRootCCarrera() {
-    const tableReg = document.getElementById("tabla_ccarrera");
-    const searchText = document.getElementById("inputSearch_cc").value.toLowerCase();
+// Método para busqueda Solicitudes- CCSolicitudes
+function doSearchCAreaSolicitudes() {
+    const tableReg = document.getElementById("tabla_solicitudes");
+    const searchText = document.getElementById("inputSearch_CAreaSolicitudes").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -381,45 +343,25 @@ function doSearchRootCCarrera() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             tableReg.rows[i].style.display = "none";
         }
     }
-    /*
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
-    }*/
 }
 
 // Metodo para busqueda jefes departamento - RootCoordinadoresAR
-function doSearchRootCCarrera() {
+function doSearchRootCArea() {
     const tableReg = document.getElementById("tabla_jefesdepto");
-    const searchText = document.getElementById("inputSearch_jd").value.toLowerCase();
+    const searchText = document.getElementById("inputSearch_rootcarea").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -428,25 +370,11 @@ function doSearchRootCCarrera() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
+
             tableReg.rows[i].style.display = "none";
         }
     }
-    /*
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
-    }*/
+
 }
 // Metodo para busqueda actividades - CCordinadores
 function doSearchCCActividades() {
@@ -454,18 +382,14 @@ function doSearchCCActividades() {
     const searchText = document.getElementById("inputSearch_CCarreraActividades").value.toLowerCase();
     let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (tableReg.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -474,23 +398,9 @@ function doSearchCCActividades() {
         if (found) {
             tableReg.rows[i].style.display = "";
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
+
             tableReg.rows[i].style.display = "none";
         }
     }
-    /*
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
-    }*/
+
 }

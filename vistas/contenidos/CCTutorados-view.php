@@ -32,45 +32,36 @@ include "./vistas/inc/navCoordinadorC.php"
 
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
+
                 <h2 class="text-center"><strong>Registrar</strong></h2>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Nombre"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-
                 <div class="form-group">
-
-                <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
-
+                    <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
                 </div>
-
                 <div class="form-group"><div class="team-boxed">
+                <div class="container">
+                    <h2 class="text-center"><strong>Tutorados</strong> </h2>
 
-    <div class="container">
-            <h2 class="text-center"><strong>Tutorados</strong> </h2>
-
-        <!-- Búsqueda -->
-        <div class="form-container">
-            <form class="form-neon "  method="POST" data-form="default" autocomplete="off">
-                <input type="hidden" name="modulo" value="CCTutora2">
-                <h2 class="text-center">Búsqueda</h2>
-                <div class="container-fluid">
-                    <div class="row justify-content-md-center">
-                        <div class="">
-                            <div class="form-group">
-                                <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
-                                <input type="text"  placeholder="Nctrl o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_CCTdos" onkeyup="doSearchCCTdos()" maxlength="30">
+                    <!-- Búsqueda -->
+                    <div class="form-container">
+                        <form class="form-neon "  method="POST" data-form="default" autocomplete="off">
+                            <input type="hidden" name="modulo" value="CCTutora2">
+                            <h2 class="text-center">Búsqueda</h2>
+                            <div class="container-fluid">
+                                <div class="row justify-content-md-center">
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
+                                            <input type="text"  placeholder="Nctrl o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_CCTdos" onkeyup="doSearchCCTdos()" maxlength="30">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <!--<div class="col-12">
-                            <p class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block"> BUSCAR </button>
-                            </p>
-                        </div>-->
+                        </form>
                     </div>
-                </div>
-            </form>
-        </div>
 
         <?php }else{ ?>
 
@@ -101,26 +92,24 @@ include "./vistas/inc/navCoordinadorC.php"
                     $ins_usuario = new usuarioController();
 
                     // 0 es el índice que tiene la vista
-                    echo $ins_usuario->paginador_rootjefesdepto_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutora2']);
+                    echo $ins_usuario->paginador_tutorados_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CCTutora2']);
                     ?>
                 </form>
 
             </div>
-
-
 
         <?php }?>
             <?php
                 require_once "./controladores/usuarioController.php";
                 $ins_usuario = new usuarioController();
                 // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_rootjefesdepto_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
+                echo $ins_usuario->paginador_tutorados_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
             ?>
         <!-- Aqui iba la visualización de tutores - tutorados que tenía -->
     </div>
 
 
-</div></div>
+        </div></div>
             </form>
         </div>
         <div id="cont-visdat" class="form-container">

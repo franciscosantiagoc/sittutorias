@@ -56,7 +56,7 @@ include "./vistas/inc/navRoot.php";
                                         <div class="">
                                             <div class="form-group">
                                                 <label for="inputSearch" class="bmd-label-floting">¿Qué usuario estas buscando?</label>
-                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_cc" onkeyup="doSearchRootCCarrera()" maxlength="30">
+                                                <input type="text"  placeholder="Matrícula o Nombre" class="form-control" name="busqueda_inicial" id="inputSearch_rootcc" onkeyup="doSearchRootCCarrera()" maxlength="30">
                                             </div>
                                         </div>
                                         <!--<div class="col-12">
