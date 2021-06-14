@@ -381,11 +381,7 @@ class usuarioController extends usuarioModel
       }
    }
 
-<<<<<<< HEAD
    public function actualizar_usuario_controlador()
-=======
-    static public function actualizar_usuario_controlador()
->>>>>>> b69e00c5aaa3ca476adfdc324c98a48ff638cb1d
    {
 
       $nombre = mainModel::limpiar_cadena($_POST['name_upd']);
