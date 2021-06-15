@@ -435,7 +435,7 @@ class usuarioController extends usuarioModel
         exit();
         
          }
-        if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "" || $email == "") {
+        if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $iduser == "" || $email == "") {
          echo '
             <script> 
                Swal.fire({
@@ -489,7 +489,7 @@ class usuarioController extends usuarioModel
         exit();
       }
       
-      if (mainModel::verificar_datos("[0-9()+]{8,20}", $numero_telefono)) {
+      if (mainModel::verificar_datos("[0-9()+]{8,20}", $num_tel)) {
          echo '
          <script> 
             Swal.fire({

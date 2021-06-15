@@ -22,7 +22,16 @@ include "./vistas/inc/navStudent.php"
         <div class="container" id="contain">
             <div class="col-md-12 search-table-col">
                 <p id="tit-activities"><strong>ACTIVIDADES ASIGNADAS</strong></p>
-                <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div><span class="counter pull-right"></span>
+                <div class="form-group pull-right col-lg-4">
+                    <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda">
+                </div>
+                <span class="counter pull-right"></span>
+                <?php
+                    require_once './controladores/actividadesController.php';
+                    $ins_actividad = new actividadesController();
+                    $dat_info = $ins_actividad->consulta_actividades_controlador($condicion);
+                ?>
+
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
                     <table class="table table-bordered table-hover">
                         <thead class="bg-primary bill-header cs">
@@ -35,6 +44,7 @@ include "./vistas/inc/navStudent.php"
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr>
                                 <td>Linea de vida</td>
                                 <td>12/05/2020</td>
