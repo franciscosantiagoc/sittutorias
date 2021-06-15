@@ -40,7 +40,7 @@
        }
        include "inc/footer.php";
        include "inc/Script.php";
-       include "inc/LogOut.php";
+       include "inc/LogOut.php"; /**/
        ?>
 
 

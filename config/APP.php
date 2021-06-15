@@ -4,7 +4,7 @@
 	const COMPANY="Sistema de Gestión de Tutorias";*/
 	
 	if( !defined( 'SERVERURL' ) ) { 
-		/* define( 'SERVERURL', "http://localhost:8081/tutorias/" ); */
+		 /*define( 'SERVERURL', "http://localhost:8081/tutorias/" ); */
 		define( 'SERVERURL', "https://sit-itistmo.website/" );  
 	}
 

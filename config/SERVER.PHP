@@ -2,12 +2,12 @@
     /*const SERVER="localhost";
     const DB="sistutorias";
     const USER="root";
-    const PASS="";*/ 
+    const PASS="";*/
 
     const SERVER="localhost";
     const DB="u760563657_sistutorias";
     const USER="u760563657_sit_tutorias";
-    const PASS="sistemaTutorias21";
+    const PASS="sistemaTutorias21"; 
 
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;
