@@ -40,7 +40,7 @@
        }
        include "inc/footer.php";
        include "inc/Script.php";
-
+       echo '<br>'
        include "./vistas/inc/LogOut.php";
        ?>
 

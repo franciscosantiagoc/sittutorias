@@ -94,4 +94,3 @@
          timeChecker();
       }
    }); */
-</script>
