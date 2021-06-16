@@ -674,7 +674,7 @@ class usuarioController extends usuarioModel
 
    }
 
-    static public static function datos_usuario_controlador($tipo,$tabla,$condicion){
+    static public  function datos_usuario_controlador($tipo,$tabla,$condicion){
       $tipo=mainModel::limpiar_cadena($tipo);
       $tabla=mainModel::limpiar_cadena($tabla);
       $condicion=mainModel::limpiar_cadena($condicion);
@@ -683,7 +683,7 @@ class usuarioController extends usuarioModel
    
    }
 
-    static public static function datos_ta_controlador($campos,$tabla,$condicion){
+    static public function datos_ta_controlador($campos,$tabla,$condicion){
       $campos=mainModel::limpiar_cadena($campos);
       $tabla=mainModel::limpiar_cadena($tabla);
       /* $condicion=mainModel::limpiar_cadena($condicion); */
