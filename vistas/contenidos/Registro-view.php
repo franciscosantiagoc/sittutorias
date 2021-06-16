@@ -157,7 +157,7 @@
             </div> -->
             <!-- <div class="table-responsive table-bordered table table-hover table-bordered results"> -->
             <div class="table-bordered table table-hover table-bordered results">
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-striped table-bordered nowrap tablas">
                     <thead class="bg-primary bill-header cs">
                         <tr>
                             <th id="trs-hd"><br><strong>No.</strong><br></th>
@@ -173,6 +173,16 @@
                         </tr>
                     </thead>
                     <tbody id="table_dat_es">
+                        <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
+                        <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
+                        <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>
+                        <tr> <td>21</td><td>Clarissa</td><td>Zavala</td><td>Jiménez</td><td>F</td><td>17190790</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Clarissa.Zavala.Jiménez@gmail.com</td></tr>
+                        <tr> <td>22</td><td>Alba Beatriz</td><td>Aguilar</td><td>Ulises</td><td>F</td><td>17190019</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>AlbaBeatriz.Aguilar.Ulises@gmail.com</td></tr>
+                        <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
+                        <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
+                        <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>
+                        <tr> <td>21</td><td>Clarissa</td><td>Zavala</td><td>Jiménez</td><td>F</td><td>17190790</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Clarissa.Zavala.Jiménez@gmail.com</td></tr>
+                        <tr> <td>22</td><td>Alba Beatriz</td><td>Aguilar</td><td>Ulises</td><td>F</td><td>17190019</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>AlbaBeatriz.Aguilar.Ulises@gmail.com</td></tr>
                         <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
                         <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
                         <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>

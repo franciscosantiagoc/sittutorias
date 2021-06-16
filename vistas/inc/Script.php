@@ -1,66 +1,67 @@
 <script src="<?php echo SERVERURL;?>vistas/assets/js/jquery.min.js"></script>
 <script src="<?php echo SERVERURL;?>vistas/assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script> -->
 
 
-<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
 <script>
-    $(document).ready(function() {
-        $('.tablas').DataTable({
-            "language": {
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                           "sFirst":    "Primero",
-                           "sLast":     "Último",
-                           "sNext":     "Siguiente",
-                           "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                           "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                           "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        },
-                        "buttons": {
-                           "copy": "Copiar",
-                           "colvis": "Visibilidad"
-                        }
-                  }
-         });
-    } );
+   $(document).ready(function() {
+      $('.tablas').DataTable({
+         responsive: true,
+         "language": {
+                     "sProcessing":     "Procesando...",
+                     "sLengthMenu":     "Mostrar _MENU_ registros",
+                     "sZeroRecords":    "No se encontraron resultados",
+                     "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                     "sInfoPostFix":    "",
+                     "sSearch":         "Buscar:",
+                     "sUrl":            "",
+                     "sInfoThousands":  ",",
+                     "sLoadingRecords": "Cargando...",
+                     "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                     },
+                     "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                     },
+                     "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                     }
+               }
+      });
+   });
 </script>
-<!----> <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-  <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/responsive.bootstrap.min.js"></script> 
+<!-- <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script> -->
+<!-- <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/responsive.bootstrap.min.js"></script>  -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 
 
-<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/creative.js"></script> -->
-<!-- <script src="<?php echo SERVERURL;?>vistas/assets/js/bs-animation.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script> -->
+
+
+
+
+
+
+
 <script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
 
-    
- </script>
- <!--
- <script>
-   function cerrar() {
-      document.getElementById("ventmodal").style.display = "none";
-   }
-</script>-->
-
-<!-- <script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
-   $(function() {
+<script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
+    $(function() {
       function timeChecker() {
          setInterval(function() {
             var storedTimeStamp = sessionStorage.getItem("lastTimeStamp");
@@ -94,4 +95,4 @@
          timeChecker();
       }
    });
-</script> -->
+</script>
