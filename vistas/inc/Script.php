@@ -11,8 +11,8 @@
                      "sLengthMenu":     "Mostrar _MENU_ registros",
                      "sZeroRecords":    "No se encontraron resultados",
                      "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-                     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                     "sInfo":           "Mostrando _START_ al _END_ de _TOTAL_ registros",
+                     "sInfoEmpty":      "Mostrando del 0 al 0 de 0 registros",
                      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
                      "sInfoPostFix":    "",
                      "sSearch":         "Buscar:",
@@ -61,7 +61,7 @@
 <script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
 
 <script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
-    $(function() {
+    /* $(function() {
       function timeChecker() {
          setInterval(function() {
             var storedTimeStamp = sessionStorage.getItem("lastTimeStamp");
@@ -94,5 +94,5 @@
 
          timeChecker();
       }
-   });
+   }); */
 </script>
