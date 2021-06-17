@@ -1217,7 +1217,7 @@ class usuarioController extends usuarioModel
         $Npaginas = ceil($total/$registros);
 
         $tabla.='<div class="table-responsive">
-		<table id="tabla_ccactvidades" class="table table-dark table-sm">
+		<table id="tabla_ccactvidades" class="tablas">
 			<thead>
 				<tr class="text-center roboto-medium">
 					<th>#</th>

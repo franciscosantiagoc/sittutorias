@@ -265,8 +265,6 @@ function doSearchCCTres() {
 
 }
 
-
-
 // Metodo para busqueda coordinadores carrera - RootCoordinadoresCR
 function doSearchRootCCarrera() {
     const tableReg = document.getElementById("tabla_ccarrera");
