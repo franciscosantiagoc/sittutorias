@@ -180,10 +180,10 @@ sup {
     top: -0.5em;
 }
 
-a {
+/* a {
     text-decoration: none;
     background-color: transparent;
-}
+} */
 
 a:hover {
     color: #d33311;
@@ -5023,6 +5023,26 @@ input[type="submit"].btn-block {
     padding-left: 0;
     list-style: none;
     border-radius: 0.25rem;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.dataTables_paginate{
+    text-align: right;
+}
+
+#DataTables_Table_0_wrapper .row{
+    width: 100%;
 }
 
 .page-link {
@@ -10312,14 +10332,14 @@ hr.light {
     border-color: #fff;
 }
 
-a {
+/* a {
     transition: all 0.2s;
-}
+} */
 
-a,
+/* a,
 a:hover {
     color: #f05f40;
-}
+} */
 
 h1,
 h2,

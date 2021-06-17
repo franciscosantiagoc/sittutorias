@@ -1,5 +1,4 @@
 <?php
-
     const SERVER="localhost";
     const DB="sistutorias";
     const USER="root";
