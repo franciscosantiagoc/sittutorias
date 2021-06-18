@@ -180,6 +180,7 @@ sup {
     top: -0.5em;
 }
 
+
 /* a {
     text-decoration: none;
     background-color: transparent;
@@ -594,9 +595,9 @@ pre code {
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
-    
 }
-.img-menu{
+
+.img-menu {
     background-size: cover;
     background-position: center;
     display: block;
@@ -610,8 +611,7 @@ pre code {
     .container {
         max-width: 540px;
     }
-
-    .img-menu{
+    .img-menu {
         width: 150px;
         height: 150px;
     }
@@ -623,13 +623,10 @@ pre code {
         margin-top: 25px;
         margin-bottom: 25px;
     }
-
-    .img-menu{
+    .img-menu {
         width: 180px;
         height: 180px;
     }
-
-    
 }
 
 @media (min-width: 992px) {
@@ -637,10 +634,8 @@ pre code {
         max-width: 960px;
         margin-top: 20px;
         margin-bottom: 20px;
-        
     }
-
-    .img-menu{
+    .img-menu {
         width: 200px;
         height: 200px;
     }
@@ -652,7 +647,6 @@ pre code {
         margin-top: 75px;
         margin-bottom: 75px;
     }
-
 }
 
 .container-fluid {
@@ -5025,7 +5019,8 @@ input[type="submit"].btn-block {
     border-radius: 0.25rem;
 }
 
-.pagination>li>a, .pagination>li>span {
+.pagination>li>a,
+.pagination>li>span {
     position: relative;
     float: left;
     padding: 6px 12px;
@@ -5037,11 +5032,11 @@ input[type="submit"].btn-block {
     border: 1px solid #ddd;
 }
 
-.dataTables_paginate{
+.dataTables_paginate {
     text-align: right;
 }
 
-#DataTables_Table_0_wrapper .row{
+#DataTables_Table_0_wrapper .row {
     width: 100%;
 }
 
@@ -5972,7 +5967,7 @@ a.close.disabled {
 
 .modal-dialog {
     position: relative;
-    width: auto;
+    width: 600px;
     margin: 0.5rem;
     pointer-events: none;
 }
@@ -10332,9 +10327,11 @@ hr.light {
     border-color: #fff;
 }
 
+
 /* a {
     transition: all 0.2s;
 } */
+
 
 /* a,
 a:hover {

@@ -17,6 +17,25 @@ if(isset($_SESSION['roll_sti'])){
 
 include "./vistas/inc/navStudent.php" 
 ?>
+    <div class="modal" id="modalEditarActividad" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Envio de actividad</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
     <div class="register-photo">
         <div class="form-container" id="contain">
@@ -61,41 +80,64 @@ include "./vistas/inc/navStudent.php"
                                             <td>'. $sem .'</td>
                                             <td>'. $stat .'</td>
                                             <td><center><i class="fa fa-remove"></center></i></td>
-                                            <td><center><button class="btn btn-success bg-primary" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></center></td>
+                                            <td><center><a class="btnEditarActividad" idActividad="'.$idact.'" data-toggle="modal" data-target="#modalEditarActividad"><i class="fa fa-edit" style="font-size: 15px;"></i></a></center></td>
                                         </tr>
                                     ';
                                 }
                             ?>
                             
-                            <!-- <tr>
-                                <td>Análisis Foda</td>
-                                <td>18/05/2020</td>
-                                <td>-</td>
-                                <td><i class="fa fa-check"></i><br><br></td>
-                                <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td>Entrevista</td>
-                                <td>10/06/2020</td>
-                                <td>-</td>
-                                <td><i class="fa fa-check"></i></td>
-                                <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="form-container">
-            <form method="post">
-                <h2 class="text-center"><strong>Editar Actividad</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
-                <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
-                <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button></div>
-            </form>
+        
+    </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".btnAlEditarActividad").click(function(){
+        var idAct = $(this).attr("idActividad");
+        var nctrl = <?php echo $_SESSION['NControl_sti'];?>;
+        console.log(idAct)
+
+        /* var datos = new FormData();
+        datos.append("idActividad",idActividad);
+        datos.append("ncontrol",nctrl);
+
+        $.ajax({
+            url: "ajax/usuarioAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            /* dataType: "json", 
+            success: function(respuesta){
+                console.log(respuesta);
+            }
+        }); */
+    })
+})
+</script>
+
+<!-- <div id="ventmodal" class="modalcontent">
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="form-container">
+                <form method="post">
+                    <h2 class="text-center"><strong>Editar Actividad</strong></h2>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
+                    <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
+                    <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button></div>
+                </form>
+            </div>
         </div>
     </div>
+</div> -->
+
+
 

@@ -24,6 +24,11 @@ require_once "../controladores/usuarioController.php";
    $ins_usuario = new usuarioController();
    echo $ins_usuario->registro_multU_controlador();
     /*echo 'archivo ajax ejecutado'; */
+
+
+    /* -------------------------Condiciones Alumno Actividad------------------------------*/
+}if(isset($_POST['idActividad']) && isset($_POST['ncontrol'])){
+   echo 'Respuesta actividad ajax';
 } else {
    session_start(['name' => 'STI']);
    session_unset();
