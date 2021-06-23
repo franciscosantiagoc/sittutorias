@@ -121,23 +121,6 @@ $(document).ready(function() {
 })
 </script>
 
-<!-- <div id="ventmodal" class="modalcontent">
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <div class="form-container">
-                <form method="post">
-                    <h2 class="text-center"><strong>Editar Actividad</strong></h2>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
-                    <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
-                    <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button></div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 
 
