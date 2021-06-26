@@ -141,6 +141,8 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
     left: 0;
 }
 
+
+/* 
 .modalcontent {
     position: fixed;
     width: 100%;
@@ -148,9 +150,10 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
     background-color: rgba(0, 0, 0, 0.8);
     margin-top: -76px;
     z-index: 100;
-}
+} */
 
-.modal {
+
+/* .modal {
     position: relative;
     width: 500px;
     height: 250px;
@@ -197,4 +200,4 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
     #btnaceptar {
         margin-bottom: 20px;
     }
-}
+} */

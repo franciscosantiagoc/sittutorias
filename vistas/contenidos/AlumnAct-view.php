@@ -17,15 +17,67 @@ if(isset($_SESSION['roll_sti'])){
 
 include "./vistas/inc/navStudent.php" 
 ?>
+    <div class="modal" id="modalEditarActividad" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Envio de actividad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="idAlEditActividad">No. de Control del Alumno</label>
+                                <input class="form-control" type="text" name="idAlEditActividad" value="<?php echo $_SESSION['NControl_sti'];?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="idEditActividad">ID de la Actividad</label>
+                                <input class="form-control" type="text" placeholder="Nombre" id="idEditActividad" name="idEditActividad" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="idEditActividad">Nombre de la Actividad</label>
+                                <input class="form-control" type="text" placeholder="Nombre" id="nameEditActividad" name="nameEditActividad" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="descEditActividad">Descripción de la Actividad</label>
+                                <input class="form-control" type="text" placeholder="Descripcion" id="descEditActividad" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Archivo</label>
+                                <input type="file" name="activity-file" id="activity-file" accept=".pdf">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn btn-primary btn-block" id="btn-download" >Descargar formato</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p>Advertencia: El formato admitido es pdf</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+        if(isset($_POST['idEditActividad']) && isset($_POST['idAlEditActividad'])){
+                require_once "./controladores/actividadesController.php";
+
+            $ins_usuario= new usuarioController(); 
+
+            echo $ins_usuario->agregar_entregaactividad_controlador();
+        }
+    ?>
 
     <div class="register-photo">
         <div class="form-container" id="contain">
             <div class="col-md-12 search-table-col">
                 <p id="tit-activities"><strong>ACTIVIDADES ASIGNADAS</strong></p>
-                <!-- <div class="form-group pull-right col-lg-4">
-                    <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda">
-                </div>
-                <span class="counter pull-right"></span> -->
                 <?php
                     require_once './controladores/actividadesController.php';
                     $ins_actividad = new actividadesController();
@@ -34,7 +86,7 @@ include "./vistas/inc/navStudent.php"
                 ?>
 
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
-                    <table class="table table-bordered table-hover tablas">
+                    <table class="table table-striped table-bordered nowrap tablas">
                         <thead class="bg-primary bill-header cs">
                             <tr>
                                 <th id="trs-hd" class="col-lg-1">Nombre de la Actividad</th>
@@ -53,6 +105,7 @@ include "./vistas/inc/navStudent.php"
                                     $desc = $row['Descripcion'];
                                     $sem = $row['Semestrerealizacion_sug'];
                                     $stat = $row['Estado'];
+                                    $format = $row['URLFormato'];
 
                                     echo '
                                         <tr>
@@ -60,42 +113,56 @@ include "./vistas/inc/navStudent.php"
                                             <td>'. $desc .'</td>
                                             <td>'. $sem .'</td>
                                             <td>'. $stat .'</td>
-                                            <td><center><i class="fa fa-remove"></center></i></td>
-                                            <td><center><button class="btn btn-success bg-primary" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></center></td>
+                                            <td><center><i class="fa fa-remove"></i></center></td>
+                                            <td><center><button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>
+                                            <abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'"><i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
+                                            </center></td>
+                                            
                                         </tr>
                                     ';
                                 }
                             ?>
                             
-                            <!-- <tr>
-                                <td>Análisis Foda</td>
-                                <td>18/05/2020</td>
-                                <td>-</td>
-                                <td><i class="fa fa-check"></i><br><br></td>
-                                <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td>Entrevista</td>
-                                <td>10/06/2020</td>
-                                <td>-</td>
-                                <td><i class="fa fa-check"></i></td>
-                                <td><button class="btn btn-success bg-primary" style="margin-left: 5px;" type="submit"><i class="fa fa-edit" style="font-size: 15px;"></i></button></td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="form-container">
-            <form method="post">
-                <h2 class="text-center"><strong>Editar Actividad</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
-                <div class="form-group"><input  class="form-control" type="text" placeholder="Fecha de Entrega"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
-                <div class="form-group"><label>Archivo</label><input type="file" id="form-file"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Enviar actividad</button></div>
-            </form>
-        </div>
+        
     </div>
+
+
+
+<script type="text/javascript">
+function clickActividad(idAct){
+    var datos = new FormData();
+    datos.append("idActividad",idAct);
+    /* datos.append("ncontrol",<?php echo $_SESSION['NControl_sti'];?>); */
+
+    $.ajax({
+        url: "ajax/actividadAjax.php",
+        method: "post",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false, 
+        dataType: 'JSON',
+        success: function(respuesta){
+            
+            console.log(respuesta);/**/ 
+            $("#idEditActividad").val(respuesta[0][0]);
+            $("#nameEditActividad").val(respuesta[0][1]);
+            $("#descEditActividad").val(respuesta[0][2]);
+            var elemento = document.getElementById("btn-download");
+            elemento.href = '<?php echo SERVERURL;?>' + respuesta[0][3];
+        }
+    }).fail( function( jqXHR, textStatus, errorThrown ) {
+        console.log('error '+textStatus);
+    });
+}
+
+</script>
+
+
+
 
