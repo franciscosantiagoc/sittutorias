@@ -8,7 +8,7 @@
       $respuesta= $ins_actividad->consulta_actividad_controlador($_POST['idActividad']);
       echo json_encode($respuesta);
       /* echo 'Respuesta actividad ajax';*/ 
-   } else {
+   }else {
       session_start(['name' => 'STI']);
       session_unset();
       session_destroy();

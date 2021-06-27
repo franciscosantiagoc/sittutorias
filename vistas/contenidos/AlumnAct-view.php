@@ -28,22 +28,22 @@ include "./vistas/inc/navStudent.php"
                 </div>
                 <div class="modal-body">
                     <div class="form-container">
-                        <form method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="idAlEditActividad">No. de Control del Alumno</label>
-                                <input class="form-control" type="text" name="idAlEditActividad" value="<?php echo $_SESSION['NControl_sti'];?>" disabled>
+                                <input class="form-control" type="text" name="idaleditactiv" value="<?php echo $_SESSION['NControl_sti'];?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="idEditActividad">ID de la Actividad</label>
-                                <input class="form-control" type="text" placeholder="Nombre" id="idEditActividad" name="idEditActividad" disabled>
+                                <input class="form-control" type="text" placeholder="Nombre" id="idEditActividad" name="ideditactiv" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="idEditActividad">Nombre de la Actividad</label>
-                                <input class="form-control" type="text" placeholder="Nombre" id="nameEditActividad" name="nameEditActividad" disabled>
+                                <input class="form-control" type="text" placeholder="Nombre" id="nameEditActividad" name="nameeditactiv" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="descEditActividad">Descripción de la Actividad</label>
-                                <input class="form-control" type="text" placeholder="Descripcion" id="descEditActividad" disabled>
+                                <input class="form-control" type="text" placeholder="Descripcion" id="descEditActividad" name="desceditactiv" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Archivo</label>
@@ -65,13 +65,25 @@ include "./vistas/inc/navStudent.php"
         </div>
     </div>
     <?php
-        if(isset($_POST['idEditActividad']) && isset($_POST['idAlEditActividad'])){
-                require_once "./controladores/actividadesController.php";
+        if(isset($_FILES['activity-file'])){
+            /* if ($_FILES['activity-file']['name'] != null){
+                echo '<script>alert("Envio form con archivo");</script>';
+            }*/
+            require_once "./controladores/actividadesController.php";
 
-            $ins_usuario= new usuarioController(); 
+            $ins_actividad= new actividadesController(); 
 
-            echo $ins_usuario->agregar_entregaactividad_controlador();
-        }
+            echo $ins_actividad->agregar_entregaactividad_controlador(); /**/
+            
+        } 
+        /* if(isset($_POST['ideditactiv']) && isset($_POST['idaleditactiv'])){
+            /* require_once "./controladores/actividadesController.php";
+
+            $ins_actividad= new actividadesController(); 
+
+            echo $ins_actividad->agregar_entregaactividad_controlador(); 
+            echo '<script>alert("Envio form");</script>';
+        } */
     ?>
 
     <div class="register-photo">

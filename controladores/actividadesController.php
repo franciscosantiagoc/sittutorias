@@ -39,10 +39,26 @@ class actividadesController extends usuarioModel
    }
 
    public function agregar_entregaactividad_controlador(){
-      $idact = mainModel::limpiar_cadena($_POST['idEditActividad']);
-      $nctrl = mainModel::limpiar_cadena($_POST['idAlEditActividad']);
+      $idact = mainModel::limpiar_cadena($_POST['ideditactiv']);
+      $nctrl = mainModel::limpiar_cadena($_POST['idaleditactiv']);
       /* $nombre = mainModel::limpiar_cadena($_POST['name_upd']); */
-
+      if(!empty($nctrl) && !empty($nctrl)){
+         echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "Se han detectado campos vacios, recargue la pagina para continuar",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+               if(result.value){
+                  window.location="'.SERVERURL.'AlumnAct"
+               }
+            });
+         </script>
+         ';
+         exit();
+      }
 
       $check_nctrl = mainModel::ejecutar_consulta_simple("SELECT * FROM tutorado WHERE NControl=$nctrl");
       if ($check_nctrl->rowCount() == 0) {
@@ -81,9 +97,7 @@ class actividadesController extends usuarioModel
          exit();
       }
 
-      if(isset($_FILES['activity-file'])){
-         
-      }else{
+      if(!isset($_FILES['activity-file'])){
          echo '
             <script> 
                Swal.fire({
@@ -91,11 +105,7 @@ class actividadesController extends usuarioModel
                   text: "No ha cargado un archivo",
                   type: "error",
                   confirmButtonText: "Aceptar"
-               }).then((result)=>{
-               if(result.value){
-                  window.location="'.SERVERURL.'AlumnAct"
-               }
-            });
+               });
             </script>
             ';
         exit();
