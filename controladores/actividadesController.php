@@ -7,9 +7,7 @@ if ($peticionAjax) {
 
 class actividadesController extends usuarioModel
 {
-   /*-------------- Controlador agregar usuario --------------*/
 
-   /* == controlador actualizar trabajador */
    public function consulta_actividades_controlador($ncontrol)
    {  
       $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Descripcion, Semestrerealizacion_sug, URLFormato FROM actividades;");
@@ -18,12 +16,12 @@ class actividadesController extends usuarioModel
       foreach($dat_info as $row){
          $consult_entrega = mainModel::ejecutar_consulta_simple('SELECT * FROM actividades_asignadas WHERE Actividades_idActividades='. $row['idActividades'] .' AND Tutorado_NControl=' . $ncontrol .';');
          if($consult_entrega->rowCount() > 0){
-            $row['Estado']= 'Entregado';
+            $rows['Estado']= 'Entregado';
          }else{
-            $row['Estado']= 'No entregado';
+            $rows['Estado']= 'No entregado';
          }
 
-         array_push($resultado, $row);
+         array_push($resultado, $rows);
       }
       return $resultado; 
             

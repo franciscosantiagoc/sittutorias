@@ -18,16 +18,9 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navCoordinadorC.php" 
 
 ?>
-<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js">
-</script>
 
     <div class="register-photo">
 
-        <?php
-
-        if(!isset($_SESSION['busqueda_CoordinadorCarrera']) && empty($_SESSION['busqueda_CoordinadorCarrera'])){
-
-        ?>
         <div class="container bg-white">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
@@ -35,57 +28,70 @@ include "./vistas/inc/navCoordinadorC.php"
                     <button class="btn btn-primary btn-block border rounded" type="submit" >agregar NUEVA ACTIVIDAD</button>
                     <form class="form-neon"  method="POST" data-form="default" autocomplete="off">
                         <input type="hidden" name="modulo" value="CoordinadorCarrera">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="busqueda_inicial" id="inputSearch_CCarreraActividades" onkeyup="doSearchCCActividades()" placeholder="Dato de búsqueda">
-                        </div>
+
                     </form>
                 </div>
 
-            </div>
-            <?php }else{ ?>
-            <!-- Eliminar búsqueda -->
-            <div class="container">
-
-                <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php"  method="POST" data-form="search" autocomplete="off">
-                    <input type="hidden" name="modulo" value="CoordinadorCarrera">
-                    <input type="hidden" name="eliminar_busqueda" value="eliminar">
-                    <div class="container-fluid">
-                        <div class="row justify-content-md-center">
-                            <div class="col-12 col-md-6">
-                                <p class="text-center" style="font-size: 20px;">
-                                    Resultados de la busqueda <strong>"<?php echo $_SESSION['busqueda_CoordinadorCarrera']; ?>"</strong>
-                                </p>
-                            </div>
-                            <div class="col-12">
-                                <p class="text-center" style="margin-top: 20px;">
-                                    <button type="submit" class="btn btn-raised btn-danger">
-                                        ELIMINAR BÚSQUEDA
-                                    </button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                    require_once "./controladores/usuarioController.php";
-                    $ins_usuario = new usuarioController();
-
-                    // 0 es el índice que tiene la vista
-                    echo $ins_usuario->paginador_actividades_controlador($pagina[1],5,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],$_SESSION['busqueda_CoordinadorCarrera']);
-                    ?>
-                </form>
-            </div>
-
-            <?php }?>
                 <?php
-                //listado
-                require_once "./controladores/usuarioController.php";
-                $ins_usuario = new usuarioController();
+                require_once './controladores/actividadesController.php';
+                $ins_actividad = new actividadesController();
+                $resultado='';
+                $ncontrol='';
+                $dat_info = $ins_actividad->consulta_actividades_controlador($resultado);
 
-                // 0 es el índice que tiene la vista
-                echo $ins_usuario->paginador_actividades_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
                 ?>
+                <div class="table-responsive table-bordered table  ">
+                    <table class="table table-bordered table-hover tablas">
+                        <thead class="bg-primary bill-header cs">
+                        <tr class="text-center roboto-medium">
+                            <th>#</th>
+                            <th>Nombre de la actividad</th>
+                            <th>Fecha Límite</th>
+                            <th>Descripción</th>
+                            <th>Periodo</th>
+                            <th>ACTUALIZAR</th>
+                            <th>ELIMINAR</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php
+                        $contador=1;
+                        foreach($dat_info as $rows){
+
+
+                            echo '<tr class="text-center roboto-medium" >
+                        <td>'.$contador.'</td>
+                        <td>'.$rows['Nombre'].'</td>
+                        <td>'.$rows['Fecha_registro'].'</td>
+                        <td>'.$rows['Descripcion'].'</td>
+                        <td>'.$rows['Semestrerealizacion_sug'].'</td>
+                        <td>
+                            <a href="#Actualizar" class="btn btn-success">
+                                    <i class="fas fa-sync-alt"></i>	
+                            </a>
+                        </td>
+                        <td>
+                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
+                            
+                                <button type="submit" class="btn btn-warning">
+                                        <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+				    </tr>';
+                            $contador++;
+
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
 
             </div>
+        </div>
+
 
         <div id="importcsvregis" class="form-container">
             <form method="post">
