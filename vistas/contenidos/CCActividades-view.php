@@ -21,7 +21,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
     <div class="register-photo">
 
-        <div class="container bg-white">
+        <div class="form-container">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
                 <div class="form-group pull-right col-lg-4">
@@ -33,11 +33,11 @@ include "./vistas/inc/navCoordinadorC.php"
                 </div>
 
                 <?php
-                require_once './controladores/actividadesController.php';
-                $ins_actividad = new actividadesController();
+                require_once './controladores/actividadController.php';
+                $ins_actividad = new actividadController();
                 $resultado='';
                 $ncontrol='';
-                $dat_info = $ins_actividad->consulta_actividades_controlador($resultado);
+                $dat_info = $ins_actividad->consulta_actividad_controlador($resultado);
 
                 ?>
                 <div class="table-responsive table-bordered table  ">

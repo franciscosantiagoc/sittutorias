@@ -20,21 +20,64 @@ include "./vistas/inc/navTutor.php";
 
     <div class="register-photo">
         <div id="importcsvregis" class="form-container">
-            <form id="regisTutcsv" method="post">
-                <h2 class="text-center"><strong>Tutorados</strong></h2><div class="team-boxed">
-    <div class="container">
-        
-       
-        <?php
-            require_once "./controladores/usuarioController.php";
-            $ins_usuario = new usuarioController();
+                <div class="form-container" id="contain">
+                    <div class="col-md-12 search-table-col">
+                        <div class="intro">
+                            <h2 class="text-center"><strong>Tutorados</strong></h2>
+                        </div>
+                        <?php
+                        require_once './controladores/tutoradosController.php';
+                        $ins_actividad = new tutoradosController();
+                        $dat_info = $ins_actividad->consulta_tutorados_controlador();
+                        ?>
+                        <div class="table-responsive table-bordered table  ">
+                            <table class="table table-bordered table-hover tablas">
+                                <thead class="bg-primary bill-header cs">
+                                <tr class="text-center roboto-medium">
+                                    <th>#</th>
+                                    <th>NCONTROL</th>
+                                    <th>NOMBRE</th>
+                                    <th>APELLIDO PATERNO</th>
+                                    <th>APELLIDO MATERNO</th>
+                                    <th>TELEFONO</th>
+                                    <th>ACTUALIZAR</th>
+                                    <th>ELIMINAR</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $contador=1;
+                                foreach ($dat_info as $rows){
+                                    echo '<tr class="text-center" >
+                        <td>'.$contador.'</td>
+                        <td>'.$rows['NControl'].'</td>
+                        <td>'.$rows['Nombre'].'</td>
+                        <td>'.$rows['APaterno'].'</td>
+                        <td>'.$rows['AMaterno'].'</td>
+                        <td>'.$rows['NTelefono'].'</td>
+                        <td>
+                            <a href="#Actualizar" class="btn btn-success">
+                                    <i class="fas fa-sync-alt"></i>	
+                            </a>
+                        </td>
+                        <td>
+                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
+                            
+                                <button type="submit" class="btn btn-warning">
+                                        <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+				    </tr>';
+                                    $contador++;
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-            // 0 es el índice que tiene la vista
-            echo $ins_usuario->paginador_tutorados_controlador($pagina[1],10,$_SESSION['roll_sti'],$_SESSION['id_sti'],$pagina[0],"");
-            ?>
-    
-    </div>
-</div></form>
         </div>
         <div id="cont-visdat" class="form-container">
             <form method="post"><img id="imgreg" src="./vistas/assets/img/alum3.jpg">

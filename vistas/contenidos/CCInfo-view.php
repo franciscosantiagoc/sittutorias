@@ -25,37 +25,64 @@ include "./vistas/inc/navCoordinadorC.php"
             <div class="form-container">
                 <form method="post">
                     <h2 class="text-center"><strong>Información</strong></h2><div class="team-boxed">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Tutores </h2>
-        </div>
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/1.jpg" />
-                    <h3 class="name">Alberto Ramírez Regalado</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
-                    <h3 class="name">Maribel Castillejos Toledo</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>  
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
-                    <h3 class="name">Angel Olivarez Perez</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>      
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="form-container" id="contain">
+                            <div class="col-md-12 search-table-col">
+                                <div class="intro">
+                                    <h2 class="text-center">Coordinador de Área </h2>
+                                </div>
+
+                                <?php
+                                require_once './controladores/jefesdController.php';
+                                $ins_actividad = new jefesdController();
+                                $dat_info = $ins_actividad->consulta_jefesd_controlador();
+                                ?>
+                                <div class="table-responsive table-bordered table  ">
+                                    <table class="table table-bordered table-hover tablas">
+                                        <thead class="bg-primary bill-header cs">
+                                        <tr class="text-center roboto-medium">
+                                            <th>#</th>
+                                            <th>MATRICULA</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDO PATERNO</th>
+                                            <th>APELLIDO MATERNO</th>
+                                            <th>TELEFONO</th>
+                                            <th>ACTUALIZAR</th>
+                                            <th>ELIMINAR</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $contador=1;
+                                        foreach ($dat_info as $rows){
+                                            echo '<tr class="text-center" >
+                                <td>'.$contador.'</td>
+                                <td>'.$rows['Matricula'].'</td>
+                                <td>'.$rows['Nombre'].'</td>
+                                <td>'.$rows['APaterno'].'</td>
+                                <td>'.$rows['AMaterno'].'</td>
+                                <td>'.$rows['NTelefono'].'</td>
+                                <td>
+                                    <a href="#Actualizar" class="btn btn-success">
+                                            <i class="fas fa-sync-alt"></i>	
+                                    </a>
+                                </td>
+                                <td>
+                                    <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
+                                    
+                                        <button type="submit" class="btn btn-warning">
+                                                <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>';
+                                            $contador++;
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 </div></form>
             </div>
             <div id="dat-coord" class="form-container">

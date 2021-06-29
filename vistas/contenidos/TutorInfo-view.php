@@ -25,43 +25,103 @@ include "./vistas/inc/navTutor.php";
             <div class="form-container">
                 <form method="post">
                     <h2 class="text-center"><strong>Información</strong></h2><div class="team-boxed">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Tutores </h2>
-        </div>
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/1.jpg" />
-                    <h3 class="name">Alberto Ramírez Regalado</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div> 
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/2.jpg" />
-                    <h3 class="name">Maribel Castillejos Toledo</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>  
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 item">
-                <div class="box"><img class="rounded-circle" src="./vistas/assets/img/3.jpg" />
-                    <h3 class="name">Angel Olivarez Perez</h3>
-                    <b>Area: </b><p class="description">Sistemas e informática</p>
-                    <b>Matrícula: </b><p class="description">25635453</p>
-                    <div class="enlaces"><a href="#">Ver</a><a class="edit" href="#">Editar</a></div>      
-                </div>
-            </div>
-        </div>
-    </div>
-</div></form>
+                        <div class="form-container" id="contain">
+                            <div class="col-md-12 search-table-col">
+                                <div class="intro">
+                                    <h2 class="text-center">Coordinador de Área </h2>
+                                </div>
+
+                                <?php
+                                require_once './controladores/jefesdController.php';
+                                $ins_actividad = new jefesdController();
+                                $dat_info = $ins_actividad->consulta_jefesd_controlador();
+                                ?>
+                                <div class="table-responsive table-bordered table  ">
+                                    <table class="table table-bordered table-hover tablas">
+                                        <thead class="bg-primary bill-header cs">
+                                        <tr class="text-center roboto-medium">
+                                            <th>#</th>
+                                            <th>MATRICULA</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDO PATERNO</th>
+                                            <th>APELLIDO MATERNO</th>
+                                            <th>TELEFONO</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $contador=1;
+                                        foreach ($dat_info as $rows){
+                                            echo '<tr class="text-center" >
+                                <td>'.$contador.'</td>
+                                <td>'.$rows['Matricula'].'</td>
+                                <td>'.$rows['Nombre'].'</td>
+                                <td>'.$rows['APaterno'].'</td>
+                                <td>'.$rows['AMaterno'].'</td>
+                                <td>'.$rows['NTelefono'].'</td>
+                                
+                               
+                            </tr>';
+                                            $contador++;
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-container" id="contain">
+                            <div class="col-md-12 search-table-col">
+                                <div class="intro">
+                                    <h2 class="text-center">Coordinador de Carrera </h2>
+                                </div>
+
+                                <?php
+                                require_once './controladores/coordinadorescController.php';
+                                $ins_actividad = new coordinadorescController();
+                                $dat_info = $ins_actividad->consulta_coordinadoresc_controlador();
+                                ?>
+                                <div class="table-responsive table-bordered table  ">
+                                    <table class="table table-bordered table-hover tablas">
+                                        <thead class="bg-primary bill-header cs">
+                                        <tr class="text-center roboto-medium">
+                                            <th>#</th>
+                                            <th>MATRICULA</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDO PATERNO</th>
+                                            <th>APELLIDO MATERNO</th>
+                                            <th>TELEFONO</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $contador=1;
+                                        foreach ($dat_info as $rows){
+                                            echo '<tr class="text-center" >
+                                <td>'.$contador.'</td>
+                                <td>'.$rows['Matricula'].'</td>
+                                <td>'.$rows['Nombre'].'</td>
+                                <td>'.$rows['APaterno'].'</td>
+                                <td>'.$rows['AMaterno'].'</td>
+                                <td>'.$rows['NTelefono'].'</td>
+                            </tr>';
+                                            $contador++;
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
             <div id="dat-coord" class="form-container">
                 <form method="post">
                     <div class="form-group">
-                        <p><strong>Coordinador de Área</strong></p>
+                        <p><strong>Coordinador de Carrera/Área</strong></p>
                     </div><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
                     <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
