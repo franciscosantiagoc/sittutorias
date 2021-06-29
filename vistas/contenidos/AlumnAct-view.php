@@ -73,17 +73,9 @@ include "./vistas/inc/navStudent.php"
 
             $ins_actividad= new actividadesController(); 
 
-            echo $ins_actividad->agregar_entregaactividad_controlador(); /**/
+            echo $ins_actividad->agregar_entregaactividad_controlador(); 
             
         } 
-        /* if(isset($_POST['ideditactiv']) && isset($_POST['idaleditactiv'])){
-            /* require_once "./controladores/actividadesController.php";
-
-            $ins_actividad= new actividadesController(); 
-
-            echo $ins_actividad->agregar_entregaactividad_controlador(); 
-            echo '<script>alert("Envio form");</script>';
-        } */
     ?>
 
     <div class="register-photo">

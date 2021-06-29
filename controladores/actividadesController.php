@@ -16,12 +16,12 @@ class actividadesController extends usuarioModel
       foreach($dat_info as $row){
          $consult_entrega = mainModel::ejecutar_consulta_simple('SELECT * FROM actividades_asignadas WHERE Actividades_idActividades='. $row['idActividades'] .' AND Tutorado_NControl=' . $ncontrol .';');
          if($consult_entrega->rowCount() > 0){
-            $rows['Estado']= 'Entregado';
+            $row['Estado']= 'Entregado';
          }else{
-            $rows['Estado']= 'No entregado';
+            $row['Estado']= 'No entregado';
          }
 
-         array_push($resultado, $rows);
+         array_push($resultado, $row);
       }
       return $resultado; 
             
@@ -40,7 +40,7 @@ class actividadesController extends usuarioModel
       $idact = mainModel::limpiar_cadena($_POST['ideditactiv']);
       $nctrl = mainModel::limpiar_cadena($_POST['idaleditactiv']);
       /* $nombre = mainModel::limpiar_cadena($_POST['name_upd']); */
-      if(!empty($nctrl) && !empty($nctrl)){
+      if(empty($nctrl) || empty($nctrl)){
          echo '
          <script> 
             Swal.fire({
@@ -95,7 +95,7 @@ class actividadesController extends usuarioModel
          exit();
       }
 
-      if(!isset($_FILES['activity-file'])){
+      if($_FILES['activity-file']['name'] == null){
          echo '
             <script> 
                Swal.fire({
@@ -103,11 +103,37 @@ class actividadesController extends usuarioModel
                   text: "No ha cargado un archivo",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'AlumnAct"
+                  }
                });
             </script>
             ';
         exit();
       }
+
+      $temp = $_FILES['image_upd']['tmp_name'];
+      $link_img='/directory/img-person/'.$nombre.'_'.$iduser.$tipo;
+      $link_img=str_replace(' ', '', $link_img);
+      $archivo = '.'.$link_img;
+      if (move_uploaded_file($temp, $archivo) ) {
+         //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+         chmod($archivo, 0777);
+      }else{
+         echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "Error al cargar la imagen al servidor, intente nuevamente",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            });
+         </script>
+         '; 
+         exit();
+      }
+
    }
  
    
