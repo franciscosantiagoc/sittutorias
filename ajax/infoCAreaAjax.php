@@ -2,10 +2,10 @@
 require_once "../config/APP.php";
 
 $peticionAjax = true;
-if(isset($_POST['idActividad'])){
-    require_once "../controladores/actividadesController.php";
-    $ins_actividad = new actividadesController();
-    $respuesta= $ins_actividad->consulta_actividad_controlador($_POST['idActividad']);
+if(isset($_POST['idInfoCArea'])){
+    require_once "../controladores/jefesdController.php";
+    $ins_informacionCArea = new jefesdController();
+    $respuesta= $ins_informacionCArea->consulta_jefesd_controlador($_POST['idInfoCArea']);
     echo json_encode($respuesta);
     /* echo 'Respuesta actividad ajax';*/
 }else {
