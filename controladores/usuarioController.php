@@ -648,7 +648,9 @@ class usuarioController extends usuarioModel
       
       /* echo $actualizar_usuario;
       exit(); */
-      if($actualizar_usuario = usuarioModel::actualizar_usuario_modelo($datos_usuario_upd)){
+      $actualizar_usuario = usuarioModel::actualizar_usuario_modelo($datos_usuario_upd);
+      
+      if($actualizar_usuario){//comprobando realizacion de actualizacion
          echo '
             <script> 
                Swal.fire({

@@ -78,9 +78,9 @@ include "./vistas/inc/navStudent.php"
         } 
     ?>
 
-    <div class="register-photo">
-        <div class="form-container" id="contain">
-            <div class="col-md-12 search-table-col">
+    <div class="container">
+        <div class="row" id="contain">
+            <div class="col-lg-12">
                 <p id="tit-activities"><strong>ACTIVIDADES ASIGNADAS</strong></p>
                 <?php
                     require_once './controladores/actividadesController.php';
@@ -89,8 +89,8 @@ include "./vistas/inc/navStudent.php"
                     
                 ?>
 
-                <div class="table-responsive table-bordered table table-hover table-bordered results">
-                    <table class="table table-striped table-bordered nowrap tablas">
+                <!-- <div class="table-responsive table-bordered table table-hover table-bordered results"> -->
+                    <table class="table table-bordered  display nowrap tablas"  style="cellspacing=0;  width:100%">
                         <thead class="bg-primary bill-header cs">
                             <tr>
                                 <th id="trs-hd" class="col-lg-1">Nombre de la Actividad</th>
@@ -129,7 +129,7 @@ include "./vistas/inc/navStudent.php"
                             
                         </tbody>
                     </table>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
         

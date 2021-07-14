@@ -1,11 +1,11 @@
 <?php
 if ($peticionAjax) {
-   require_once "../modelos/usuarioModel.php";
+   require_once "../modelos/actividadesModel.php";
 } else {
-   require_once "./modelos/usuarioModel.php";
+   require_once "./modelos/actividadesModel.php";
 }
 
-class actividadesController extends usuarioModel
+class actividadesController extends actividadesModel
 {
 
    public function consulta_actividades_controlador($ncontrol)
@@ -15,8 +15,9 @@ class actividadesController extends usuarioModel
       $resultado = [];
       foreach($dat_info as $row){
          $consult_entrega = mainModel::ejecutar_consulta_simple('SELECT * FROM actividades_asignadas WHERE Actividades_idActividades='. $row['idActividades'] .' AND Tutorado_NControl=' . $ncontrol .';');
+          $rowsub=$consult_entrega->fetch();
          if($consult_entrega->rowCount() > 0){
-            $row['Estado']= 'Entregado';
+            $row['Estado']= $rowsub['Estatus'];
          }else{
             $row['Estado']= 'No entregado';
          }
@@ -113,12 +114,12 @@ class actividadesController extends usuarioModel
         exit();
       }
 
-      $temp = $_FILES['image_upd']['tmp_name'];
-      $link_img='/directory/img-person/'.$nombre.'_'.$iduser.$tipo;
-      $link_img=str_replace(' ', '', $link_img);
-      $archivo = '.'.$link_img;
+      $temp = $_FILES['activity-file']['tmp_name'];
+      $link_file='/directory/Activitiesdelivered/'.$idact.'_'.$nctrl.".pdf";
+      //$link_img=str_replace(' ', '', $link_img);
+      $archivo = '.'.$link_file;
       if (move_uploaded_file($temp, $archivo) ) {
-         //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+         //Cambiamos los permisos
          chmod($archivo, 0777);
       }else{
          echo '
@@ -133,6 +134,53 @@ class actividadesController extends usuarioModel
          '; 
          exit();
       }
+      //$date = date('YY-mm-dd');
+       $check_idact = mainModel::ejecutar_consulta_simple("SELECT * FROM actividades_asignadas WHERE Actividades_idActividades=$idact AND Tutorado_NControl=$nctrl");
+
+     
+      
+      $datos_actividad_upd = [
+         "idActividad" => $idact,
+         "NControl" => $nctrl,
+         "URLFile" => $link_file,
+         //"Fecha" => $date,
+         "Status" => 'En espera'
+      ];
+       //echo "<script>alert($date);</script>"; /**/
+
+       
+      if($check_idact->rowCount()==0){ 
+         $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
+       }else{
+         $registro_actividad = actividadesModel::modificarstatus_actividad_modelo($datos_actividad_upd);
+      } 
+      /**/
+      
+      if($registro_actividad){//comprobando realizacion de actualizacion
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Usuario Actualizado",
+                  text: "Se ha subido la actividad correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            '; 
+
+      }else{
+           echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al registrar la actividad, recargue la pagina para continuar",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            '; 
+      }
+       
 
    }
  
