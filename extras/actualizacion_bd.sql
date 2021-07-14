@@ -297,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `trabajador` (
   `Persona_idPersona` int(10) unsigned NOT NULL,
   `Roll` varchar(25) NOT NULL,
   `Areas_idAreas` int(11) NOT NULL,
+  `Carrera_idCarrera` int(11) DEFAULT NULL,  
   `contraseña` varchar(16) NOT NULL,
   `Estado` varchar(45) NOT NULL,
   `Disponibilidad` varchar(45) DEFAULT NULL,/*Docente quiere gestionar tutorados nuevos*/

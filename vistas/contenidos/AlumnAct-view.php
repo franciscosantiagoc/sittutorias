@@ -132,7 +132,6 @@ include "./vistas/inc/navStudent.php"
                 </div>
             </div>
         </div>
-        
     </div>
 
 

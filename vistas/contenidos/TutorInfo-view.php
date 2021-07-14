@@ -16,124 +16,302 @@ if(isset($_SESSION['roll_sti'])){
 
 }
 
-include "./vistas/inc/navTutor.php"; 
-
-
+include "./vistas/inc/navTutor.php";
 ?>
-    <div class="register-photo">
-        <div id="importcsvregis" class="form-container">
-            <div class="form-container">
-                <form method="post">
-                    <h2 class="text-center"><strong>Información</strong></h2><div class="team-boxed">
-                        <div class="form-container" id="contain">
-                            <div class="col-md-12 search-table-col">
-                                <div class="intro">
-                                    <h2 class="text-center">Coordinador de Área </h2>
-                                </div>
-
-                                <?php
-                                require_once './controladores/jefesdController.php';
-                                $ins_actividad = new jefesdController();
-                                $dat_info = $ins_actividad->consulta_jefesd_controlador();
-                                ?>
-                                <div class="table-responsive table-bordered table  ">
-                                    <table class="table table-bordered table-hover tablas">
-                                        <thead class="bg-primary bill-header cs">
-                                        <tr class="text-center roboto-medium">
-                                            <th>#</th>
-                                            <th>MATRICULA</th>
-                                            <th>NOMBRE</th>
-                                            <th>APELLIDO PATERNO</th>
-                                            <th>APELLIDO MATERNO</th>
-                                            <th>TELEFONO</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        $contador=1;
-                                        foreach ($dat_info as $rows){
-                                            echo '<tr class="text-center" >
-                                <td>'.$contador.'</td>
-                                <td>'.$rows['Matricula'].'</td>
-                                <td>'.$rows['Nombre'].'</td>
-                                <td>'.$rows['APaterno'].'</td>
-                                <td>'.$rows['AMaterno'].'</td>
-                                <td>'.$rows['NTelefono'].'</td>
-                                
-                               
-                            </tr>';
-                                            $contador++;
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-container" id="contain">
-                            <div class="col-md-12 search-table-col">
-                                <div class="intro">
-                                    <h2 class="text-center">Coordinador de Carrera </h2>
-                                </div>
-
-                                <?php
-                                require_once './controladores/coordinadorescController.php';
-                                $ins_actividad = new coordinadorescController();
-                                $dat_info = $ins_actividad->consulta_coordinadoresc_controlador();
-                                ?>
-                                <div class="table-responsive table-bordered table  ">
-                                    <table class="table table-bordered table-hover tablas">
-                                        <thead class="bg-primary bill-header cs">
-                                        <tr class="text-center roboto-medium">
-                                            <th>#</th>
-                                            <th>MATRICULA</th>
-                                            <th>NOMBRE</th>
-                                            <th>APELLIDO PATERNO</th>
-                                            <th>APELLIDO MATERNO</th>
-                                            <th>TELEFONO</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        $contador=1;
-                                        foreach ($dat_info as $rows){
-                                            echo '<tr class="text-center" >
-                                <td>'.$contador.'</td>
-                                <td>'.$rows['Matricula'].'</td>
-                                <td>'.$rows['Nombre'].'</td>
-                                <td>'.$rows['APaterno'].'</td>
-                                <td>'.$rows['AMaterno'].'</td>
-                                <td>'.$rows['NTelefono'].'</td>
-                            </tr>';
-                                            $contador++;
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
+<!-- Info CArea -->
+<div class="modal" id="modalInfoCArea" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Área</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div id="dat-coord" class="form-container">
-                <form method="post">
-                    <div class="form-group">
-                        <p><strong>Coordinador de Carrera/Área</strong></p>
-                    </div><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
-                    <div class="form-group"><select class="form-control"><option value="" selected="">Sexo</option><option value="1">Hombre</option><option value="2">Mujer</option></select></div>
-                    <div class="form-group"><input class="form-control" type="tel" placeholder="Número de Telefono"></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><select class="form-control"><option value="" selected="">Carrera</option><option value="13">Arquitectura</option><option value="14">Informatica</option><option value="15">Ingenieria Civil</option><option value="16">Ingenieria en Sistemas Computacionales</option></select></div>
-                    <div
-                        class="form-group"><input class="form-control" type="text" placeholder="Departamento"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="No. Cubiculo"></div>
-            </form>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="matriculaCA">Matrícula</label>
+                            <input class="form-control" type="text" placeholder="Matrícula" id="matriculaCA" name="matriculaCA" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreCoordinadorCA">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="nameCoordinadorCA" name="nameCoordinadorCA" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoPCA">Apellido Paterno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Paterno" id="apellidoPCA" name="apellidopca" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoMCA">Apellido Materno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Materno" id="apellidoMCA" name="apellidomca" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexoCA">Sexo</label>
+                            <input class="form-control" type="text" placeholder="Sexo" id="SexoCA" name="sexoca" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroTelefonoCA">Número de Teléfono</label>
+                            <input class="form-control" type="text" placeholder="Número de Teléfono" id="numeroTelefonoCA" name="numerotelefonoCA" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailCA">Email</label>
+                            <input class="form-control" type="text" placeholder="Email" id="EmailCA" name="emailca" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="carreraCA">Carrera</label>
+                            <input class="form-control" type="text" placeholder="Carrera" id="CarreraCA" name="carreraca" disabled>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- Info CCarrera -->
+<div class="modal" id="modalInfoCCarrera" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Carrera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="matriculaC">Matrícula</label>
+                            <input class="form-control" type="text" placeholder="Matrícula" id="matriculaC" name="matriculaC" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreCoordinadorC">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="nameCoordinadorC" name="nameCoordinadorC" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoP">Apellido Paterno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Paterno" id="apellidoP" name="apellidop" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoM">Apellido Materno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Materno" id="apellidoM" name="apellidom" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <input class="form-control" type="text" placeholder="Sexo" id="Sexo" name="sexo" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroTelefono">Número de Teléfono</label>
+                            <input class="form-control" type="text" placeholder="Número de Teléfono" id="numeroTelefono" name="numerotelefono" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="text" placeholder="Email" id="Email" name="email" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="carrera">Carrera</label>
+                            <input class="form-control" type="text" placeholder="Carrera" id="Carrera" name="carrera" disabled>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+
+
+<div class="register-photo">
+    <div class="form-container" id="contain">
+        <div class="col-md-12 search-table-col">
+            <p id="tit-activities"><strong>INFORMACIÓN</strong></p>
+            <?php
+            require_once './controladores/jefesdController.php';
+            $ins_actividad = new jefesdController();
+            $dat_info = $ins_actividad->consulta_jefesd_controlador();
+
+            ?>
+
+
+            <div class="table-responsive table-bordered table table-hover table-bordered results">
+                <div class="form-group">
+                    <p><strong>Coordinador de Área</strong></p>
+                </div>
+                <table class="table table-striped table-bordered nowrap tablas">
+                    <thead class="bg-primary bill-header cs">
+                    <tr>
+                        <th id="trs-hd" class="col-lg-1">MATRÍCULA</th>
+                        <th id="trs-hd" class="col-lg-2">NOMBRE</th>
+                        <th id="trs-hd" class="col-lg-2">APELLIDO PATERNO</th>
+                        <th id="trs-hd" class="col-lg-3">APELLIDO MATERNO<br></th>
+                        <th id="trs-hd" class="col-lg-2">TELÉFONO</th>
+                        <th id="trs-hd" class="col-lg-2">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($dat_info as $row){
+                        $idmatric = $row['Matricula'];
+                        $name = $row['Nombre'];
+                        $apellp = $row['APaterno'];
+                        $apellm = $row['AMaterno'];
+                        $sexo = $row['Sexo'];
+                        $tel = $row['NTelefono'];
+                        $correo = $row['Correo'];
+                        $carrera = $row['Carrera_idCarrera'];
+
+
+                        echo '
+                                        <tr>
+                                            <td>'. $idmatric .'</td>
+                                            <td>'. $name .'</td>
+                                            <td>'. $apellp .'</td>
+                                            <td>'. $apellm .'</td>
+                                            <td>'. $tel .'</td>
+                                            <td><center><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                            </center></td>
+                                            
+                                        </tr>
+                                    ';
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CCarrera -->
+
+<div class="register-photo">
+    <div class="form-container" id="contain">
+        <div class="col-md-12 search-table-col">
+
+
+            <?php
+            require_once './controladores/coordinadorescController.php';
+            $ins_actividad = new coordinadorescController();
+            $dat_info = $ins_actividad->consulta_coordinadoresc_controlador();
+
+            ?>
+
+
+            <div class="table-responsive table-bordered table table-hover table-bordered results">
+                <div class="form-group">
+                    <p><strong>Coordinador de Carrera</strong></p>
+                </div><table class="table table-striped table-bordered nowrap tablas">
+                    <thead class="bg-primary bill-header cs">
+                    <tr>
+                        <th id="trs-hd" class="col-lg-1">MATRÍCULA</th>
+                        <th id="trs-hd" class="col-lg-2">NOMBRE</th>
+                        <th id="trs-hd" class="col-lg-2">APELLIDO PATERNO</th>
+                        <th id="trs-hd" class="col-lg-3">APELLIDO MATERNO<br></th>
+                        <th id="trs-hd" class="col-lg-2">TELÉFONO</th>
+                        <th id="trs-hd" class="col-lg-2">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($dat_info as $row){
+                        $idmatric = $row['Matricula'];
+                        $name = $row['Nombre'];
+                        $apellp = $row['APaterno'];
+                        $apellm = $row['AMaterno'];
+                        $sexo = $row['Sexo'];
+                        $tel = $row['NTelefono'];
+                        $correo = $row['Correo'];
+                        $carrera = $row['Carrera_idCarrera'];
+
+
+                        echo '
+                                        <tr>
+                                            <td>'. $idmatric .'</td>
+                                            <td>'. $name .'</td>
+                                            <td>'. $apellp .'</td>
+                                            <td>'. $apellm .'</td>
+                                            <td>'. $tel .'</td>
+                                            <td><center><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                            </center></td>
+                                            
+                                        </tr>
+                                    ';
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function clickActividad(idInfoCA){
+        var datos = new FormData();
+        datos.append("idInfoCArea",idInfoCA);
+        $.ajax({
+            url: "ajax/infoCAreaAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function(respuesta){
+
+                console.log(respuesta);/**/
+                $("#matriculaCA").val(respuesta[0][0]);
+                $("#nameCoordinadorCA").val(respuesta[0][1]);
+                $("#apellidoPCA").val(respuesta[0][2]);
+                $("#apellidoMCA").val(respuesta[0][3]);
+                $("#SexoCA").val(respuesta[0][4]);
+                $("#numeroTelefonoCA").val(respuesta[0][5]);
+                $("#EmailCA").val(respuesta[0][6]);
+                $("#CarreraCA").val(respuesta[0][7]);
+
+            }
+        }).fail( function( jqXHR, textStatus, errorThrown ) {
+            console.log('error '+textStatus);
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+    function clickActividad2(idInfo){
+        var datos = new FormData();
+        datos.append("idInformacion",idInfo);
+
+
+        $.ajax({
+            url: "ajax/infoAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function(respuesta){
+
+                console.log(respuesta);/**/
+                $("#matriculaC").val(respuesta[0][0]);
+                $("#nameCoordinadorC").val(respuesta[0][1]);
+                $("#apellidoP").val(respuesta[0][2]);
+                $("#apellidoM").val(respuesta[0][3]);
+                $("#Sexo").val(respuesta[0][4]);
+                $("#numeroTelefono").val(respuesta[0][5]);
+                $("#Email").val(respuesta[0][6]);
+                $("#Carrera").val(respuesta[0][7]);
+
+            }
+        }).fail( function( jqXHR, textStatus, errorThrown ) {
+            console.log('error '+textStatus);
+        });
+    }
+
+</script>
