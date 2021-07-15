@@ -31,6 +31,7 @@ include "./vistas/inc/navStudent.php";
             <div class="modal-body">
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-info"></center>
                         <div class="form-group">
                             <label for="matriculaC">Matrícula</label>
                             <input class="form-control" type="text" placeholder="Matrícula" id="matriculaC" name="matriculaC" disabled>
@@ -137,7 +138,7 @@ include "./vistas/inc/navStudent.php";
     function clickActividad(idInfo){
         var datos = new FormData();
         datos.append("idInformacion",idInfo);
-
+        $imagenPrevisualizacion = document.querySelector("#image-info");
 
         $.ajax({
             url: "ajax/infoAjax.php",
@@ -159,6 +160,10 @@ include "./vistas/inc/navStudent.php";
                 $("#Email").val(respuesta[0][6]);
                 $("#Carrera").val(respuesta[0][7]);
 
+                var image = "<?php echo SERVERURL;?>"
+                image = image +respuesta[0][8];
+                $imagenPrevisualizacion.src = image;
+                console.log("imagen coord:"+image);
             }
         }).fail( function( jqXHR, textStatus, errorThrown ) {
             console.log('error '+textStatus);
