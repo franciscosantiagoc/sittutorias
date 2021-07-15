@@ -130,8 +130,11 @@ include "./vistas/inc/navTutor.php";
             <p id="tit-activities"><strong>INFORMACIÓN</strong></p>
             <?php
             require_once './controladores/jefesdController.php';
+            require_once './controladores/coordinadorescController.php';
             $ins_actividad = new jefesdController();
+            $ins_actividad2 = new coordinadorescController();
             $dat_info = $ins_actividad->consulta_jefesd_controlador();
+            $dat_info2 = $ins_actividad2->consulta_coordinadoresc_controlador();
 
             ?>
 
@@ -147,6 +150,7 @@ include "./vistas/inc/navTutor.php";
                         <th id="trs-hd" class="col-lg-2">NOMBRE</th>
                         <th id="trs-hd" class="col-lg-2">APELLIDO PATERNO</th>
                         <th id="trs-hd" class="col-lg-3">APELLIDO MATERNO<br></th>
+                        <th id="trs-hd" class="col-lg-3">ROLL<br></th>
                         <th id="trs-hd" class="col-lg-2">TELÉFONO</th>
                         <th id="trs-hd" class="col-lg-2">Acciones</th>
                     </tr>
@@ -165,18 +169,46 @@ include "./vistas/inc/navTutor.php";
 
 
                         echo '
+                            <tr>
+                                <td>'. $idmatric .'</td>
+                                <td>'. $name .'</td>
+                                <td>'. $apellp .'</td>
+                                <td>'. $apellm .'</td>
+                                <td>Jefe de departamento</td>
+                                <td>'. $tel .'</td>
+                                <td><center><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                </center></td>
+                                
+                            </tr>
+                        ';
+                    }
+                    
+                    foreach($dat_info2 as $row){
+                        $idmatric = $row['Matricula'];
+                        $name = $row['Nombre'];
+                        $apellp = $row['APaterno'];
+                        $apellm = $row['AMaterno'];
+                        $sexo = $row['Sexo'];
+                        $tel = $row['NTelefono'];
+                        $correo = $row['Correo'];
+                        $carrera = $row['Carrera_idCarrera'];
+
+
+                        echo '
                                         <tr>
                                             <td>'. $idmatric .'</td>
                                             <td>'. $name .'</td>
                                             <td>'. $apellp .'</td>
                                             <td>'. $apellm .'</td>
+                                            <td>Coordinador de Carrera</td>
                                             <td>'. $tel .'</td>
-                                            <td><center><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                            <td><center><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
                                             </center></td>
                                             
                                         </tr>
                                     ';
                     }
+                    
                     ?>
 
                     </tbody>
@@ -201,7 +233,7 @@ include "./vistas/inc/navTutor.php";
             ?>
 
 
-            <div class="table-responsive table-bordered table table-hover table-bordered results">
+           <!--  <div class="table-responsive table-bordered table table-hover table-bordered results">
                 <div class="form-group">
                     <p><strong>Coordinador de Carrera</strong></p>
                 </div><table class="table table-striped table-bordered nowrap tablas">
@@ -217,7 +249,7 @@ include "./vistas/inc/navTutor.php";
                     </thead>
                     <tbody>
                     <?php
-                    foreach($dat_info as $row){
+                    /* foreach($dat_info as $row){
                         $idmatric = $row['Matricula'];
                         $name = $row['Nombre'];
                         $apellp = $row['APaterno'];
@@ -240,12 +272,12 @@ include "./vistas/inc/navTutor.php";
                                             
                                         </tr>
                                     ';
-                    }
+                    } */
                     ?>
 
                     </tbody>
                 </table>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
