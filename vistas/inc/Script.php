@@ -4,6 +4,31 @@
 
 <script>
    $(document).ready(function() {
+      $( ".logout-sesion" ).click(function() {
+         Swal.fire({
+            title: '¿Quiere salir del sistema?',
+            text: "La sesión actual se cerrara y saldra del sistema",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Salir',
+            cancelButtonText: 'Cancelar'
+         }).then((result) => {
+            if(result.value){
+              let url='<?php echo SERVERURL; ?>ajax/loginAjax.php';
+              let datos = new FormData();
+              datos.append("cerrar","");
+              fetch(url,{
+                  method: 'POST',
+                  body: datos
+                  })
+               }
+               window.location="index";
+         })
+      });
+
+
       $('.tablas').DataTable({
          responsive: true,
          "language": {

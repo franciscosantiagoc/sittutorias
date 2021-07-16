@@ -1,5 +1,5 @@
 <script>
-   let btn_salir=document.querySelector(".logout-sesion");
+   /* var btn_salir=document.querySelector(".logout-sesion");
 
    btn_salir.addEventListener('click', function(e){
       e.preventDefault();
@@ -29,5 +29,5 @@
             }); 
          }
       })
-   });
+   }); */
 </script>
