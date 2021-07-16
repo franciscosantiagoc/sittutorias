@@ -13,10 +13,11 @@
 
 
 -- Volcando estructura de base de datos para sistutorias
-CREATE DATABASE IF NOT EXISTS `sistutorias` /*!40100 DEFAULT CHARACTER SET latin1 */;
+--CREATE DATABASE IF NOT EXISTS `sistutorias` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `sistutorias`;
 
--- Volcando estructura para tabla sistutorias.actividades
+
+-- Volcando estructura para tabla actividades
 CREATE TABLE IF NOT EXISTS `actividades` (
   `idActividades` int(11) NOT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
@@ -27,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `actividades` (
   PRIMARY KEY (`idActividades`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.actividades: ~7 rows (aproximadamente)
-DELETE FROM `actividades`;
+-- Volcando datos para la tabla actividades: ~7 rows (aproximadamente)
+-- delete from `actividades`;
 /*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
 INSERT INTO `actividades` (`idActividades`, `Nombre`, `Descripcion`, `Semestrerealizacion_sug`, `Fecha_registro`, `URLFormato`) VALUES
 	(3016, 'Análisis Foda', 'Descripcion', 4, '2018-08-27', 'directory/formats/AnalisisFoda.pdf'),
@@ -40,7 +41,7 @@ INSERT INTO `actividades` (`idActividades`, `Nombre`, `Descripcion`, `Semestrere
 	(8595, 'Test de Autoestima', 'Descripcion', 6, '2018-08-29', 'directory/formats/TestdeAutoestima.pdf');
 /*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.actividades_asignadas
+-- Volcando estructura para tabla actividades_asignadas
 CREATE TABLE IF NOT EXISTS `actividades_asignadas` (
   `Actividades_idActividades` int(11) NOT NULL,
   `Tutorado_NControl` int(11) NOT NULL,
@@ -52,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `actividades_asignadas` (
   PRIMARY KEY (`Actividades_idActividades`,`Tutorado_NControl`),
   KEY `fk_Actividades_has_Trabajador_Actividades1_idx` (`Actividades_idActividades`),
   KEY `fk_Actividades_Asignadas_Tutorado1_idx` (`Tutorado_NControl`),
-  CONSTRAINT `fk_Actividades_has_Trabajador_Actividades1` FOREIGN KEY (`Actividades_idActividades`) REFERENCES `actividades` (`idActividades`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Actividades_has_Trabajador_Actividades1` FOREIGN KEY (`Actividades_idActividades`) REFERENCES `actividades` (`idActividades`) ON delete NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.actividades_asignadas: ~3 rows (aproximadamente)
-DELETE FROM `actividades_asignadas`;
+-- Volcando datos para la tabla actividades_asignadas: ~3 rows (aproximadamente)
+-- delete from `actividades_asignadas`;
 /*!40000 ALTER TABLE `actividades_asignadas` DISABLE KEYS */;
 INSERT INTO `actividades_asignadas` (`Actividades_idActividades`, `Tutorado_NControl`, `URLFile`, `Fecha`, `Estatus`, `Puntuacion`, `Comentarios`) VALUES
 	(3016, 16190437, 'directory/Activitiesdelivered/3016_16190437.pdf', NULL, 'En espera', NULL, NULL),
@@ -64,7 +65,7 @@ INSERT INTO `actividades_asignadas` (`Actividades_idActividades`, `Tutorado_NCon
 	(8595, 16190437, '/directory/Activitiesdelivered/8595_16190437.pdf', NULL, 'En espera', NULL, NULL);
 /*!40000 ALTER TABLE `actividades_asignadas` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.areas
+-- Volcando estructura para tabla areas
 CREATE TABLE IF NOT EXISTS `areas` (
   `idAreas` int(11) NOT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
@@ -73,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `areas` (
   UNIQUE KEY `idAreas` (`idAreas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.areas: ~5 rows (aproximadamente)
-DELETE FROM `areas`;
+-- Volcando datos para la tabla areas: ~5 rows (aproximadamente)
+-- delete from `areas`;
 /*!40000 ALTER TABLE `areas` DISABLE KEYS */;
 INSERT INTO `areas` (`idAreas`, `Nombre`, `Descripcion`) VALUES
 	(27313, 'Contabilidad y Gestión de Impuestos', 'Ejemplo de descripción'),
@@ -84,22 +85,8 @@ INSERT INTO `areas` (`idAreas`, `Nombre`, `Descripcion`) VALUES
 	(52767, 'Administración y Gestión de Empresas', 'Ejemplo de descripción');
 /*!40000 ALTER TABLE `areas` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.bajas_tutorados
-CREATE TABLE IF NOT EXISTS `bajas_tutorados` (
-  `idBaja` int(11) NOT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
-  `Fecha_baja` date DEFAULT NULL,
-  PRIMARY KEY (`idBaja`),
-  KEY `fk_Bajas_Tutorados_Tutorado1_idx` (`Tutorado_NControl`),
-  CONSTRAINT `fk_Bajas_Tutorados_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.bajas_tutorados: ~0 rows (aproximadamente)
-DELETE FROM `bajas_tutorados`;
-/*!40000 ALTER TABLE `bajas_tutorados` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bajas_tutorados` ENABLE KEYS */;
-
--- Volcando estructura para tabla sistutorias.carrera
+-- Volcando estructura para tabla carrera
 CREATE TABLE IF NOT EXISTS `carrera` (
   `idCarrera` varchar(15) NOT NULL,
   `Areas_idAreas` int(11) NOT NULL,
@@ -109,8 +96,8 @@ CREATE TABLE IF NOT EXISTS `carrera` (
   CONSTRAINT `fk_Carrera_Areas1` FOREIGN KEY (`Areas_idAreas`) REFERENCES `areas` (`idAreas`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.carrera: ~10 rows (aproximadamente)
-DELETE FROM `carrera`;
+-- Volcando datos para la tabla carrera: ~10 rows (aproximadamente)
+-- delete from `carrera`;
 /*!40000 ALTER TABLE `carrera` DISABLE KEYS */;
 INSERT INTO `carrera` (`idCarrera`, `Areas_idAreas`, `Nombre`) VALUES
 	('19819', 48193, 'Ingeniería Electromecánica'),
@@ -125,7 +112,7 @@ INSERT INTO `carrera` (`idCarrera`, `Areas_idAreas`, `Nombre`) VALUES
 	('74816', 48193, 'Ingeniería Eléctrica');
 /*!40000 ALTER TABLE `carrera` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.generacion
+-- Volcando estructura para tabla generacion
 CREATE TABLE IF NOT EXISTS `generacion` (
   `idGeneracion` int(11) NOT NULL,
   `fecha_inicio` date DEFAULT NULL,
@@ -133,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `generacion` (
   PRIMARY KEY (`idGeneracion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.generacion: ~5 rows (aproximadamente)
-DELETE FROM `generacion`;
+-- Volcando datos para la tabla generacion: ~5 rows (aproximadamente)
+-- delete from `generacion`;
 /*!40000 ALTER TABLE `generacion` DISABLE KEYS */;
 INSERT INTO `generacion` (`idGeneracion`, `fecha_inicio`, `fecha_fin`) VALUES
 	(161, '2019-08-12', '2024-07-20'),
@@ -144,34 +131,13 @@ INSERT INTO `generacion` (`idGeneracion`, `fecha_inicio`, `fecha_fin`) VALUES
 	(952, '2020-08-12', '2025-07-20');
 /*!40000 ALTER TABLE `generacion` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.mensajes
-CREATE TABLE IF NOT EXISTS `mensajes` (
-  `idMensajes` int(11) NOT NULL AUTO_INCREMENT,
-  `Asunto` varchar(50) DEFAULT NULL,
-  `Mensaje` varchar(500) DEFAULT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Estado` varchar(15) NOT NULL,
-  `idPersonaRemitente` int(10) unsigned NOT NULL,
-  `idPersonaDestinatario` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`idMensajes`),
-  KEY `fk_Mensajes_Persona1_idx` (`idPersonaRemitente`),
-  KEY `fk_Mensajes_Persona2_idx` (`idPersonaDestinatario`),
-  CONSTRAINT `fk_Mensajes_Persona1` FOREIGN KEY (`idPersonaRemitente`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Mensajes_Persona2` FOREIGN KEY (`idPersonaDestinatario`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.mensajes: ~5 rows (aproximadamente)
-DELETE FROM `mensajes`;
+-- Volcando datos para la tabla mensajes: ~5 rows (aproximadamente)
+-- delete from `mensajes`;
 /*!40000 ALTER TABLE `mensajes` DISABLE KEYS */;
-INSERT INTO `mensajes` (`idMensajes`, `Asunto`, `Mensaje`, `Fecha`, `Estado`, `idPersonaRemitente`, `idPersonaDestinatario`) VALUES
-	(1, 'Corrección de datos', 'Necesitas actualizar', '2020-10-12', '0', 67, 73),
-	(2, 'Solicitud de constancia', 'Datos faltantes en el documento', '2020-12-12', '1', 67, 20),
-	(3, 'Tramite de constancia', 'Falta dirección', '2020-08-02', '1', 60, 31),
-	(4, 'Verificación de actividad foda', 'Falta dato de la fortaleza', '2020-05-09', '1', 81, 46),
-	(5, 'Verificación de actividad linea de vida', 'Agregar el nombre del alumno', '2020-04-14', '0', 75, 30);
-/*!40000 ALTER TABLE `mensajes` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.persona
+
+-- Volcando estructura para tabla persona
 CREATE TABLE IF NOT EXISTS `persona` (
   `idPersona` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) DEFAULT NULL,
@@ -187,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
   UNIQUE KEY `idPersona` (`idPersona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.persona: ~88 rows (aproximadamente)
-DELETE FROM `persona`;
+-- Volcando datos para la tabla persona: ~88 rows (aproximadamente)
+-- delete from `persona`;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `Nombre`, `APaterno`, `AMaterno`, `FechaNac`, `Sexo`, `Correo`, `NTelefono`, `Direccion`, `Foto`) VALUES
 	(1, 'Usmar Isacc', 'Miguel', 'Lopez', '1999-10-16', 'M', 'LopezMiguelUs@gmail.com', '9717995120', 'direccion prueba', '/directory/img-person/UsmarIsaccMiguel.jpg'),
@@ -282,32 +248,9 @@ INSERT INTO `persona` (`idPersona`, `Nombre`, `APaterno`, `AMaterno`, `FechaNac`
 	(89, 'Rosamarai', 'Orozco', 'Medrano', '1997-12-11', 'F', 'rosa_medrano@gmail.com', '9717157444', 'Chicapa de Castro', '');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.solicitudes
-CREATE TABLE IF NOT EXISTS `solicitudes` (
-  `idSolicitud` int(11) NOT NULL,
-  `tipo_solicitud` varchar(150) NOT NULL DEFAULT '',
-  `Trabajador_Matriculaanterior` varchar(45) DEFAULT NULL,
-  `Trabajador_Matriculanuevo` varchar(45) DEFAULT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
-  `fecha_solicitud` date NOT NULL,
-  `estado` tinyint(4) NOT NULL,
-  PRIMARY KEY (`idSolicitud`),
-  KEY `fk_SoliCambioT_Trabajador1_idx` (`Trabajador_Matriculaanterior`),
-  KEY `fk_SoliCambioT_Trabajador2_idx` (`Trabajador_Matriculanuevo`),
-  KEY `fk_SoliCambioT_Tutorado1_idx` (`Tutorado_NControl`),
-  CONSTRAINT `fk_SoliCambioT_Trabajador1` FOREIGN KEY (`Trabajador_Matriculaanterior`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SoliCambioT_Trabajador2` FOREIGN KEY (`Trabajador_Matriculanuevo`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SoliCambioT_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.solicitudes: ~0 rows (aproximadamente)
-DELETE FROM `solicitudes`;
-/*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
-INSERT INTO `solicitudes` (`idSolicitud`, `tipo_solicitud`, `Trabajador_Matriculaanterior`, `Trabajador_Matriculanuevo`, `Tutorado_NControl`, `fecha_solicitud`, `estado`) VALUES
-	(1, 'Cambio de Tutor', NULL, NULL, 16190437, '2021-05-15', 0);
-/*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.trabajador
+-- Volcando estructura para tabla trabajador
 CREATE TABLE IF NOT EXISTS `trabajador` (
   `Matricula` varchar(45) NOT NULL,
   `Persona_idPersona` int(10) unsigned NOT NULL,
@@ -326,8 +269,8 @@ CREATE TABLE IF NOT EXISTS `trabajador` (
   CONSTRAINT `fk_Trabajador_Persona` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.trabajador: ~33 rows (aproximadamente)
-DELETE FROM `trabajador`;
+-- Volcando datos para la tabla trabajador: ~33 rows (aproximadamente)
+-- delete from `trabajador`;
 /*!40000 ALTER TABLE `trabajador` DISABLE KEYS */;
 INSERT INTO `trabajador` (`Matricula`, `Persona_idPersona`, `Roll`, `Areas_idAreas`, `Carrera_idCarrera`, `contraseña`, `Estado`, `Disponibilidad`, `Disp_Def`) VALUES
 	('103910', 70, 'Docente', 48193, NULL, '103910', 'Activo', '', ''),
@@ -365,24 +308,14 @@ INSERT INTO `trabajador` (`Matricula`, `Persona_idPersona`, `Roll`, `Areas_idAre
 	('99173', 87, 'Docente', 48193, NULL, '99173', 'Activo', '', '');
 /*!40000 ALTER TABLE `trabajador` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.trabajador_tutorados
-CREATE TABLE IF NOT EXISTS `trabajador_tutorados` (
-  `Trabajador_Matricula` varchar(45) NOT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
-  `fecha_asig` date DEFAULT NULL,
-  PRIMARY KEY (`Trabajador_Matricula`,`Tutorado_NControl`),
-  KEY `fk_Trabajador_has_Tutorado_Tutorado1_idx` (`Tutorado_NControl`),
-  KEY `fk_Trabajador_has_Tutorado_Trabajador1_idx` (`Trabajador_Matricula`),
-  CONSTRAINT `fk_Trabajador_has_Tutorado_Trabajador1` FOREIGN KEY (`Trabajador_Matricula`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Trabajador_has_Tutorado_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.trabajador_tutorados: ~0 rows (aproximadamente)
-DELETE FROM `trabajador_tutorados`;
+
+-- Volcando datos para la tabla trabajador_tutorados: ~0 rows (aproximadamente)
+-- delete from `trabajador_tutorados`;
 /*!40000 ALTER TABLE `trabajador_tutorados` DISABLE KEYS */;
 /*!40000 ALTER TABLE `trabajador_tutorados` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.tutorado
+-- Volcando estructura para tabla tutorado
 CREATE TABLE IF NOT EXISTS `tutorado` (
   `NControl` int(11) NOT NULL,
   `Persona_idPersona` int(10) unsigned NOT NULL,
@@ -400,8 +333,8 @@ CREATE TABLE IF NOT EXISTS `tutorado` (
   CONSTRAINT `fk_Tutorado_Persona1` FOREIGN KEY (`Persona_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.tutorado: ~56 rows (aproximadamente)
-DELETE FROM `tutorado`;
+-- Volcando datos para la tabla tutorado: ~56 rows (aproximadamente)
+-- delete from `tutorado`;
 /*!40000 ALTER TABLE `tutorado` DISABLE KEYS */;
 INSERT INTO `tutorado` (`NControl`, `Persona_idPersona`, `Carrera_idCarrera`, `contraseña`, `Generacion_idGeneracion`, `Estado`) VALUES
 	(17190857, 1, '68352', '17190857', 478, ''),
@@ -462,7 +395,22 @@ INSERT INTO `tutorado` (`NControl`, `Persona_idPersona`, `Carrera_idCarrera`, `c
 	(16190427, 89, '68352', '16190427', NULL, 'Inactivo');
 /*!40000 ALTER TABLE `tutorado` ENABLE KEYS */;
 
--- Volcando estructura para tabla sistutorias.tutorado_privilegios
+
+-- Volcando estructura para tabla trabajador_tutorados
+CREATE TABLE IF NOT EXISTS `trabajador_tutorados` (
+  `Trabajador_Matricula` varchar(45) NOT NULL,
+  `Tutorado_NControl` int(11) NOT NULL,
+  `fecha_asig` date DEFAULT NULL,
+  PRIMARY KEY (`Trabajador_Matricula`,`Tutorado_NControl`),
+  KEY `fk_Trabajador_has_Tutorado_Tutorado1_idx` (`Tutorado_NControl`),
+  KEY `fk_Trabajador_has_Tutorado_Trabajador1_idx` (`Trabajador_Matricula`),
+  CONSTRAINT `fk_Trabajador_has_Tutorado_Trabajador1` FOREIGN KEY (`Trabajador_Matricula`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Trabajador_has_Tutorado_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- Volcando estructura para tabla tutorado_privilegios
+
+
+
 CREATE TABLE IF NOT EXISTS `tutorado_privilegios` (
   `Tutorado_NControl` int(12) NOT NULL,
   `Trabajador_Matricula` varchar(45) NOT NULL,
@@ -474,11 +422,76 @@ CREATE TABLE IF NOT EXISTS `tutorado_privilegios` (
   CONSTRAINT `fk_Tutorado_Privilegios_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla sistutorias.tutorado_privilegios: ~0 rows (aproximadamente)
-DELETE FROM `tutorado_privilegios`;
+-- Volcando datos para la tabla tutorado_privilegios: ~0 rows (aproximadamente)
+-- delete from `tutorado_privilegios`;
 /*!40000 ALTER TABLE `tutorado_privilegios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tutorado_privilegios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- Volcando estructura para tabla solicitudes
+CREATE TABLE IF NOT EXISTS `solicitudes` (
+  `idSolicitud` int(11) NOT NULL,
+  `tipo_solicitud` varchar(150) NOT NULL DEFAULT '',
+  `Trabajador_Matriculaanterior` varchar(45) DEFAULT NULL,
+  `Trabajador_Matriculanuevo` varchar(45) DEFAULT NULL,
+  `Tutorado_NControl` int(11) NOT NULL,
+  `fecha_solicitud` date NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idSolicitud`),
+  KEY `fk_SoliCambioT_Trabajador1_idx` (`Trabajador_Matriculaanterior`),
+  KEY `fk_SoliCambioT_Trabajador2_idx` (`Trabajador_Matriculanuevo`),
+  KEY `fk_SoliCambioT_Tutorado1_idx` (`Tutorado_NControl`),
+  CONSTRAINT `fk_SoliCambioT_Trabajador1` FOREIGN KEY (`Trabajador_Matriculaanterior`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_SoliCambioT_Trabajador2` FOREIGN KEY (`Trabajador_Matriculanuevo`) REFERENCES `trabajador` (`Matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_SoliCambioT_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla solicitudes: ~0 rows (aproximadamente)
+-- delete from `solicitudes`;
+/*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
+INSERT INTO `solicitudes` (`idSolicitud`, `tipo_solicitud`, `Trabajador_Matriculaanterior`, `Trabajador_Matriculanuevo`, `Tutorado_NControl`, `fecha_solicitud`, `estado`) VALUES
+	(1, 'Cambio de Tutor', NULL, NULL, 16190437, '2021-05-15', 0);
+/*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
+-- Volcando estructura para tabla bajas_tutorados
+CREATE TABLE IF NOT EXISTS `bajas_tutorados` (
+  `idBaja` int(11) NOT NULL,
+  `Tutorado_NControl` int(11) NOT NULL,
+  `Fecha_baja` date DEFAULT NULL,
+  PRIMARY KEY (`idBaja`),
+  KEY `fk_Bajas_Tutorados_Tutorado1_idx` (`Tutorado_NControl`),
+  CONSTRAINT `fk_Bajas_Tutorados_Tutorado1` FOREIGN KEY (`Tutorado_NControl`) REFERENCES `tutorado` (`NControl`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla bajas_tutorados: ~0 rows (aproximadamente)
+-- delete from `bajas_tutorados`;
+/*!40000 ALTER TABLE `bajas_tutorados` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bajas_tutorados` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla mensajes
+CREATE TABLE IF NOT EXISTS `mensajes` (
+  `idMensajes` int(11) NOT NULL AUTO_INCREMENT,
+  `Asunto` varchar(50) DEFAULT NULL,
+  `Mensaje` varchar(500) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `Estado` varchar(15) NOT NULL,
+  `idPersonaRemitente` int(10) unsigned NOT NULL,
+  `idPersonaDestinatario` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`idMensajes`),
+  KEY `fk_Mensajes_Persona1_idx` (`idPersonaRemitente`),
+  KEY `fk_Mensajes_Persona2_idx` (`idPersonaDestinatario`),
+  CONSTRAINT `fk_Mensajes_Persona1` FOREIGN KEY (`idPersonaRemitente`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Mensajes_Persona2` FOREIGN KEY (`idPersonaDestinatario`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `mensajes` (`idMensajes`, `Asunto`, `Mensaje`, `Fecha`, `Estado`, `idPersonaRemitente`, `idPersonaDestinatario`) VALUES
+	(1, 'Corrección de datos', 'Necesitas actualizar', '2020-10-12', '0', 67, 73),
+	(2, 'Solicitud de constancia', 'Datos faltantes en el documento', '2020-12-12', '1', 67, 20),
+	(3, 'Tramite de constancia', 'Falta dirección', '2020-08-02', '1', 60, 31),
+	(4, 'Verificación de actividad foda', 'Falta dato de la fortaleza', '2020-05-09', '1', 81, 46),
+	(5, 'Verificación de actividad linea de vida', 'Agregar el nombre del alumno', '2020-04-14', '0', 75, 30);
+/*!40000 ALTER TABLE `mensajes` ENABLE KEYS */;

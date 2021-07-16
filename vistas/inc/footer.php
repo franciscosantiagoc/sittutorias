@@ -14,7 +14,7 @@
                     <a href="https://www.facebook.com/tecnm.campus.istmo/" target="_blank"><i class="icon fa fa-facebook-official" ></i></a>
                     <a href="https://www.youtube.com/user/ComunicacionITI" target="_blank"><i class="icon fa fa-youtube-play"></i></a>
                     
-                    <p ><strong>Página web creada por alumnos de Ingeniería en Sistemas Computacionales.</strong><br>Copyright © 2020<br></p>
+                    <p ><strong>Página web creada por alumnos de Ingeniería en Sistemas Computacionales.</strong><br>Copyright © 2021<br></p>
                 </div>
                 <div class="col">
                     <p class="text-center">Instituto Tecnológico del Istmo<br></p>
