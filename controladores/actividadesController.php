@@ -129,7 +129,11 @@ class actividadesController extends actividadesModel
                text: "Error al cargar la imagen al servidor, intente nuevamente",
                type: "error",
                confirmButtonText: "Aceptar"
-            });
+            }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'AlumnAct"
+                  }
+               });
          </script>
          '; 
          exit();
@@ -160,10 +164,14 @@ class actividadesController extends actividadesModel
          echo '
             <script> 
                Swal.fire({
-                  title: "Usuario Actualizado",
-                  text: "Se ha subido la actividad correctamente",
+                  title: "Actividad entregada",
+                  text: "Se ha entregado la actividad correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'AlumnAct"
+                  }
                });
             </script>
             '; 
@@ -176,6 +184,10 @@ class actividadesController extends actividadesModel
                   text: "Error al registrar la actividad, recargue la pagina para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'AlumnAct"
+                  }
                });
             </script>
             '; 
