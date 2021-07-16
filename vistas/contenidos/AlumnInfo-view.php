@@ -23,7 +23,7 @@ include "./vistas/inc/navStudent.php";
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Carrera</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Coordinador de Carrera</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -76,7 +76,7 @@ include "./vistas/inc/navStudent.php";
 <div class="register-photo">
     <div class="form-container" id="contain">
         <div class="col-md-12 search-table-col">
-            <p id="tit-activities"><strong>INFORMACIÓN</strong></p>
+            <p id="tit-activities"><strong>INFORMACIÓN DE CONTACTOS</strong></p>
 
             <?php
             require_once './controladores/coordinadorescController.php';

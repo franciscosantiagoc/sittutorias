@@ -39,7 +39,7 @@ include "./vistas/inc/navStudent.php";
                 <p><strong>Notificaciones</strong></p>
             </div>
             <div class="col"><a href="<?php echo SERVERURL;?>AlumnInfo"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/information.png);"></a>
-                <p><strong>Información</strong></p>
+                <p><strong>Contacto</strong></p>
             </div>
         </div>
     </div>
