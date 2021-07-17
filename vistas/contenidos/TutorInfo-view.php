@@ -23,7 +23,7 @@ include "./vistas/inc/navTutor.php";
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Área</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Coordinador de Área</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,6 +31,7 @@ include "./vistas/inc/navTutor.php";
             <div class="modal-body">
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoCArea"></center>
                         <div class="form-group">
                             <label for="matriculaCA">Matrícula</label>
                             <input class="form-control" type="text" placeholder="Matrícula" id="matriculaCA" name="matriculaCA" disabled>
@@ -63,6 +64,10 @@ include "./vistas/inc/navTutor.php";
                             <label for="carreraCA">Carrera</label>
                             <input class="form-control" type="text" placeholder="Carrera" id="CarreraCA" name="carreraca" disabled>
                         </div>
+                        <div class="form-group">
+                            <label for="areaCA">Área</label>
+                            <input class="form-control" type="text" placeholder="Area" id="AreaCA" name="areaca" disabled>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -75,7 +80,7 @@ include "./vistas/inc/navTutor.php";
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Carrera</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Coordinador de Carrera</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -83,6 +88,7 @@ include "./vistas/inc/navTutor.php";
             <div class="modal-body">
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-info"></center>
                         <div class="form-group">
                             <label for="matriculaC">Matrícula</label>
                             <input class="form-control" type="text" placeholder="Matrícula" id="matriculaC" name="matriculaC" disabled>
@@ -127,7 +133,7 @@ include "./vistas/inc/navTutor.php";
 <div class="register-photo">
     <div class="form-container" id="contain">
         <div class="col-md-12 search-table-col">
-            <p id="tit-activities"><strong>INFORMACIÓN</strong></p>
+            <p id="tit-activities"><strong>INFORMACIÓN DE CONTACTOS</strong></p>
             <?php
             require_once './controladores/jefesdController.php';
             require_once './controladores/coordinadorescController.php';
@@ -140,9 +146,7 @@ include "./vistas/inc/navTutor.php";
 
 
             <div class="table-responsive table-bordered table table-hover table-bordered results">
-                <div class="form-group">
-                    <p><strong>Coordinador de Área</strong></p>
-                </div>
+
                 <table class="table table-striped table-bordered nowrap tablas">
                     <thead class="bg-primary bill-header cs">
                     <tr>
@@ -218,74 +222,13 @@ include "./vistas/inc/navTutor.php";
     </div>
 </div>
 
-<!-- CCarrera -->
 
-<div class="register-photo">
-    <div class="form-container" id="contain">
-        <div class="col-md-12 search-table-col">
-
-
-            <?php
-            require_once './controladores/coordinadorescController.php';
-            $ins_actividad = new coordinadorescController();
-            $dat_info = $ins_actividad->consulta_coordinadoresc_controlador();
-
-            ?>
-
-
-           <!--  <div class="table-responsive table-bordered table table-hover table-bordered results">
-                <div class="form-group">
-                    <p><strong>Coordinador de Carrera</strong></p>
-                </div><table class="table table-striped table-bordered nowrap tablas">
-                    <thead class="bg-primary bill-header cs">
-                    <tr>
-                        <th id="trs-hd" class="col-lg-1">MATRÍCULA</th>
-                        <th id="trs-hd" class="col-lg-2">NOMBRE</th>
-                        <th id="trs-hd" class="col-lg-2">APELLIDO PATERNO</th>
-                        <th id="trs-hd" class="col-lg-3">APELLIDO MATERNO<br></th>
-                        <th id="trs-hd" class="col-lg-2">TELÉFONO</th>
-                        <th id="trs-hd" class="col-lg-2">Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    /* foreach($dat_info as $row){
-                        $idmatric = $row['Matricula'];
-                        $name = $row['Nombre'];
-                        $apellp = $row['APaterno'];
-                        $apellm = $row['AMaterno'];
-                        $sexo = $row['Sexo'];
-                        $tel = $row['NTelefono'];
-                        $correo = $row['Correo'];
-                        $carrera = $row['Carrera_idCarrera'];
-
-
-                        echo '
-                                        <tr>
-                                            <td>'. $idmatric .'</td>
-                                            <td>'. $name .'</td>
-                                            <td>'. $apellp .'</td>
-                                            <td>'. $apellm .'</td>
-                                            <td>'. $tel .'</td>
-                                            <td><center><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
-                                            </center></td>
-                                            
-                                        </tr>
-                                    ';
-                    } */
-                    ?>
-
-                    </tbody>
-                </table>
-            </div> -->
-        </div>
-    </div>
-</div>
-
+<!-- Info CArea -->
 <script type="text/javascript">
     function clickActividad(idInfoCA){
         var datos = new FormData();
         datos.append("idInfoCArea",idInfoCA);
+        $imagenPrevisualizacion = document.querySelector("#image-infoCArea");
         $.ajax({
             url: "ajax/infoCAreaAjax.php",
             method: "post",
@@ -306,6 +249,11 @@ include "./vistas/inc/navTutor.php";
                 $("#EmailCA").val(respuesta[0][6]);
                 $("#CarreraCA").val(respuesta[0][7]);
 
+                var image = "<?php echo SERVERURL;?>"
+                image = image +respuesta[0][8];
+                $imagenPrevisualizacion.src = image;
+                console.log("imagen coord:"+image);
+
             }
         }).fail( function( jqXHR, textStatus, errorThrown ) {
             console.log('error '+textStatus);
@@ -318,6 +266,7 @@ include "./vistas/inc/navTutor.php";
     function clickActividad2(idInfo){
         var datos = new FormData();
         datos.append("idInformacion",idInfo);
+        $imagenPrevisualizacion = document.querySelector("#image-info");
 
 
         $.ajax({
@@ -339,6 +288,11 @@ include "./vistas/inc/navTutor.php";
                 $("#numeroTelefono").val(respuesta[0][5]);
                 $("#Email").val(respuesta[0][6]);
                 $("#Carrera").val(respuesta[0][7]);
+
+                var image = "<?php echo SERVERURL;?>"
+                image = image +respuesta[0][8];
+                $imagenPrevisualizacion.src = image;
+                console.log("imagen coord:"+image);
 
             }
         }).fail( function( jqXHR, textStatus, errorThrown ) {

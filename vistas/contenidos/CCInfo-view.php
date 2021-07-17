@@ -23,7 +23,7 @@ include "./vistas/inc/navCoordinadorC.php"
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Información de Coordinador de Área</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Coordinador de Área</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,6 +31,7 @@ include "./vistas/inc/navCoordinadorC.php"
             <div class="modal-body">
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoCArea"></center>
                         <div class="form-group">
                             <label for="matriculaCA">Matrícula</label>
                             <input class="form-control" type="text" placeholder="Matrícula" id="matriculaCA" name="matriculaCA" disabled>
@@ -63,6 +64,10 @@ include "./vistas/inc/navCoordinadorC.php"
                             <label for="carreraCA">Carrera</label>
                             <input class="form-control" type="text" placeholder="Carrera" id="CarreraCA" name="carreraca" disabled>
                         </div>
+                        <div class="form-group">
+                            <label for="areaCA">Área</label>
+                            <input class="form-control" type="text" placeholder="Area" id="AreaCA" name="areaca" disabled>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -73,7 +78,7 @@ include "./vistas/inc/navCoordinadorC.php"
 <div class="register-photo">
     <div class="form-container" id="contain">
         <div class="col-md-12 search-table-col">
-            <p id="tit-activities"><strong>INFORMACIÓN</strong></p>
+            <p id="tit-activities"><strong>INFORMACIÓN DE CONTACTO</strong></p>
             <?php
             require_once './controladores/jefesdController.php';
             $ins_actividad = new jefesdController();
@@ -84,7 +89,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
             <div class="table-responsive table-bordered table table-hover table-bordered results">
                 <div class="form-group">
-                    <p><strong>Coordinador de Área</strong></p>
+                    <p><strong>Coordinador del Área</strong></p>
                 </div>
                 <table class="table table-striped table-bordered nowrap tablas">
                     <thead class="bg-primary bill-header cs">
@@ -108,6 +113,8 @@ include "./vistas/inc/navCoordinadorC.php"
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
                         $carrera = $row['Carrera_idCarrera'];
+
+
 
 
                         echo '
@@ -137,6 +144,7 @@ include "./vistas/inc/navCoordinadorC.php"
     function clickActividad(idInfoCA){
         var datos = new FormData();
         datos.append("idInfoCArea",idInfoCA);
+        $imagenPrevisualizacion = document.querySelector("#image-infoCArea");
         $.ajax({
             url: "ajax/infoCAreaAjax.php",
             method: "post",
@@ -156,6 +164,13 @@ include "./vistas/inc/navCoordinadorC.php"
                 $("#numeroTelefonoCA").val(respuesta[0][5]);
                 $("#EmailCA").val(respuesta[0][6]);
                 $("#CarreraCA").val(respuesta[0][7]);
+                $("#AreaCA").val(respuesta[0][8]);
+
+                var image = "<?php echo SERVERURL;?>"
+                image = image +respuesta[0][9];
+                $imagenPrevisualizacion.src = image;
+                console.log("imagen coord:"+image);
+
 
             }
         }).fail( function( jqXHR, textStatus, errorThrown ) {
