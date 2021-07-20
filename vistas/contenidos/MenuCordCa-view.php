@@ -48,7 +48,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 <p><strong>Notificaciones</strong></p>
             </div>
             <div class="col"><a href="<?php echo SERVERURL;?>CCInfo"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
-                <p><strong>Información</strong></p>
+                <p><strong>Contacto</strong></p>
             </div>
         </div>
     </div>

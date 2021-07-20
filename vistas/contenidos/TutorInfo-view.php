@@ -68,6 +68,7 @@ include "./vistas/inc/navTutor.php";
                             <label for="areaCA">Área</label>
                             <input class="form-control" type="text" placeholder="Area" id="AreaCA" name="areaca" disabled>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -248,9 +249,10 @@ include "./vistas/inc/navTutor.php";
                 $("#numeroTelefonoCA").val(respuesta[0][5]);
                 $("#EmailCA").val(respuesta[0][6]);
                 $("#CarreraCA").val(respuesta[0][7]);
+                $("#AreaCA").val(respuesta[0][8]);
 
                 var image = "<?php echo SERVERURL;?>"
-                image = image +respuesta[0][8];
+                image = image +respuesta[0][9];
                 $imagenPrevisualizacion.src = image;
                 console.log("imagen coord:"+image);
 

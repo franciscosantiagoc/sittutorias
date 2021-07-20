@@ -68,6 +68,7 @@ include "./vistas/inc/navCoordinadorC.php"
                                             <td>'.$rows['tipo_solicitud'].'</td>
                                             <td>'.$rows['fecha_solicitud'].'</td>
                                             <td>'.$estado.'</td>
+                                            
                                             <td>
                                                 <a href="#Actualizar" class="btn btn-success">
                                                     <i class="fas fa-sync-alt"></i>
