@@ -598,7 +598,7 @@ class usuarioController extends usuarioModel
       $link_img='';
       $name = $_FILES['image_upd']['name'];
       //if(isset($_FILES['image_upd']) && $name!=""){
-       if($name!=""!=null){
+       if($name!=null){
          
          if(strpos($name, 'jpg')){
             $tipo='.jpg';

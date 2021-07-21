@@ -1,11 +1,11 @@
 <?php
 if ($peticionAjax) {
-    require_once "../modelos/usuarioModel.php";
+    require_once "../modelos/mainModel.php";
 } else {
-    require_once "./modelos/usuarioModel.php";
+    require_once "./modelos/mainModel.php";
 }
 
-class coordinadorescController extends usuarioModel
+class coordinadorescController extends mainModel
 {
     public function consulta_coordinadoresc_controlador()
     {
@@ -14,6 +14,7 @@ class coordinadorescController extends usuarioModel
         $dat_info = $consulta_coordinadoresc -> fetchAll();
         return $dat_info;
     }
+    
 
 
 }
