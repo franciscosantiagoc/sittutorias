@@ -24,11 +24,12 @@ include "./vistas/inc/navTutor.php";
                     <div class="col-md-12 search-table-col">
                         <div class="intro">
                             <h2 class="text-center"><strong>Tutorados</strong></h2>
+                            
                         </div>
                         <?php
                         require_once './controladores/tutoradosController.php';
                         $ins_actividad = new tutoradosController();
-                        $dat_info = $ins_actividad->consulta_tutorados_controlador();
+                        $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
                         ?>
                         <div class="table-responsive table-bordered table  ">
                             <table class="table table-bordered table-hover tablas">
@@ -40,8 +41,8 @@ include "./vistas/inc/navTutor.php";
                                     <th>APELLIDO PATERNO</th>
                                     <th>APELLIDO MATERNO</th>
                                     <th>TELEFONO</th>
-                                    <th>ACTUALIZAR</th>
-                                    <th>ELIMINAR</th>
+                                    <th>FECHA ASIGNADA</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -55,19 +56,8 @@ include "./vistas/inc/navTutor.php";
                         <td>'.$rows['APaterno'].'</td>
                         <td>'.$rows['AMaterno'].'</td>
                         <td>'.$rows['NTelefono'].'</td>
-                        <td>
-                            <a href="#Actualizar" class="btn btn-success">
-                                    <i class="fas fa-sync-alt"></i>	
-                            </a>
-                        </td>
-                        <td>
-                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
-                            
-                                <button type="submit" class="btn btn-warning">
-                                        <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <td>'.$rows['fecha_asig'].'</td>
+                        
 				    </tr>';
                                     $contador++;
                                 }

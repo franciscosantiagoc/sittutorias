@@ -40,7 +40,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 <?php
                 require_once './controladores/tutoradosController.php';
                 $ins_actividad = new tutoradosController();
-                $dat_info = $ins_actividad->consulta_tutorados_controlador();
+                $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
                 ?>
                 <div class="table-responsive table-bordered table  ">
                     <table class="table table-bordered table-hover tablas">
