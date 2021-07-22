@@ -106,7 +106,7 @@
                 
                 <div class="form-group">
                     <label>Seleccione Tipo de Gráfica</label>
-                    <select class="form-control">
+                    <select id="selec_type" class="form-control">
                         <option value="undefined" selected="">Tipo de Grafica</option>
                         <option value="10">Barras</option>
                         <!-- <option value="11">Linea</option>
@@ -114,33 +114,33 @@
                     </select>
 
                     <label>Seleccione Dato a Graficar</label>
-                    <select class="form-control">
+                    <select id="selec_data" class="form-control">
                         <option value="undefined" selected="">Dato a Graficar</option>
                         <!-- <option value="10">Actividades</option> -->
-                        <option value="11">Alumnos</option>
-                        <option value="12">Bajas</option>
+                        <option value="Alumnos">Alumnos</option>
+                        <option value="Bajas">Bajas</option>
                     </select>
 
 
-                    <label>Seleccione Carrera</label>
+                   <!--  <label>Seleccione Carrera</label>
                     <select class="form-control">
                         <option value="" selected="">Carrera</option>
-                        <option value="10">Todo</option>
+                        <option value="all">Todo</option>
                         <?php
-                            $dat_info = $ins_usuario->datos_ta_controlador("idCarrera,Nombre","carrera",";");
+                            /* $dat_info = $ins_usuario->datos_ta_controlador("idCarrera,Nombre","carrera",";");
                             $dat_info=$dat_info->fetchAll(); 
                             foreach($dat_info as $row){
                                 /*$n=$dat_info->rowCount(); */
                                 $id = $row['idCarrera'];
                                 $name_ca = $row['Nombre'];
                                 echo "<option value='$id'>$name_ca</option>";
-                            }                                  
+                            }  */                                 
                         ?>
-                    </select>
+                    </select> -->
 
                     <label>Seleccione Periodo escolar</label>
                     
-                    <select class="form-control">
+                    <select id="selec_period" class="form-control">
                         <option value="" selected="" id="sel_per">Periodo</option>
                         <?php
                             $dat_info = $ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
@@ -154,31 +154,34 @@
                             }                                  
                         ?>
                     </select>
-                    <!--<label>Seleccione el tipo de Sexo</label>
+                    <label>Seleccione el tipo de Sexo</label>
                     <select
                         class="form-control">
-                        <option value="12" selected="">Genero</option>
-                        <option value="13">Hombres</option>
-                        <option value="14">Mujeres</option>
-                        <option value="">Ambos</option>
+                        <option selected="">Genero</option>
+                        <option value="M">Hombres</option>
+                        <option value="F">Mujeres</option>
+                        <option value="all">Ambos</option>
                     </select>
-                    <label>Seleccione la Situación</label>
+                    <!--<label>Seleccione la Situación</label>
                     <select class="form-control"><option value="12" selected="">Situación</option>
                         <option value="13">Bajas</option>
                         <option value="14">Altas</option>
                     </select> -->
                 </div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Generar grafica</button></div>
-                <div class="form-group"><a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" >IMPRIMIR</button></a></div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" >Generar grafica</button></div>
+                <!-- <div class="form-group">
+                    <a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" >IMPRIMIR</button></a></div> -->
             </form>
 
         </div>
 
 
         <div id="cont-visdat" class="form-container">
-            <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
+            <canvas id="graphics" style="width: 600px; height: 600px;"></canvas>
+            <!-- <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
                 <div class="form-group" id="div-tipografia"><label>GRAFICA TIPO : PERIODO : SEXO : SITUACION</label></div>
-            </form>
+            </form> -->
         </div>
     </div>
   

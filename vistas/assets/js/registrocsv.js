@@ -74,7 +74,7 @@ function filePicked(oEvent) {
     reader.readAsBinaryString(oFile);
 }
 
-function doSearch() {
+/* function doSearch() {
     const tableReg = document.getElementById("table_dat_es");
     const searchText = document.getElementById("searchTerm").value.toLowerCase();
     let total = 0;
@@ -119,3 +119,4 @@ function doSearch() {
         td.innerHTML = "No se han encontrado coincidencias";
     }
 }
+ */
