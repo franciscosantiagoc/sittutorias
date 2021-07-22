@@ -184,5 +184,12 @@
             </form> -->
         </div>
     </div>
+    <script>
+        
+
+        function grafica(dtipo, dcarrera, dperiodo, dsexo){
+
+        }
+    </script>
   
    
