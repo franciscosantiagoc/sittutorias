@@ -90,7 +90,7 @@ include "./vistas/inc/navStudent.php"
                 ?>
 
                 <!-- <div class="table-responsive table-bordered table table-hover table-bordered results"> -->
-                    <table class="table table-bordered  display nowrap tablas"  style="cellspacing=0;  width:100%">
+                    <table class="table table-bordered  display nowrap tablas"  style="cellspacing:0;  width:100%">
                         <thead class="bg-primary bill-header cs">
                             <tr>
                                 <th id="trs-hd" class="col-lg-1">Nombre de la Actividad</th>

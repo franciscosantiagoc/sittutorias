@@ -130,7 +130,7 @@
                             /* $dat_info = $ins_usuario->datos_ta_controlador("idCarrera,Nombre","carrera",";");
                             $dat_info=$dat_info->fetchAll(); 
                             foreach($dat_info as $row){
-                                /*$n=$dat_info->rowCount(); */
+                                /*$n=$dat_info->rowCount(); 
                                 $id = $row['idCarrera'];
                                 $name_ca = $row['Nombre'];
                                 echo "<option value='$id'>$name_ca</option>";
@@ -178,15 +178,43 @@
 
 
         <div id="cont-visdat" class="form-container">
-            <canvas id="graphics" style="width: 600px; height: 600px;"></canvas>
+            <canvas id="my_graphics" style="position: relative; height: 40vh; width: 80vw;"></canvas>
             <!-- <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
                 <div class="form-group" id="div-tipografia"><label>GRAFICA TIPO : PERIODO : SEXO : SITUACION</label></div>
             </form> -->
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        
+        var ctx = document.getElementById('my_graphics');//referencia a la grafica
+        var dat_ctx = document.getElementById('selec_data');//referencia a tipo de grafica selec_data
+         var myChart = new Chart(ctx, {
+            type:'bar',
+            data:{
+                datasets: [{
+                    label: 'Stock de Productos',
+                    backgroundColor: ['#6bf1ab','#63d69f', '#438c6c', '#509c7f', '#1f794e', '#34444c', '#90CAF9', '#64B5F6', '#42A5F5', '#2196F3', '#0D47A1'],
+                    borderColor: ['black'],
+                    borderWidth:1
+                }]
+            },
+            options:{
+                scales:{
+                    y:{
+                        beginAtZero:true
+                    }
+                }
+            }
+        })
 
+        var title_label=['HOMBRES', 'MUJERES', 'ESTUDIANTES', 'DOCENTES'];
+        var dat_g = [33,10,45,23];
+        
+        for (let i=0;i<title_label.length;i++){
+             myChart.data['labels'].push(title_label[i]);
+            myChart.data['datasets'][0].data.push(dat_g[i]);
+        }
+       
         function grafica(dtipo, dcarrera, dperiodo, dsexo){
 
         }
