@@ -15,7 +15,7 @@
     }
 } */
   
-/* include "./vistas/inc/navCoordinadorC.php"  */
+ include "./vistas/inc/navCoordinadorC.php"  /**/
 
 ?>
 
@@ -107,15 +107,15 @@
                 <div class="form-group">
                     <label>Seleccione Tipo de Gráfica</label>
                     <select id="selec_type" class="form-control">
-                        <option value="undefined" selected="">Tipo de Grafica</option>
-                        <option value="10">Barras</option>
-                        <!-- <option value="11">Linea</option>
-                        <option value="12">Pastel</option> -->
+                        <option value="" selected="">Tipo de Grafica</option>
+                        <option value="Bar">Barras</option>
+                        <option value="Line">Linea</option>
+                        <!-- <option value="12">Pastel</option> -->
                     </select>
 
                     <label>Seleccione Dato a Graficar</label>
                     <select id="selec_data" class="form-control">
-                        <option value="undefined" selected="">Dato a Graficar</option>
+                        <option value="" selected="">Dato a Graficar</option>
                         <!-- <option value="10">Actividades</option> -->
                         <option value="Alumnos">Alumnos</option>
                         <option value="Bajas">Bajas</option>
@@ -155,9 +155,8 @@
                         ?>
                     </select>
                     <label>Seleccione el tipo de Sexo</label>
-                    <select
-                        class="form-control">
-                        <option selected="">Genero</option>
+                    <select id="selec_sex" class="form-control">
+                        <option value="" selected="">Genero</option>
                         <option value="M">Hombres</option>
                         <option value="F">Mujeres</option>
                         <option value="all">Ambos</option>
@@ -169,7 +168,7 @@
                     </select> -->
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" >Generar grafica</button></div>
+                    <button class="btn btn-primary btn-block" type="button" id="make_graphics" >Generar grafica</button></div>
                 <!-- <div class="form-group">
                     <a href="../Registro.html"><button class="btn btn-primary btn-block" type="submit" >IMPRIMIR</button></a></div> -->
             </form>
@@ -187,35 +186,66 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var ctx = document.getElementById('my_graphics');//referencia a la grafica
-        var dat_ctx = document.getElementById('selec_data');//referencia a tipo de grafica selec_data
-         var myChart = new Chart(ctx, {
-            type:'bar',
-            data:{
-                datasets: [{
-                    label: 'Stock de Productos',
-                    backgroundColor: ['#6bf1ab','#63d69f', '#438c6c', '#509c7f', '#1f794e', '#34444c', '#90CAF9', '#64B5F6', '#42A5F5', '#2196F3', '#0D47A1'],
-                    borderColor: ['black'],
-                    borderWidth:1
-                }]
-            },
-            options:{
-                scales:{
-                    y:{
-                        beginAtZero:true
-                    }
-                }
-            }
-        })
+        //var dat_ctx = document.getElementById('selec_data');//referencia a tipo de grafica selec_data
 
-        var title_label=['HOMBRES', 'MUJERES', 'ESTUDIANTES', 'DOCENTES'];
+        $("#make_graphics").on("click",function(event){
+            event.preventDefault();
+            var g_type = $('#selec_type').val();
+            var g_data = $('#selec_data').val();
+            var g_period = $('#selec_period').val();
+            var g_sex = $('#selec_sex').val();
+               
+            alert('formulario enviado' +g_type + ' ' + g_data + ' '+ g_period + ' ' + g_sex );
+            // resto de tu codigo
+        });
+
+        /* var etiquetas=['HOMBRES', 'MUJERES', 'ESTUDIANTES', 'DOCENTES'];
         var dat_g = [33,10,45,23];
+
+        const datosVentas2020 = {
+            label: "Graficación de datos",
+            data: dat_g, // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',//['#00ffff','#ff4500','#6bf1ab', '#438c6c', '#509c7f', '#1f794e', '#34444c', '#90CAF9', '#64B5F6', '#42A5F5', '#2196F3', '#0D47A1'], // Color de fondo
+            borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
+            borderWidth: 1,// Ancho del borde
+        };
+        new Chart(ctx, {
+            type: 'bar',// Tipo de gráfica
+            data: {
+                labels: etiquetas,
+                datasets: [
+                    datosVentas2020,
+                    // Aquí más datos...
+                ]
+            },
+            /* options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                },
+            } 
+        }); */
         
-        for (let i=0;i<title_label.length;i++){
-             myChart.data['labels'].push(title_label[i]);
-            myChart.data['datasets'][0].data.push(dat_g[i]);
-        }
        
-        function grafica(dtipo, dcarrera, dperiodo, dsexo){
+        function grafica(dtipo, ddata, dperiodo, dsexo){
+            var formData = new FormData();
+            formData.append('g_type',dtipo);
+            formData.append('g_data',ddata);
+            formData.append('g_period',dperiodo);
+            formData.append('g_sex',dsex);
+            $.ajax({
+            url: '<?php echo SERVERURL; ?>ajax/estadisticsAjax.php',
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (resp){
+                alert(resp);
+            }
+        });
 
         }
     </script>
