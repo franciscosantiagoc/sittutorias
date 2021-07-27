@@ -1,21 +1,22 @@
 
 <?php 
 
-/* if(isset($_SESSION['roll_sti'])){
+if(isset($_SESSION['roll_sti'])){
     if($_SESSION['roll_sti'] != "Docente"){
-        if($_SESSION['roll_sti'] == "Tutorado"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
-        }else  if($_SESSION['roll_sti'] == "Admin"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
-        }
+        include "./vistas/inc/navTutor.php";
+    }else if($_SESSION['roll_sti'] == "Tutorado"){
+        include "./vistas/inc/navStudent.php";
+    }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        include "./vistas/inc/navCoordinadorC.php";
+    }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        include "./vistas/inc/navCoordinadorA.php";
+    }else  if($_SESSION['roll_sti'] == "Admin"){
+        include "./vistas/inc/navRoot.php";
     }
+    
 
 } 
-include "./vistas/inc/navTutor.php"; */
+
 
 ?>
     <div class="register-photo">
@@ -25,8 +26,8 @@ include "./vistas/inc/navTutor.php"; */
             require_once './controladores/usuarioController.php';
             $ins_usuario = new usuarioController();
             if(isset($_SESSION['matricula_sti'])){
-                $tabla="tutorado";
-                $condicion="NControl='".$_SESSION['matricula_sti']."'";
+                $tabla="trabajador";
+                $condicion="Matricula='".$_SESSION['matricula_sti']."'";
             }else if(isset($_SESSION['NControl_sti'])){
                 $tabla="tutorado";
                 $condicion="NControl='".$_SESSION['NControl_sti']."'";
@@ -70,10 +71,10 @@ include "./vistas/inc/navTutor.php"; */
                     <input class="form-control" type="email" value="<?php echo $row['Correo'];?>" placeholder="Email" name="email_upd">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $_SESSION['NControl_sti'];?>" name="no_upd">
+                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php if(isset($_SESSION['NControl_sti'])) echo $_SESSION['NControl_sti']; else echo  $_SESSION['matricula_sti'];?>" name="no_upd">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $row['idPersona'];?>" name="noUs_upd">
+                    <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $_SESSION['id_sti'];?>" name="noUs_upd">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="password" placeholder="Ingrese su contraseña para realizar cambios" name="pass_upd">
