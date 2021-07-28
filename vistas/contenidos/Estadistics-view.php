@@ -1,19 +1,21 @@
 
 <?php 
 
-/* if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] != "Coordinador De Carrera"){
-        if($_SESSION['roll_sti'] == "Docente"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
-        }else  if($_SESSION['roll_sti'] == "Tutorado"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
-        }else  if($_SESSION['roll_sti'] == "Admin"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
-        }
+if(isset($_SESSION['roll_sti'])){
+    //if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
+    if($_SESSION['roll_sti'] == "Docente"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+    }else    if($_SESSION['roll_sti'] == "Tutorado"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+    }else  if($_SESSION['roll_sti'] == "Admin"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+    }if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        include "./vistas/inc/navCoordinadorA.php";
+    }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        include "./vistas/inc/navCoordinadorC.php";
     }
-} */
+    //}
+}
   
  include "./vistas/inc/navCoordinadorC.php"  /**/
 
@@ -118,7 +120,7 @@
                         <option value="" selected="">Dato a Graficar</option>
                         <!-- <option value="10">Actividades</option> -->
                         <option value="Alumnos">Alumnos</option>
-                        <option value="Bajas">Bajas</option>
+                        <!-- <option value="Bajas">Bajas</option> -->
                     </select>
 
 

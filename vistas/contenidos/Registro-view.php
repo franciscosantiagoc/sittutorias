@@ -1,21 +1,100 @@
 <?php
 
 
-/* if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] == "Tutorado"){
+if(isset($_SESSION['roll_sti'])){
+    //if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
+    if($_SESSION['roll_sti'] == "Docente"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+    }else    if($_SESSION['roll_sti'] == "Tutorado"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+    }else  if($_SESSION['roll_sti'] == "Admin"){
+        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+    }if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        include "./vistas/inc/navCoordinadorA.php";
+    }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        include "./vistas/inc/navCoordinadorC.php";
     }
-
-
-} */
-    /* if(roll==coordinadorA) 
-        include "./vistas/inc/navCoordinadorC.php"; */ 
-    /*elseif(roll==coordinadorC)
-        include "./vistas/inc/navCoordinadorC.php";*/ 
-    
+    //}
+}
     
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+<div class="modal" id="modalmultiregistro" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style = "width: 900px; max-width:800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Envio de actividad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
+                        <form id="form_imp" action='#' enctype="multipart/form-data">
+                            <div class="form-group">
+                                <select id="select_type_user" class="form-control">
+                                    <?php
+                                        if($_SESSION['roll_sti'] != "Admin"){
+                                            echo '<option value="14">Coordinadores Area</option>';
+                                        }else  if($_SESSION['15'] == "Coordinador De Area"){
+                                            echo'<option value="16">Coordinadores Carrera</option>';
+                                        }
+                                    ?>
+                                    <option value="17">Tutores</option>
+                                    <option value="18">Tutorados</option>                 
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".csv,xlsx,.xls"/>
+                                </div>
+                                <div class="col-lg-2">
+                                    <input type="submit" name="btnsub" value="Cargar archivo">
+                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xlsx">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
+                                    <!-- <button class="btn-danger" onclick="loadExcel()">Cargar archivo</button> -->
+                                </div>
+                            </div>
+                            
+                        </form>
+                        
+                        <div class="table-bordered table table-hover table-bordered results">
+                            <table class="table table-striped table-bordered nowrap tablas">
+                                <thead class="bg-primary bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd"><br><strong>No.</strong><br></th>
+                                        <th id="trs-hd"><br><strong>Nombre</strong><br></th>
+                                        <th id="trs-hd"><br><strong>Apellido Paterno</strong><br></th>
+                                        <th id="trs-hd"><br><strong>Apellido Materno</strong><br></th>
+                                        <th id="trs-hd"><br><strong>Sexo</strong><br></th>
+                                        <th id="trs-hd"><br><strong>N Control</strong><br></th>
+                                        <th id="trs-hd"><br>Carrera</th>
+                                        <!-- <th id="trs-hd"><br>Generación</th> -->
+                                        <th id="trs-hd"><br>Correo</th>
+                                        <!-- <th id="trs-hd"><br>Acciones</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody id="table_dat_es"></tbody>
+                                
+                            </table>
+                        </div>
+                        <div class="form-group" id="div-regis">
+                            <button class="btn btn-primary" id="btn-regis">Registrar</button>
+                            <button class="btn btn-primary" id="btn-cancel">Cancelar</button>
+                        </div>       
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p>Advertencia: El formato admitido es csv,xls,xlsx</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 <div class="register-photo">
     <div class="form-container">
         <!--<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">-->
@@ -104,7 +183,7 @@
                 <button class="btn btn-primary btn-block" type="submit">Registrar</button>
             </div>
             <div class="form-group">
-                <a class="btn btn-primary btn-block">Importar csv</a>
+                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalmultiregistro">Importar csv</button>
             </div>
         </form>
     </div>
@@ -120,86 +199,7 @@
         }  /**/
     ?>
 
-<div class="container-modal__regst" >
-    <div class="modal_reg_st">
 
-        <div class="table-container col-md-12 search-table-col">
-            <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
-            <form id="form_imp" action='#' enctype="multipart/form-data">
-                <div class="form-group">
-                    <select id="select_type_user" class="form-control">
-                        <?php
-                            if($_SESSION['roll_sti'] != "Admin"){
-                                echo '<option value="14">Coordinadores Area</option>';
-                            }else  if($_SESSION['15'] == "Coordinador De Area"){
-                                echo'<option value="16">Coordinadores Carrera</option>';
-                            }
-                        ?>
-                        <option value="17">Tutores</option>
-                        <option value="18">Tutorados</option>                 
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col-lg-10">
-                        <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".csv,xlsx,.xls"/>
-                    </div>
-                    <div class="col-lg-2">
-                        <input type="submit" name="btnsub" value="Cargar archivo">
-                        <!-- <button class="btn-danger" onclick="loadExcel()">Cargar archivo</button> -->
-                    </div>
-                </div>
-                
-            </form>
-            <div class="form-group contadores" id="cont__infodat">
-            </div>
-            <!-- <div class="form-group pull-right col-lg-4">
-                <input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda" id="searchTerm" onkeyup="doSearch()">
-            </div> -->
-            <!-- <div class="table-responsive table-bordered table table-hover table-bordered results"> -->
-            <div class="table-bordered table table-hover table-bordered results">
-                <table class="table table-striped table-bordered nowrap tablas">
-                    <thead class="bg-primary bill-header cs">
-                        <tr>
-                            <th id="trs-hd"><br><strong>No.</strong><br></th>
-                            <th id="trs-hd"><br><strong>Nombre</strong><br></th>
-                            <th id="trs-hd"><br><strong>Apellido Paterno</strong><br></th>
-                            <th id="trs-hd"><br><strong>Apellido Materno</strong><br></th>
-                            <th id="trs-hd"><br><strong>Sexo</strong><br></th>
-                            <th id="trs-hd"><br><strong>N Control</strong><br></th>
-                            <th id="trs-hd"><br>Carrera</th>
-                            <th id="trs-hd"><br>Generación</th>
-                            <th id="trs-hd"><br>Correo</th>
-                            <!-- <th id="trs-hd"><br>Acciones</th> -->
-                        </tr>
-                    </thead>
-                    <tbody id="table_dat_es">
-                        <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
-                        <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
-                        <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>
-                        <tr> <td>21</td><td>Clarissa</td><td>Zavala</td><td>Jiménez</td><td>F</td><td>17190790</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Clarissa.Zavala.Jiménez@gmail.com</td></tr>
-                        <tr> <td>22</td><td>Alba Beatriz</td><td>Aguilar</td><td>Ulises</td><td>F</td><td>17190019</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>AlbaBeatriz.Aguilar.Ulises@gmail.com</td></tr>
-                        <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
-                        <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
-                        <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>
-                        <tr> <td>21</td><td>Clarissa</td><td>Zavala</td><td>Jiménez</td><td>F</td><td>17190790</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Clarissa.Zavala.Jiménez@gmail.com</td></tr>
-                        <tr> <td>22</td><td>Alba Beatriz</td><td>Aguilar</td><td>Ulises</td><td>F</td><td>17190019</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>AlbaBeatriz.Aguilar.Ulises@gmail.com</td></tr>
-                        <tr><td>18</td><td>Brian</td><td>Benefield</td><td>Morales</td><td>M</td><td>17190836</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Brian.Benefield.Morales@gmail.com</td></tr>
-                        <tr> <td>19</td><td>Kevin Gabriel</td><td>Zarate</td><td>Velasquez</td><td>M</td><td>17190577</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>KevinGabriel.Zarate.Velasquez@gmail.com</td></tr>
-                        <tr> <td>20</td><td>Jesus Antonio</td><td>Zarate</td><td>Villalobos</td><td>M</td><td>17190461</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>JesusAntonio.Zarate.Villalobos@gmail.com</td></tr>
-                        <tr> <td>21</td><td>Clarissa</td><td>Zavala</td><td>Jiménez</td><td>F</td><td>17190790</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>Clarissa.Zavala.Jiménez@gmail.com</td></tr>
-                        <tr> <td>22</td><td>Alba Beatriz</td><td>Aguilar</td><td>Ulises</td><td>F</td><td>17190019</td><td>Ingenieria en Sistemas Computacionales</td><td>Agosto 2017 - Junio 2022</td><td>AlbaBeatriz.Aguilar.Ulises@gmail.com</td></tr>
-                        
-                    </tbody>
-                    
-                </table>
-            </div>
-            <div class="form-group" id="div-regis">
-                <button class="btn btn-primary" id="btn-regis" type="submit">Registrar</button>
-                <button class="btn btn-primary" id="btn-regis" type="submit">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
     function ShowCarAr(x){
@@ -216,7 +216,10 @@
                      sel.innerHTML =resp;
                 }
         });   
-    }    
+    }
+
+
+
 </script>
     
 
@@ -277,6 +280,10 @@
         });
         return false;
     } 
+
+    $('#btn-cancel').click(function() {
+        window.location.href="<?php echo SERVERURL; ?>Registro";
+    });
 
 </script> 
 
