@@ -38,10 +38,10 @@ include "./vistas/inc/navCoordinadorC.php"
             <div class="col"><a href="<?php echo SERVERURL;?>CCActividades"><img style="background-image: url(vistas/assets/img/Icons/activities.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Gestion de Actividades</strong></p>
             </div>
-            <div class="col"><a href="<?php echo SERVERURL;?>CCEstadisticos"><img style="background-image: url(vistas/assets/img/Icons/estadistic.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="<?php echo SERVERURL;?>Estadistics"><img style="background-image: url(vistas/assets/img/Icons/estadistic.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Estadísticas</strong></p>
             </div>
-            <div class="col"><a href="<?php echo SERVERURL;?>CCEdit-perfil"><img style="background-image: url(vistas/assets/img/Icons/perfil.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <div class="col"><a href="<?php echo SERVERURL;?>Edit-Perfil"><img style="background-image: url(vistas/assets/img/Icons/perfil.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Perfil</strong></p>
             </div>
             <div class="col"><a href="<?php echo SERVERURL;?>CCNotification"><img style="background-image: url(vistas/assets/img/Icons/notification.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>

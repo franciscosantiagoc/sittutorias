@@ -61,7 +61,7 @@
             
          
          
-          $sql = mainModel::conectar()->prepare("UPDATE persona $tabla SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto $condNpass WHERE idPersona=:ID $condicionNPass");
+         $sql = mainModel::conectar()->prepare("UPDATE persona $tabla SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto $condNpass WHERE idPersona=:ID $condicionNPass");
    
    
          $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -90,7 +90,8 @@
        /*------------------------Modelo datos usuario------------------------*/
        protected static function datos_usuario_modelo($tipo,$tabla,$condicion){
           if($tipo=="Unico"){
-            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion,Ciudad FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
+            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
+            //echo "SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;";
           }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
           }

@@ -2,20 +2,22 @@
 <?php 
 
 if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
+    //if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
         if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
-        }else  if($_SESSION['roll_sti'] == "Tutorado"){
+        }else    if($_SESSION['roll_sti'] == "Tutorado"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
         }else  if($_SESSION['roll_sti'] == "Admin"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+        }if($_SESSION['roll_sti'] == "Coordinador De Area"){
+            include "./vistas/inc/navCoordinadorA.php";
+        }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+            include "./vistas/inc/navCoordinadorC.php";
         }
-    }
+    //}
 }
   
-include "./vistas/inc/navCoordinadorC.php" 
+ 
 
 ?>
 
@@ -82,7 +84,7 @@ include "./vistas/inc/navCoordinadorC.php"
                     <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
                     <div class="form-group"><input class="form-control" type="text" placeholder="Matrícula"></div>
                     <div class="form-group">
-                        <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a
+                        <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
                     </div>
                 </form>
             </div>
