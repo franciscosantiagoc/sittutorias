@@ -172,7 +172,7 @@ include "./vistas/inc/navTutor.php";
                         $correo = $row['Correo'];
                         $carrera = $row['Carrera_idCarrera'];
 
-
+      
                         echo '
                             <tr>
                                 <td>'. $idmatric .'</td>
