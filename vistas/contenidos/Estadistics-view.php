@@ -17,7 +17,6 @@ if(isset($_SESSION['roll_sti'])){
     //}
 }
   
- include "./vistas/inc/navCoordinadorC.php"  /**/
 
 ?>
 
@@ -230,7 +229,7 @@ if(isset($_SESSION['roll_sti'])){
                     console.log(dat_g); */
 
                     var datosgraf = {
-                    label: "Graficación de datos",
+                    label: "Graficación de datos de "+ddata,
                     data: dat_g,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
