@@ -393,6 +393,13 @@ CREATE TABLE IF NOT EXISTS `trabajador_tutorados` (
 -- Volcando datos para la tabla sistutorias.trabajador_tutorados: ~0 rows (aproximadamente)
 DELETE FROM `trabajador_tutorados`;
 /*!40000 ALTER TABLE `trabajador_tutorados` DISABLE KEYS */;
+INSERT INTO `trabajador_tutorados` (`Trabajador_Matricula`, `Tutorado_NControl`, `fecha_asig`) VALUES
+	('96850', 17190458, '2021-11-08'),
+	('96850', 17190664, '2021-03-14'),
+	('99173', 16190359, '2021-07-21'),
+	('99173', 17190605, '2021-10-15'),
+	('99173', 17190857, '2021-07-28');
+/*!40000 ALTER TABLE `trabajador_tutorados` DISABLE KEYS */;
 /*!40000 ALTER TABLE `trabajador_tutorados` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sistutorias.tutorado

@@ -5,12 +5,8 @@ $peticionAjax = true;
 if(isset($_POST['idInfoTES'])){
     require_once "../controladores/tutoresController.php";
     $ins_informacionCArea = new tutoresController();
-    $respuesta= $ins_informacionCArea->consulta_tutores_controlador($_POST['idInfoTES']);
-    //echo json_encode($respuesta);
-    /* echo 'Respuesta actividad ajax';*/
-    echo '<script>
-            alert("Matricula: "+'.$_POST["idInfoTES"].');
-          </script>';
+    $respuesta= $ins_informacionCArea->consulta_t_unico($_POST['idInfoTES']);
+    echo json_encode($respuesta);
 }else {
     session_start(['name' => 'STI']);
     session_unset();

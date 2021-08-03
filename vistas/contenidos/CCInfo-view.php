@@ -61,10 +61,6 @@ include "./vistas/inc/navCoordinadorC.php"
                             <input class="form-control" type="text" placeholder="Email" id="EmailCA" name="emailca" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="carreraCA">Carrera</label>
-                            <input class="form-control" type="text" placeholder="Carrera" id="CarreraCA" name="carreraca" disabled>
-                        </div>
-                        <div class="form-group">
                             <label for="areaCA">Área</label>
                             <input class="form-control" type="text" placeholder="Area" id="AreaCA" name="areaca" disabled>
                         </div>
@@ -112,7 +108,7 @@ include "./vistas/inc/navCoordinadorC.php"
                         $sexo = $row['Sexo'];
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
-                        $carrera = $row['Carrera_idCarrera'];
+
 
 
 
@@ -163,7 +159,6 @@ include "./vistas/inc/navCoordinadorC.php"
                 $("#SexoCA").val(respuesta[0][4]);
                 $("#numeroTelefonoCA").val(respuesta[0][5]);
                 $("#EmailCA").val(respuesta[0][6]);
-                $("#CarreraCA").val(respuesta[0][7]);
                 $("#AreaCA").val(respuesta[0][8]);
 
                 var image = "<?php echo SERVERURL;?>"

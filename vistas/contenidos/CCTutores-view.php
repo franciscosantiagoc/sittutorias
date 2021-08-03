@@ -21,11 +21,70 @@ if(isset($_SESSION['roll_sti'])){
 
 ?>
 
+<!-- Actualizar -->
+<div class="modal" id="modalActualizarTE" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Tutor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoACTE"></center>
+                        <div class="form-group">
+                            <label for="matriculaT">Matrícula</label>
+                            <input class="form-control" type="text" placeholder="Matrícula" id="matriculaACTE" name="matriculacte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreCoordinadorACTE">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="nameCoordinadorACTE" name="nameCoordinadoracte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoACPTE">Apellido Paterno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Paterno" id="apellidoPACTE" name="apellidopacte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoMACTE">Apellido Materno</label>
+                            <input class="form-control" type="text" placeholder="Apellido Materno" id="apellidoMACTE" name="apellidomacte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="sexoACTE">Sexo</label>
+                            <select id="act_sex">
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroTelefonoACTE">Número de Teléfono</label>
+                            <input class="form-control" type="text" placeholder="Número de Teléfono" id="numeroTelefonoACTE" name="numerotelefonoacte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="emailACTE">Email</label>
+                            <input class="form-control" type="text" placeholder="Email" id="EmailACTE" name="emailacte" >
+                        </div>
+                        <div class="form-group">
+                            <label for="areaACTE">Área</label>
+                            <input class="form-control" type="text" placeholder="Area" id="AreaACTE" name="areaacte" >
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ver -->
 <div class="modal" id="modalInfoTE" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Información del Coordinador de Área</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Información del Tutor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -63,8 +122,8 @@ if(isset($_SESSION['roll_sti'])){
                             <input class="form-control" type="text" placeholder="Email" id="EmailTE" name="emailte" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="carreraCTE">Carrera</label>
-                            <input class="form-control" type="text" placeholder="Carrera" id="CarreraTE" name="carrerate" disabled>
+                            <label for="areaCTE">Área</label>
+                            <input class="form-control" type="text" placeholder="Area" id="AreaTE" name="areate" disabled>
                         </div>
 
                     </form>
@@ -88,10 +147,6 @@ if(isset($_SESSION['roll_sti'])){
                     </div>
                 </form>
             </div>
-
-
-
-
         </div>
                 <div class="form-container" id="contain">
                     <div class="col-md-12 search-table-col">
@@ -114,10 +169,8 @@ if(isset($_SESSION['roll_sti'])){
                                     <th id="trs-hd" class="col-lg-3">APELLIDO MATERNO<br></th>
                                     <th id="trs-hd" class="col-lg-3">TELÉFONO</th>
                                     <th id="trs-hd" class="col-lg-2">ACTUALIZAR</th>
-                                    <th id="trs-hd" class="col-lg-2">ELIMINAR</th>
                                     <th id="trs-hd" class="col-lg-2">VER</th>
                                 </tr>
-
                                 </thead>
                                 <tbody>
                                 <?php
@@ -130,8 +183,6 @@ if(isset($_SESSION['roll_sti'])){
                                     $sexo = $row['Sexo'];
                                     $tel = $row['NTelefono'];
                                     $correo = $row['Correo'];
-
-
                                     echo '
                                         <td>'. $contador.'</td>
                                         <td>'. $idmatric.'</td>
@@ -140,19 +191,11 @@ if(isset($_SESSION['roll_sti'])){
                                         <td>'. $apellm .'</td>
                                         <td>'. $tel.'</td>
                                         <td>
-                                            <a href="#Actualizar" class="btn btn-success">
-                                                    <i class="fas fa-sync-alt"></i>	
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
                                             
-                                                <button type="submit" class="btn btn-warning">
-                                                        <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
+                                            <center><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',2)" data-toggle="modal" data-target="#modalActualizarTE" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button>
+                                        </center>
                                         </td>
-                                        <td><center><button class="btnVerInfoTE" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoTE" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                        <td><center><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',1)" data-toggle="modal" data-target="#modalInfoTE" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
                                         </center></td>
                                         
                                     </tr>';
@@ -186,7 +229,9 @@ if(isset($_SESSION['roll_sti'])){
 
 
 <script type="text/javascript">
-    function clickActividad(idInfoTE){
+
+
+    function clickTE(idInfoTE, func){//1 - ver 2- actualizar
         var datos = new FormData();
         datos.append("idInfoTES",idInfoTE);
         $imagenPrevisualizacion = document.querySelector("#image-infoTE");
@@ -199,21 +244,38 @@ if(isset($_SESSION['roll_sti'])){
             processData: false,
             dataType: 'JSON',
             success: function(respuesta){
+                if(func===1) {
+                    //console.log(respuesta);/**/
+                    $("#matriculaTE").val(respuesta[0][0]);
+                    $("#nameCoordinadorTE").val(respuesta[0][1]);
+                    $("#apellidoPTE").val(respuesta[0][2]);
+                    $("#apellidoMTE").val(respuesta[0][3]);
+                    $("#SexoTE").val(respuesta[0][4]);
+                    $("#numeroTelefonoTE").val(respuesta[0][5]);
+                    $("#EmailTE").val(respuesta[0][6]);
+                    $("#AreaTE").val(respuesta[0][8]);
 
-                console.log(respuesta);/**/
-                $("#matriculaTE").val(respuesta[0][0]);
-                $("#nameCoordinadorTE").val(respuesta[0][1]);
-                $("#apellidoPTE").val(respuesta[0][2]);
-                $("#apellidoMTE").val(respuesta[0][3]);
-                $("#SexoTE").val(respuesta[0][4]);
-                $("#numeroTelefonoTE").val(respuesta[0][5]);
-                $("#EmailTE").val(respuesta[0][6]);
+
+                    var image = "<?php echo SERVERURL;?>"
+                    image = image + respuesta[0][9];
+                    $imagenPrevisualizacion.src = image;
+                    console.log("imagen coord:" + image);
+                }else{
+
+                    $("#matriculaACTE").val(respuesta[0][0]);
+                    $("#nameCoordinadorACTE").val(respuesta[0][1]);
+                    $("#apellidoPACTE").val(respuesta[0][2]);
+                    $("#apellidoMACTE").val(respuesta[0][3]);
+                    $("#numeroTelefonoACTE").val(respuesta[0][5]);
+                    $("#EmailACTE").val(respuesta[0][6]);
+                    $("#AreaACTE").val(respuesta[0][8]);
 
 
-                var image = "<?php echo SERVERURL;?>"
-                image = image +respuesta[0][7];
-                $imagenPrevisualizacion.src = image;
-                console.log("imagen coord:"+image);
+                    let sex = respuesta[0][4];
+                    if(sex==='F')
+                        $("#act_sex option[value='F']").attr("selected", true);
+                    else $("#act_sex option[value='M']").attr("selected", true);
+                }
 
             }
         }).fail( function( jqXHR, textStatus, errorThrown ) {
@@ -222,4 +284,5 @@ if(isset($_SESSION['roll_sti'])){
     }
 
 </script>
-    
+
+
