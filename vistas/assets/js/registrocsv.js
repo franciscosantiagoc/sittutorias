@@ -1,12 +1,20 @@
 var C_Error = 0;
 var oFileIn;
-//Código JQuery
-$(function() {
-    oFileIn = document.getElementById("file_input_st");
-    if (oFileIn.addEventListener) {
-        oFileIn.addEventListener("change", filePicked, false);
+
+var dat_row = [];//inicializa array de contenido filas
+
+$('#file_input_st').on('change', function(e){
+    var ext = $( this ).val().split('.').pop();
+    if ($( this ).val() != '') {
+        if(ext == "xls" /*|| ext == "csv"  || ext == "xlsx" */){
+            Swal.fire("Exitoso","Archivo cargado: ." + ext+"","success");
+            filePicked(e);
+        }else{
+            $( this ).val('');
+            Swal.fire("Advertencia","La extensión del archivo no esta permitida: ." + ext+"","error");
+        }
     }
-});
+}); 
 
 //Método que hace el proceso de importar excel a html
 function filePicked(oEvent) {
@@ -32,91 +40,86 @@ function filePicked(oEvent) {
             });
             var cont = 0; //contador filas
             var contE = 0; //Contador de errores
-            var N_Cont = [];
-            $("#table_dat_es tr").remove(); 
+            dat_row = []; //array filas
+            
+           
             $.each(data, function(indexR, valueR) {
                 if (cont != 0) {
-                    var conc = 1; //contador de columnas
-                    var headRow = "<tr>";
-                    var sRow = "<td>" + cont + "</td>";
+                    var dat_col = []; //array columnas
+                    //dat_col.push(cont);
                     $.each(data[indexR], function(indexC, valueC) {
-                        sRow = sRow + "<td>" + valueC + "</td>";
-                        if (conc == 5) {
-                            for (var i = 0; i < N_Cont.length; i++) {
-                                if (N_Cont[i] == valueC) {
-                                    headRow = "<tr class='error'>";
-                                    contE += 1;
-                                    break;
-                                }
-                            }
-                            N_Cont.push(valueC);
-                            /* console.log(cont+" N_control "+valueC); */
-                        }
-                        conc += 1;
-                    });
-                    sRow = headRow + " " + sRow + "</tr>";
-                    $("#table_dat_es").append(sRow);
+                        dat_col.push(valueC);                        
+                    }); 
+                    dat_row.push(dat_col);//añadiendo columnas al array
                 }
                 cont += 1;
             });
             C_Error = contE;
-            const div = document.querySelector("#cont__infodat");
-            div.innerHTML =
-                "<span>Registros: " +
-                (cont - 2) +
-                "</span><span class='error'>Errores: " +
-                C_Error +
-                "</span>";
+            mostrardatosExcel();
+            //div.style.overflow = "scroll";
         });
-    };
 
+        
+    };
     // Llamar al JS Para empezar a leer el archivo .. Se podría retrasar esto si se desea
     reader.readAsBinaryString(oFile);
 }
 
-/* function doSearch() {
-    const tableReg = document.getElementById("table_dat_es");
-    const searchText = document.getElementById("searchTerm").value.toLowerCase();
-    let total = 0;
 
-    // Recorremos todas las filas con contenido de la tabla
-    for (let i = 1; i < tableReg.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
-        if (tableReg.rows[i].classList.contains("noSearch")) {
-            continue;
-        }
-        let found = false;
-        const cellsOfRow = tableReg.rows[i].getElementsByTagName("td");
-        // Recorremos todas las celdas
-        for (let j = 0; j < cellsOfRow.length && !found; j++) {
-            const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
-            if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
-                found = true;
-                total++;
-            }
-        }
-        if (found) {
-            tableReg.rows[i].style.display = "";
-        } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
-            tableReg.rows[i].style.display = "none";
-        }
-    }
+function mostrardatosExcel(){
+    C_Error=0 //reseteando contador de errores
+    
+    var table = $('#table_dat').DataTable();
+    table.row().clear();
+    for(let i=0; i<dat_row.length; i++){
+        let rowerror=false;
+        
+         for(let j=0;j<dat_row.length; j++){//recorriendo en busca de duplicados
+            if(dat_row[i][4]==dat_row[j][4] && j!=i){
+                C_Error=1
+                rowerror=true;
+                break;
+            }               
+        } 
 
-    // mostramos las coincidencias
-    const lastTR = tableReg.rows[tableReg.rows.length - 1];
-    const td = lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
-    if (searchText == "") {
-        lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML =
-            "Se ha encontrado " + total + " coincidencia" + (total > 1 ? "s" : "");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML = "No se han encontrado coincidencias";
+        let aux=dat_row[i];
+        aux.push('<button onclick="deleteData('+i+')"><i class="fas fa-trash-alt"></i></button>')
+        var rowNode = table.row.add(aux ).draw().node();
+        if(rowerror){
+            $( rowNode ).find('td').addClass('error');
+        }
+        
     }
 }
- */
+function deleteData(position){
+    dat_row.splice(position, 1);
+    Swal.fire("Exitoso","Elemento eliminado correctamente","success");
+    mostrardatosExcel();
+}
+
+
+$("#btn-regis").click(function(event){
+    event.preventDefault();
+    var formData = new FormData();
+    var files = $('#file_input_st')[0].files[0];
+    var select = $('#select_type_user').val();
+    formData.append('archivoexcel',files);
+    formData.append('type_us',select);
+    if(C_Error!=0){
+        Swal.fire("Advertencia","Se ha detectado un error al cargar los datos, verifique si existe algun duplicado para continuar","error");
+    }else{
+        
+    }
+    /* $.ajax({
+        url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
+        type: 'post',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (resp){
+            
+            alert(resp);
+        }
+    });*/
+});

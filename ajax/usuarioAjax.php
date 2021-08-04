@@ -18,8 +18,6 @@ require_once "../controladores/usuarioController.php";
    $ins_usuario = new usuarioController();
    echo $ins_usuario->selectRegistro_selectArEs();
 
-
-
 }elseif (is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0) {
    $ins_usuario = new usuarioController();
    echo $ins_usuario->registro_multU_controlador();

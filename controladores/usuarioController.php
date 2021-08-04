@@ -24,29 +24,30 @@ class usuarioController extends usuarioModel
       $email = mainModel::limpiar_cadena($_POST['email_reg']);
       $carrera = mainModel::limpiar_cadena($_POST['carrera_reg']);
       $noctrl = mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
-      $pass = mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
+      $pass = mainModel::encryption($noctrl);
+      $gener = mainModel::limpiar_cadena($_POST['gen_reg']);
 
       /* == comprobar campos vacíos ==*/
 
       if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "" || $carrera=="" || $fecha_nac=="") {
-          $alerta = [
+         /* $alerta = [
             "Alerta" => "simple",
             "Titulo" => "Ocurrio un error inesperado",
             "Texto" => "Se han detectado campos vacios",
             "Tipo" => "error"
          ];
          echo json_encode($alerta);
-         exit(); /**/
+         exit(); */
          echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "No has llenado todos los campos que son obligatorios",
+                  text: "Se han detectado campos vacios",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'"Registro";
+                     window.location="'.SERVERURL.'Registro";
                   }
                });
             </script>
@@ -70,10 +71,6 @@ class usuarioController extends usuarioModel
             ';
         exit();
       }
-
-
-
-
       /* == Verificando integridad de los datos ==*/
 
       if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $nombre)) {
@@ -285,10 +282,27 @@ class usuarioController extends usuarioModel
       }elseif($select_usuario>=13 && $select_usuario<=15){
            $columdb="Matricula";
            $tabledb="trabajador";
-      }/**/
+      }else{
+         echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "ha ocurrido un error al registrar, recargue la pagina para continuar",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
+      }
+
+
       $condicion = "'$columdb' = '$noctrl'";
        $check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT $columdb FROM $tabledb WHERE $condicion" ); 
-      /*$check_no_ctrl = mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl'");*/
       if ($check_no_ctrl->rowCount() > 0) {
          echo '
             <script> 
@@ -306,8 +320,6 @@ class usuarioController extends usuarioModel
             ';
         exit();
       }
-      $passw='';
-      $passw=$noctrl;   
       $roll='';   
       if($select_usuario=="13") $roll="Coordinador De Area";
       if($select_usuario=="14") $roll="Coordinador De Carrera";
@@ -322,12 +334,17 @@ class usuarioController extends usuarioModel
          "Correo" => $email,
          "NTelefono" => $numero_telefono,
          "Direccion" => $direccion,
-         "CarrAr" => $carrera,
+
          "NoUser" => $noctrl,
-         "Passw" => $passw,
-         "TipoUs"=> $select_usuario,
          "Roll"=>$roll,
-         "status"=>"Inactivo"
+         "CarrAr" => $carrera,
+         "Passw" => $pass,
+         "Gener" => $gener,
+         "status"=>"Inactivo",
+
+         "TipoUs"=> $select_usuario //16 tutorado  13-15 tra
+         
+         
       ];
 
       $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
@@ -379,6 +396,68 @@ class usuarioController extends usuarioModel
             ';
         exit();
       }
+   }
+   
+    /* == controlador registro multiple de usuario  */
+    public function registro_multU_controlador(){
+      require "../library/PHPExcel/Classes/PHPExcel.php";
+      $tmpfname = $_FILES['archivoexcel']['tmp_name'];
+      $typo_us = $_POST['type_us'];
+      $readexcel = PHPExcel_IOFactory::createReaderForFile($tmpfname);
+      $excelobj = $readexcel->load($tmpfname);
+      
+      $hoja = $excelobj->getSheet(0);//leer 1ra hoja del archivo
+      $filas = $hoja->getHighestRow();
+      $html = " <thead>"; 
+      $datos = array();
+      for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
+          $nom = $hoja ->getCell('A',$row)->getValue();
+          $apep = $hoja ->getCell('B',$row)->getValue();
+          $apem = $hoja ->getCell('C',$row)->getValue();
+          $sex = $hoja ->getCell('D',$row)->getValue();
+          $ncont = $hoja ->getCell('E',$row)->getValue();
+          $esp = $hoja ->getCell('F',$row)->getValue();
+          $gen = $hoja ->getCell('G',$row)->getValue();
+          $email = $hoja ->getCell('H',$row)->getValue();
+          if($typo_us==18){
+            $consulta = "SELECT NControl FROM tutorado WHERE NControl ='$noctrl' ";
+          }else{
+            $consulta = "SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl' ";
+          }
+         /*$check_no_ctrl = mainModel::ejecutar_consulta_simple($consulta);
+         
+         $repet=false; 
+         $foreach($datos['ncont'] as $key){
+            if(key==$ncont){
+               $repet = true;
+               break;
+            }
+         }
+         if($repet){
+            
+            $status = 'Dato Repetido';
+         }else if ($check_no_ctrl->rowCount() > 0) {
+            $status = 'Dato Existente';
+         }
+          array_push('ID'=>($row-1), 'nom'=>$nom,'apellp'=>$apep,'apellm'=>$apem,'sex'=>$sex,'ncont'=>$ncont,'esp'=>$esp,'gen'=>$gen,'email'=>$email,'status'=>$status)*/ 
+      } 
+      $html +="</thead>";
+      /*
+      $alerta = [
+            "Alerta" => "simple",
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
+            "Tipo" => "error"
+         ];*/
+       /*return $alerta;*/
+       return $filas; 
+
+
+
+      /*
+      
+      */
+      
    }
 
    public function actualizar_usuario_controlador()
@@ -694,67 +773,7 @@ class usuarioController extends usuarioModel
       return usuarioModel::datos_ta_modelo($campos,$tabla,$condicion);
    }
 
-   /* == controlador registro multiple de usuario  */
-   public function registro_multU_controlador(){
-      require "../library/PHPExcel/Classes/PHPExcel.php";
-      $tmpfname = $_FILES['archivoexcel']['tmp_name'];
-      $typo_us = $_POST['type_us'];
-      $readexcel = PHPExcel_IOFactory::createReaderForFile($tmpfname);
-      $excelobj = $readexcel->load($tmpfname);
-      
-      $hoja = $excelobj->getSheet(0);//leer 1ra hoja del archivo
-      $filas = $hoja->getHighestRow();
-      $html = " <thead>"; 
-      $datos = array();
-      for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
-          $nom = $hoja ->getCell('A',$row)->getValue();
-          $apep = $hoja ->getCell('B',$row)->getValue();
-          $apem = $hoja ->getCell('C',$row)->getValue();
-          $sex = $hoja ->getCell('D',$row)->getValue();
-          $ncont = $hoja ->getCell('E',$row)->getValue();
-          $esp = $hoja ->getCell('F',$row)->getValue();
-          $gen = $hoja ->getCell('G',$row)->getValue();
-          $email = $hoja ->getCell('H',$row)->getValue();
-          if($typo_us==18){
-            $consulta = "SELECT NControl FROM tutorado WHERE NControl ='$noctrl' ";
-          }else{
-            $consulta = "SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl' ";
-          }
-         /*$check_no_ctrl = mainModel::ejecutar_consulta_simple($consulta);
-         
-         $repet=false; 
-         $foreach($datos['ncont'] as $key){
-            if(key==$ncont){
-               $repet = true;
-               break;
-            }
-         }
-         if($repet){
-            
-            $status = 'Dato Repetido';
-         }else if ($check_no_ctrl->rowCount() > 0) {
-            $status = 'Dato Existente';
-         }
-          array_push('ID'=>($row-1), 'nom'=>$nom,'apellp'=>$apep,'apellm'=>$apem,'sex'=>$sex,'ncont'=>$ncont,'esp'=>$esp,'gen'=>$gen,'email'=>$email,'status'=>$status)*/ 
-      } 
-      $html +="</thead>";
-      /*
-      $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
-            "Tipo" => "error"
-         ];*/
-       /*return $alerta;*/
-       return $filas; 
-
-
-
-      /*
-      
-      */
-      
-   }
+  
 
    public function selectRegistro_selectArEs(){
       $rol=$_POST['selectCarReg'];

@@ -17,21 +17,19 @@
          $sql->execute();
 
           if($sql->rowCount() == 1){
-           $sql=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
+            $sql=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
             $sql->execute();
             $row=$sql->fetch();
-            $iduser=$row['idPersona'];
+            $idper=$row['idPersona'];
             if($datos['TipoUs']==16){
-               $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Estado) VALUES(:NoUser,$iduser,:CarrAr,:contra,:Estado)";
+               $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Estado) VALUES(:NoUser,$idper,:CarrAr,:contra,:Estado)";
             }else{
-              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1,:Roll,:CarrAr,:contra,:estatus)"; 
+              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,$idper,:Roll,:CarrAr,:contra,:Estado)"; 
             }
             $sql = mainModel::conectar()->prepare($sentencia);
-            $sql->bindParam(":NoUser", $datos['NoUser']);
-            if($datos['TipoUs']!='16'){
-               $sql->bindParam(":Roll",$datos['Roll']);
-            }
-               
+            
+            $sql->bindParam(":NoUser", $datos['NoUser']);   
+            if($datos['TipoUs']!='16') $sql->bindParam(":Roll",$datos['Roll']);
             $sql->bindParam(":CarrAr",$datos['CarrAr']);
             $sql->bindParam(":contra",$datos['Passw']); 
             $sql->bindParam(":Estado", $datos['status']);/**/

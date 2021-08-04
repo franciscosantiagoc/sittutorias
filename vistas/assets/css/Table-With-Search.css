@@ -1,92 +1,3 @@
-.bill-header {
-    font-size: 12px;
-    text-align: center;
-}
-
-.form-control:focus {
-    border-color: #25476a;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-#trs-hd {
-    text-align: center;
-}
-
-.bill-header.cs {
-    background-color: rgba(37, 71, 106, 0.56);
-    color: #fff;
-}
-
-.counter {
-    padding: 8px;
-    color: #ccc;
-}
-
-.results tr[visible="false"],
-.no-result {
-    display: none;
-}
-
-.results tr[visible="false"],
-.no-result {
-    display: none;
-}
-
-.counter {
-    padding: 8px;
-    color: #ccc;
-}
-
-.fa.fa-warning {
-    font-size: 18px;
-    color: #ff0000;
-}
-
-.warning.no-result {
-    text-align: center;
-}
-
-.search.form-control {
-    border-radius: 0px !important;
-}
-
-.search-table-col {
-    margin-top: 50px;
-}
-
-.search {
-    margin-top: 15px;
-}
-
-div#contain {
-    width: 100%;
-    padding-bottom: 15px;
-}
-
-.table-container.col-md-12.search-table-col {
-    background: white;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-.dat_rep {
-    background-color: yellow;
-}
-
-.container-modal__regst {
-    width: 100%;
-    /*height: 100%;
-     background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    z-index: 1000; */
-}
-
-.contadores {
-    display: inline-block;
-    margin-top: 20px;
-}
 
 .contadores>span {
     margin-right: 20px;
@@ -96,15 +7,12 @@ div#contain {
     color: red;
 }
 
-tr.error {
-    background-color: #ff0000;
-    color: #fff;
+#table_dat td.error {
+    background-color: #ff0000 !important;
+    color: #fff !important;
 }
 
 .hide {
     display: none;
 }
 
-.red {
-    color: yellow;
-}
