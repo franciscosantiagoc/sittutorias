@@ -83,8 +83,9 @@ function mostrardatosExcel(){
         } 
 
         let aux=dat_row[i];
-        aux.push('<button onclick="deleteData('+i+')"><i class="fas fa-trash-alt"></i></button>')
-        var rowNode = table.row.add(aux ).draw().node();
+        let aux2=aux.concat(['<button onclick="deleteData('+i+')"><i class="fas fa-trash-alt"></i></button>']);
+        //aux.push()
+        var rowNode = table.row.add(aux2 ).draw().node();
         if(rowerror){
             $( rowNode ).find('td').addClass('error');
         }
@@ -100,26 +101,35 @@ function deleteData(position){
 
 $("#btn-regis").click(function(event){
     event.preventDefault();
-    var formData = new FormData();
-    var files = $('#file_input_st')[0].files[0];
-    var select = $('#select_type_user').val();
-    formData.append('archivoexcel',files);
-    formData.append('type_us',select);
+   
     if(C_Error!=0){
-        Swal.fire("Advertencia","Se ha detectado un error al cargar los datos, verifique si existe algun duplicado para continuar","error");
+        Swal.fire("Advertencia","Se ha detectado un error en los datos","error");
+    }else if(dat_row.length==0){
+        Swal.fire("Advertencia","No ha cargado datos para registrar","error");
     }else{
         
+        var sel_user = $('#Mselect_user').val();
+        var sel_carAr = $('#MSel_CarrA').val();
+        var sel_gen = $('#gen_regM').val();
+        //alert(sel_user +'   ' + sel_carAr + '    '+sel_gen);
+
+        var formData = new FormData();
+        formData.append('dataexcel', JSON.stringify(dat_row));//array datos
+        formData.append('datauser',sel_user);
+        formData.append('dataCAR',sel_carAr);
+        formData.append('datagen',sel_gen); /**/
+        $.ajax({
+            url: server_reg+'ajax/usuarioAjax.php',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (resp){
+                Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
+                console.log('respuesta: '+resp.Texto);
+            }
+        });
     }
-    /* $.ajax({
-        url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
-        type: 'post',
-        data: formData,
-        dataType: 'json',
-        contentType: false,
-        processData: false,
-        success: function (resp){
-            
-            alert(resp);
-        }
-    });*/
+    
 });

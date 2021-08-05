@@ -17,27 +17,29 @@
          $sql->execute();
 
           if($sql->rowCount() == 1){
-            $sql=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
-            $sql->execute();
-            $row=$sql->fetch();
+            $sql2=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
+            $sql2->execute();
+            $row=$sql2->fetch();
             $idper=$row['idPersona'];
+
             if($datos['TipoUs']==16){
-               $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Estado) VALUES(:NoUser,$idper,:CarrAr,:contra,:Estado)";
+               $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion,Estado) VALUES(:NoUser,:idperson,:CarrAr,:contra,:Gen,:Estado)";
             }else{
-              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,$idper,:Roll,:CarrAr,:contra,:Estado)"; 
+              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,:idperson,:Roll,:CarrAr,:contra,:Estado)"; 
             }
-            $sql = mainModel::conectar()->prepare($sentencia);
-            
-            $sql->bindParam(":NoUser", $datos['NoUser']);   
-            if($datos['TipoUs']!='16') $sql->bindParam(":Roll",$datos['Roll']);
-            $sql->bindParam(":CarrAr",$datos['CarrAr']);
-            $sql->bindParam(":contra",$datos['Passw']); 
-            $sql->bindParam(":Estado", $datos['status']);/**/
+            $sql3 = mainModel::conectar()->prepare($sentencia);
+            $sql3->bindParam(":idperson", $idper);
+            $sql3->bindParam(":NoUser", $datos['NoUser']);   
+            if($datos['TipoUs']!='16') $sql3->bindParam(":Roll",$datos['Roll']);
+            $sql3->bindParam(":CarrAr",$datos['CarrAr']);
+            $sql3->bindParam(":contra",$datos['Passw']); 
+            if($datos['TipoUs']=='16') $sql3->bindParam(":Gen",$datos['Gener']);
+            $sql3->bindParam(":Estado", $datos['status']);/**/
            
-            $sql->execute();
+            $sql3->execute();
          } /**/
 
-         return $sql;
+         return $sql3;
       }
 
       protected static function actualizar_usuario_modelo($datos){

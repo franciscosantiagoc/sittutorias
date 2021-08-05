@@ -35,8 +35,8 @@ if(isset($_SESSION['roll_sti'])){
                         <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
                         <form id="form_imp" action='#' enctype="multipart/form-data">
                             <div class="form-group">
-                                <select id="Mselect_user" class="form-control js-example-basic-single" name="Mselect_usertype" onchange="ShowCarAr(this.value,2)">
-                                    <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
+                                <select id="Mselect_user" class="form-control js-example-basic-single" name="Mselect_user" onchange="ShowCarAr(this.value,2)">
+                                    <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
                                     <?php            
                                         if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
                                         echo '<option value="15">Tutor</option>
@@ -57,7 +57,7 @@ if(isset($_SESSION['roll_sti'])){
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select id="MSel_CarrA" class="form-control" name="Mcarrera_reg">
+                                <select id="MSel_CarrA" class="form-control" name="MSel_CarrA">
                                     <option selected="" value="">Carrera</option>
                                 </select>
                             </div>
@@ -85,9 +85,7 @@ if(isset($_SESSION['roll_sti'])){
                                     <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".xls"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <!-- <input type="submit" name="btnsub" value="Cargar archivo"> -->
-                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xlsx">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
-                                    <!-- <button class="btn-danger" onclick="loadExcel()">Cargar archivo</button> -->
+                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xlsx" download="Formato Multiregistro.pdf">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
                                 </div>
                             </div>
                             
@@ -190,7 +188,7 @@ if(isset($_SESSION['roll_sti'])){
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Numero de Control" name="no_ctrl_reg">
+                <input class="form-control" type="text" placeholder="Numero de Control/Matricula" name="no_ctrl_reg">
             </div>
             <div class="form-group" id="id_Gen">
                 <select class="form-control" id="gen_reg" name="gen_reg">
@@ -234,6 +232,7 @@ if(isset($_SESSION['roll_sti'])){
 
 
 <script type="text/javascript">
+    var  server_reg = "<?php echo SERVERURL;?>"
     function ShowCarAr(x,opt){
         // console.log("select tipo");  
         var userType = document.getElementById("select_user").value=x;

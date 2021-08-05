@@ -201,13 +201,20 @@ class usuarioController extends usuarioModel
                exit();
             }
          } else {
-            $alerta = [
-               "Alerta" => "simple",
-               "Titulo" => "Ocurrio un error inesperado",
-               "Texto" => "Ha ingresado un CORREO no válido",
-               "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ha ingresado un CORREO no válido",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
             exit();
          }
       } else {
@@ -323,7 +330,7 @@ class usuarioController extends usuarioModel
       $roll='';   
       if($select_usuario=="13") $roll="Coordinador De Area";
       if($select_usuario=="14") $roll="Coordinador De Carrera";
-      if($select_usuario=="14") $roll="Docente";
+      if($select_usuario=="15") $roll="Docente";
 
       $datos_usuario_reg = [
          "Nombre" => $nombre,
@@ -348,20 +355,6 @@ class usuarioController extends usuarioModel
       ];
 
       $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
-      //$agregar_usuario=$agregar_usuario->rowCount();
-      /*$row=$agregar_usuario->fetch();
-      $agregar_usuario=$row['idPersona'];
-       echo '
-            <script> 
-               Swal.fire({
-                  title: "Usuario Registrado",
-                  text: "El idperson del ultimo usuario es: '.$agregar_usuario.'",
-                  type: "success",
-                  confirmButtonText: "Aceptar"
-               });
-            </script>
-            ';
-        exit(); */
       if($agregar_usuario->rowCount()==1){
          echo '
             <script> 
@@ -397,67 +390,171 @@ class usuarioController extends usuarioModel
         exit();
       }
    }
-   
+
     /* == controlador registro multiple de usuario  */
     public function registro_multU_controlador(){
-      require "../library/PHPExcel/Classes/PHPExcel.php";
-      $tmpfname = $_FILES['archivoexcel']['tmp_name'];
-      $typo_us = $_POST['type_us'];
-      $readexcel = PHPExcel_IOFactory::createReaderForFile($tmpfname);
-      $excelobj = $readexcel->load($tmpfname);
+      $select_usuario = mainModel::limpiar_cadena($_POST['datauser']);
+      $carrera = mainModel::limpiar_cadena($_POST['dataCAR']);
+      $gener = mainModel::limpiar_cadena($_POST['datagen']);
       
-      $hoja = $excelobj->getSheet(0);//leer 1ra hoja del archivo
-      $filas = $hoja->getHighestRow();
-      $html = " <thead>"; 
-      $datos = array();
-      for($row=2; $row<=$filas ; $row++){ //iniciamos de la fila dos porque la 1 corresponde a la cabecera del formato
-          $nom = $hoja ->getCell('A',$row)->getValue();
-          $apep = $hoja ->getCell('B',$row)->getValue();
-          $apem = $hoja ->getCell('C',$row)->getValue();
-          $sex = $hoja ->getCell('D',$row)->getValue();
-          $ncont = $hoja ->getCell('E',$row)->getValue();
-          $esp = $hoja ->getCell('F',$row)->getValue();
-          $gen = $hoja ->getCell('G',$row)->getValue();
-          $email = $hoja ->getCell('H',$row)->getValue();
-          if($typo_us==18){
-            $consulta = "SELECT NControl FROM tutorado WHERE NControl ='$noctrl' ";
-          }else{
-            $consulta = "SELECT Matricula FROM trabajador WHERE Matricula ='$noctrl' ";
-          }
-         /*$check_no_ctrl = mainModel::ejecutar_consulta_simple($consulta);
-         
-         $repet=false; 
-         $foreach($datos['ncont'] as $key){
-            if(key==$ncont){
-               $repet = true;
-               break;
-            }
-         }
-         if($repet){
-            
-            $status = 'Dato Repetido';
-         }else if ($check_no_ctrl->rowCount() > 0) {
-            $status = 'Dato Existente';
-         }
-          array_push('ID'=>($row-1), 'nom'=>$nom,'apellp'=>$apep,'apellm'=>$apem,'sex'=>$sex,'ncont'=>$ncont,'esp'=>$esp,'gen'=>$gen,'email'=>$email,'status'=>$status)*/ 
-      } 
-      $html +="</thead>";
-      /*
-      $alerta = [
-            "Alerta" => "simple",
+      $datos_reg = json_decode($_POST['dataexcel']);
+
+      
+      if($select_usuario==''){
+         $alerta = [
             "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "El NUMERO DE CONTROL ya se encuentra registrado en el sistema",
+            "Texto" => "Seleccione un tipo de usuario para continuar",
             "Tipo" => "error"
-         ];*/
-       /*return $alerta;*/
-       return $filas; 
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+      if($select_usuario!=13 && $select_usuario!=14 && $select_usuario!=15 && $select_usuario!=16){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con el tipo de usuario, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
 
+      if($carrera==''){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Debe seleccionar un area/carrera para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
 
+      if($select_usuario=='16'){
+         if($gener==''){
+            $alerta = [
+               "Titulo" => "Ocurrio un error inesperado",
+               "Texto" => "Debe seleccionar una generación para continuar",
+               "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+         }
 
-      /*
-      
-      */
-      
+         $consulta='';
+         $consulta="SELECT idGeneracion FROM generacion WHERE idGeneracion=$gener" ;
+         $check_gen = mainModel::ejecutar_consulta_simple($consulta); 
+         if ($check_gen->rowCount() == 0) {
+            $alerta = [
+               "Titulo" => "Ocurrio un error inesperado",
+               "Texto" => "La generación seleccionada no existe, recargue la página para continuar",
+               "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+         }
+
+      }
+
+      $consulta='';
+      if($select_usuario=='16'){
+          $consulta="SELECT idCarrera FROM carrera WHERE idCarrera=$carrera" ;
+      }else {
+         $consulta="SELECT idAreas FROM areas WHERE idAreas=$carrera";
+      }
+
+      $check_CarAr = mainModel::ejecutar_consulta_simple($consulta); 
+      if ($check_CarAr->rowCount() == 0) {
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "El area/carrera seleccionada no existe, recargue la página para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+         //for($i=0; i<count($datos_reg); $i++)
+      //comparar si existe algun alumno alumno
+
+      if($select_usuario=='16'){
+         $consulta="SELECT NControl FROM tutorado WHERE NControl=" ;
+     }else {
+        $consulta="SELECT Matricula FROM trabajador WHERE Matricula=";
+     }
+     $roll='';   
+      if($select_usuario=="13") $roll="Coordinador De Area";
+      if($select_usuario=="14") $roll="Coordinador De Carrera";
+      if($select_usuario=="15") $roll="Docente";
+
+     for($i = 0; $i < count($datos_reg); ++$i) {
+         $check_userdat = mainModel::ejecutar_consulta_simple($consulta.$datos_reg[$i][4]); 
+         if ($check_userdat->rowCount() > 0) {
+            $alerta = [
+               "Titulo" => "Ocurrio un error inesperado",
+               "Texto" => "El usuario con Matricula/NControl ".$datos_reg[0][4]." ya existe, verifique los datos para continuar",
+               "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+
+         }
+      }
+      $cont = 0;
+      $users='';
+      for($i = 0; $i < count($datos_reg); $i++) {
+         $nombre= mainModel::limpiar_cadena($datos_reg[$i][0]);
+         $apellido_paterno = mainModel::limpiar_cadena($datos_reg[$i][1]);
+         $apellido_materno = mainModel::limpiar_cadena($datos_reg[$i][2]);
+         $fecha_nac = "2012-12-12";
+         $sexo = mainModel::limpiar_cadena($datos_reg[$i][3]);
+         $email = mainModel::limpiar_cadena($datos_reg[$i][5]);
+         $tel = "00000000";
+         $direc = "Juchitán Oaxaca";
+         $noctrl = mainModel::limpiar_cadena($datos_reg[$i][4]);
+         $pass = mainModel::encryption($noctrl);
+         $datos_usuario_reg = [
+            "Nombre" => $nombre,
+            "APaterno" => $apellido_paterno,
+            "AMaterno" => $apellido_materno,
+            "FechaNac" => $fecha_nac,
+            "Sexo" => $sexo,
+            "Correo" => $email,
+            "NTelefono" => $tel,
+            "Direccion" => $direc,
+            "NoUser" => $noctrl,
+            "Roll"=>$roll,
+            "CarrAr" => $carrera,
+            "Passw" => $pass,
+            "Gener" => $gener,
+            "status"=>"Inactivo",
+   
+            "TipoUs"=> $select_usuario //16 tutorado  13-15 tra
+             
+         ];
+         $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
+         $cont++;
+         //$users = $users."$nombre $apellido_paterno $sexo -------------- ";        
+     }
+
+     if($agregar_usuario->rowCount()==0){  
+         $alerta = [
+            "Titulo" => "Error inesperado",
+            "Texto" => "Error al registrar al usuario $nombre $apellido_paterno $noctrl",
+            "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+
+      }else{
+         $alerta = [
+            "Titulo" => "Registro exitoso de usuarios",
+            "Texto" => "Se han registrado correctamente $cont datos",
+            "Tipo" => "success"
+            ];
+            echo json_encode($alerta);
+            exit();
+      }
+         
    }
 
    public function actualizar_usuario_controlador()
@@ -478,15 +575,6 @@ class usuarioController extends usuarioModel
       $iduser = mainModel::limpiar_cadena($_POST['no_upd']);
       $idper = mainModel::limpiar_cadena($_POST['noUs_upd']);
 
-      
-       /*$alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "La contraseña es incorrecta",
-            "Tipo" => "error"
-            ];
-            echo json_encode($alerta);
-            exit();*/
       if ($pass=="") {
         echo '
             <script> 
@@ -729,7 +817,7 @@ class usuarioController extends usuarioModel
       exit(); */
       $actualizar_usuario = usuarioModel::actualizar_usuario_modelo($datos_usuario_upd);
       
-      if($actualizar_usuario){//comprobando realizacion de actualizacion
+      if($actualizar_usuario->rowCount()==1){//comprobando realizacion de actualizacion
          echo '
             <script> 
                Swal.fire({
@@ -780,10 +868,10 @@ class usuarioController extends usuarioModel
       $code_html='';
       if($rol=="16"){
          $consult_select = mainModel::ejecutar_consulta_simple("SELECT idCarrera,Nombre FROM carrera;");
-         $code_html = '<option selected="">Selecciona una carrera</option>';
+         $code_html = '<option selected="" value="">Selecciona una carrera</option>';
       }else{
          $consult_select = mainModel::ejecutar_consulta_simple("SELECT idAreas,Nombre FROM areas;");
-         $code_html = '<option selected="">Selecciona un area</option>';
+         $code_html = '<option selected="" value="">Selecciona un area</option>';
       }
        $dat_info=$consult_select->fetchAll(); 
        
