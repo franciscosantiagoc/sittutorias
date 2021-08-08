@@ -110,6 +110,7 @@ include "./vistas/inc/navStudent.php"
                                     $sem = $row['Semestrerealizacion_sug'];
                                     $stat = $row['Estado'];
                                     $format = $row['URLFormato'];
+                                    $fecha_e = $row['Fecha'];
 
                                     echo '
                                         <tr>
@@ -117,7 +118,7 @@ include "./vistas/inc/navStudent.php"
                                             <td>'. $desc .'</td>
                                             <td>'. $sem .'</td>
                                             <td>'. $stat .'</td>
-                                            <td><center><i class="fa fa-remove"></i></center></td>
+                                            <td><center>'.$fecha_e.'</center></td>
                                             <td><center><button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>
                                             <abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
                                             </center></td>

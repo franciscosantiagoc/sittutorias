@@ -18,10 +18,12 @@ class actividadesController extends actividadesModel
           $rowsub=$consult_entrega->fetch();
          if($consult_entrega->rowCount() > 0){
             $row['Estado']= $rowsub['Estatus'];
+            $row['Fecha']= $rowsub['Fecha'];
          }else{
             $row['Estado']= 'No entregado';
+            $row['Fecha']=  'Sin fecha de entrega';
          }
-
+         
          array_push($resultado, $row);
       }
       return $resultado; 
@@ -116,8 +118,29 @@ class actividadesController extends actividadesModel
 
       $temp = $_FILES['activity-file']['tmp_name'];
       $link_file='/directory/Activitiesdelivered/'.$idact.'_'.$nctrl.".pdf";
-      //$link_img=str_replace(' ', '', $link_img);
       $archivo = '.'.$link_file;
+
+      $ext = pathinfo($temp,PATHINFO_EXTENSION );
+      if($ext!="pdf"){
+         echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "El formato del archivo seleccionado es incorrecto '.$ext.'",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'AlumnAct"
+                  }
+               });
+         </script>
+         '; 
+         exit();
+      }
+
+
+
       if (move_uploaded_file($temp, $archivo) ) {
          //Cambiamos los permisos
          chmod($archivo, 0777);
@@ -153,46 +176,59 @@ class actividadesController extends actividadesModel
        //echo "<script>alert($date);</script>"; /**/
 
        
-      if($check_idact->rowCount()==0){ 
-         $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
+      if($check_idact->rowCount()!=0){ 
+         echo '
+         <script> 
+            Swal.fire({
+               title: "Actividad entregada",
+               text: "Se ha entregado la actividad correctamente",
+               type: "success",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+               if(result.value){
+                  window.location="'.SERVERURL.'AlumnAct"
+               }
+            });
+         </script>
+         ';
        }else{
-         $registro_actividad = actividadesModel::modificarstatus_actividad_modelo($datos_actividad_upd);
-      } 
+         $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
+       
       /**/
       
-      if($registro_actividad){//comprobando realizacion de actualizacion
-         echo '
-            <script> 
-               Swal.fire({
-                  title: "Actividad entregada",
-                  text: "Se ha entregado la actividad correctamente",
-                  type: "success",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnAct"
-                  }
-               });
-            </script>
-            '; 
+         if($registro_actividad){//comprobando realizacion de actualizacion
+            echo '
+               <script> 
+                  Swal.fire({
+                     title: "Actividad entregada",
+                     text: "Se ha entregado la actividad correctamente",
+                     type: "success",
+                     confirmButtonText: "Aceptar"
+                  }).then((result)=>{
+                     if(result.value){
+                        window.location="'.SERVERURL.'AlumnAct"
+                     }
+                  });
+               </script>
+               '; 
 
-      }else{
-           echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "Error al registrar la actividad, recargue la pagina para continuar",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnAct"
-                  }
-               });
-            </script>
-            '; 
+         }else{
+            echo '
+               <script> 
+                  Swal.fire({
+                     title: "Ocurrio un error inesperado",
+                     text: "Error al registrar la actividad, recargue la pagina para continuar",
+                     type: "error",
+                     confirmButtonText: "Aceptar"
+                  }).then((result)=>{
+                     if(result.value){
+                        window.location="'.SERVERURL.'AlumnAct"
+                     }
+                  });
+               </script>
+               '; 
+         }
       }
-       
 
    }
 

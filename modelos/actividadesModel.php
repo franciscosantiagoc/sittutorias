@@ -18,7 +18,7 @@
       //modelo regitro de entrega de actividad de tutorado
       protected static function entregar_actividad_modelo($datos){
          
-          $sql = mainModel::conectar()->prepare("INSERT INTO actividades_asignadas(Actividades_idActividades, Tutorado_NControl,URLFile, Estatus) VALUES(:idActividad, :NControl, :Urlfile, :Estatus)");
+          $sql = mainModel::conectar()->prepare("INSERT INTO actividades_asignadas(Actividades_idActividades, Tutorado_NControl,URLFile,Fecha, Estatus) VALUES(:idActividad, :NControl, :Urlfile, CURDATE(), :Estatus)");
          $sql->bindParam(":idActividad", $datos['idActividad']);
          $sql->bindParam(":NControl", $datos['NControl']);
          $sql->bindParam(":Urlfile",$datos['URLFile']);
