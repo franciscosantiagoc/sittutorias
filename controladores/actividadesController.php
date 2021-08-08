@@ -120,27 +120,6 @@ class actividadesController extends actividadesModel
       $link_file='/directory/Activitiesdelivered/'.$idact.'_'.$nctrl.".pdf";
       $archivo = '.'.$link_file;
 
-      $ext = pathinfo($temp,PATHINFO_EXTENSION );
-      if($ext!="pdf"){
-         echo '
-         <script> 
-            Swal.fire({
-               title: "Ocurrio un error inesperado",
-               text: "El formato del archivo seleccionado es incorrecto '.$ext.'",
-               type: "error",
-               confirmButtonText: "Aceptar"
-            }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnAct"
-                  }
-               });
-         </script>
-         '; 
-         exit();
-      }
-
-
-
       if (move_uploaded_file($temp, $archivo) ) {
          //Cambiamos los permisos
          chmod($archivo, 0777);
@@ -239,8 +218,9 @@ class actividadesController extends actividadesModel
         $resultado = [];
         foreach($dat_info as $rows){
             $consult_entrega = mainModel::ejecutar_consulta_simple('SELECT * FROM actividades_asignadas WHERE Actividades_idActividades='. $rows['idActividades'] .' AND Tutorado_NControl=' . $ncontrol . ';');
+            $rowsub=$consult_entrega->fetch();
             if($consult_entrega->rowCount() > 0){
-                $rows['Estado']= 'Entregado';
+                $rows['Estado']= $rowsub['Estatus'];
             }else{
                 $rows['Estado']= 'No entregado';
             }

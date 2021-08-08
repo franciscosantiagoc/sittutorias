@@ -1008,7 +1008,7 @@ class usuarioController extends usuarioModel
        if($actualizar_tutorado->rowCount()==0){
          $alerta = [
             "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "Ha ocurrido un error al actualizar los datos, recargue la pagina para continuar",
+            "Texto" => "Error al actualizar, modifique los datos para continuar",
             "Tipo" => "error"
          ];
          echo json_encode($alerta);

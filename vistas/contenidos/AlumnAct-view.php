@@ -66,9 +66,6 @@ include "./vistas/inc/navStudent.php"
     </div>
     <?php
         if(isset($_FILES['activity-file'])){
-            /* if ($_FILES['activity-file']['name'] != null){
-                echo '<script>alert("Envio form con archivo");</script>';
-            }*/
             require_once "./controladores/actividadesController.php";
 
             $ins_actividad= new actividadesController(); 
@@ -112,19 +109,20 @@ include "./vistas/inc/navStudent.php"
                                     $format = $row['URLFormato'];
                                     $fecha_e = $row['Fecha'];
 
-                                    echo '
+                                    $fila = "
                                         <tr>
-                                            <td>'. $name .'</td>
-                                            <td>'. $desc .'</td>
-                                            <td>'. $sem .'</td>
-                                            <td>'. $stat .'</td>
-                                            <td><center>'.$fecha_e.'</center></td>
-                                            <td><center><button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>
-                                            <abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
+                                            <td>$name</td>
+                                            <td>$desc</td>
+                                            <td>$sem</td>
+                                            <td>$stat</td>
+                                            <td><center>$fecha_e</center></td>
+                                            <td><center>";
+                                    if($stat!='Validado') $fila=$fila.'<button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>';
+
+                                    $fila= $fila.'<abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download"    style="font-size: 15px;"></i></a></abbr>
                                             </center></td>
-                                            
-                                        </tr>
-                                    ';
+                                        </tr>';
+                                    echo $fila;
                                 }
                             ?>
                             
@@ -138,6 +136,20 @@ include "./vistas/inc/navStudent.php"
 
 
 <script type="text/javascript">
+$('#activity-file').on('change', function(e){
+    var ext = $( this ).val().split('.').pop();
+    if ($( this ).val() != '') {
+        if(ext == "pdf" /*|| ext == "csv"  || ext == "xlsx" */){
+            Swal.fire("Exitoso","Archivo cargado: ." + ext+"","success");
+        }else{
+            $( this ).val('');
+            Swal.fire("Advertencia","La extensión del archivo no esta permitida: ." + ext+"","error");
+        }
+    }
+}); 
+
+
+
 function clickActividad(idAct){
     var datos = new FormData();
     datos.append("idActividad",idAct);
