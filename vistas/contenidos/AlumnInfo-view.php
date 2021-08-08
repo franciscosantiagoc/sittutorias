@@ -60,10 +60,7 @@ include "./vistas/inc/navStudent.php";
                             <label for="email">Email</label>
                             <input class="form-control" type="text" placeholder="Email" id="Email" name="email" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="carrera">Carrera</label>
-                            <input class="form-control" type="text" placeholder="Carrera" id="Carrera" name="carrera" disabled>
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -158,7 +155,7 @@ include "./vistas/inc/navStudent.php";
                 $("#Sexo").val(respuesta[0][4]);
                 $("#numeroTelefono").val(respuesta[0][5]);
                 $("#Email").val(respuesta[0][6]);
-                $("#Carrera").val(respuesta[0][7]);
+               
 
                 var image = "<?php echo SERVERURL;?>"
                 image = image +respuesta[0][8];
