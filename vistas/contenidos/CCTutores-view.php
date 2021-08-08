@@ -34,9 +34,9 @@ if(isset($_SESSION['roll_sti'])){
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <div class="form-group">
-                                <input class="form-control" type="hidden" placeholder="Matrícula" id="matricula_RTE" name="matricularte" disabled>
-                            </div>
+                            <input class="form-control" type="hidden" placeholder="Matrícula" id="matricula_RACTE" name="matricularacte">
+                        </div>
+                        <div class="form-group">
                             <label for="matriculaT">Matrícula</label>
                             <input class="form-control" type="text" placeholder="Matrícula" id="matriculaACTE" name="matriculaacte" >
                         </div>
@@ -96,15 +96,12 @@ if(isset($_SESSION['roll_sti'])){
     </div>
 </div>
 <?php
-/*if(isset($_POST['nameCoordinadoracte'])){
+if(isset($_POST['nameCoordinadoracte'])){
     require_once "./controladores/tutoresController.php";
 
     $ins_usuario= new tutoresController();
 
     echo $ins_usuario->actualizar_tutores_controlador();
-}*/
-if(isset($_POST['matricularte'])){
-   echo "<script> alert('".$_POST['matricularte']."')</script>";
 }
 ?>
 <!-- Ver -->
@@ -244,7 +241,6 @@ if(isset($_POST['matricularte'])){
             success: function(respuesta){
                 if(func===1) {
                     //console.log(respuesta);/**/
-                    $("#matricula_RTE").val(respuesta[0][0]);
                     $("#matriculaTE").val(respuesta[0][0]);
                     $("#nameCoordinadorTE").val(respuesta[0][1]);
                     $("#apellidoPTE").val(respuesta[0][2]);
@@ -260,7 +256,7 @@ if(isset($_POST['matricularte'])){
                     $imagenPrevisualizacion.src = image;
                     console.log("imagen coord:" + image);
                 }else{
-
+                    $("#matricula_RACTE").val(respuesta[0][0]);
                     $("#matriculaACTE").val(respuesta[0][0]);
                     $("#nameCoordinadorACTE").val(respuesta[0][1]);
                     $("#apellidoPACTE").val(respuesta[0][2]);
