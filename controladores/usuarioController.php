@@ -440,8 +440,8 @@ class usuarioController extends usuarioModel
             exit();
          }
 
-         $consulta='';
-         $consulta="SELECT idGeneracion FROM generacion WHERE idGeneracion=$gener" ;
+
+         $consulta ="SELECT idGeneracion FROM generacion WHERE idGeneracion=$gener" ;
          $check_gen = mainModel::ejecutar_consulta_simple($consulta); 
          if ($check_gen->rowCount() == 0) {
             $alerta = [
@@ -1041,8 +1041,6 @@ class usuarioController extends usuarioModel
 
       return usuarioModel::datos_ta_modelo($campos,$tabla,$condicion);
    }
-
-  
 
    public function selectRegistro_selectArEs(){
       $rol=$_POST['selectCarReg'];

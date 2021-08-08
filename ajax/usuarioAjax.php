@@ -25,13 +25,25 @@ require_once "../controladores/usuarioController.php";
     $ins_usuario = new usuarioController();
    echo $ins_usuario->busqueda_tutorado_controlador(); 
    /*echo 'respuesta';*/
-
+/*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */
 }elseif( isset($_POST['ed_carr_tu']) && isset($_POST['ed_gen_tu']) && isset($_POST['ed_noctrl_tu']) ){
    $ins_usuario = new usuarioController();
    echo $ins_usuario->actualiza_tutorado_controlador();
   /*echo 'respuesta ajax'; */
+     /*-------------------------------  consulta asignacion de tutorados  -------------------------------  */
+}elseif( isset($_POST['asig_tutorado'])){
+     require_once "../controladores/tutoradosController.php";
+     $ins_usuario = new tutoradosController();
+     echo $ins_usuario->consulta_asigtutorado_controlador();
+     /*echo 'respuesta ajax'; */
+     /*-------------------------------  actualizacion de la asignacion de tutorados  -------------------------------  */
+ }elseif( isset($_POST['asig_ed_noctrl']) && isset($_POST['asig_ed_tut']) ){
+    require_once "../controladores/tutoradosController.php";
+    $ins_usuario = new tutoradosController();
+    echo $ins_usuario->actualiza_asigtutorado_controlador();
+    /*echo 'respuesta ajax'; */
 
-} else {
+}else {
    /*echo 'No existe opcion ';*/
     session_start(['name' => 'STI']);
    session_unset();
