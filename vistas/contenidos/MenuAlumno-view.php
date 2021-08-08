@@ -32,7 +32,7 @@ include "./vistas/inc/navStudent.php";
 
                 <div class="col"><a href="<?php echo SERVERURL;?>AlumnSolic"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/solicitudes.png);"></a><p><strong>Solicitudes</strong></p>
             </div>
-            <div class="col"><a href="<?php echo SERVERURL;?>AlumnEditPerfil"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/perfil.png);"></a>
+            <div class="col"><a href="<?php echo SERVERURL;?>Edit-Perfil"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/perfil.png);"></a>
                 <p><strong>Perfil</strong></p>
             </div>
             <div class="col"><a href="<?php echo SERVERURL;?>AlumnNotif"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/notification.png);"></a>

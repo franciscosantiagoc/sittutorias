@@ -111,7 +111,7 @@ if(isset($_SESSION['roll_sti'])){
                         <option value="" selected="">Tipo de Grafica</option>
                         <option value="bar">Barras</option>
                         <option value="line">Linea</option>
-                        <!-- <option value="12">Pastel</option> -->
+                        <!-- <option value="pie">Pastel</option> -->
                     </select>
 
                     <label>Seleccione Dato a Graficar</label>
@@ -139,7 +139,7 @@ if(isset($_SESSION['roll_sti'])){
                         ?>
                     </select> -->
 
-                    <label>Seleccione Periodo escolar</label>
+                    <label>Generación escolar</label>
                     
                     <select id="selec_period" class="form-control">
                         <option value="" selected="" >Periodo</option>
@@ -179,7 +179,7 @@ if(isset($_SESSION['roll_sti'])){
 
 
         <div id="cont-visdat" class="form-container">
-            <canvas id="my_graphics" style="position: relative; height: 40vh; width: 80vw;"></canvas>
+            <canvas id="my_graphics" style="position: relative; height: 400px; width: 800vw;"></canvas>
             <!-- <form method="post"><img class="border rounded-0 border-primary" id="imgreg" src="./vistas/assets/img/grafica.jpg">
                 <div class="form-group" id="div-tipografia"><label>GRAFICA TIPO : PERIODO : SEXO : SITUACION</label></div>
             </form> -->
@@ -247,6 +247,10 @@ if(isset($_SESSION['roll_sti'])){
                                 datosgraf
                                 // Aquí más datos...
                             ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
                         }
                     });
 

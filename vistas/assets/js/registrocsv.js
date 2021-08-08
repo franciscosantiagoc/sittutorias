@@ -119,7 +119,7 @@ $("#btn-regis").click(function(event){
         formData.append('dataCAR',sel_carAr);
         formData.append('datagen',sel_gen); /**/
         $.ajax({
-            url: server_reg+'ajax/usuarioAjax.php',
+            url: 'ajax/usuarioAjax.php',
             type: 'post',
             data: formData,
             dataType: 'json',
@@ -127,7 +127,7 @@ $("#btn-regis").click(function(event){
             processData: false,
             success: function (resp){
                 Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
-                console.log('respuesta: '+resp.Texto);
+                //console.log('respuesta: '+resp.Texto);
             }
         });
     }

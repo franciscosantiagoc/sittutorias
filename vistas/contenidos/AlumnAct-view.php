@@ -119,7 +119,7 @@ include "./vistas/inc/navStudent.php"
                                             <td>'. $stat .'</td>
                                             <td><center><i class="fa fa-remove"></i></center></td>
                                             <td><center><button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>
-                                            <abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'"><i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
+                                            <abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
                                             </center></td>
                                             
                                         </tr>
@@ -140,8 +140,6 @@ include "./vistas/inc/navStudent.php"
 function clickActividad(idAct){
     var datos = new FormData();
     datos.append("idActividad",idAct);
-    /* datos.append("ncontrol",<?php echo $_SESSION['NControl_sti'];?>); */
-
     $.ajax({
         url: "ajax/actividadAjax.php",
         method: "post",

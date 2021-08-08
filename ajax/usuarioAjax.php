@@ -17,17 +17,25 @@ require_once "../controladores/usuarioController.php";
 }elseif(isset($_POST['selectCarReg'])){
    $ins_usuario = new usuarioController();
    echo $ins_usuario->selectRegistro_selectArEs();
-
 }elseif (isset($_POST['dataexcel']) && isset($_POST['datauser'])) {
    $ins_usuario = new usuarioController();
    echo $ins_usuario->registro_multU_controlador();
-   //echo  json_encode($respuesta);
-   echo 'ajax excel detectado';
+
+}elseif(isset($_POST['idtutorado'])){
+    $ins_usuario = new usuarioController();
+   echo $ins_usuario->busqueda_tutorado_controlador(); 
+   /*echo 'respuesta';*/
+
+}elseif( isset($_POST['ed_carr_tu']) && isset($_POST['ed_gen_tu']) && isset($_POST['ed_noctrl_tu']) ){
+   $ins_usuario = new usuarioController();
+   echo $ins_usuario->actualiza_tutorado_controlador();
+  /*echo 'respuesta ajax'; */
 
 } else {
-   session_start(['name' => 'STI']);
+   /*echo 'No existe opcion ';*/
+    session_start(['name' => 'STI']);
    session_unset();
    session_destroy();
    header("Location: " . SERVERURL . "login");
-   exit();
+   exit(); 
 }

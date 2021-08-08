@@ -22,20 +22,38 @@ include "./vistas/inc/navCoordinadorC.php"
 
 
     <div class="register-photo">
-        <div class="container" id="contain">
-            <div id="importcsvregis" class="form-container">
-                <form id="regisTutcsv" method="post">
-                    <h2 class="text-center"><strong>Asignación de Tutorados</strong></h2>
-                    <div class="form-group"><input class="form-control" type="text" id="nameinput" placeholder="Nombre" name="name"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Buscar</button></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >Asignar Tutorados a docentes (auto)</button></div>
-                </form>
-            </div>
+        <div class="form-container">
+            
+                    <h2 class="text-center"><strong>Asignación</strong></h2>
 
+                    <div class="full-box tile-container">
+                    <?php 
+                        require_once "./controladores/usuarioController.php";
+                        $ins_usuario = new usuarioController();
+                        $total_docentes = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente';");
+                        $total_activos = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente' AND Disponibilidad='1';");
+                    ?>
 
+                    <div class="tile">
+                        <div class="tile-tittle">Tutores</div>
+                        <div class="tile-icon">
+                            <i class="fas fa-chalkboard-teacher fa-fw"></i>
+                            <p><?php echo $total_docentes->rowCount(); ?> Registrados</p>
+                            <!-- <p><?php echo $total_activos->rowCount(); ?> Activos</p> -->
+                        </div>
+                    </div>
+                    <?php
+                        $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo","tutorado",";");
+                    ?>
+                    
+                    <div class="tile">
+                        <div class="tile-tittle">Alumnos</div>
+                        <div class="tile-icon">
+                            <i class="fas fa-user-graduate fa-fw"></i>
+                            <p><?php echo $total_usuarios->rowCount(); ?> Registrados</p>
+                        </div>
+                    </div>
+            
             <div class="col-md-12 search-table-col">
                 <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div><span class="counter pull-right"></span>
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
@@ -81,23 +99,6 @@ include "./vistas/inc/navCoordinadorC.php"
             </div>
         </div>
 
-
-        <div id="cont-visdat" class="form-container">
-            <form method="post"><img id="imgreg" src="./vistas/assets/img/alum2.jpg">
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
-                <div class="form-group"><input class="form-control" type="tel" placeholder="Número de Telefono"></div>
-                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-                <div class="form-group"><select class="form-control"><option value="12">Seleccione Tutor a asignar</option><option value="13">Maribel Castillejos Toledo</option><option value="14">Sayonara Orozco Alvarez</option></select></div>
-                <div class="form-group"><button class="btn btn-primary btn-block bg-primary" type="button">Actualizar</button><button class="btn btn-primary btn-block bg-primary" type="button">CANCELAR</button></div>
-            </form>
-
-
-
-        </div>
     </div>
     
     

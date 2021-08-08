@@ -232,7 +232,6 @@ if(isset($_SESSION['roll_sti'])){
 
 
 <script type="text/javascript">
-    var  server_reg = "<?php echo SERVERURL;?>"
     function ShowCarAr(x,opt){
         // console.log("select tipo");  
         var userType = document.getElementById("select_user").value=x;

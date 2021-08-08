@@ -1,5 +1,5 @@
 .register-photo {
-    background: #f1f7fc;
+    /* background: #f1f7fc; */
     padding: 0px 0;
 }
 
@@ -14,7 +14,7 @@
     max-width: 900px;
     width: 90%;
     margin: 0 auto;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .table-container {
@@ -131,11 +131,7 @@
     color: #ffffff;
     
 }
-/* .tile:hover .tile-tittle{
-	color: #FFF;
-	border-color: var(--color-three);
-	background-color: var(--color-three);
-} */
+
 .tile-icon{
 	width: 100%;
 	height: 160px;
@@ -150,7 +146,20 @@
 	height: 35px;
 	line-height: 35px;
 }
-/* .tile:hover .tile-icon > i,
-.tile:hover .tile-icon > p{
-	color: var(--color-three);
-} */
+
+
+
+/* CCTUTORADOS */
+#register-options{
+    display: flex;
+    justify-content: space-between !important; 
+    margin-top: 6vh;
+}
+#register-options a{
+   width: 250px;
+   text-align: center;
+}
+
+a{
+    text-decoration: none;
+}

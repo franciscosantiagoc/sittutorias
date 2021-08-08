@@ -4,6 +4,7 @@
    class usuarioModel extends mainModel{
       /*-------------- Modelo agregar usuario --------------*/
       protected static function agregar_usuario_modelo($datos){
+
          $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion,'')");
 
          $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -83,6 +84,18 @@
         
          $sql->execute();
 
+
+         return $sql;
+      }
+
+      protected static function actualizar_tutorado_modelo($datos){
+         /*$sql = "UPDATE tutorado SET Carrera_idCarrera=".$datos['carrera'].", Generacion_idGeneracion=".$datos['generacion']." WHERE NControl=".$datos['ncontrol'];
+         */
+         $sql = mainModel::conectar()->prepare("UPDATE tutorado SET Carrera_idCarrera=:Carrera, Generacion_idGeneracion=:Generacion WHERE NControl=:noctrl");   
+         $sql->bindParam(":Carrera", $datos['carrera']);
+         $sql->bindParam(":Generacion", $datos['generacion']);
+         $sql->bindParam(":noctrl", $datos['ncontrol']);        
+         $sql->execute(); 
 
          return $sql;
       }

@@ -583,6 +583,10 @@ class usuarioController extends usuarioModel
                   text: "Es necesario ingresar su contraseña para realizar actualizar datos",
                   type: "info",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -596,6 +600,10 @@ class usuarioController extends usuarioModel
                   text: "El formato de la contraseña es inválido, solo se admiten caracteres alfanumericos",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -610,6 +618,10 @@ class usuarioController extends usuarioModel
                   text: "Algunos campos estan vacios, por favor rellenelos",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -624,6 +636,10 @@ class usuarioController extends usuarioModel
                   text: "El formato del Nombre no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -637,6 +653,10 @@ class usuarioController extends usuarioModel
                   text: "El formato del apellido paterno, no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -650,6 +670,10 @@ class usuarioController extends usuarioModel
                   text: "El formato del apellido materno, no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -664,6 +688,10 @@ class usuarioController extends usuarioModel
                text: "El formato del numero telefonico, no es válido",
                type: "error",
                confirmButtonText: "Aceptar"
+            }).then((result)=>{
+               if(result.value){
+                  window.location="'.SERVERURL.'Edit-Perfil";
+               }
             });
          </script>
          ';
@@ -679,6 +707,10 @@ class usuarioController extends usuarioModel
                   text: "El formato de la dirección, no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -692,6 +724,10 @@ class usuarioController extends usuarioModel
                   text: "El formato del correo, no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -706,6 +742,10 @@ class usuarioController extends usuarioModel
                   text: "Error al actualizar los datos, intente recargar la página nuevamente",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             ';
@@ -730,6 +770,10 @@ class usuarioController extends usuarioModel
                   text: "La contraseña es incorrecta",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
@@ -743,6 +787,10 @@ class usuarioController extends usuarioModel
                   text: "Los campos de la nueva contraseña, no coinciden",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
@@ -756,6 +804,10 @@ class usuarioController extends usuarioModel
                   text: "La nueva contraseña ya ha sido usada",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
@@ -789,6 +841,10 @@ class usuarioController extends usuarioModel
                   text: "Error al cargar la imagen al servidor, intente nuevamente",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
@@ -825,6 +881,10 @@ class usuarioController extends usuarioModel
                   text: "Los datos se han actualizado correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
@@ -837,11 +897,132 @@ class usuarioController extends usuarioModel
                   text: "Error al actualizar los datos, intente nuevamente recargando la pagina",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Edit-Perfil";
+                  }
                });
             </script>
             '; 
       }
 
+   }
+
+   public function busqueda_tutorado_controlador(){
+      $noctrl = mainModel::limpiar_cadena($_POST['idtutorado']);
+      if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
+         $alerta = [
+            "Response" => "error",
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+      
+      $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT p.idPersona, p.Nombre, p.APaterno, p.AMaterno, p.Correo, p.Foto, t.Carrera_idCarrera, t.Generacion_idGeneracion FROM persona p, tutorado t WHERE t.NControl=$noctrl AND p.idPersona=t.Persona_idPersona");
+      
+      if($busqueda_tutorado->rowCount()==0){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+      $dat_info = $busqueda_tutorado -> fetchAll();
+      return json_encode($dat_info); 
+
+   }
+
+   public function actualiza_tutorado_controlador(){
+      $nocarr = mainModel::limpiar_cadena($_POST['ed_carr_tu']);
+      $nogen = mainModel::limpiar_cadena($_POST['ed_gen_tu']);
+      $noctrl = mainModel::limpiar_cadena($_POST['ed_noctrl_tu']);
+      if (mainModel::verificar_datos("[0-9-]{2,10}", $nocarr)) {
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con el formato de la carrera seleccionada, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+      if (mainModel::verificar_datos("[0-9-]{2,10}", $nogen)) {
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con el formato de la generación seleccionada, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+      $check_carrera = usuarioModel::ejecutar_consulta_simple("SELECT idCarrera FROM carrera WHERE idCarrera=$nocarr"); 
+      if($check_carrera->rowCount()==0){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con la carrera seleccionada, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+      $check_generacion = usuarioModel::ejecutar_consulta_simple("SELECT idGeneracion FROM generacion WHERE idGeneracion=$nogen"); 
+      if($check_generacion->rowCount()==0){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con la generacion seleccionada, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+      $check_noctrl = usuarioModel::ejecutar_consulta_simple("SELECT NControl FROM tutorado WHERE NControl=$noctrl"); 
+      if($check_noctrl->rowCount()==0){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Se ha detectado un error con el numero de control, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }
+
+
+
+
+      $datos_tutorado_upd = [
+         "carrera" => $nocarr,
+         "generacion" => $nogen,
+         "ncontrol" => $noctrl
+      ];
+
+      $actualizar_tutorado=usuarioModel::actualizar_tutorado_modelo($datos_tutorado_upd);
+      
+       if($actualizar_tutorado->rowCount()==0){
+         $alerta = [
+            "Titulo" => "Ocurrio un error inesperado",
+            "Texto" => "Ha ocurrido un error al actualizar los datos, recargue la pagina para continuar",
+            "Tipo" => "error"
+         ];
+         echo json_encode($alerta);
+         exit();
+      }else{
+         $alerta = [
+            "Titulo" => "Usuario actualizado",
+            "Texto" => "Los datos del usuario han sido actualizados correctamente",
+            "Tipo" => "success"
+         ];
+         echo json_encode($alerta);
+         exit();
+      } /**/
+      
    }
 
    public function datos_usuario_controlador($tipo,$tabla,$condicion){
