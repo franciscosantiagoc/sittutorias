@@ -121,12 +121,10 @@
        }
 
        protected static function actualizar_asignacion_modelo($datos){
-           $sql = mainModel::conectar()->prepare("UPDATE trabajador_tutorados SET Trabajador_Matricula=:matricula WHERE Tutorado_NControl=:ncontrol");
+           $sql = mainModel::conectar()->prepare("UPDATE trabajador_tutorados SET Trabajador_Matricula=:matricula WHERE Tutorado_NControl=:ncontrol;");
            $sql->bindParam(":matricula", $datos['Matricula']);
            $sql->bindParam(":ncontrol", $datos['NControl']);
            $sql->execute();
-
-
            return $sql;
        }
 

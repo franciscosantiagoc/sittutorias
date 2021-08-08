@@ -108,41 +108,41 @@ include "./vistas/inc/navCoordinadorC.php"
     </div>
     <div class="register-photo">
         <div class="form-container">
-            
-                    <h2 class="text-center"><strong>Asignación</strong></h2>
+            <h2 class="text-center"><strong>Asignación</strong></h2>
 
-                    <div class="full-box tile-container">
-                    <?php 
-                        require_once "./controladores/usuarioController.php";
-                        $ins_usuario = new usuarioController();
-                        $total_docentes = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente';");
-                        $total_activos = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente' AND Disponibilidad='1';");
-                    ?>
+            <div class="full-box tile-container">
+            <?php
+                require_once "./controladores/usuarioController.php";
+                $ins_usuario = new usuarioController();
+                $total_docentes = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente';");
+                $total_activos = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente' AND Disponibilidad='1';");
+            ?>
 
-                    <div class="tile">
-                        <div class="tile-tittle">Tutores</div>
-                        <div class="tile-icon">
-                            <i class="fas fa-chalkboard-teacher fa-fw"></i>
-                            <p><?php echo $total_docentes->rowCount(); ?> Registrados</p>
-                            <p><?php echo $total_activos->rowCount(); ?> Activos</p>
-                        </div>
-                    </div>
-                    <?php
-                        $total_tutorados = $ins_usuario->datos_usuario_controlador("Conteo","tutorado",";");
-                        $total_tutorados_asig = $ins_usuario->datos_usuario_controlador("Conteo","trabajador tutorados",";");
-                    ?>
-                    
-                    <div class="tile">
-                        <div class="tile-tittle">Alumnos</div>
-                        <div class="tile-icon">
-                            <i class="fas fa-user-graduate fa-fw"></i>
-                            <p><?php echo $total_tutorados->rowCount(); ?> Registrados</p>
-                            <p><?php echo $total_tutorados_asig->rowCount(); ?> Asignados</p>
-                        </div>
-                    </div>
-            
+            <div class="tile">
+                <div class="tile-tittle">Tutores</div>
+                <div class="tile-icon">
+                    <i class="fas fa-chalkboard-teacher fa-fw"></i>
+                    <p><?php echo $total_docentes->rowCount(); ?> Registrados</p>
+                    <p><?php echo $total_activos->rowCount(); ?> Activos</p>
+                </div>
+            </div>
+            <?php
+                $total_tutorados = $ins_usuario->datos_usuario_controlador("Conteo","tutorado",";");
+                $total_tutorados_asig = $ins_usuario->datos_usuario_controlador("Conteo","trabajador_tutorados",";");
+            ?>
+
+            <div class="tile">
+                <div class="tile-tittle">Alumnos</div>
+                <div class="tile-icon">
+                    <i class="fas fa-user-graduate fa-fw"></i>
+                    <p><?php echo $total_tutorados->rowCount(); ?> Registrados</p>
+                    <p><?php echo $total_tutorados_asig->rowCount(); ?> Asignados</p>
+                </div>
+            </div>
+                <div id="register-options" class="form-container">
+                    <a class="btn btn-primary" href="<?php echo SERVERURL;?>CCAsignTutorado" style="width: 350px; margin-bottom: 20px;">Asignación automatica</a >
+                </div>
             <div class="col-md-12 search-table-col">
-                <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control" placeholder="Escriba el dato de búsqueda"></div><span class="counter pull-right"></span>
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
                 <?php
                 require_once './controladores/tutoradosController.php';
@@ -161,7 +161,7 @@ include "./vistas/inc/navCoordinadorC.php"
                             <th>NCONTROL</th>
                             <th>CARRERA</th>
                             <th>MATRICULA</th>
-                            <th>tUTOR</th>
+                            <th>TUTOR</th>
                             <th>ACCIONES</th>
                         </tr>
                         </thead>
@@ -227,7 +227,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
         $("#ed_button").click(function(e){
             e.preventDefault();
-            var tut = $("#v_Sel_Carrera").val();
+            var tut = $("#v_Sel_tutor").val();
             var ctrl = $("#v_noctrl").val();
             var datos = new FormData();
             datos.append("asig_ed_tut",tut);
