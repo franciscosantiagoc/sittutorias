@@ -99,6 +99,24 @@
 
          return $sql;
       }
+       protected static function actualizar_tutores_modelo($datos){
+
+
+
+           $sql = mainModel::conectar()->prepare("UPDATE trabajador t, persona p  SET t.Matricula=:Matricula, p.Nombre=:Nombre, p.APaterno=:APaterno, p.AMaterno=:AMaterno, p.Sexo=:Sexo, p.Correo=:Correo, p.NTelefono=:NTelefono, t.Areas_idAreas WHERE idPersona=:ID $condicionNPass");
+
+           $sql->bindParam(":Matricula", $datos['Matricula']);
+           $sql->bindParam(":Nombre", $datos['Nombre']);
+           $sql->bindParam(":APaterno",$datos['APaterno']);
+           $sql->bindParam(":AMaterno",$datos['AMaterno']);
+           $sql->bindParam(":Sexo",$datos['Sexo']);
+           $sql->bindParam(":Correo",$datos['Correo']);
+           $sql->bindParam(":NTelefono", $datos['NTelefono']);
+           $sql->execute();
+
+
+           return $sql;
+       }
 
        /*------------------------Modelo datos usuario------------------------*/
        protected static function datos_usuario_modelo($tipo,$tabla,$condicion){

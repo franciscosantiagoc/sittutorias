@@ -150,6 +150,7 @@ include "./vistas/inc/navCoordinadorC.php"
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 <script type="text/javascript">
     function clickTutorado(noctrl){
         //alert('Click tutorado '+noctrl);
@@ -223,3 +224,6 @@ include "./vistas/inc/navCoordinadorC.php"
     })
 
 </script>
+=======
+   
+>>>>>>> 715f846e82ae2577d82d5f06b0ef1248cbc709cd
