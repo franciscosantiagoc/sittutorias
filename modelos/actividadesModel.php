@@ -5,7 +5,7 @@
 
       //modelo registro de actividad
       protected static function agregar_actividad_modelo($datos){
-         $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semetrerealizacion_sug, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :semestrer, :Fechareg, :Formato)");
+          $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semetrerealizacion_sug, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :semestrer, CURDATE(), :Formato)");
 
          $sql->bindParam(":idActividad", $datos['idActividad']);
          $sql->bindParam(":Nombre", $datos['Nombre']);

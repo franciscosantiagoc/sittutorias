@@ -27,6 +27,7 @@ ORDER BY p.Nombre ";
 
     public function actualizar_tutores_controlador()
     {
+        $matricular = mainModel::limpiar_cadena($_POST['matricularacte']);
         $matricula = mainModel::limpiar_cadena($_POST['matriculaacte']);
         $nombre = mainModel::limpiar_cadena($_POST['nameCoordinadoracte']);
         $apellido_paterno = mainModel::limpiar_cadena($_POST['apellidopacte']);
@@ -39,7 +40,7 @@ ORDER BY p.Nombre ";
 
         if ($matricula == "" || $nombre == "" || $apellido_paterno == "" || $apellido_materno == "" ||   $email == "" ) {
             echo '
-            <script> 
+             
                Swal.fire({
                   title: "Ocurrio un error inesperado",
                   text: "Algunos campos estan vacios, por favor rellenelos",
@@ -50,7 +51,7 @@ ORDER BY p.Nombre ";
                      window.location="'.SERVERURL.'CCTutores"
                   }
                });
-            </script>
+            
             ';
             exit();
         }
@@ -73,7 +74,7 @@ ORDER BY p.Nombre ";
         }
 
 
-        if (mainModel::verificar_datos("[0-9-]{4,10}", $matricula)) {
+        if (mainModel::verificar_datos("[0-9-]{4,8}", $matricula)) {
             echo '
             <script> 
                Swal.fire({
@@ -205,44 +206,8 @@ ORDER BY p.Nombre ";
             exit();
         }
 
-
-
-        /* echo 'Condicionales terminadas'; */
-        $link_img='';
-        $name = $_FILES['image_act']['name'];
-        //if(isset($_FILES['image_upd']) && $name!=""){
-        if($name!=null){
-
-            if(strpos($name, 'jpg')){
-                $tipo='.jpg';
-            }elseif(strpos($name, 'jpeg')){
-                $tipo='.jpeg';
-            }else{
-                $tipo='.png';
-            }
-            $temp = $_FILES['image_act']['tmp_name'];
-            $link_img='/directory/img-person/'.$nombre.'_'.$tipo;
-            $link_img=str_replace(' ', '', $link_img);
-            $archivo = '.'.$link_img;
-            if (move_uploaded_file($temp, $archivo) ) {
-                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                chmod($archivo, 0777);
-            }else{
-                echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "Error al cargar la imagen al servidor, intente nuevamente",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               });
-            </script>
-            ';
-                exit();
-            }
-        }
-
         $datos_usuario_upd = [
+            "Matricular" =>$matricular,
             "Matricula" => $matricula,
             "Nombre" => $nombre,
             "APaterno" => $apellido_paterno,
@@ -276,7 +241,7 @@ ORDER BY p.Nombre ";
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "Error al actualizar los datos, intente nuevamente recargando la pagina",
+                  text: "Error al actualizar los datos, modifique los datos para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
                });

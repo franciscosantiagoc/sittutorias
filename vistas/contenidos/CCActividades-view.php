@@ -19,17 +19,51 @@ include "./vistas/inc/navCoordinadorC.php"
 
 ?>
 
-    <div class="register-photo">
+<div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoTE"></center>
+                        <div class="form-group">
+                            <label for="idActividad">Id de la Actividad</label>
+                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="idActividad" name="idactividad" >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreACt">Nombre de la actividad</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="NombreAct" name="nombreact" >
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input class="form-control" type="text" placeholder="Fecha" id="FechaAct" name="fechaact" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAct" name="descripcionact">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+    <div class="register-photo">
         <div class="form-container">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
                 <div class="form-group pull-right col-lg-4">
-                    <button class="btn btn-primary btn-block border rounded" type="submit" >agregar NUEVA ACTIVIDAD</button>
-                    <form class="form-neon"  method="POST" data-form="default" autocomplete="off">
-                        <input type="hidden" name="modulo" value="CoordinadorCarrera">
-
-                    </form>
+                    <button class="btn btn-primary btn-block border rounded" onclick="clickTE()" data-toggle="modal"  data-target="#modalAActividad" type="submit" >agregar NUEVA ACTIVIDAD</button>
                 </div>
 
                 <?php
@@ -93,16 +127,5 @@ include "./vistas/inc/navCoordinadorC.php"
         </div>
 
 
-        <div id="importcsvregis" class="form-container">
-            <form method="post">
-                <h2 class="text-center"><strong>Editar Actividad</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Limite"></div>
-                <div class="form-group"><select class="form-control"><option value="12">1er Semestre</option><option value="13">2do Semestre</option><option value="14">3er Semestre</option><option value="4">4to Smestre</option><option value="5">5to Semestre</option><option value="">6to Semestre</option><option value="" selected="">Semestre - Periodo a realizar</option></select></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Descripcion"></div>
-        <div class="form-group file-select"><label>Archivo</label><input type="file" id="form-file" accept="image/*"></div>
-        <div class="form-group" id="div-acciones"><button class="btn btn-primary" id="btn-save" type="submit" >GUARDAR</button><button class="btn btn-primary" id="btn-cancel" type="submit" >CANCELAR</button></div>
-        </form>
-    </div>
     </div>
     
