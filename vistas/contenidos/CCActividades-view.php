@@ -33,11 +33,11 @@ include "./vistas/inc/navCoordinadorC.php"
                 </div>
 
                 <?php
-                require_once './controladores/actividadController.php';
-                $ins_actividad = new actividadController();
+                require_once './controladores/actividadesController.php';
+                $ins_actividad = new actividadesController();
                 $resultado='';
                 $ncontrol='';
-                $dat_info = $ins_actividad->consulta_actividad_controlador($resultado);
+                $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
 
                 ?>
                 <div class="table-responsive table-bordered table  ">

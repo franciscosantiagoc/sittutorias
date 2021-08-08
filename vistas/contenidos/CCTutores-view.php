@@ -16,8 +16,7 @@ if(isset($_SESSION['roll_sti'])){
         }
     //}
 }
-  
- 
+
 
 ?>
 
@@ -34,10 +33,12 @@ if(isset($_SESSION['roll_sti'])){
             <div class="modal-body">
                 <div class="form-container">
                     <form action="" method="post" enctype="multipart/form-data">
-                        <center><img src="" height="300px" id="image-infoACTE"></center>
                         <div class="form-group">
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" placeholder="Matrícula" id="matricula_RTE" name="matricularte" disabled>
+                            </div>
                             <label for="matriculaT">Matrícula</label>
-                            <input class="form-control" type="text" placeholder="Matrícula" id="matriculaACTE" name="matriculacte" >
+                            <input class="form-control" type="text" placeholder="Matrícula" id="matriculaACTE" name="matriculaacte" >
                         </div>
                         <div class="form-group">
                             <label for="nombreCoordinadorACTE">Nombre</label>
@@ -53,7 +54,7 @@ if(isset($_SESSION['roll_sti'])){
                         </div>
                         <div class="form-group">
                             <label for="sexoACTE">Sexo</label>
-                            <select id="act_sex">
+                            <select id="act_sex" name="sexo_acte">
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
                             </select>
@@ -68,17 +69,44 @@ if(isset($_SESSION['roll_sti'])){
                         </div>
                         <div class="form-group">
                             <label for="areaACTE">Área</label>
-                            <input class="form-control" type="text" placeholder="Area" id="AreaACTE" name="areaacte" >
+                            <select id="areaACTE" name="areaacte">
+                                <?php
+                                require_once './controladores/usuarioController.php';
+                                $ins_usuario = new usuarioController();
+                                $dat_info =$ins_usuario->datos_ta_controlador(" idAreas,Nombre ","areas",";");
+                                $dat_info=$dat_info->fetchAll();
+                                foreach($dat_info as $row){
+                                    /*$n=$dat_info->rowCount(); */
+                                    $id = $row['idAreas'];
+                                    $name = $row['Nombre'];
+
+                                    echo "<option value='$id'>$name</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" >Actualizar</button>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php
+/*if(isset($_POST['nameCoordinadoracte'])){
+    require_once "./controladores/tutoresController.php";
+
+    $ins_usuario= new tutoresController();
+
+    echo $ins_usuario->actualizar_tutores_controlador();
+}*/
+if(isset($_POST['matricularte'])){
+   echo "<script> alert('".$_POST['matricularte']."')</script>";
+}
+?>
 <!-- Ver -->
 <div class="modal" id="modalInfoTE" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -134,20 +162,7 @@ if(isset($_SESSION['roll_sti'])){
 </div>
 
     <div class="register-photo">
-        <div class="container">
-            <div id="importcsvregis" class="form-container">
-                <form id="regisTutcsv" method="post">
-                    <h2 class="text-center"><strong>Registrar</strong></h2>
-                    <div class="form-group"><input class="form-control" type="text" id="nameinput" placeholder="Nombre" name="name"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Matrícula"></div>
-                    <div class="form-group">
-                        <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+
                 <div class="form-container" id="contain">
                     <div class="col-md-12 search-table-col">
                         <div class="intro">
@@ -183,7 +198,7 @@ if(isset($_SESSION['roll_sti'])){
                                     $sexo = $row['Sexo'];
                                     $tel = $row['NTelefono'];
                                     $correo = $row['Correo'];
-                                    echo '
+                                    echo '<tr>
                                         <td>'. $contador.'</td>
                                         <td>'. $idmatric.'</td>
                                         <td>'. $name.'</td>
@@ -207,24 +222,6 @@ if(isset($_SESSION['roll_sti'])){
                         </div>
                     </div>
                 </div>
-        <div class="container">
-            <div id="cont-visdat" class="form-container">
-                <form method="post"><img id="imgreg" src="./vistas/assets/img/tutores.jpg">
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Nacimiento"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Sexo"></div>
-                    <div class="form-group"><input class="form-control" type="tel" placeholder="Número de Telefono"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Dirección"></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Area"></div>
-                    <div class="form-group"><input class="form-control" type="text" placeholder="Matrícula"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="button">Actualizar</button></div>
-                </form>
-            </div>
-        </div>
-
     </div>
 
 
@@ -235,6 +232,7 @@ if(isset($_SESSION['roll_sti'])){
         var datos = new FormData();
         datos.append("idInfoTES",idInfoTE);
         $imagenPrevisualizacion = document.querySelector("#image-infoTE");
+        $imagenPrevisualizacion2 = document.querySelector("#image-infoACTE");
         $.ajax({
             url: "ajax/infoTutoresAjax.php",
             method: "post",
@@ -246,6 +244,7 @@ if(isset($_SESSION['roll_sti'])){
             success: function(respuesta){
                 if(func===1) {
                     //console.log(respuesta);/**/
+                    $("#matricula_RTE").val(respuesta[0][0]);
                     $("#matriculaTE").val(respuesta[0][0]);
                     $("#nameCoordinadorTE").val(respuesta[0][1]);
                     $("#apellidoPTE").val(respuesta[0][2]);
@@ -268,7 +267,8 @@ if(isset($_SESSION['roll_sti'])){
                     $("#apellidoMACTE").val(respuesta[0][3]);
                     $("#numeroTelefonoACTE").val(respuesta[0][5]);
                     $("#EmailACTE").val(respuesta[0][6]);
-                    $("#AreaACTE").val(respuesta[0][8]);
+                    //$("#areaACTE").val(respuesta[0][8]);
+                    $("#areaACTE option[value='"+respuesta[0][10]+"']").attr("selected", true);
 
 
                     let sex = respuesta[0][4];

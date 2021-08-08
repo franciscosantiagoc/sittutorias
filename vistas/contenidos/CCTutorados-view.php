@@ -23,10 +23,6 @@ include "./vistas/inc/navCoordinadorC.php"
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post">
                 <h2 class="text-center"><strong>Registrar</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
                 <div class="form-group">
                     <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
                 </div>
@@ -88,25 +84,6 @@ include "./vistas/inc/navCoordinadorC.php"
                     </table>
                 </div>
             </div>
-        </div>
-
-
-
-
-        <div id="cont-visdat" class="form-container">
-            <form method="post"><img id="imgreg" src="./vistas/assets/img/alum3.jpg">
-                <div class="form-group"><input class="form-control" type="text" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Paterno"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellido Materno"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Fecha Nacimiento"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Sexo"></div>
-                <div class="form-group"><input class="form-control" type="tel" placeholder="Número de Telefono"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Dirección"></div>
-                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Numero de Control"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block bg-primary" type="button">Actualizar</button></div>
-            </form>
         </div>
     </div>
    
