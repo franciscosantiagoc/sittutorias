@@ -216,7 +216,20 @@ class actividadesController extends actividadesModel
         $nombre = mainModel::limpiar_cadena($_POST['rnombreact']);
         $descripcion = mainModel::limpiar_cadena($_POST['rdescripcionact']);
         $semestresug =mainModel::limpiar_cadena($_POST['semestresug']);
+        //$semestreoblig = false;
+        if(isset($_POST['actoblig'])){
+            $semestreoblig="activo";
+
+        }else{
+            $semestreoblig = "inactivo";
+
+        }
+
+
+
+        //$semestreoblig =$_POST['actoblig'];
         //$file = $_FILES['Ractivity-file'];
+
 
 
 
@@ -284,11 +297,19 @@ class actividadesController extends actividadesModel
             exit();
         }
 
+        if($semestreoblig == "activo"){
+            $semestreoblig = 1;
+
+        }else{
+            $semestreoblig = 0;
+        }
+
         $datos_actividad_upd = [
             "idActividad" => $idact,
             "Nombre"=> $nombre,
             "Descripcion" => $descripcion,
             "Semestre_Sug" =>$semestresug,
+            "Semestre_Oblig" =>$semestreoblig,
             "URLFile" => $link_file
         ];
 

@@ -5,12 +5,13 @@
 
       //modelo registro de actividad
       protected static function registrar_actividad_modelo($datos){
-           $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :Semestrer, CURDATE(), :Formato)");
+           $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Semestre_obligatorio, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :Semestrer,:Semestreoblig, CURDATE(), :Formato)");
 
            $sql->bindParam(":idActividad", $datos['idActividad']);
            $sql->bindParam(":Nombre", $datos['Nombre']);
            $sql->bindParam(":Descripcion",$datos['Descripcion']);
            $sql->bindParam(":Semestrer",$datos['Semestre_Sug']);
+           $sql->bindParam(":Semestreoblig",$datos['Semestre_Oblig']);
            $sql->bindParam(":Formato", $datos['URLFile']);
            $sql->execute();
           return $sql;
