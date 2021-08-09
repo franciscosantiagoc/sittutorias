@@ -4,20 +4,19 @@
    class actividadesModel extends mainModel{
 
       //modelo registro de actividad
-      protected static function agregar_actividad_modelo($datos){
-          $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semetrerealizacion_sug, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :semestrer, CURDATE(), :Formato)");
+      protected static function registrar_actividad_modelo($datos){
+           $sql = mainModel::conectar()->prepare("INSERT INTO actividades(idActividades, Nombre, Descripcion, Semestrerealizacion_sug, Fecha_registro, URLFormato) VALUES(:idActividad, :Nombre, :Descripcion, :Semestrer, CURDATE(), :Formato)");
 
-         $sql->bindParam(":idActividad", $datos['idActividad']);
-         $sql->bindParam(":Nombre", $datos['Nombre']);
-         $sql->bindParam(":Descripcion",$datos['Descripcion']);
-         $sql->bindParam(":Semestrer",$datos['Semetrer']);
-         $sql->bindParam(":Fechareg",$datos['Fechareg']);
-         $sql->bindParam(":Formato", $datos['Formato']);
-         $sql->execute();
+           $sql->bindParam(":idActividad", $datos['idActividad']);
+           $sql->bindParam(":Nombre", $datos['Nombre']);
+           $sql->bindParam(":Descripcion",$datos['Descripcion']);
+           $sql->bindParam(":Semestrer",$datos['Semestre_Sug']);
+           $sql->bindParam(":Formato", $datos['URLFile']);
+           $sql->execute();
+          return $sql;
       }
       //modelo regitro de entrega de actividad de tutorado
       protected static function entregar_actividad_modelo($datos){
-         
           $sql = mainModel::conectar()->prepare("INSERT INTO actividades_asignadas(Actividades_idActividades, Tutorado_NControl,URLFile,Fecha, Estatus) VALUES(:idActividad, :NControl, :Urlfile, CURDATE(), :Estatus)");
          $sql->bindParam(":idActividad", $datos['idActividad']);
          $sql->bindParam(":NControl", $datos['NControl']);

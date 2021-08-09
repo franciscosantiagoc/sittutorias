@@ -211,6 +211,131 @@ class actividadesController extends actividadesModel
 
    }
 
+    public function agregar_actividad_controlador(){
+        $idact = mainModel::limpiar_cadena($_POST['ridactividad']);
+        $nombre = mainModel::limpiar_cadena($_POST['rnombreact']);
+        $descripcion = mainModel::limpiar_cadena($_POST['rdescripcionact']);
+        $semestresug =mainModel::limpiar_cadena($_POST['semestresug']);
+        //$file = $_FILES['Ractivity-file'];
+
+
+
+        $check_idact = mainModel::ejecutar_consulta_simple("SELECT * FROM actividades WHERE idActividades=$idact");
+        if ($check_idact->rowCount() != 0) {
+            echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "Se ha detectado un error, el id de la actividad ya existe ",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+               if(result.value){
+                  window.location="'.SERVERURL.'CCActividades"
+               }
+            });
+         </script>
+         ';
+            exit();
+        }
+
+        if($_FILES['Ractivity-file']['name'] == null){
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "No ha cargado un archivo",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+
+        $temp = $_FILES['Ractivity-file']['tmp_name'];
+        $link_file='/directory/formats/'.$idact.'_'.$nombre.".pdf";
+        $link_file=trim($link_file,' ');
+        $archivo = '.'.$link_file;
+
+
+        if (move_uploaded_file($temp, $archivo) ) {
+            //Cambiamos los permisos
+            chmod($archivo, 0777);
+        }else{
+            echo '
+         <script> 
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "Error al cargar la imagen al servidor, intente nuevamente",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+         </script>
+         ';
+            exit();
+        }
+
+        $datos_actividad_upd = [
+            "idActividad" => $idact,
+            "Nombre"=> $nombre,
+            "Descripcion" => $descripcion,
+            "Semestre_Sug" =>$semestresug,
+            "URLFile" => $link_file
+        ];
+
+        $registro_actividad = actividadesModel::registrar_actividad_modelo($datos_actividad_upd);
+
+
+
+
+
+
+        if($registro_actividad->rowCount()!= 0 ){//comprobando realizacion de actualizacion
+
+            echo '
+          <script> 
+             Swal.fire({
+                title: "Actividad entregada",
+                text: "Se ha entregado la actividad correctamente",
+                type: "success",
+                confirmButtonText: "Aceptar"
+             }).then((result)=>{
+                if(result.value){
+                    window.location="'.SERVERURL.'CCActividades"
+                }
+              });
+           </script>
+           ';
+
+        }else{
+            echo '
+           <script> 
+              Swal.fire({
+                 title: "Ocurrio un error inesperado",
+                 text: "Error al registrar la actividad, recargue la pagina para continuar",
+                 type: "error",
+                 confirmButtonText: "Aceptar"
+              }).then((result)=>{
+                 if(result.value){
+                    window.location="'.SERVERURL.'CCActividades"
+                 }
+              });
+           </script>
+           ';
+        }
+
+
+    }
+
     public function consulta_de_actividad_controlador($ncontrol)
     {
         $consulta_actividad = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Fecha_registro ,Descripcion, Semestrerealizacion_sug FROM actividades;");

@@ -18,7 +18,52 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navCoordinadorC.php" 
 
 ?>
+<!-- Actualizar
+<div class="modal" id="modalActActividad" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoTE"></center>
+                        <div class="form-group">
+                            <label for="idActividad">Id de la Actividad</label>
+                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreACt">Nombre de la actividad</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">
+                        </div>
+                        <div class="form-group">
+                            <label for="semestresug">Semestre Sugerido</label>
+                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">
+                        </div>
+                        <div class="form-group">
+                            <label>Archivo</label>
+                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+-->
+<!-- Agregar Actividad -->
 <div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -34,19 +79,23 @@ include "./vistas/inc/navCoordinadorC.php"
                         <center><img src="" height="300px" id="image-infoTE"></center>
                         <div class="form-group">
                             <label for="idActividad">Id de la Actividad</label>
-                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="idActividad" name="idactividad" >
+                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >
                         </div>
                         <div class="form-group">
                             <label for="nombreACt">Nombre de la actividad</label>
-                            <input class="form-control" type="text" placeholder="Nombre" id="NombreAct" name="nombreact" >
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha">Fecha</label>
-                            <input class="form-control" type="text" placeholder="Fecha" id="FechaAct" name="fechaact" disabled>
+                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAct" name="descripcionact">
+                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">
+                        </div>
+                        <div class="form-group">
+                            <label for="semestresug">Semestre Sugerido</label>
+                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">
+                        </div>
+                        <div class="form-group">
+                            <label>Archivo</label>
+                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
@@ -57,6 +106,16 @@ include "./vistas/inc/navCoordinadorC.php"
         </div>
     </div>
 </div>
+<?php
+if(isset($_POST['ridactividad']) && isset($_POST['rnombreact']) && isset($_FILES['Ractivity-file']) ){
+    require_once "./controladores/actividadesController.php";
+
+    $ins_actividad= new actividadesController();
+
+    echo $ins_actividad->agregar_actividad_controlador();
+
+}
+?>
 
     <div class="register-photo">
         <div class="form-container">
