@@ -23,10 +23,14 @@ require_once "../controladores/usuarioController.php";
 
 }elseif(isset($_POST['idtutorado'])){
     $ins_usuario = new usuarioController();
-   echo $ins_usuario->busqueda_tutorado_controlador(); 
-   /*echo 'respuesta';*/
-/*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */
-}elseif( isset($_POST['ed_carr_tu']) && isset($_POST['ed_gen_tu']) && isset($_POST['ed_noctrl_tu']) ){
+   echo $ins_usuario->busqueda_tutorado_controlador();
+
+}elseif(isset($_POST['idtutorado_ver'])){
+     $ins_usuario = new usuarioController();
+     echo $ins_usuario->ver_tutorado_controlador();
+     /*echo 'respuesta';*/
+     /*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */
+ }elseif( isset($_POST['ed_carr_tu']) && isset($_POST['ed_gen_tu']) && isset($_POST['ed_noctrl_tu']) ){
    $ins_usuario = new usuarioController();
    echo $ins_usuario->actualiza_tutorado_controlador();
   /*echo 'respuesta ajax'; */

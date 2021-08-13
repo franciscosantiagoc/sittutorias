@@ -10,16 +10,34 @@ class tutoresController extends usuarioModel
     public function consulta_tutores_controlador()
     {
         $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo,  a.Nombre as aname, p.Foto  
-FROM persona p , trabajador t, areas a  WHERE p.idPersona=t.Persona_idPersona   AND a.idAreas=t.Areas_idAreas AND t.Roll='Docente'  
-ORDER BY p.Nombre ";
+        FROM persona p , trabajador t, areas a  WHERE p.idPersona=t.Persona_idPersona   AND a.idAreas=t.Areas_idAreas AND t.Roll='Docente'  
+        ORDER BY p.Nombre ";
         $consulta_tutores = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_tutores -> fetchAll();
         return $dat_info;
     }
+    //Ocupado en CCTutores
     public function consulta_t_unico()
     {
         $mat=mainModel::limpiar_cadena($_POST['idInfoTES']);
         $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo,t.Carrera_idCarrera, a.Nombre as aname,  p.Foto , a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas AND t.Roll='Docente' AND t.Matricula=$mat ORDER BY p.Nombre ";
+        $consulta_tutores = mainModel::ejecutar_consulta_simple($consulta);
+        $dat_info = $consulta_tutores -> fetchAll();
+        return $dat_info;
+    }
+    // Ocupado en AlumnInfo
+    public function conocer_tutores_controlador($ncontrol)
+    {
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo,  p.Foto FROM persona p , trabajador t, tutorado c,trabajador_tutorados b WHERE p.idPersona=t.Persona_idPersona  AND c.NControl=$ncontrol AND b.Tutorado_NControl=$ncontrol AND t.Matricula=b.Trabajador_Matricula ORDER BY p.Nombre ";
+        $consulta_tutores = mainModel::ejecutar_consulta_simple($consulta);
+        $dat_info = $consulta_tutores -> fetchAll();
+        return $dat_info;
+    }
+    // vista AlumnInfo Tutor
+    public function conocer_tutores2_controlador()
+    {
+        $mat=mainModel::limpiar_cadena($_POST['idInfoTutores']);
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname,  p.Foto  FROM persona p , trabajador t, areas a, trabajador_tutorados b WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas AND t.Matricula=$mat AND b.Trabajador_Matricula=$mat AND t.Roll='Docente' ORDER BY p.Nombre ";
         $consulta_tutores = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_tutores -> fetchAll();
         return $dat_info;

@@ -21,10 +21,7 @@
         <div id="importcsvregis" class="form-container">
             <form id="regisTutcsv" method="post" data-form="default" autocomplete="off">
                 <h2 class="text-center"><strong>Jefes de departamento</strong></h2>
-                <div class="form-group"><input class="form-control" type="text" id="nameinput" placeholder="Nombre" name="name"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Apellidos"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Carrera"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Matrícula"></div>
+
                 <div class="form-group"><a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a></div>
                 <div class="team-boxed">
                     <div class="container">

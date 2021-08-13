@@ -28,6 +28,22 @@
          return $sql; 
 
       }
+       protected static function actualizar_actividades_modelo($datos){
+
+
+
+           $sql = mainModel::conectar()->prepare("UPDATE actividades  SET idActividades=:idAcActividad, Nombre=:Nombre, Descripcion=:Descripcion, Semestrerealizacion_sug=:Semestre_sug, URLFormato=:Formato WHERE idActividades=:idAcActividad ");
+
+           $sql->bindParam(":idAcActividad", $datos['idAcActividad']);
+           $sql->bindParam(":Nombre", $datos['Nombre']);
+           $sql->bindParam(":Descripcion",$datos['Descripcion']);
+           $sql->bindParam(":Semestre_sug",$datos['Semestre_sug']);
+           $sql->bindParam(":Formato", $datos['URLFile']);
+           $sql->execute();
+
+
+           return $sql;
+       }
       //modelo reenvio de entrega de actividad de tutorado
       protected static function modificarstatus_actividad_modelo($datos){
          $sql = mainModel::conectar()->prepare("UPDATE actividades_asignadas SET Estatus='En espera' WHERE Actividades_idActividades=:idActividad AND Tutorado_NControl=:NControl");
