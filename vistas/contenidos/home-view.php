@@ -42,7 +42,7 @@ include "./vistas/inc/navInicial.php"; ?>
             </div>
         </div>
     </section>
-    <section id="services" style="height: 1208px;">
+    <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -59,25 +59,29 @@ include "./vistas/inc/navInicial.php"; ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="typcn typcn-zoom-outline fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                    <div class="mx-auto service-box mt-5">
+                        <i class="fas fa-search fa-4x text-primary mb-3 sr-icons"></i>
                         <h3 class="mb-3">Buscar</h3>
                         <p class="text-muted mb-0">Visualizar a los alumnos y tutores</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-wechat fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true" ></i>
+                    <div class="mx-auto service-box mt-5">
+<!--                        <i class="far fa-comments fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" ></i>-->
+                        <i class="far fa-comments fa-4x text-primary mb-3 sr-icons"></i>
                         <h3 class="mb-3">Dialogar</h3>
                         <p class="text-muted mb-0">El sistema permitira interactuar de forma online entre alumnos y sus respectivos tutores</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                    <div class="mx-auto service-box mt-5">
+                        <i class="far fa-newspaper fa-4x text-primary mb-3 sr-icons"></i>
                         <h3 class="mb-3">Enterarte</h3>
                         <p class="text-muted mb-0">Recibir información indispensable con respecto a Tutorias</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-share-alt-square fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-share-alt-square fa-4x text-primary mb-3 sr-icons" ></i>
                         <h3 class="mb-3">Compartir</h3>
                         <p class="text-muted mb-0">Se podrán compartir archivos en formato PDF relacionados con tutorias</p>
                     </div>
