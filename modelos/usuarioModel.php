@@ -3,7 +3,7 @@
    
    class usuarioModel extends mainModel{
       /*-------------- Modelo agregar usuario --------------*/
-      protected static function agregar_usuario_modelo($datos){
+       protected static function agregar_usuario_modelo($datos){
 
          $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion,'')");
 
@@ -43,7 +43,7 @@
          return $sql3;
       }
 
-      protected static function actualizar_usuario_modelo($datos){
+       protected static function actualizar_usuario_modelo($datos){
          $condfoto='';
          $campo='NControl';
          $condNpass='';
@@ -88,7 +88,7 @@
          return $sql;
       }
 
-      protected static function actualizar_tutorado_modelo($datos){
+       protected static function actualizar_tutorado_modelo($datos){
          /*$sql = "UPDATE tutorado SET Carrera_idCarrera=".$datos['carrera'].", Generacion_idGeneracion=".$datos['generacion']." WHERE NControl=".$datos['ncontrol'];
          */
          $sql = mainModel::conectar()->prepare("UPDATE tutorado SET Carrera_idCarrera=:Carrera, Generacion_idGeneracion=:Generacion WHERE NControl=:noctrl");   
@@ -99,10 +99,8 @@
 
          return $sql;
       }
+
        protected static function actualizar_tutores_modelo($datos){
-
-
-
            $sql = mainModel::conectar()->prepare("UPDATE trabajador t, persona p  SET t.Matricula=:Matricula, p.Nombre=:Nombre, p.APaterno=:APaterno, p.AMaterno=:AMaterno, p.Sexo=:Sexo, p.Correo=:Correo, p.NTelefono=:NTelefono, t.Areas_idAreas=:Areas WHERE t.Matricula=:Matricular AND p.idPersona=t.Persona_idPersona ");
 
            $sql->bindParam(":Matricular", $datos['Matricular']);
@@ -140,9 +138,24 @@
            return $sql;
        }
 
+       protected static function agregar_asignacion_modelo($datos){
+           $sql = mainModel::conectar()->prepare("INSERT INTO trabajador_tutorados (Trabajador_Matricula,Tutorado_NControl,fecha_asig) VALUES (:matricula,:ncontrol,CURDATE())");
+           $sql->bindParam(":matricula", $datos['Matricula']);
+           $sql->bindParam(":ncontrol", $datos['NControl']);
+           $sql->execute();
+           return $sql;
+       }
 
        protected static function actualizar_asignacion_modelo($datos){
            $sql = mainModel::conectar()->prepare("UPDATE trabajador_tutorados SET Trabajador_Matricula=:matricula WHERE Tutorado_NControl=:ncontrol;");
+           $sql->bindParam(":matricula", $datos['Matricula']);
+           $sql->bindParam(":ncontrol", $datos['NControl']);
+           $sql->execute();
+           return $sql;
+       }
+
+       protected static function agregar_historicoasig_modelo($datos){
+           $sql = mainModel::conectar()->prepare("INSERT INTO historico_asignacion (idHistorico,Trabajador_Matricula,Tutorado_NControl,Fecha) VALUES (CONCAT(HOUR(NOW()),MINUTE(NOW()),DAY(CURDATE()),MONTH(CURDATE()), YEAR(CURDATE()),:ncontrol),:matricula,:ncontrol,CURDATE())");
            $sql->bindParam(":matricula", $datos['Matricula']);
            $sql->bindParam(":ncontrol", $datos['NControl']);
            $sql->execute();
@@ -156,6 +169,8 @@
             //echo "SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;";
           }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");
+          }elseif($tipo=="Consulta"){
+              $sql=mainModel::conectar()->prepare("$condicion");
           }
           
 

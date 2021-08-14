@@ -81,13 +81,53 @@ include "./vistas/inc/navStudent.php"
                 <p id="tit-activities"><strong>ACTIVIDADES ASIGNADAS</strong></p>
                 <?php
                     require_once './controladores/actividadesController.php';
+                    require_once './controladores/usuarioController.php';
+                    $ins_actividad = new usuarioController();
+                    $ncontrol=$_SESSION['NControl_sti'];
+
+                    $dat_info = $ins_actividad->datos_usuario_controlador("Consulta","","SELECT FLOOR(TIMESTAMPDIFF(MONTH, g.fecha_inicio, CURDATE())/6) AS semester FROM tutorado t, generacion g WHERE g.idGeneracion=t.Generacion_idGeneracion AND t.NControl=$ncontrol");
+                    $dat_info = $dat_info->fetch();
+                    $semetre = (int)$dat_info['semester'];
+
+
                     $ins_actividad = new actividadesController();
-                    $dat_info = $ins_actividad->consulta_actividades_controlador($_SESSION['NControl_sti']);
+                    $dat_info = $ins_actividad->consulta_actividades_controlador($ncontrol);
+
+                    $valida=false;
+                    foreach($dat_info as $row){
+                        $isObligatorio = $row['Obligatorio'];
+                        $sem = (int) $row['Semestrerealizacion_sug'];
+                        $stat = $row['Estado'];
+                        if($isObligatorio=='1' && $semetre > $sem && $stat=='No entregado'){
+                            $valida=true;
+                            break;
+                        }
+                    }
+                    $justify = $valida ? 'space-between' : 'center';
+                    $messages="<div id='register-options' class='form-container' style='justify-content:$justify; align-items: center;'>
+                                    <div class='list-decorate-act'><ul style='list-style: none;'>
+                                        <li><div class='alert-act'></div>Actividad obligatoria</li>
+                                        <li><div class='warning-act'></div>Actividad Atrasada</li>
+                                        <li><div class='deliver-act'></div>Actividad entregada</li>
+                                        <li><div class='validate-act'></div>Actividad validada o concluida</li>
+                                    </ul></div>";
+
+                    if($valida){
+                        $messages .="
+                                
+                                    <div style='background-color: red; color: white; width: 350px; padding: 10px; border: solid 2px black;'>
+                                        <p>Atención: se han detectado Actividades importantes a entregar</p>
+                                    </div>";
+                    }
+                    $messages .="</div>";
+                    echo $messages;
+
+
                     
                 ?>
 
                 <!-- <div class="table-responsive table-bordered table table-hover table-bordered results"> -->
-                    <table class="table table-bordered  display nowrap tablas"  style="cellspacing:0;  width:100%">
+                    <table class="table table-bordered  display nowrap tablas">
                         <thead class="bg-primary bill-header cs">
                             <tr>
                                 <th id="trs-hd" class="col-lg-1">Nombre de la Actividad</th>
@@ -104,25 +144,34 @@ include "./vistas/inc/navStudent.php"
                                     $idact = $row['idActividades'];
                                     $name = $row['Nombre'];
                                     $desc = $row['Descripcion'];
-                                    $sem = $row['Semestrerealizacion_sug'];
+                                    $sem =(int) $row['Semestrerealizacion_sug'];
                                     $stat = $row['Estado'];
                                     $format = $row['URLFormato'];
                                     $fecha_e = $row['Fecha'];
 
-                                    $fila = "
-                                        <tr>
-                                            <td>$name</td>
-                                            <td>$desc</td>
-                                            <td>$sem</td>
-                                            <td>$stat</td>
-                                            <td><center>$fecha_e</center></td>
-                                            <td><center>";
-                                    if($stat!='Validado') $fila=$fila.'<button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>';
+                                    $isObligatorio = $row['Obligatorio'];
+                                    //echo "$sem $semetre $isObligatorio </br>";
+                                    if($isObligatorio!='1' || ($isObligatorio=='1' &&   $semetre >= $sem)){
+                                        $fila="<tr>";
+                                        if($semetre-$sem==1 && $isObligatorio=='1'&& $stat=='No entregado')  $fila="<tr class='warning-act'>";
+                                        elseif($semetre-$sem>1 && $isObligatorio=='1' && $stat=='No entregado') $fila="<tr class='alert-act'>";
+                                        elseif($stat=='Validado')  $fila="<tr class='validate-act'>";
+                                        elseif($stat=='En espera')  $fila="<tr class='deliver-act'>";
+                                        $fila .= "
+                                           
+                                                <td>$name</td>
+                                                <td>$desc</td>
+                                                <td>$sem</td>
+                                                <td>$stat</td>
+                                                <td><center>$fecha_e</center></td>
+                                                <td><center>";
+                                        if($stat!='Validado') $fila .='<button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>';
 
-                                    $fila= $fila.'<abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download"    style="font-size: 15px;"></i></a></abbr>
-                                            </center></td>
-                                        </tr>';
-                                    echo $fila;
+                                        $fila .= '<abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download"    style="font-size: 15px;"></i></a></abbr>
+                                                </center></td>
+                                            </tr>';
+                                        echo $fila;
+                                    }
                                 }
                             ?>
                             

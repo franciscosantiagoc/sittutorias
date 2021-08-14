@@ -156,8 +156,7 @@
 /* CCTUTORADOS */
 #register-options{
     display: flex;
-    justify-content: space-between !important; 
-    margin-top: 6vh;
+    justify-content: space-between;
 }
 #register-options a{
    width: 250px;
@@ -166,4 +165,28 @@
 
 a{
     text-decoration: none;
+}
+
+.alert-act{
+    background-color: red;
+    color: white;
+}
+.warning-act{
+    background-color: #ffdb15;
+    color: black;
+}
+.deliver-act{
+    background-color: gray;
+    color: white;
+}
+.validate-act{
+    background-color: green;
+    color: white;
+}
+
+li div{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
 }

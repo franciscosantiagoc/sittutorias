@@ -10,7 +10,7 @@ class actividadesController extends actividadesModel
 
    public function consulta_actividades_controlador($ncontrol)
    {  
-      $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Descripcion, Semestrerealizacion_sug, URLFormato FROM actividades;");
+      $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Descripcion, Semestrerealizacion_sug,Semestre_obligatorio AS Obligatorio, URLFormato FROM actividades;");
       $dat_info = $consulta_actividades -> fetchAll(); 
       $resultado = [];
       foreach($dat_info as $row){
@@ -211,7 +211,6 @@ class actividadesController extends actividadesModel
    public function agregar_entregaactividad_controlador(){
       $idact = mainModel::limpiar_cadena($_POST['ideditactiv']);
       $nctrl = mainModel::limpiar_cadena($_POST['idaleditactiv']);
-      /* $nombre = mainModel::limpiar_cadena($_POST['name_upd']); */
       if(empty($nctrl) || empty($nctrl)){
          echo '
          <script> 
