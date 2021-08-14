@@ -8,11 +8,9 @@ if(isset($_POST['idAcActividad'])){
     $respuesta= $ins_actividad->consulta_acactividad_controlador();
     echo json_encode($respuesta);
     /* echo 'Respuesta actividad ajax';*/
-}if(isset($_POST['del_idActividad'])){
+}elseif(isset($_POST['del_idActividad'])){
     $respuesta= $ins_actividad->eliminar_actividad_controlador();
     echo json_encode($respuesta);
-
-
 
 } else {
     session_start(['name' => 'STI']);

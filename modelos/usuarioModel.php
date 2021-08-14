@@ -119,6 +119,26 @@
 
            return $sql;
        }
+       protected static function actualizar_jdepto_modelo($datos){
+
+
+
+           $sql = mainModel::conectar()->prepare("UPDATE trabajador t, persona p  SET t.Matricula=:Matricula, p.Nombre=:Nombre, p.APaterno=:APaterno, p.AMaterno=:AMaterno, p.Sexo=:Sexo, p.Correo=:Correo, p.NTelefono=:NTelefono, t.Areas_idAreas=:Areas WHERE t.Matricula=:Matricular AND p.idPersona=t.Persona_idPersona ");
+
+           $sql->bindParam(":Matricular", $datos['Matricular']);
+           $sql->bindParam(":Matricula", $datos['Matricula']);
+           $sql->bindParam(":Nombre", $datos['Nombre']);
+           $sql->bindParam(":APaterno",$datos['APaterno']);
+           $sql->bindParam(":AMaterno",$datos['AMaterno']);
+           $sql->bindParam(":Sexo",$datos['Sexo']);
+           $sql->bindParam(":Correo",$datos['Correo']);
+           $sql->bindParam(":NTelefono", $datos['NTelefono']);
+           $sql->bindParam(":Areas", $datos['Areas']);
+           $sql->execute();
+
+
+           return $sql;
+       }
 
 
        protected static function actualizar_asignacion_modelo($datos){

@@ -47,7 +47,13 @@ require_once "../controladores/usuarioController.php";
     echo $ins_usuario->actualiza_asigtutorado_controlador();
     /*echo 'respuesta ajax'; */
 
-}else {
+}elseif( isset($_POST['format_tutor_gener']) ){
+     require_once "../controladores/tutoradosController.php";
+     $ins_usuario = new tutoradosController();
+     echo $ins_usuario->create_format_controlador();
+     /*echo 'respuesta ajax'; */
+
+ }else {
    /*echo 'No existe opcion ';*/
     session_start(['name' => 'STI']);
    session_unset();

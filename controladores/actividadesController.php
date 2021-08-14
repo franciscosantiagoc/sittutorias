@@ -421,7 +421,9 @@ class actividadesController extends actividadesModel
             exit();
         }
 
-        if($_FILES['Ractivity-file']['name'] == null){
+        $link_file= "";
+
+        if($_FILES['Ractivity-file']['name'] == null && $semestreoblig == "inactivo"){
             echo '
             <script> 
                Swal.fire({
@@ -437,13 +439,12 @@ class actividadesController extends actividadesModel
             </script>
             ';
             exit();
+
+        }elseif($_FILES['Ractivity-file']['name'] != null ){
+            $link_file='/directory/formats/'.$idact.'_'.$nombre.".pdf";
+            $link_file=trim($link_file,' ');
+
         }
-
-        $temp = $_FILES['Ractivity-file']['tmp_name'];
-        $link_file='/directory/formats/'.$idact.'_'.$nombre.".pdf";
-        $link_file=trim($link_file,' ');
-        $archivo = '.'.$link_file;
-
 
 
 
@@ -513,7 +514,7 @@ class actividadesController extends actividadesModel
        if($respuesta->rowCount() == 0){
            $alerta=[
                'Titulo'=> "Error",
-               'Texto' => "Error al eliminar la actividad, recarge la pagina para continuar",
+               'Texto' => "Error al eliminar, la actividad ya ha sido entregada por un alumno",
                'Tipo' => "error"
            ];
            echo json_encode($alerta);

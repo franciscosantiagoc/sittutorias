@@ -139,7 +139,7 @@ if(isset($_POST['idacactividad'])){
     </div>
 </div>
 <?php
-if(isset($_POST['ridactividad']) && isset($_POST['rnombreact']) && isset($_FILES['Ractivity-file']) ){
+if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
     require_once "./controladores/actividadesController.php";
 
     $ins_actividad= new actividadesController();

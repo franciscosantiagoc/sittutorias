@@ -71,14 +71,59 @@ include "./vistas/inc/navTutor.php";
         </div>
     </div>
 </div>
+<div class="modal" id="modalDescargarLista" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Descargar lista de tutorados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="ed_Sel_generacion">Generación escolar</label>
+                            <select id="ed_Sel_generacion" class="form-control">
+
+                                <option value="all">Todos</option>
+                                <?php
+                                require_once "./controladores/usuarioController.php";
+                                $ins_usuario = new usuarioController();
+                                $dat_info = $ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
+                                $dat_info=$dat_info->fetchAll();
+                                foreach($dat_info as $row){
+                                    /*$n=$dat_info->rowCount(); */
+                                    $id = $row['idgeneracion'];
+                                    $da_in = $row['date_ini'];
+                                    $da_fn = $row['date_fin'];
+                                    echo "<option value='$id'>$da_in-$da_fn</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" id="descargar" >Descargar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="register-photo">
+
         <div id="importcsvregis" class="form-container">
                 <div class="form-container" id="contain">
                     <div class="col-md-12 search-table-col">
                         <div class="intro">
                             <h2 class="text-center"><strong>Tutorados</strong></h2>
-                            
                         </div>
+                        <div class="form-group pull-right col-lg-4">
+                            <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR LISTA DE TUTORADOS</button>
+                        </div>
+
                         <?php
                         require_once './controladores/tutoradosController.php';
                         $ins_actividad = new tutoradosController();
@@ -95,6 +140,7 @@ include "./vistas/inc/navTutor.php";
                                     <th>APELLIDO MATERNO</th>
                                     <th>TELEFONO</th>
                                     <th>CARRERA</th>
+                                    <th>GENERACIÓN ESCOLAR</th>
                                     <th>FECHA ASIGNADA</th>
                                     <th>ACCIONES</th>
 
@@ -113,6 +159,7 @@ include "./vistas/inc/navTutor.php";
                                             <td>'.$rows['AMaterno'].'</td>
                                             <td>'.$rows['NTelefono'].'</td>
                                             <td>'.$rows['NombreCar'].'</td>
+                                            <td>'.$rows['gener'].'</td>
                                             <td>'.$rows['fecha_asig'].'</td>
                                             <td><center>
                                                 <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
@@ -169,9 +216,32 @@ include "./vistas/inc/navTutor.php";
                 //$("#ed_image").attr("src",image);
 
             }
-        }).fail( function( jqXHR, textStatus, errorThrown ) {
-            console.log('error '+textStatus);
         });
+
     }
+
+    $("#descargar").click(event=>{
+        event.preventDefault();
+        let generacion = $("#ed_Sel_generacion").val();
+
+        var datos = new FormData();
+        datos.append("format_tutor_gener",generacion);
+
+        $.ajax({
+            url: "ajax/usuarioAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function(respuesta){
+
+
+            }
+        });
+
+
+    });
 
 </script>

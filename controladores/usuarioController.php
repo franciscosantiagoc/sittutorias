@@ -951,7 +951,7 @@ class usuarioController extends usuarioModel
         }
 
 
-        $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT t.NControl, p.Nombre, p.APaterno, p.AMaterno, p.NTelefono, p.Correo,r.Nombre as NombreCar, CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', DATE_FORMAT(g.fecha_fin,'%M %Y') ), p.Foto   FROM persona p, tutorado t, trabajador_tutorados b, carrera r,generacion g WHERE t.NControl=$noctrl AND r.idCarrera = t.Carrera_idCarrera AND g.idGeneracion=t.Generacion_idGeneracion AND p.idPersona=t.Persona_idPersona");
+        $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT t.NControl, p.Nombre, p.APaterno, p.AMaterno, p.NTelefono, p.Correo,r.Nombre as NombreCar, CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', DATE_FORMAT(g.fecha_fin,'%M %Y')) , p.Foto   FROM persona p, tutorado t, trabajador_tutorados b, carrera r,generacion g WHERE t.NControl=$noctrl AND r.idCarrera = t.Carrera_idCarrera AND g.idGeneracion=t.Generacion_idGeneracion AND p.idPersona=t.Persona_idPersona");
 
         if($busqueda_tutorado->rowCount()==0){
             $alerta = [
