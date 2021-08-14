@@ -51,8 +51,8 @@ include "./vistas/inc/navCoordinadorC.php"
                                 <input class="form-control" type="text" placeholder="Apellido Materno" id="ed_apellidoM" name="Ed_apellidoM" disabled>
                             </div>
                             <div class="form-group">
-                                <label for="ed_email">Apellido Materno</label>
-                                <input class="form-control" type="text" placeholder="Apellido Materno" id="ed_email" name="Ed_email" disabled>
+                                <label for="ed_email">Correo</label>
+                                <input class="form-control" type="text" placeholder="Email" id="ed_email" name="Ed_email" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="ed_Sel_Carrera">Carrera</label>

@@ -14,12 +14,54 @@ if(isset($_SESSION['roll_sti'])){
         }
     }
 }
-  
-include "./vistas/inc/navCoordinadorC.php" 
-
-
+    include "./vistas/inc/navCoordinadorC.php"
 ?>
-
+    <div class="modal" id="modalHistory" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"  style="width: 700px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Historial de asignacion de tutorado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form>
+                        <div class="form-group">
+                            <label for="h_noctrl">No. de Control del Alumno</label>
+                            <input class="form-control" type="text" placeholder="No Control" name="h_noctrl" id="h_noctrl" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="h_name">Nombre Completo</label>
+                            <input class="form-control" type="text" placeholder="Nombre completo" name="h_name" id="h_name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="h_carr">Carrera</label>
+                            <input class="form-control" type="text" placeholder="Carrera" name="h_carr" id="h_carr" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-container">
+                    <div class="table-responsive table-bordered table  ">
+                        <table id="h_table" class="table table-bordered table-hover tablas" >
+                            <thead class="bg-primary bill-header cs">
+                                <tr class="text-center roboto-medium">
+                                    <th>ID</th>
+                                    <th>Matricula</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                    <th>Fecha/Asignación</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="modal" id="modalVerCCTutorado" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -65,21 +107,6 @@ include "./vistas/inc/navCoordinadorC.php"
                                     ?>
                                 </select>
                             </div>
-                            <!--<div class="form-group">
-                                <label for="v_Sel_tutor2">Tutor</label>
-                                <select id="v_Sel_tutor2" class="form-control" >
-                                    <?php
-                                    /*$dat_info = $ins_usuario->datos_ta_controlador("t.Matricula, CONCAT(p.Nombre,p.APaterno,p.AMaterno) as nombretutor","trabajador t, persona p"," WHERE p.idPersona=t.Persona_idPersona ORDER BY nombretutor;");
-                                    $dat_info=$dat_info->fetchAll();
-                                    foreach($dat_info as $row){
-                                        $id = $row['Matricula'];
-                                        $name_tu = $row['nombretutor'];
-                                        echo "<option value='$id'>$name_tu</option>";
-                                    }*/
-
-                                    ?>
-                                </select>
-                            </div>-->
                             <div class="form-group">
                                 <label for="v_Sel_tutor">Tutor</label>
                                 <input id="v_Sel_tutor" class="form-control" list="list-tutores">
@@ -114,8 +141,9 @@ include "./vistas/inc/navCoordinadorC.php"
             <?php
                 require_once "./controladores/usuarioController.php";
                 $ins_usuario = new usuarioController();
-                $total_docentes = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente';");
-                $total_activos = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Docente' AND Disponibilidad='1';");
+                $matricula = $_SESSION['matricula_sti'];
+                $total_docentes = $ins_usuario->datos_usuario_controlador("Consulta","","SELECT t.Matricula FROM trabajador t,trabajador t2 WHERE t.Roll='Docente' AND t.Areas_idAreas=t2.Areas_idAreas AND t2.Matricula=$matricula;");
+                $total_activos = $ins_usuario->datos_usuario_controlador("Consulta","","SELECT t.Matricula FROM trabajador t,trabajador t2 WHERE t.Roll='Docente' AND t.Disponibilidad=1 AND t.Areas_idAreas=t2.Areas_idAreas AND t2.Matricula=$matricula;");
             ?>
 
             <div class="tile">
@@ -127,7 +155,7 @@ include "./vistas/inc/navCoordinadorC.php"
                 </div>
             </div>
             <?php
-                $total_tutorados = $ins_usuario->datos_usuario_controlador("Conteo","tutorado",";");
+                $total_tutorados = $ins_usuario->datos_usuario_controlador("Consulta","","SELECT t.NControl FROM tutorado t,persona p,carrera c, trabajador tr WHERE p.idPersona=t.Persona_idPersona AND c.idCarrera=t.Carrera_idCarrera AND c.Areas_idAreas=tr.Areas_idAreas AND tr.Matricula=1114 ORDER BY p.APaterno;");
                 $total_tutorados_asig = $ins_usuario->datos_usuario_controlador("Conteo","trabajador_tutorados",";");
             ?>
 
@@ -136,11 +164,22 @@ include "./vistas/inc/navCoordinadorC.php"
                 <div class="tile-icon">
                     <i class="fas fa-user-graduate fa-fw"></i>
                     <p><?php echo $total_tutorados->rowCount(); ?> Registrados</p>
-                    <p><?php echo $total_tutorados_asig->rowCount(); ?> Asignados</p>
+                    <p><?php echo $total_tutorados_asig->rowCount(); $resta=$total_tutorados->rowCount()-$total_tutorados_asig->rowCount();?> Asignados</p>
                 </div>
             </div>
-                <div id="register-options" class="form-container">
-                    <a class="btn btn-primary" href="<?php echo SERVERURL;?>CCAsignTutorado" style="width: 350px; margin-bottom: 20px;">Asignación automatica</a >
+                <div id="register-options" class="form-container" <?php if($resta==0)echo 'style="justify-content:center;"';?>>
+                    <button class="btn btn-primary" onclick="clickautoasig()" style="width: 350px; height: 40px; margin-bottom: 20px;">Asignación automatica</button >
+
+                <?php
+
+                    if($resta!=0) {
+                        echo "
+                        <div id='register-options'  style='background-color: red; color: white; width: 250px;'>
+                            <p>Atención: se han detectado $resta alumnos sin asignar </p>
+                        </div>";
+
+                    }
+                 ?>
                 </div>
             <div class="col-md-12 search-table-col">
                 <div class="table-responsive table-bordered table table-hover table-bordered results">
@@ -151,21 +190,22 @@ include "./vistas/inc/navCoordinadorC.php"
                 $dat_info = $dat_info -> fetchAll();
                 ?>
                 <div class="table-responsive table-bordered table  ">
-                    <table class="table table-bordered table-hover tablas">
+                    <table class="table table-bordered table-hover tablas" >
                         <thead class="bg-primary bill-header cs">
                         <tr class="text-center roboto-medium">
                             
-                            <th>NOMBRE</th>
-                            <th>APELLIDO PATERNO</th>
-                            <th>APELLIDO MATERNO</th>
-                            <th>NCONTROL</th>
-                            <th>CARRERA</th>
-                            <th>MATRICULA</th>
-                            <th>TUTOR</th>
-                            <th>ACCIONES</th>
+                            <th>Nombre</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                            <th>NControl</th>
+                            <th>Carrera</th>
+                            <th>Fecha/Asignación</th>
+                            <th>Matricula</th>
+                            <th>Tutor</th>
+                            <th>Acciones</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                         <?php
                         /*print_r ($dat_info);*/
                          foreach ($dat_info as $rows){
@@ -175,6 +215,7 @@ include "./vistas/inc/navCoordinadorC.php"
                             <td>'.$rows['AMaternoTu'].'</td>
                             <td>'.$rows['NControl'].'</td>
                             <td>'.$rows['NombreC'].'</td>
+                             <td>'.$rows['fecha'].'</td>
                             <td>'.$rows['Matricula'].'</td>
                             <td>'.$rows['tutor'].'</td>
                             <td><center>
@@ -182,7 +223,12 @@ include "./vistas/inc/navCoordinadorC.php"
                                     <button class="btnEditarActividad" onclick="clickasignacion('.$rows['NControl'].','.$rows['Matricula'].')" data-toggle="modal" data-target="#modalVerCCTutorado" >
                                         <i class="fa fa-edit" style="font-size: 15px;"></i>
                                     </button>
-                                  </abbr>
+                                </abbr>
+                              <abbr title="Ver historial de asignación del alumno">
+                                <button class="btnEditarActividad" onclick="clickhistory('.$rows['NControl'].')" data-toggle="modal" data-target="#modalHistory" >
+                                   <i class="fas fa-calendar-alt"></i>
+                                </button>
+                              </abbr>
                             </center></td>
                             
                             </tr>';
@@ -225,6 +271,61 @@ include "./vistas/inc/navCoordinadorC.php"
             });
         }
 
+        function clickhistory(ncontrol){
+            var datos = new FormData();
+            console.log('Tutorado selecionado: '+ncontrol);
+            datos.append("hist_tutorado",ncontrol);
+            $.ajax({
+                url: "ajax/usuarioAjax.php",
+                method: "post",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'JSON',
+                success: function(resp){
+                    if(resp.hasOwnProperty('Titulo')){
+                        Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
+                    }else{
+                        console.log(resp);
+                        $("#h_noctrl").val(resp.NControl);
+                        $("#h_name").val(resp.Nombre);
+                        $("#h_carr").val(resp.Carrera);
+                        var table = $('#h_table').DataTable();
+                        table.row().clear();
+                        let data =resp.Tutores;
+
+                        for (let i=0; i<data.length;i++){
+                            table.row.add([data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5]]).draw(false);
+                        }
+                    }
+                }
+            });
+        }
+
+        function clickautoasig(){
+            number="<?php echo  $_SESSION['matricula_sti'];?>";
+            var datos = new FormData();
+            datos.append("number_asignacion", number);
+            $.ajax({
+                url: "ajax/usuarioAjax.php",
+                method: "post",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'JSON',
+                success: function(respuesta){
+                    Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                    //console.log(respuesta)
+                }
+            });
+        }
+
         $("#ed_button").click(function(e){
             e.preventDefault();
             var tut = $("#v_Sel_tutor").val();
@@ -242,7 +343,6 @@ include "./vistas/inc/navCoordinadorC.php"
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.value) {
-                    console.log('yes')
                     $.ajax({
                         url: "ajax/usuarioAjax.php",
                         method: "post",
