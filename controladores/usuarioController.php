@@ -937,6 +937,35 @@ class usuarioController extends usuarioModel
       return json_encode($dat_info); 
 
    }
+    public function ver_tutorado_controlador(){
+        $noctrl = mainModel::limpiar_cadena($_POST['idtutorado_ver']);
+        if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
+            $alerta = [
+                "Response" => "error",
+                "Titulo" => "Ocurrio un error inesperado",
+                "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+
+        $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT t.NControl, p.Nombre, p.APaterno, p.AMaterno, p.NTelefono, p.Correo,r.Nombre as NombreCar, CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', DATE_FORMAT(g.fecha_fin,'%M %Y') ), p.Foto   FROM persona p, tutorado t, trabajador_tutorados b, carrera r,generacion g WHERE t.NControl=$noctrl AND r.idCarrera = t.Carrera_idCarrera AND g.idGeneracion=t.Generacion_idGeneracion AND p.idPersona=t.Persona_idPersona");
+
+        if($busqueda_tutorado->rowCount()==0){
+            $alerta = [
+                "Titulo" => "Ocurrio un error inesperado",
+                "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        $dat_info = $busqueda_tutorado -> fetchAll();
+        return json_encode($dat_info);
+
+    }
 
    public function actualiza_tutorado_controlador(){
       $nocarr = mainModel::limpiar_cadena($_POST['ed_carr_tu']);

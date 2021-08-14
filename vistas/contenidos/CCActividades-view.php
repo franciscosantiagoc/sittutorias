@@ -33,7 +33,7 @@ include "./vistas/inc/navCoordinadorC.php"
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="idAcActividad">Id de la Actividad</label>
-                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="idAcActividad" name="idacactividad" >
+                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="idAcActividad" name="idacactividad" readonly >
                         </div>
                         <div class="form-group">
                             <label for="nombreAcAct">Nombre de la actividad</label>
@@ -43,16 +43,35 @@ include "./vistas/inc/navCoordinadorC.php"
                             <label for="descripcionac">Descripción</label>
                             <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAcAct" name="descripcionacact">
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="semestresugac">Semestre Sugerido</label>
                             <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSugAc" name="semestresugac">
+                        </div>-->
+
+                        <div class="form-group">
+                            <label for="semestresugac">Semestre Sugerido</label>
+                            <select id="SemestreSugAc" name="semestresugac">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Archivo</label>
                             <input type="file" name="Acactivity-file" id="acactivity-file" accept=".pdf">
                         </div>
+
                         <div class="form-group">
-                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
+                            <button class="btn btn-primary btn-block" type="submit" >Actualizar</button>
                         </div>
                     </form>
                 </div>
@@ -60,6 +79,16 @@ include "./vistas/inc/navCoordinadorC.php"
         </div>
     </div>
 </div>
+
+<?php
+if(isset($_POST['idacactividad'])){
+    require_once "./controladores/actividadesController.php";
+
+    $ins_usuario= new actividadesController();
+
+    echo $ins_usuario->actualizar_actividad_controlador();
+}
+?>
 
 <!-- Agregar Actividad -->
 <div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">
@@ -141,10 +170,11 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact']) && isset($_FILES
                         <thead class="bg-primary bill-header cs">
                         <tr class="text-center roboto-medium">
                             <th>#</th>
+                            <th>Id de Actividad</th>
                             <th>Nombre de la actividad</th>
                             <th>Fecha de registro</th>
                             <th>Descripción</th>
-                            <th>Periodo</th>
+                            <th>Semestre sugerido</th>
                             <th>ACTUALIZAR</th>
                             <th>ELIMINAR</th>
                         </tr>
@@ -153,29 +183,36 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact']) && isset($_FILES
                         <tbody>
                         <?php
                         $contador=1;
-                        foreach($dat_info as $rows){
+                        foreach($dat_info as $row){
+                            $idactividad = $row['idActividades'];
+                            $name = $row['Nombre'];
+                            $fechareg = $row['Fecha_registro'];
+                            $desc = $row['Descripcion'];
+                            $semestrere = $row['Semestrerealizacion_sug'];
 
 
-                            echo '<tr class="text-center roboto-medium" >
-                        <td>'.$contador.'</td>
-                        <td>'.$rows['Nombre'].'</td>
-                        <td>'.$rows['Fecha_registro'].'</td>
-                        <td>'.$rows['Descripcion'].'</td>
-                        <td>'.$rows['Semestrerealizacion_sug'].'</td>
-                        <td>
-                             <center><button class="btnVerInfoTE" onclick="clickTE()" data-toggle="modal" data-target="#modalActualizarTE" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button>
-                                        </center>
-                        </td>
-                        <td>
-                            <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
-                            
-                                <button type="submit" class="btn btn-warning">
-                                        <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
-				    </tr>';
-                            $contador++;
+
+
+
+                        echo '<tr>
+                            <td>'.$contador.'</td>
+                            <td>'.$idactividad.'</td>
+                            <td>'.$name.'</td>
+                            <td>'.$fechareg.'</td>
+                            <td>'.$desc.'</td>
+                            <td>'.$semestrere.'</td>
+                            <td>
+                                 <center><abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE('.$idactividad.')" data-toggle="modal" data-target="#modalActActividad" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
+                                 </center>
+                            </td>
+                            <td>
+                                <abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity('.$idactividad.')">
+                                       <i class="far fa-trash-alt"></i>
+                                </button></abbr>
+                               
+                            </td>
+                        </tr>';
+                        $contador++;
 
                         }
                         ?>
@@ -189,4 +226,71 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact']) && isset($_FILES
 
 
     </div>
+
+<script type="text/javascript">
+
+
+    function clickTE(idAcAct){//1 - ver 2- actualizar
+        var datos = new FormData();
+        datos.append("idAcActividad",idAcAct);
+
+        $.ajax({
+            url: "ajax/acactividadAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function(respuesta){
+                $("#idAcActividad").val(respuesta[0][0]);
+                $("#NombreAcAct").val(respuesta[0][1]);
+                $("#DescripcionAcAct").val(respuesta[0][2]);
+                $("#SemestreSugAc").val(respuesta[0][3]);
+
+            }
+        });
+    }
+
+    function eliminarActivity(idDelAct){
+        var datos = new FormData();
+        datos.append("del_idActividad",idDelAct);
+
+        Swal.fire({
+            title: "Advertencia",
+            text: "¿Esta seguro de eliminar esta actividad?",
+            showCancelButton:true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+
+        }).then(resultado=>{
+            if(resultado.value){
+                $.ajax({
+                    url: "ajax/acactividadAjax.php",
+                    method: "post",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'JSON',
+                    success: function(respuesta){
+                        Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo).then(res=> {
+                            if (res.value) {
+                                location.reload();
+
+                            }
+                        })
+
+                    }
+                });
+            }
+
+        });
+
+
+    }
+
+</script>
     

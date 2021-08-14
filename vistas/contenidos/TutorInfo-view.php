@@ -61,10 +61,6 @@ include "./vistas/inc/navTutor.php";
                             <input class="form-control" type="text" placeholder="Email" id="EmailCA" name="emailca" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="carreraCA">Carrera</label>
-                            <input class="form-control" type="text" placeholder="Carrera" id="CarreraCA" name="carreraca" disabled>
-                        </div>
-                        <div class="form-group">
                             <label for="areaCA">Área</label>
                             <input class="form-control" type="text" placeholder="Area" id="AreaCA" name="areaca" disabled>
                         </div>
@@ -119,8 +115,8 @@ include "./vistas/inc/navTutor.php";
                             <input class="form-control" type="text" placeholder="Email" id="Email" name="email" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="carrera">Carrera</label>
-                            <input class="form-control" type="text" placeholder="Carrera" id="Carrera" name="carrera" disabled>
+                            <label for="areaCC">Área</label>
+                            <input class="form-control" type="text" placeholder="Area" id="AreaCC" name="areacc" disabled>
                         </div>
                     </form>
                 </div>
@@ -170,7 +166,7 @@ include "./vistas/inc/navTutor.php";
                         $sexo = $row['Sexo'];
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
-                        $carrera = $row['Carrera_idCarrera'];
+
 
       
                         echo '
@@ -181,7 +177,7 @@ include "./vistas/inc/navTutor.php";
                                 <td>'. $apellm .'</td>
                                 <td>Jefe de departamento</td>
                                 <td>'. $tel .'</td>
-                                <td><center><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                <td><center><abbr title="Ver información"><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                 </center></td>
                                 
                             </tr>
@@ -196,7 +192,7 @@ include "./vistas/inc/navTutor.php";
                         $sexo = $row['Sexo'];
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
-                        $carrera = $row['Carrera_idCarrera'];
+
 
 
                         echo '
@@ -207,7 +203,7 @@ include "./vistas/inc/navTutor.php";
                                             <td>'. $apellm .'</td>
                                             <td>Coordinador de Carrera</td>
                                             <td>'. $tel .'</td>
-                                            <td><center><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                            <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                             </center></td>
                                             
                                         </tr>
@@ -248,11 +244,10 @@ include "./vistas/inc/navTutor.php";
                 $("#SexoCA").val(respuesta[0][4]);
                 $("#numeroTelefonoCA").val(respuesta[0][5]);
                 $("#EmailCA").val(respuesta[0][6]);
-                $("#CarreraCA").val(respuesta[0][7]);
-                $("#AreaCA").val(respuesta[0][8]);
+                $("#AreaCA").val(respuesta[0][7]);
 
-                var image = "<?php echo SERVERURL;?>"
-                image = image +respuesta[0][9];
+                var image = "<?php echo SERVERURL;?>";
+                image = image +respuesta[0][8];
                 $imagenPrevisualizacion.src = image;
                 console.log("imagen coord:"+image);
 
@@ -289,7 +284,8 @@ include "./vistas/inc/navTutor.php";
                 $("#Sexo").val(respuesta[0][4]);
                 $("#numeroTelefono").val(respuesta[0][5]);
                 $("#Email").val(respuesta[0][6]);
-                $("#Carrera").val(respuesta[0][7]);
+                $("#AreaCC").val(respuesta[0][7]);
+
 
                 var image = "<?php echo SERVERURL;?>"
                 image = image +respuesta[0][8];

@@ -204,10 +204,10 @@ if(isset($_POST['nameCoordinadoracte'])){
                                         <td>'. $tel.'</td>
                                         <td>
                                             
-                                            <center><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',2)" data-toggle="modal" data-target="#modalActualizarTE" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button>
+                                            <center><abbr title="Actualizar tutor"><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',2)" data-toggle="modal" data-target="#modalActualizarTE" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
                                         </center>
                                         </td>
-                                        <td><center><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',1)" data-toggle="modal" data-target="#modalInfoTE" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                        <td><center><abbr title="Ver tutor"><button class="btnVerInfoTE" onclick="clickTE('.$idmatric.',1)" data-toggle="modal" data-target="#modalInfoTE" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                         </center></td>
                                         
                                     </tr>';

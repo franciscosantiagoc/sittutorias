@@ -32,12 +32,181 @@ class actividadesController extends actividadesModel
 
 
    public function consulta_actividad_controlador($idactividad)
-   {  
+   {  // coregir la variable
       $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Descripcion, URLFormato FROM actividades WHERE idActividades=$idactividad;");
       $dat_info = $consulta_actividades -> fetchAll();
       return $dat_info; 
             
    }
+   public function consulta_acactividad_controlador()
+    {
+        $idactividad=mainModel::limpiar_cadena($_POST['idAcActividad']);
+        $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Descripcion, Semestrerealizacion_sug FROM actividades WHERE idActividades=$idactividad;");
+        $dat_info = $consulta_actividades -> fetchAll();
+        return $dat_info;
+
+    }
+    public function actualizar_actividad_controlador()
+    {
+        $idac_actividad = mainModel::limpiar_cadena($_POST['idacactividad']);
+        $nombre = mainModel::limpiar_cadena($_POST['nombreacact']);
+        $descripcion = mainModel::limpiar_cadena($_POST['descripcionacact']);
+        $semestre_sug = mainModel::limpiar_cadena($_POST['semestresugac']);
+
+
+
+        if ($idac_actividad == "" || $nombre == "" || $descripcion == "" || $semestre_sug == "" ) {
+            echo '
+             
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Algunos campos estan vacios, por favor rellenelos",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            
+            ';
+            exit();
+        }
+
+
+        if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_actividad)) {
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El formato del id de la actividad no es válido",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombre)) {
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El formato del Nombre de la actividad no es válido",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,70}", $descripcion)) {
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El formato de la descripcion de la actividad, no es válido",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+
+        if ($semestre_sug < 1 || $semestre_sug > 12  ) {
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Se ha detectado un error con el semestre sugerido seleccionado",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+
+
+        if($_FILES['Acactivity-file']['name'] == null){
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "No ha cargado un archivo",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCActividades"
+                  }
+               });
+            </script>
+            ';
+            exit();
+        }
+
+        $temp = $_FILES['Acactivity-file']['tmp_name'];
+        $link_file='/directory/formats/'.$idac_actividad.'_'.$nombre.".pdf";
+        $link_file=trim($link_file,' ');
+        $archivo = '.'.$link_file;
+
+        $datos_usuario_upd = [
+            "idAcActividad" =>$idac_actividad,
+            "Nombre" => $nombre,
+            "Descripcion" => $descripcion,
+            "Semestre_sug" => $semestre_sug,
+            "URLFile" => $link_file
+
+        ];
+
+
+        $actualizar_usuario = actividadesModel::actualizar_actividades_modelo($datos_usuario_upd);
+
+        if($actualizar_usuario->rowCount()==1){//comprobando realizacion de actualizacion
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Usuario Actualizado",
+                  text: "Los datos se han actualizado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            ';
+
+        }else{
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al actualizar los datos, modifique los datos para continuar",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               });
+            </script>
+            ';
+        }
+
+    }
 
    public function agregar_entregaactividad_controlador(){
       $idact = mainModel::limpiar_cadena($_POST['ideditactiv']);
@@ -275,26 +444,7 @@ class actividadesController extends actividadesModel
         $archivo = '.'.$link_file;
 
 
-        if (move_uploaded_file($temp, $archivo) ) {
-            //Cambiamos los permisos
-            chmod($archivo, 0777);
-        }else{
-            echo '
-         <script> 
-            Swal.fire({
-               title: "Ocurrio un error inesperado",
-               text: "Error al cargar la imagen al servidor, intente nuevamente",
-               type: "error",
-               confirmButtonText: "Aceptar"
-            }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
-                  }
-               });
-         </script>
-         ';
-            exit();
-        }
+
 
         if($semestreoblig == "activo"){
             $semestreoblig = 1;
@@ -354,6 +504,30 @@ class actividadesController extends actividadesModel
         }
 
 
+    }
+
+    public function eliminar_actividad_controlador(){
+       $idactividad=mainModel::limpiar_cadena($_POST['del_idActividad']);
+       $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM actividades WHERE idActividades=$idactividad");
+       if($respuesta->rowCount() == 0){
+           $alerta=[
+               'Titulo'=> "Error",
+               'Texto' => "Error al eliminar la actividad, recarge la pagina para continuar",
+               'Tipo' => "error"
+           ];
+           echo json_encode($alerta);
+           exit();
+
+       }else{
+           $alerta=[
+               'Titulo'=> "Actividad eliminada",
+               'Texto' => "La actividad se ha eliminado correctamente",
+               'Tipo' => "success"
+           ];
+           echo json_encode($alerta);
+           exit();
+
+       }
     }
 
     public function consulta_de_actividad_controlador($ncontrol)
