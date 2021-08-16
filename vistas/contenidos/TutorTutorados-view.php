@@ -82,10 +82,13 @@ include "./vistas/inc/navTutor.php";
             </div>
             <div class="modal-body">
                 <div class="form-container">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo SERVERURL;?>FormatTutorTutorado" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="format_tutortutorado_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                        </div>
                         <div class="form-group">
                             <label for="ed_Sel_generacion">Generación escolar</label>
-                            <select id="ed_Sel_generacion" class="form-control">
+                            <select id="ed_Sel_generacion" class="form-control" name="format_tutortutorado_gener">
 
                                 <option value="all">Todos</option>
                                 <?php
@@ -104,82 +107,85 @@ include "./vistas/inc/navTutor.php";
                             </select>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-block" id="descargar" >Descargar</button>
+                            <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
                         </div>
+
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <div class="register-photo">
 
-        <div id="importcsvregis" class="form-container">
-                <div class="form-container" id="contain">
-                    <div class="col-md-12 search-table-col">
-                        <div class="intro">
-                            <h2 class="text-center"><strong>Tutorados</strong></h2>
-                        </div>
-                        <div class="form-group pull-right col-lg-4">
-                            <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR LISTA DE TUTORADOS</button>
-                        </div>
+<div class="register-photo">
 
-                        <?php
-                        require_once './controladores/tutoradosController.php';
-                        $ins_actividad = new tutoradosController();
-                        $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
-                        ?>
-                        <div class="table-responsive table-bordered table  ">
-                            <table class="table table-bordered table-hover tablas">
-                                <thead class="bg-primary bill-header cs">
-                                <tr class="text-center roboto-medium">
-                                    <th>#</th>
-                                    <th>NCONTROL</th>
-                                    <th>NOMBRE</th>
-                                    <th>APELLIDO PATERNO</th>
-                                    <th>APELLIDO MATERNO</th>
-                                    <th>TELEFONO</th>
-                                    <th>CARRERA</th>
-                                    <th>GENERACIÓN ESCOLAR</th>
-                                    <th>FECHA ASIGNADA</th>
-                                    <th>ACCIONES</th>
+    <div id="importcsvregis" class="form-container">
+            <div class="form-container" id="contain">
+                <div class="col-md-12 search-table-col">
+                    <div class="intro">
+                        <h2 class="text-center"><strong>Tutorados</strong></h2>
+                    </div>
+                    <div class="form-group pull-right col-lg-4">
+                        <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR LISTA DE TUTORADOS</button>
+                    </div>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $contador=1;
-                                foreach ($dat_info as $rows){
+                    <?php
+                    require_once './controladores/tutoradosController.php';
+                    $ins_actividad = new tutoradosController();
+                    $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
+                    ?>
+                    <div class="table-responsive table-bordered table  ">
+                        <table class="table table-bordered table-hover tablas">
+                            <thead class="bg-primary bill-header cs">
+                            <tr class="text-center roboto-medium">
+                                <th>#</th>
+                                <th>NCONTROL</th>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO PATERNO</th>
+                                <th>APELLIDO MATERNO</th>
+                                <th>TELEFONO</th>
+                                <th>CARRERA</th>
+                                <th>GENERACIÓN ESCOLAR</th>
+                                <th>FECHA ASIGNADA</th>
+                                <th>ACCIONES</th>
 
-                                    echo '<tr class="text-center" >
-                                            <td>'.$contador.'</td>
-                                            <td>'.$rows['NControl'].'</td>
-                                            <td>'.$rows['Nombre'].'</td>
-                                            <td>'.$rows['APaterno'].'</td>
-                                            <td>'.$rows['AMaterno'].'</td>
-                                            <td>'.$rows['NTelefono'].'</td>
-                                            <td>'.$rows['NombreCar'].'</td>
-                                            <td>'.$rows['gener'].'</td>
-                                            <td>'.$rows['fecha_asig'].'</td>
-                                            <td><center>
-                                                <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
-                                                    <i class="fas fa-eye" style="font-size: 15px;"></i>
-                                                </button></abbr>
-                                            </center></td>
-                                    
-                                          </tr>';
-                                    $contador++;
-                                }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $contador=1;
+                            foreach ($dat_info as $rows){
+
+                                echo '<tr class="text-center" >
+                                        <td>'.$contador.'</td>
+                                        <td>'.$rows['NControl'].'</td>
+                                        <td>'.$rows['Nombre'].'</td>
+                                        <td>'.$rows['APaterno'].'</td>
+                                        <td>'.$rows['AMaterno'].'</td>
+                                        <td>'.$rows['NTelefono'].'</td>
+                                        <td>'.$rows['NombreCar'].'</td>
+                                        <td>'.$rows['gener'].'</td>
+                                        <td>'.$rows['fecha_asig'].'</td>
+                                        <td><center>
+                                            <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
+                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                            </button></abbr>
+                                        </center></td>
+                                
+                                      </tr>';
+                                $contador++;
+                            }
+                            ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-        </div>
+            </div>
 
     </div>
+
+</div>
 
 
 <script type="text/javascript">
@@ -220,28 +226,5 @@ include "./vistas/inc/navTutor.php";
 
     }
 
-    $("#descargar").click(event=>{
-        event.preventDefault();
-        let generacion = $("#ed_Sel_generacion").val();
-
-        var datos = new FormData();
-        datos.append("format_tutor_gener",generacion);
-
-        $.ajax({
-            url: "ajax/usuarioAjax.php",
-            method: "post",
-            data: datos,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'JSON',
-            success: function(respuesta){
-
-
-            }
-        });
-
-
-    });
 
 </script>

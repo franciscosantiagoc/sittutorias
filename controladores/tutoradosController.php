@@ -10,7 +10,10 @@ class tutoradosController extends usuarioModel
     public function consulta_tutorados_controlador($matricula)
     {
         if($_SESSION['roll_sti'] == "Docente"){
-            $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono, r.Nombre as NombreCar,  CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', DATE_FORMAT(g.fecha_fin,'%M %Y')) as gener, b.fecha_asig FROM persona p , tutorado c, trabajador_tutorados b, carrera r, generacion g  WHERE p.idPersona=c.Persona_idPersona AND  b.Trabajador_Matricula= $matricula  AND b.Tutorado_NControl=c.NControl AND r.idCarrera = c.Carrera_idCarrera ORDER BY p.Nombre";
+            $consulta="SELECT tu.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono, c.Nombre as NombreCar,  CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', 
+            DATE_FORMAT(g.fecha_fin,'%M %Y')) as gener, tt.fecha_asig 
+            FROM trabajador_tutorados tt, persona p , tutorado tu,  carrera c, generacion g  
+            WHERE tt.Trabajador_Matricula= $matricula AND tu.NControl=tt.Tutorado_NControl AND p.idPersona=tu.Persona_idPersona AND c.idCarrera=tu.Carrera_idCarrera AND g.idGeneracion=tu.Generacion_idGeneracion;";
             $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);
             $dat_info = $consulta_tutorados -> fetchAll();
         }else{

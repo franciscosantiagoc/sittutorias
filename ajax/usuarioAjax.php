@@ -50,12 +50,13 @@ require_once "../controladores/tutoradosController.php";
     $ins_usuario = new tutoradosController();
     echo $ins_usuario->actualiza_asigtutorado_controlador();
 
-}elseif( isset($_POST['format_tutor_gener']) ){
-     require_once "../controladores/formatsController.php";
-     $ins_usuario = new formatsController();
-     echo $ins_usuario->create_format_controlador();
-     /*echo 'respuesta ajax'; */
-
+//
+//}elseif( isset($_POST['format_tutortutorado_gener']) ){
+//     require_once "../controladores/formatsController.php";
+//     $ins_usuario = new formatsController();
+//     echo $ins_usuario->create_format_tutortutorados_controlador();
+//     /*echo 'respuesta ajax'; */
+//
  }elseif(isset($_POST['number_asignacion'])){
 
      $ins_usuario = new tutoradosController();
