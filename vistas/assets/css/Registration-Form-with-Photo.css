@@ -168,19 +168,19 @@ a{
 }
 
 .alert-act{
-    background-color: red;
+    background-color: red !important;
     color: white;
 }
 .warning-act{
-    background-color: #ffdb15;
+    background-color: #ffdb15 !important;
     color: black;
 }
 .deliver-act{
-    background-color: gray;
+    background-color: gray !important;
     color: white;
 }
 .validate-act{
-    background-color: green;
+    background-color: green !important;
     color: white;
 }
 

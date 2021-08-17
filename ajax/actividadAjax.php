@@ -8,7 +8,13 @@ if(isset($_POST['idActividad'])){
     $respuesta= $ins_actividad->consulta_actividad_controlador($_POST['idActividad']);
     echo json_encode($respuesta);
     /* echo 'Respuesta actividad ajax';*/
-}else {
+}elseif(isset($_POST['idActividad_tutor'])){
+    require_once "../controladores/actividadesController.php";
+    $ins_actividad = new actividadesController();
+    echo $ins_actividad->consulta_actividadtutorado_controlador();
+
+    /* echo 'Respuesta actividad ajax';*/
+}else{
     session_start(['name' => 'STI']);
     session_unset();
     session_destroy();

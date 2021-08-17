@@ -38,6 +38,28 @@ class actividadesController extends actividadesModel
       return $dat_info; 
             
    }
+
+   public function consulta_actividadtutorado_controlador()
+    {  // coregir la variable
+        $idactividad = mainModel::limpiar_cadena($_POST['idActividad_tutor']);
+        $ncontrol= mainModel::limpiar_cadena($_POST['ncontrolActividad_tutor']);
+        $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT t.NControl,a.idActividades,CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre,a.Nombre AS NActividad,aa.Fecha, aa.URLFile FROM actividades_asignadas aa, actividades a, tutorado t, persona p WHERE aa.Actividades_idActividades=$idactividad AND aa.Tutorado_NControl=$ncontrol AND a.idActividades=aa.Actividades_idActividades AND t.NControl=aa.Tutorado_NControl AND p.idPersona=t.Persona_idPersona");
+
+        if($consulta_actividades->rowCount()==0){
+            $alerta = [
+                "Titulo"=>"Error inesperado",
+                "Texto"=>"Ha ocurrido un error, recargue la página para continuar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+        }
+
+
+        $consulta_actividades = $consulta_actividades -> fetch();
+        return json_encode($consulta_actividades);
+
+    }
+
    public function consulta_acactividad_controlador()
     {
         $idactividad=mainModel::limpiar_cadena($_POST['idAcActividad']);
@@ -46,17 +68,18 @@ class actividadesController extends actividadesModel
         return $dat_info;
 
     }
-    public function actualizar_actividad_controlador()
-    {
-        $idac_actividad = mainModel::limpiar_cadena($_POST['idacactividad']);
-        $nombre = mainModel::limpiar_cadena($_POST['nombreacact']);
-        $descripcion = mainModel::limpiar_cadena($_POST['descripcionacact']);
-        $semestre_sug = mainModel::limpiar_cadena($_POST['semestresugac']);
+
+   public function actualizar_actividad_controlador()
+{
+    $idac_actividad = mainModel::limpiar_cadena($_POST['idacactividad']);
+    $nombre = mainModel::limpiar_cadena($_POST['nombreacact']);
+    $descripcion = mainModel::limpiar_cadena($_POST['descripcionacact']);
+    $semestre_sug = mainModel::limpiar_cadena($_POST['semestresugac']);
 
 
 
-        if ($idac_actividad == "" || $nombre == "" || $descripcion == "" || $semestre_sug == "" ) {
-            echo '
+    if ($idac_actividad == "" || $nombre == "" || $descripcion == "" || $semestre_sug == "" ) {
+        echo '
              
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -70,12 +93,12 @@ class actividadesController extends actividadesModel
                });
             
             ';
-            exit();
-        }
+        exit();
+    }
 
 
-        if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_actividad)) {
-            echo '
+    if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_actividad)) {
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -89,11 +112,11 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
-            exit();
-        }
+        exit();
+    }
 
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombre)) {
-            echo '
+    if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombre)) {
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -107,10 +130,10 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
-            exit();
-        }
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,70}", $descripcion)) {
-            echo '
+        exit();
+    }
+    if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,70}", $descripcion)) {
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -124,11 +147,11 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
-            exit();
-        }
+        exit();
+    }
 
-        if ($semestre_sug < 1 || $semestre_sug > 12  ) {
-            echo '
+    if ($semestre_sug < 1 || $semestre_sug > 12  ) {
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -142,12 +165,12 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
-            exit();
-        }
+        exit();
+    }
 
 
-        if($_FILES['Acactivity-file']['name'] == null){
-            echo '
+    if($_FILES['Acactivity-file']['name'] == null){
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -161,28 +184,28 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
-            exit();
-        }
+        exit();
+    }
 
-        $temp = $_FILES['Acactivity-file']['tmp_name'];
-        $link_file='/directory/formats/'.$idac_actividad.'_'.$nombre.".pdf";
-        $link_file=trim($link_file,' ');
-        $archivo = '.'.$link_file;
+    $temp = $_FILES['Acactivity-file']['tmp_name'];
+    $link_file='/directory/formats/'.$idac_actividad.'_'.$nombre.".pdf";
+    $link_file=trim($link_file,' ');
+    $archivo = '.'.$link_file;
 
-        $datos_usuario_upd = [
-            "idAcActividad" =>$idac_actividad,
-            "Nombre" => $nombre,
-            "Descripcion" => $descripcion,
-            "Semestre_sug" => $semestre_sug,
-            "URLFile" => $link_file
+    $datos_usuario_upd = [
+        "idAcActividad" =>$idac_actividad,
+        "Nombre" => $nombre,
+        "Descripcion" => $descripcion,
+        "Semestre_sug" => $semestre_sug,
+        "URLFile" => $link_file
 
-        ];
+    ];
 
 
-        $actualizar_usuario = actividadesModel::actualizar_actividades_modelo($datos_usuario_upd);
+    $actualizar_usuario = actividadesModel::actualizar_actividades_modelo($datos_usuario_upd);
 
-        if($actualizar_usuario->rowCount()==1){//comprobando realizacion de actualizacion
-            echo '
+    if($actualizar_usuario->rowCount()==1){//comprobando realizacion de actualizacion
+        echo '
             <script> 
                Swal.fire({
                   title: "Usuario Actualizado",
@@ -193,8 +216,8 @@ class actividadesController extends actividadesModel
             </script>
             ';
 
-        }else{
-            echo '
+    }else{
+        echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -204,6 +227,110 @@ class actividadesController extends actividadesModel
                });
             </script>
             ';
+    }
+
+}
+
+   public function actualizar_calif_controlador()
+    {
+        $id_actividad = mainModel::limpiar_cadena($_POST['idEditActividad']);
+        $ncontrol = mainModel::limpiar_cadena($_POST['idAlEditActividad']);
+        $calif = mainModel::limpiar_cadena($_POST['caleditact']);
+
+        $check_act=mainModel::ejecutar_consulta_simple("SELECT idActividades FROM actividades Where idActividades=$id_actividad");
+        if($check_act->rowCount()==0){
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ha ocurrido un error al enviar los datos",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'TutorAct"
+                  }
+               });
+            </script>';
+            exit();
+        }
+
+        $check_nctrl=mainModel::ejecutar_consulta_simple("SELECT NControl FROM tutorado Where NControl=$ncontrol");
+        if($check_nctrl->rowCount()==0){
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ha ocurrido un error al enviar los datos",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'TutorAct"
+                  }
+               });
+            </script>';
+            exit();
+        }
+
+        if($calif!="10" && $calif!="9" && $calif!="8" && $calif!="8" && $calif!="no-check"){
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Ha ocurrido un error al enviar la valoración de la actividad",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'TutorAct"
+                  }
+               });
+            </script>';
+            exit();
+        }
+
+        $datos_usuario_upd = [
+            "idActividad" =>$id_actividad,
+            "NControl"=>$ncontrol,
+            "calif"=>$calif
+
+        ];
+
+
+        $actualizar_act = actividadesModel::valida_actividad_modelo($datos_usuario_upd);
+
+        if($actualizar_act->rowCount()==1){//comprobando realizacion de actualizacion
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Evaluación enviada",
+                  text: "La actividad se ha evaluado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'TutorAct"
+                  }
+               });
+            </script>';
+            exit();
+
+        }else{
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al evaluar la actividad",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'TutorAct"
+                  }
+               });
+            </script>';
+            exit();
         }
 
     }
@@ -379,7 +506,7 @@ class actividadesController extends actividadesModel
 
    }
 
-    public function agregar_actividad_controlador(){
+   public function agregar_actividad_controlador(){
         $idact = mainModel::limpiar_cadena($_POST['ridactividad']);
         $nombre = mainModel::limpiar_cadena($_POST['rnombreact']);
         $descripcion = mainModel::limpiar_cadena($_POST['rdescripcionact']);
@@ -507,7 +634,7 @@ class actividadesController extends actividadesModel
 
     }
 
-    public function eliminar_actividad_controlador(){
+   public function eliminar_actividad_controlador(){
        $idactividad=mainModel::limpiar_cadena($_POST['del_idActividad']);
        $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM actividades WHERE idActividades=$idactividad");
        if($respuesta->rowCount() == 0){
@@ -531,7 +658,7 @@ class actividadesController extends actividadesModel
        }
     }
 
-    public function consulta_de_actividad_controlador($ncontrol)
+   public function consulta_de_actividad_controlador($ncontrol)
     {
         $consulta_actividad = mainModel::ejecutar_consulta_simple("SELECT idActividades,Nombre,Fecha_registro ,Descripcion, Semestrerealizacion_sug FROM actividades;");
         $dat_info = $consulta_actividad -> fetchAll();

@@ -46,15 +46,29 @@
        }
       //modelo reenvio de entrega de actividad de tutorado
       protected static function modificarstatus_actividad_modelo($datos){
-         $sql = mainModel::conectar()->prepare("UPDATE actividades_asignadas SET Estatus='En espera' WHERE Actividades_idActividades=:idActividad AND Tutorado_NControl=:NControl");
+         $sql = mainModel::conectar()->prepare("UPDATE actividades_asignadas SET Estatus='En espera',Puntuacion='' WHERE Actividades_idActividades=:idActividad AND Tutorado_NControl=:NControl");
          $sql->bindParam(":idActividad", $datos['idActividad']);
          $sql->bindParam(":NControl", $datos['NControl']);
          $sql->execute();
+         return $sql;
       }
 
 
 
       protected static function valida_actividad_modelo($datos){
+          $sentencia='';
+          if($datos['calif']=="no-check"){
+              $sentencia .="UPDATE actividades_asignadas SET Estatus='Rechazado', Puntuacion='' WHERE Actividades_idActividades=:idActividad AND Tutorado_NControl=:NControl";
+          }else{
+              $calif=$datos['calif'];
+              $sentencia .="UPDATE actividades_asignadas SET Estatus='Validado', Puntuacion='$calif' WHERE Actividades_idActividades=:idActividad AND Tutorado_NControl=:NControl";
+          }
+          $sql = mainModel::conectar()->prepare($sentencia);
+          $sql->bindParam(":idActividad", $datos['idActividad']);
+          $sql->bindParam(":NControl", $datos['NControl']);
+          $sql->execute();
+          return $sql;
+
 
       }
    }

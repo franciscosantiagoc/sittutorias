@@ -165,7 +165,7 @@ include "./vistas/inc/navStudent.php"
                                                 <td>$stat</td>
                                                 <td><center>$fecha_e</center></td>
                                                 <td><center>";
-                                        if($stat!='Validado') $fila .='<button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button>';
+                                        if($stat!='Validado') $fila .='<abbr title="Click para editar la actividad"><button class="btnEditarActividad" onclick="clickActividad('.$idact.')" data-toggle="modal" data-target="#modalEditarActividad" ><i class="fa fa-edit" style="font-size: 15px;"></i></button></abbr>';
 
                                         $fila .= '<abbr title="Click para descargar el formato"><a class="btn" href="'.SERVERURL.$format.'" download="'.$name.'.pdf"><i class="fa fa-download"    style="font-size: 15px;"></i></a></abbr>
                                                 </center></td>
@@ -211,16 +211,12 @@ function clickActividad(idAct){
         processData: false, 
         dataType: 'JSON',
         success: function(respuesta){
-            
-            console.log(respuesta);/**/ 
             $("#idEditActividad").val(respuesta[0][0]);
             $("#nameEditActividad").val(respuesta[0][1]);
             $("#descEditActividad").val(respuesta[0][2]);
             var elemento = document.getElementById("btn-download");
             elemento.href = '<?php echo SERVERURL;?>' + respuesta[0][3];
         }
-    }).fail( function( jqXHR, textStatus, errorThrown ) {
-        console.log('error '+textStatus);
     });
 }
 
