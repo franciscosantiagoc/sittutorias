@@ -273,7 +273,7 @@ class actividadesController extends actividadesModel
             exit();
         }
 
-        if($calif!="10" && $calif!="9" && $calif!="8" && $calif!="8" && $calif!="no-check"){
+        if($calif!="10" && $calif!="9" && $calif!="8" && $calif!="8" && $calif!="5"  && $calif!="no-check"){
             echo '
             <script> 
                Swal.fire({
@@ -450,59 +450,46 @@ class actividadesController extends actividadesModel
        //echo "<script>alert($date);</script>"; /**/
 
        
-      if($check_idact->rowCount()!=0){ 
-         echo '
-         <script> 
-            Swal.fire({
-               title: "Actividad entregada",
-               text: "Se ha entregado la actividad correctamente",
-               type: "success",
-               confirmButtonText: "Aceptar"
-            }).then((result)=>{
-               if(result.value){
-                  window.location="'.SERVERURL.'AlumnAct"
-               }
-            });
-         </script>
-         ';
-       }else{
-         $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
-       
+      if($check_idact->rowCount()!=0){
+          $registro_actividad = actividadesModel::actualizar_actividadasignada_modelo($datos_actividad_upd);
+       }else {
+          $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
+      }
       /**/
       
-         if($registro_actividad){//comprobando realizacion de actualizacion
-            echo '
-               <script> 
-                  Swal.fire({
-                     title: "Actividad entregada",
-                     text: "Se ha entregado la actividad correctamente",
-                     type: "success",
-                     confirmButtonText: "Aceptar"
-                  }).then((result)=>{
-                     if(result.value){
-                        window.location="'.SERVERURL.'AlumnAct"
-                     }
-                  });
-               </script>
-               '; 
+     if($registro_actividad){//comprobando realizacion de actualizacion
+        echo '
+           <script> 
+              Swal.fire({
+                 title: "Actividad entregada",
+                 text: "Se ha entregado la actividad correctamente",
+                 type: "success",
+                 confirmButtonText: "Aceptar"
+              }).then((result)=>{
+                 if(result.value){
+                    window.location="'.SERVERURL.'AlumnAct"
+                 }
+              });
+           </script>
+           ';
 
-         }else{
-            echo '
-               <script> 
-                  Swal.fire({
-                     title: "Ocurrio un error inesperado",
-                     text: "Error al registrar la actividad, recargue la pagina para continuar",
-                     type: "error",
-                     confirmButtonText: "Aceptar"
-                  }).then((result)=>{
-                     if(result.value){
-                        window.location="'.SERVERURL.'AlumnAct"
-                     }
-                  });
-               </script>
-               '; 
-         }
-      }
+     }else{
+        echo '
+           <script> 
+              Swal.fire({
+                 title: "Ocurrio un error inesperado",
+                 text: "Error al registrar la actividad, recargue la pagina para continuar",
+                 type: "error",
+                 confirmButtonText: "Aceptar"
+              }).then((result)=>{
+                 if(result.value){
+                    window.location="'.SERVERURL.'AlumnAct"
+                 }
+              });
+           </script>
+           ';
+     }
+
 
    }
 

@@ -28,6 +28,14 @@
          return $sql; 
 
       }
+       protected static function actualizar_actividadasignada_modelo($datos){
+          $act=$datos["idActividad"];
+          $nctrl=$datos["NControl"];
+           $sql = mainModel::conectar()->prepare("UPDATE actividades_asignadas SET Fecha=CURDATE(), Estatus='En espera' WHERE Actividades_idActividades=$act AND Tutorado_NControl=$nctrl;");
+           $sql->execute();
+           return $sql;
+
+       }
        protected static function actualizar_actividades_modelo($datos){
 
 
