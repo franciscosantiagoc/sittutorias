@@ -203,7 +203,7 @@ class tutoresController extends usuarioModel
             exit();
         }
 
-        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT * FROM areas WHERE idAreas=$area ");
+        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT * FROM areas WHERE idAreas=$area");
 
         if ($consulta_areas->rowCount() == 0 ) {
 
@@ -429,7 +429,7 @@ class tutoresController extends usuarioModel
             exit();
         }
 
-        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT * FROM areas WHERE idAreas=$area ");
+        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT * FROM areas WHERE idAreas=$area");
 
         if ($consulta_areas->rowCount() == 0 ) {
 

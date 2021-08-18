@@ -20,6 +20,63 @@ if(isset($_SESSION['roll_sti'])){
 
 ?>
 
+<!-- Tuto Activos -->
+<div class="modal" id="modalListTutAct" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Descargar lista de tutores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="<?php echo SERVERURL;?>FormatCCTutores" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="format_cctutores_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                        </div>
+                        <div class="form-group">
+                            <select name="tutores">
+                                <option value="1">Activos</option>
+                                <option value="0">Inactivos</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Tuto Inactivos -->
+<div class="modal" id="modalListTutInac" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Descargar lista de tutores inactivos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Actualizar -->
 <div class="modal" id="modalActualizarTE" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -165,6 +222,13 @@ if(isset($_POST['nameCoordinadoracte'])){
                         <div class="intro">
                             <h2 class="text-center"><strong>Tutores</strong></h2>
                         </div>
+                        <div class="form-group pull-left col-lg-4">
+                            <button class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalListTutAct" type="submit" >DESCARGAR LISTA DE TUTORES </button>
+                        </div>
+
+
+
+
                         <?php
                         require_once './controladores/tutoresController.php';
                         $ins_actividad = new tutoresController();

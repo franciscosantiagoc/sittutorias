@@ -178,12 +178,11 @@
     </div>
     <script type="text/javascript">
 
-
         function clickActJDepto(idActJDepto){//1 - ver 2- actualizar
             var datos = new FormData();
             datos.append("idAcJDepto",idActJDepto);
-            $imagenPrevisualizacion = document.querySelector("#image-infoTE");
-            $imagenPrevisualizacion2 = document.querySelector("#image-infoACTE");
+            //$imagenPrevisualizacion = document.querySelector("#image-infoTE");
+            //$imagenPrevisualizacion2 = document.querySelector("#image-infoACTE");
             $.ajax({
                 url: "ajax/infoTutoresAjax.php",
                 method: "post",

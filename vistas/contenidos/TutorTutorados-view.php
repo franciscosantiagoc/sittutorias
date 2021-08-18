@@ -130,6 +130,7 @@ include "./vistas/inc/navTutor.php";
                         <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR LISTA DE TUTORADOS</button>
                     </div>
 
+
                     <?php
                     require_once './controladores/tutoradosController.php';
                     $ins_actividad = new tutoradosController();

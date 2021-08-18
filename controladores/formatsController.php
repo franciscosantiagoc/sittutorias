@@ -42,6 +42,33 @@ class formatsController extends mainModel {
 
     }
 
+    public function create_format_cctutores_controlador(){
+        $matricula = mainModel::limpiar_cadena($_POST['format_cctutores_matricula']);
+
+        //mainModel::ejecutar_consulta_simple("SET lc_time_names = 'es_MX';");
+        $estado=mainModel::limpiar_cadena($_POST["tutores"]);
+        $consulta_tutoracti = mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.nombre,' ', p.APaterno,' ', p.AMaterno) AS	nombre, tr.Matricula, a.Nombre AS area FROM trabajador cor, trabajador tr, persona p, areas a
+        WHERE  cor.Matricula=$matricula AND a.idAreas=cor.Areas_idAreas AND tr.Areas_idAreas=a.idAreas  AND tr.Disponibilidad=$estado AND p.idPersona=tr.Persona_idPersona 
+        ORDER BY  p.APaterno ASC;");
+
+        $consulta_tutoracti = $consulta_tutoracti ->fetchAll();
+
+
+//        $consulta_datos= mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.Nombre,' ', p.APaterno,'  ', p.AMaterno)AS Nombre, CONCAT(DAY(CURDATE()),' de ',MONTHNAME(CURDATE()), ' del ',YEAR(CURDATE())) AS Fecha FROM trabajador t, persona p WHERE t.Matricula=$matricula AND p.idPersona=t.Persona_idPersona;");
+//
+//        $consulta_datos = $consulta_datos ->fetch();
+
+        $datos=[
+            "tutores"=>$consulta_tutoracti
+//            "datos"=>$consulta_datos
+        ];
+
+        return $datos;
+
+
+
+    }
+
 }
 
 
