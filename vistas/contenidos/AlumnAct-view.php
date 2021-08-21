@@ -153,7 +153,7 @@ include "./vistas/inc/navStudent.php"
                                     //echo "$sem $semetre $isObligatorio </br>";
                                     if($isObligatorio!='1' || ($isObligatorio=='1' &&   $semetre >= $sem)){
                                         $fila="<tr>";
-                                        if($semetre-$sem==1 && $isObligatorio=='1'&& $stat=='No entregado')  $fila="<tr class='warning-act'>";
+                                        if($semetre-$sem>1 && $isObligatorio=='0'&& $stat=='No entregado')  $fila="<tr class='warning-act'>";
                                         elseif($semetre-$sem>1 && $isObligatorio=='1' && $stat=='No entregado') $fila="<tr class='alert-act'>";
                                         elseif($stat=='Validado')  $fila="<tr class='validate-act'>";
                                         elseif($stat=='En espera')  $fila="<tr class='deliver-act'>";
