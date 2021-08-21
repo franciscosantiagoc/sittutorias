@@ -114,13 +114,9 @@ $html .= '</tbody>
 		</div>
 	</footer>';
 
-//for($i=0; $i<$total_AC;$i++) {
-
-//}
 
 
-//include "./vendor/mpdf/mpdf/src/Mpdf.php";
-//$pdf = new mPDF();
+
 $pdf = new \Mpdf\Mpdf();
 $css = file_get_contents('./library/formats_styles/table.css');
 #Establecemos los márgenes izquierda, arriba y derecha:
