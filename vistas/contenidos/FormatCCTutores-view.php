@@ -9,7 +9,7 @@ $datos_info=$ins_format->create_format_cctutores_controlador();
 
 $consulta_tutoracti=$datos_info["tutores"];
 
-//$datos=$datos_info["datos"];
+$datos=$datos_info["datos"];
 
 $estado ='';
 if($_POST['tutores']=='1'){
@@ -57,10 +57,10 @@ $html = '<!DOCTYPE html>
 			<div class="details">
 				<p class="title">ASIGNACIÓN DE TUTORIAS</p>
 				<p class="date">
-					                           Heroica Cd. De Juchitán de Zaragoza Oax. a 15 de Agostro de 2021
+					Heroica Cd. De Juchitán de Zaragoza Oax. a  '.$datos[1].'
 				</p>
 				<p class="tutor">
-					Tutor: Ranulfo Rivera Castillo
+					Coordinador: '.$datos[0].'
 				</p>
 				
 				<p class="list">
@@ -83,15 +83,20 @@ $html = '<!DOCTYPE html>
 				<tbody>';
 
 for($i=0; $i<$total;$i++) {
-    echo $consulta_tutoracti[$i][0];
-    echo $consulta_tutoracti[$i][1];
-    echo $consulta_tutoracti[$i][2];
-    echo '<br>';
+
+    $html .='<tr>
+        <td class="qty">'.($i+1).'</td>
+        <td class="desc">'.$consulta_tutoracti[$i][0].'</td>
+        <td class="unit">'.$consulta_tutoracti[$i][1].'</td>
+        <td class="unit">'.$consulta_tutoracti[$i][2].'</td>
+    </tr>
+    ';
+
+
 
 }
 $html .= '</tbody>
 			</table>
-			</div>
 		</div>
 	</section>
 	<footer>
@@ -112,7 +117,9 @@ $html .= '</tbody>
 			</div>
 			<div class="end">Documento Generado automaticamente por el sit-tutorias.</div>
 		</div>
-	</footer>';
+	</footer>
+	</body>
+	</html>';
 
 //for($i=0; $i<$total_AC;$i++) {
 
@@ -128,11 +135,11 @@ $pdf->SetMargins(-50, -50 , 10);
 //Establecemos el margen inferior:
 $pdf->SetAutoPageBreak(true,15);
 $pdf->WriteHTML($css,1);
-//$pdf->WriteHTML($html);
+$pdf->WriteHTML($html);
 //echo $html;
 
 if(file_exists('Formato.pdf'))
     unlink('Formato.pdf');
-//echo '<script>alert("archivo eliminado");</script>';
-//$pdf->Output("Formato.pdf");
-//header('Location: ' . SERVERURL . 'Formato.pdf');
+
+$pdf->Output("Formato.pdf");
+header('Location: ' . SERVERURL . 'Formato.pdf');
