@@ -26,19 +26,35 @@
             if($datos['TipoUs']==16){
                $sentencia="INSERT INTO tutorado (NControl, Persona_idPersona,Carrera_idCarrera,contraseña,Generacion_idGeneracion,Estado) VALUES(:NoUser,:idperson,:CarrAr,:contra,:Gen,:Estado)";
             }else{
-              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado) VALUES(:NoUser,:idperson,:Roll,:CarrAr,:contra,:Estado)"; 
+              $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado,Disponibilidad,Disp_Def) VALUES(:NoUser,:idperson,:Roll,:CarrAr,:contra,:Estado,:Disp,'')";
+              //  $sentencia="INSERT INTO trabajador (Matricula, Persona_idPersona,Roll,Areas_idAreas,contraseña,Estado,Disponibilidad,Disp_Def) VALUES(".$datos['NoUser'].",$idper,'".$datos['Roll']."',".$datos['CarrAr'].",'".$datos['Passw']."','Inactivo','1','')";
             }
             $sql3 = mainModel::conectar()->prepare($sentencia);
             $sql3->bindParam(":idperson", $idper);
-            $sql3->bindParam(":NoUser", $datos['NoUser']);   
-            if($datos['TipoUs']!='16') $sql3->bindParam(":Roll",$datos['Roll']);
+            $sql3->bindParam(":NoUser", $datos['NoUser']);
+
             $sql3->bindParam(":CarrAr",$datos['CarrAr']);
-            $sql3->bindParam(":contra",$datos['Passw']); 
+            $sql3->bindParam(":contra",$datos['Passw']);
+            $sql3->bindParam(":Estado", $datos['status']);
+
+
             if($datos['TipoUs']=='16') $sql3->bindParam(":Gen",$datos['Gener']);
-            $sql3->bindParam(":Estado", $datos['status']);/**/
-           
-            $sql3->execute();
-         } /**/
+
+            if($datos['TipoUs']!='16') $sql3->bindParam(":Roll",$datos['Roll']);
+          if($datos['TipoUs']=='15'){
+            $disp='1';
+            $sql3->bindParam(":Disp",$disp);}
+          if($datos['TipoUs']=='13' || $datos['TipoUs']=='14'){
+            $disp='0';
+            $sql3->bindParam(":Disp",$disp);
+          }
+          $sql3->execute();
+            if($sql3->rowCount()==0){
+                $sqlperson=mainModel::conectar()->prepare("DELETE FROM persona WHERE idPersona=$idper;");
+                $sqlperson->execute();
+            }
+         }
+
 
          return $sql3;
       }

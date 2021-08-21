@@ -30,14 +30,7 @@ class usuarioController extends usuarioModel
       /* == comprobar campos vacíos ==*/
 
       if ($nombre == "" || $apellido_paterno == "" || $apellido_materno == "" || $direccion == ""  || $noctrl == "" || $carrera=="" || $fecha_nac=="") {
-         /* $alerta = [
-            "Alerta" => "simple",
-            "Titulo" => "Ocurrio un error inesperado",
-            "Texto" => "Se han detectado campos vacios",
-            "Tipo" => "error"
-         ];
-         echo json_encode($alerta);
-         exit(); */
+
          echo '
             <script> 
                Swal.fire({
@@ -263,12 +256,12 @@ class usuarioController extends usuarioModel
          exit();
          }
 
-      if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
+      if (mainModel::verificar_datos("[0-9-]{4,10}", $noctrl)) {
          echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "El NUMERO DE CONTROL no coincide con el formato solicitado",
+                  text: "El NControl/Matricula no coincide con el formato solicitado",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
@@ -350,14 +343,13 @@ class usuarioController extends usuarioModel
          "status"=>"Inactivo",
 
          "TipoUs"=> $select_usuario //16 tutorado  13-15 tra
-         
-         
       ];
 
       $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
+      //echo $agregar_usuario;
       if($agregar_usuario->rowCount()==1){
          echo '
-            <script> 
+            <script>
                Swal.fire({
                   title: "Usuario Registrado",
                   text: "El usuario ha sido registrado correctamente",
@@ -374,7 +366,7 @@ class usuarioController extends usuarioModel
 
       }else{
          echo '
-            <script> 
+            <script>
                Swal.fire({
                   title: "Ocurrio un error inesperado",
                   text: "Error al registrar el usuario",
