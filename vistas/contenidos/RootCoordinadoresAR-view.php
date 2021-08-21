@@ -32,42 +32,42 @@
                     <div class="form-container">
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <input class="form-control" type="hidden" placeholder="Matrícula" id="Act_matricula_RJDepto" name="act_matricula_rjdepto">
+                                <input class="form-control" type="hidden" placeholder="Matrícula" id="Act_matricula_RJDepto" name="actmatricularjdepto">
                             </div>
                             <div class="form-group">
                                 <label for="Act_matriculaJDepto">Matrícula</label>
-                                <input class="form-control" type="text" placeholder="Matrícula" id="Act_matricula_JDepto" name="act_matricula_jepto" >
+                                <input class="form-control" type="text" placeholder="Matrícula" id="Act_matricula_JDepto" name="actmatriculajepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_nombreJDepto">Nombre</label>
-                                <input class="form-control" type="text" placeholder="Nombre" id="Act_nombre_JDepto" name="act_nombre_jdepto" >
+                                <input class="form-control" type="text" placeholder="Nombre" id="Act_nombre_JDepto" name="actnombrejdepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_apellidoPJDepto">Apellido Paterno</label>
-                                <input class="form-control" type="text" placeholder="Apellido Paterno" id="Act_apellid_PJDepto" name="act_apellidop_jdepto" >
+                                <input class="form-control" type="text" placeholder="Apellido Paterno" id="Act_apellid_PJDepto" name="actapellidopjdepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_apellidoMJDepto">Apellido Materno</label>
-                                <input class="form-control" type="text" placeholder="Apellido Materno" id="Act_apellido_MJDepto" name="act_apellidom_jdepto" >
+                                <input class="form-control" type="text" placeholder="Apellido Materno" id="Act_apellido_MJDepto" name="actapellidomjdepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_sexoJDepto">Sexo</label>
-                                <select id="Act_sexo_JDepto" name="act_sexo_jdepto">
+                                <select id="Act_sexo_JDepto" name="actsexojdepto">
                                     <option value="M">Masculino</option>
                                     <option value="F">Femenino</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="Act_telJDepto">Número de Teléfono</label>
-                                <input class="form-control" type="text" placeholder="Número de Teléfono" id="Act_tel_JDepto" name="act_tel_jdepto" >
+                                <input class="form-control" type="text" placeholder="Número de Teléfono" id="Act_tel_JDepto" name="actteljdepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_emailJDepto">Email</label>
-                                <input class="form-control" type="text" placeholder="Email" id="Act_email_JDepto" name="act_email_jdepto" >
+                                <input class="form-control" type="text" placeholder="Email" id="Act_email_JDepto" name="actemailjdepto" >
                             </div>
                             <div class="form-group">
                                 <label for="Act_areaJDepto">Área</label>
-                                <select id="Act_area_JDepto" name="act_area_jdepto">
+                                <select id="Act_area_JDepto" name="actareajdepto">
                                     <?php
                                     require_once './controladores/usuarioController.php';
                                     $ins_usuario = new usuarioController();
@@ -94,10 +94,10 @@
         </div>
     </div>
     <?php
-    if(isset($_POST['act_nombre_jdepto'])){
-        require_once "./controladores/tutoresController.php";
+    if(isset($_POST['actnombrejdepto'])){
+        require_once "./controladores/jefesdController.php";
 
-        $ins_usuario= new tutoresController();
+        $ins_usuario= new jefesdController();
 
         echo $ins_usuario->actualizar_jdepto_controlador();
     }
@@ -133,8 +133,8 @@
                             <th>APELLIDO PATERNO</th>
                             <th>APELLIDO MATERNO</th>
                             <th>TELEFONO</th>
-                            <th>ACTUALIZAR</th>
-                            <th>ELIMINAR</th>
+                            <th>ACCIONES</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -157,15 +157,9 @@
                                 <td>'.$tel.'</td>
                                 <td>
                                     <center><abbr title="Actualizar"><button class="btnActJefe" onclick="clickActJDepto('.$idmatric.')" data-toggle="modal" data-target="#modalActualizarJefe" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
+                                    <abbr title="Eliminar"><button type="submit" onclick="clickDelJDepto('.$idmatric.')" ><i class="far fa-trash-alt" style="font-size: 15px;"></i></button></abbr>
                                 </td>
-                                <td>
-                                    <form class="FormularioAjax" action="'.SERVERURL.'ajax/usuarioAjax.php"  method="POST" data-form="delete" autocomplete="off">
-                                    
-                                        <button type="submit" class="btn btn-warning">
-                                                <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                
                             </tr>';
                             $contador++;
                         }
@@ -178,13 +172,14 @@
     </div>
     <script type="text/javascript">
 
+
         function clickActJDepto(idActJDepto){//1 - ver 2- actualizar
             var datos = new FormData();
-            datos.append("idAcJDepto",idActJDepto);
-            //$imagenPrevisualizacion = document.querySelector("#image-infoTE");
-            //$imagenPrevisualizacion2 = document.querySelector("#image-infoACTE");
+            datos.append("idInfoCArea",idActJDepto);
+            $imagenPrevisualizacion = document.querySelector("#image-infoTE");
+            $imagenPrevisualizacion2 = document.querySelector("#image-infoACTE");
             $.ajax({
-                url: "ajax/infoTutoresAjax.php",
+                url: "ajax/infoCAreaAjax.php",
                 method: "post",
                 data: datos,
                 cache: false,
@@ -192,28 +187,73 @@
                 processData: false,
                 dataType: 'JSON',
                 success: function(respuesta){
+                        console.log(respuesta);
+                        $("#Act_matricula_RJDepto").val(respuesta[0][0]);
+                        $("#Act_matricula_JDepto").val(respuesta[0][0]);
+                        $("#Act_nombre_JDepto").val(respuesta[0][1]);
+                        $("#Act_apellid_PJDepto").val(respuesta[0][2]);
+                        $("#Act_apellido_MJDepto").val(respuesta[0][3]);
+                        $("#Act_tel_JDepto").val(respuesta[0][5]);
+                        $("#Act_email_JDepto").val(respuesta[0][6]);
+                        //$("#areaACTE").val(respuesta[0][8]);
+                        $("#Act_area_JDepto option[value='"+respuesta[0][9]+"']").attr("selected", true);
 
-                    console.log(respuesta);
-                    $("#Act_matricula_RJDepto").val(respuesta[0][0]);
-                    $("#Act_matricula_JDepto").val(respuesta[0][0]);
-                    $("#Act_nombre_JDepto").val(respuesta[0][1]);
-                    $("#Act_apellid_PJDepto").val(respuesta[0][2]);
-                    $("#Act_apellido_MJDepto").val(respuesta[0][3]);
-                    $("#Act_tel_JDepto").val(respuesta[0][5]);
-                    $("#Act_email_JDepto").val(respuesta[0][6]);
-                    //$("#areaACTE").val(respuesta[0][8]);
-                    $("#Act_area_JDepto option[value='"+respuesta[0][10]+"']").attr("selected", true);
+                        let sex = respuesta[0][4];
+                        if(sex==='F')
+                            $("#Act_sexo_JDepto option[value='F']").attr("selected", true);
+                        else $("#Act_sexo_JDepto option[value='M']").attr("selected", true);
 
-                    let sex = respuesta[0][4];
-                    if(sex==='F')
-                        $("#Act_sexo_JDepto option[value='F']").attr("selected", true);
-                    else $("#Act_sexo_JDepto option[value='M']").attr("selected", true);
                 }
-            }).fail( function( jqXHR, textStatus, errorThrown ) {
-                console.log('error '+textStatus);
             });
         }
 
+
+
+        function clickDelJDepto(idDelJDepto){
+            var datos = new FormData();
+            datos.append("del_idJDepto",idDelJDepto);
+
+            Swal.fire({
+                title: "Advertencia",
+                text: "¿Esta seguro de eliminar este jefe de departamento?",
+                showCancelButton:true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+
+            }).then(resultado=>{
+                if(resultado.value){
+                    $.ajax({
+                        url: "ajax/infoCAreaAjax.php",
+                        method: "post",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: 'JSON',
+                        success: function(respuesta){
+                            Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo).then(res=> {
+                                if (res.value) {
+                                    location.reload();
+
+                                }
+                            })
+
+
+                        }
+                    });
+
+                }
+
+            });
+
+
+        }
+
     </script>
+
+
+
 
     

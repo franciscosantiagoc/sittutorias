@@ -54,13 +54,13 @@ class formatsController extends mainModel {
         $consulta_tutoracti = $consulta_tutoracti ->fetchAll();
 
 
-//        $consulta_datos= mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.Nombre,' ', p.APaterno,'  ', p.AMaterno)AS Nombre, CONCAT(DAY(CURDATE()),' de ',MONTHNAME(CURDATE()), ' del ',YEAR(CURDATE())) AS Fecha FROM trabajador t, persona p WHERE t.Matricula=$matricula AND p.idPersona=t.Persona_idPersona;");
-//
-//        $consulta_datos = $consulta_datos ->fetch();
+        $consulta_datos= mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.Nombre,' ', p.APaterno,'  ', p.AMaterno)AS Nombre, CONCAT(DAY(CURDATE()),' de ',MONTHNAME(CURDATE()), ' del ',YEAR(CURDATE())) AS Fecha FROM trabajador t, persona p WHERE t.Matricula=$matricula AND p.idPersona=t.Persona_idPersona;");
+
+        $consulta_datos = $consulta_datos ->fetch();
 
         $datos=[
-            "tutores"=>$consulta_tutoracti
-//            "datos"=>$consulta_datos
+            "tutores"=>$consulta_tutoracti,
+            "datos"=>$consulta_datos
         ];
 
         return $datos;

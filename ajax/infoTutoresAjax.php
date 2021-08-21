@@ -12,9 +12,6 @@ if(isset($_POST['idInfoTES'])){
 }elseif(isset($_POST['idInfoTutores'])){
     $respuesta= $ins_informacionCArea->conocer_tutores2_controlador($_POST['idInfoTutores']);
     echo json_encode($respuesta);
-}elseif(isset($_POST['idAcJDepto'])){
-    $respuesta= $ins_informacionCArea->actualizar_jdepto_controlador($_POST['idAcJDepto']);
-    echo json_encode($respuesta);
 }else {
     session_start(['name' => 'STI']);
     session_unset();

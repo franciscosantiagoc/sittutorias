@@ -338,8 +338,6 @@ if(isset($_POST['nameCoordinadoracte'])){
                 }
 
             }
-        }).fail( function( jqXHR, textStatus, errorThrown ) {
-            console.log('error '+textStatus);
         });
     }
 
