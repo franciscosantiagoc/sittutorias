@@ -10,7 +10,7 @@ class jefesdController extends usuarioModel
     public function consulta_jefesd_controlador()
     {
 
-        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo,  a.Nombre as aname, p.Foto FROM persona p , trabajador t, areas a  WHERE p.idPersona=t.Persona_idPersona AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador De Area'   ORDER BY p.Nombre ";
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo,  a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a  WHERE p.idPersona=t.Persona_idPersona AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador De Area'   ORDER BY p.Nombre ";
         $consulta_jefesd = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_jefesd -> fetchAll();
         return $dat_info;
@@ -222,6 +222,10 @@ class jefesdController extends usuarioModel
                   text: "Los datos se han actualizado correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'RootCoordinadoresAR"
+                  }
                });
             </script>
             ';
@@ -234,6 +238,10 @@ class jefesdController extends usuarioModel
                   text: "Error al actualizar los datos, modifique los datos para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'RootCoordinadoresAR"
+                  }
                });
             </script>
             ';
@@ -247,7 +255,7 @@ class jefesdController extends usuarioModel
         if($respuesta->rowCount() == 0){
             $alerta=[
                 'Titulo'=> "Error",
-                'Texto' => "Error al eliminar, la actividad ya ha sido entregada por un alumno",
+                'Texto' => "Error al eliminar, ",
                 'Tipo' => "error"
             ];
             echo json_encode($alerta);

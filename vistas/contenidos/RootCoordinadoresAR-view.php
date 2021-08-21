@@ -173,7 +173,7 @@
     <script type="text/javascript">
 
 
-        function clickActJDepto(idActJDepto, func){//1 - ver 2- actualizar
+        function clickActJDepto(idActJDepto){//1 - ver 2- actualizar
             var datos = new FormData();
             datos.append("idInfoCArea",idActJDepto);
             $imagenPrevisualizacion = document.querySelector("#image-infoTE");
@@ -187,7 +187,7 @@
                 processData: false,
                 dataType: 'JSON',
                 success: function(respuesta){
-                        //console.log(respuesta);
+                        console.log(respuesta);
                         $("#Act_matricula_RJDepto").val(respuesta[0][0]);
                         $("#Act_matricula_JDepto").val(respuesta[0][0]);
                         $("#Act_nombre_JDepto").val(respuesta[0][1]);
@@ -196,7 +196,7 @@
                         $("#Act_tel_JDepto").val(respuesta[0][5]);
                         $("#Act_email_JDepto").val(respuesta[0][6]);
                         //$("#areaACTE").val(respuesta[0][8]);
-                        $("#Act_area_JDepto option[value='"+respuesta[0][10]+"']").attr("selected", true);
+                        $("#Act_area_JDepto option[value='"+respuesta[0][9]+"']").attr("selected", true);
 
                         let sex = respuesta[0][4];
                         if(sex==='F')
@@ -240,8 +240,10 @@
                                 }
                             })
 
+
                         }
                     });
+
                 }
 
             });

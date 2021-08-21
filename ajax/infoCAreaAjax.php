@@ -9,7 +9,7 @@ if(isset($_POST['idInfoCArea'])){
     echo json_encode($respuesta);
     /* echo 'Respuesta actividad ajax';*/
 }elseif(isset($_POST['del_idJDepto'])){
-    $respuesta= $ins_actividad->eliminar_jdepto_controlador();
+    $respuesta= $ins_informacionCArea->eliminar_jdepto_controlador();
     echo json_encode($respuesta);
 
 }else {
