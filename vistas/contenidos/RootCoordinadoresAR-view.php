@@ -16,7 +16,31 @@
     
     include "./vistas/inc/navRoot.php";
     ?>
-
+    <!-- Lista jefes -->
+    <div class="modal" id="modalListJefes" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Descargar lista jefes de departamento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form action="<?php echo SERVERURL;?>FormatRootCoordinadoresAR" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="format_rootcoordinadoresar_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Actualizar -->
     <div class="modal" id="modalActualizarJefe" tabindex="-1" role="dialog" aria-hidden="true">
@@ -115,7 +139,11 @@
                 </div>
             </form>
         </div>
+
         <div class="form-container" id="contain">
+            <div class="form-group pull-left col-lg-4">
+                <button class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalListJefes" type="submit" >DESCARGAR LISTA JEFES DE DEPARTAMENTO </button>
+            </div>
             <div class="col-md-12 search-table-col">
 
                 <?php

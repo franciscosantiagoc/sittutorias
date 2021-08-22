@@ -1,38 +1,29 @@
 <?php
 if(isset($_SESSION['roll_sti'])){
-    //if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
-    if($_SESSION['roll_sti'] == "Docente"){
-        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
-    }else    if($_SESSION['roll_sti'] == "Tutorado"){
-        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
-    }else  if($_SESSION['roll_sti'] == "Admin"){
-        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
-    }if($_SESSION['roll_sti'] == "Coordinador De Area"){
-        include "./vistas/inc/navCoordinadorA.php";
-    }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
-        include "./vistas/inc/navCoordinadorC.php";
+    if($_SESSION['roll_sti'] != "Admin"){
+        if($_SESSION['roll_sti'] == "Docente"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+        }else  if($_SESSION['roll_sti'] == "Tutorado"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+        }
     }
-    //}
 }
 require_once "./vendor/autoload.php";
 //require_once __DIR__ . '/vendor/autoload.php';
 require_once "./controladores/formatsController.php";
 
 $ins_format= new formatsController();
-$datos_info=$ins_format->create_format_cctutores_controlador();
+$datos_info=$ins_format->create_format_rootcoordinadoresar_controlador();
 
-$consulta_tutoracti=$datos_info["tutores"];
+$consulta_tutoracti=$datos_info["jefes"];
 
 $datos=$datos_info["datos"];
 
-$estado ='';
-if($_POST['tutores']=='1'){
-    $estado='activos';
 
-}elseif ($_POST['tutores'] == '0'){
-    $estado = 'inactivos';
-
-}
 $total = count($consulta_tutoracti);
 
 $html = '<!DOCTYPE html>
@@ -69,16 +60,16 @@ $html = '<!DOCTYPE html>
     <section>
 		<div class="container">
 			<div class="details">
-				<p class="title">ASIGNACIÓN DE TUTORIAS</p>
+				<p class="title">TUTORIAS</p>
 				<p class="date">
 					Heroica Cd. De Juchitán de Zaragoza Oax. a  '.$datos[1].'
 				</p>
 				<p class="tutor">
-					Coordinador: '.$datos[0].'
+					Director: '.$datos[0].'
 				</p>
 				
 				<p class="list">
-					Lista de tutorados
+					Lista de jefes de departamento
 				</p>
 				
 
