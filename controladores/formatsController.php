@@ -93,6 +93,31 @@ class formatsController extends mainModel {
 
     }
 
+    public function create_format_rootcoordinadorescr_controlador(){
+
+        //mainModel::ejecutar_consulta_simple("SET lc_time_names = 'es_MX';");
+        $consulta_tutoracti = mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.nombre,' ', p.APaterno,' ', p.AMaterno) AS	nombre, tr.Matricula, a.Nombre AS AREA, tr.Roll FROM  trabajador tr, persona p, areas a
+        WHERE   tr.Roll='Coordinador De Carrera' AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
+        ORDER BY  p.APaterno ASC;");
+
+        $consulta_tutoracti = $consulta_tutoracti ->fetchAll();
+
+
+        $consulta_datos= mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.Nombre,' ', p.APaterno,'  ', p.AMaterno)AS Nombre, CONCAT(DAY(CURDATE()),' de ',MONTHNAME(CURDATE()), ' del ',YEAR(CURDATE())) AS Fecha FROM trabajador t, persona p WHERE t.Roll='Admin' AND p.idPersona=t.Persona_idPersona;");
+
+        $consulta_datos = $consulta_datos ->fetch();
+
+        $datos=[
+            "coordinadoresc"=>$consulta_tutoracti,
+            "datos"=>$consulta_datos
+        ];
+
+        return $datos;
+
+
+
+    }
+
 }
 
 

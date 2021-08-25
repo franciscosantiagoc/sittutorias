@@ -56,6 +56,9 @@
                     <div class="form-container">
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
+                                <center><img src="" height="300px" id="ed_image"></center>
+                            </div>
+                            <div class="form-group">
                                 <input class="form-control" type="hidden" placeholder="Matrícula" id="Act_matricula_RJDepto" name="actmatricularjdepto">
                             </div>
                             <div class="form-group">
@@ -223,6 +226,10 @@
                         $("#Act_apellido_MJDepto").val(respuesta[0][3]);
                         $("#Act_tel_JDepto").val(respuesta[0][5]);
                         $("#Act_email_JDepto").val(respuesta[0][6]);
+
+                        var image = "<?php echo SERVERURL;?>";
+                        image = image + respuesta[0][8];
+                        $("#ed_image").attr("src",image);
                         //$("#areaACTE").val(respuesta[0][8]);
                         $("#Act_area_JDepto option[value='"+respuesta[0][9]+"']").attr("selected", true);
 

@@ -153,6 +153,25 @@
            return $sql;
        }
 
+       protected static function actualizar_ccarrera_modelo($datos){
+
+           $sql = mainModel::conectar()->prepare("UPDATE trabajador t, persona p  SET t.Matricula=:Matricula, p.Nombre=:Nombre, p.APaterno=:APaterno, p.AMaterno=:AMaterno, p.Sexo=:Sexo, p.Correo=:Correo, p.NTelefono=:NTelefono, t.Areas_idAreas=:Areas WHERE  t.Matricula=:Matricular AND p.idPersona=t.Persona_idPersona ");
+
+           $sql->bindParam(":Matricular", $datos['Matricular']);
+           $sql->bindParam(":Matricula", $datos['Matricula']);
+           $sql->bindParam(":Nombre", $datos['Nombre']);
+           $sql->bindParam(":APaterno",$datos['APaterno']);
+           $sql->bindParam(":AMaterno",$datos['AMaterno']);
+           $sql->bindParam(":Sexo",$datos['Sexo']);
+           $sql->bindParam(":Correo",$datos['Correo']);
+           $sql->bindParam(":NTelefono", $datos['NTelefono']);
+           $sql->bindParam(":Areas", $datos['Areas']);
+           $sql->execute();
+
+
+           return $sql;
+       }
+
        protected static function agregar_asignacion_modelo($datos){
            $sql = mainModel::conectar()->prepare("INSERT INTO trabajador_tutorados (Trabajador_Matricula,Tutorado_NControl,fecha_asig) VALUES (:matricula,:ncontrol,CURDATE())");
            $sql->bindParam(":matricula", $datos['Matricula']);
