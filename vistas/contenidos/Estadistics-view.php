@@ -8,7 +8,7 @@ if(isset($_SESSION['roll_sti'])){
     }else    if($_SESSION['roll_sti'] == "Tutorado"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
     }else  if($_SESSION['roll_sti'] == "Admin"){
-        echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+        include "./vistas/inc/navRoot.php";
     }if($_SESSION['roll_sti'] == "Coordinador De Area"){
         include "./vistas/inc/navCoordinadorA.php";
     }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
