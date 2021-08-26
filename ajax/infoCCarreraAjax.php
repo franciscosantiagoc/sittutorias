@@ -10,7 +10,9 @@ if(isset($_POST['idInfoCCarrera'])){
 }elseif(isset($_POST['del_idCCarrera'])){
     $respuesta= $ins_informacionCCarrera->eliminar_ccarrera_controlador();
     echo json_encode($respuesta);
-
+}elseif(isset($_POST['idInfCCar'])){
+    $respuesta= $ins_informacionCCarrera->consulta_ccinfo_controlador();
+    echo json_encode($respuesta);
 }else {
     session_start(['name' => 'STI']);
     session_unset();

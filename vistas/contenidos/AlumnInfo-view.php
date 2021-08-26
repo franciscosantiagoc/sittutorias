@@ -166,9 +166,6 @@ include "./vistas/inc/navStudent.php";
                         $sexo = $row['Sexo'];
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
-
-
-
                         echo '
                             <tr>
                                 <td>'. $idmatric .'</td>
@@ -177,7 +174,7 @@ include "./vistas/inc/navStudent.php";
                                 <td>'. $apellm .'</td>
                                 <td>Coordinador de Carrera</td>
                                 <td>'. $tel .'</td>
-                                <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
+                                <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickVerCCarrera('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                 </center></td>
                                 
                             </tr>
@@ -202,7 +199,7 @@ include "./vistas/inc/navStudent.php";
                                 <td>'. $apellm .'</td>
                                 <td>Tutor</td>
                                 <td>'. $tel .'</td>
-                                <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoTutor" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
+                                <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickVerTutor('.$idmatric.')" data-toggle="modal" data-target="#modalInfoTutor" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                 </center></td>
                                 
                             </tr>
@@ -217,13 +214,13 @@ include "./vistas/inc/navStudent.php";
     </div>
 </div>
 <script type="text/javascript">
-    function clickActividad(idInfo){
+    function clickVerCCarrera(idInfo){
         var datos = new FormData();
-        datos.append("idInformacion",idInfo);
+        datos.append("idInfCCar",idInfo);
         $imagenPrevisualizacion = document.querySelector("#image-info");
 
         $.ajax({
-            url: "ajax/infoAjax.php",
+            url: "ajax/infoCCarreraAjax.php",
             method: "post",
             data: datos,
             cache: false,
@@ -248,8 +245,6 @@ include "./vistas/inc/navStudent.php";
                 $imagenPrevisualizacion.src = image;
                 console.log("imagen coord:"+image);
             }
-        }).fail( function( jqXHR, textStatus, errorThrown ) {
-            console.log('error '+textStatus);
         });
     }
 
@@ -257,7 +252,7 @@ include "./vistas/inc/navStudent.php";
 
 <!-- Ver tutor -->
 <script type="text/javascript">
-    function clickActividad2(idInfoTutor){
+    function clickVerTutor(idInfoTutor){
         var datos = new FormData();
         datos.append("idInfoTutores",idInfoTutor);
         $imagenPrevisualizacion = document.querySelector("#image-infoTutor");
@@ -288,8 +283,6 @@ include "./vistas/inc/navStudent.php";
                 $imagenPrevisualizacion.src = image;
                 console.log("imagen coord:"+image);
             }
-        }).fail( function( jqXHR, textStatus, errorThrown ) {
-            console.log('error '+textStatus);
         });
     }
 

@@ -15,6 +15,15 @@ class coordinadorescController extends usuarioModel
 
         return $dat_info;
     }
+    public function consulta_ccinfo_controlador()
+    {
+        $matricula=mainModel::limpiar_cadena($_POST['idInfCCar']);
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona AND t.Matricula=$matricula AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador De Carrera'  ORDER BY p.Nombre ";
+        $consulta_coordinadoresc = mainModel::ejecutar_consulta_simple($consulta);
+        $dat_info = $consulta_coordinadoresc -> fetchAll();
+
+        return $dat_info;
+    }
 
     public function actualizar_ccarrera_controlador()
     {
@@ -28,10 +37,16 @@ class coordinadorescController extends usuarioModel
         $email = mainModel::limpiar_cadena($_POST['actemailccarrera']);
         $area = mainModel::limpiar_cadena($_POST['actareaccarrera']);
 
-
+        if($_SESSION['roll_sti'] == "Admin"){
+            $url = "RootCoordinadoresCR";
+        }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+            $url = "CCoordinadores";
+        }
 
 
         if ($matricula == "" || $nombre == "" || $apellido_paterno == "" || $apellido_materno == "" ||   $email == "" ) {
+
+
             echo '
              
                Swal.fire({
@@ -41,7 +56,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             
@@ -59,7 +74,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -78,7 +93,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -96,7 +111,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -113,7 +128,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -130,7 +145,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -148,7 +163,7 @@ class coordinadorescController extends usuarioModel
                confirmButtonText: "Aceptar"
             }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
          </script>
@@ -166,7 +181,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -187,7 +202,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -224,8 +239,8 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
-                  }
+                     window.location="'.SERVERURL.$url.'"
+                  } // location.reload();
                });
             </script>
             ';
@@ -240,7 +255,9 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
+                     
+                     
                   }
                });
             </script>

@@ -81,8 +81,6 @@ include "./vistas/inc/navCoordinadorC.php"
             $dat_info = $ins_actividad->consulta_jefesd_controlador();
 
             ?>
-
-
             <div class="table-responsive table-bordered table table-hover table-bordered results">
                 <div class="form-group">
                     <p><strong>Coordinador del Área</strong></p>
@@ -108,11 +106,6 @@ include "./vistas/inc/navCoordinadorC.php"
                         $sexo = $row['Sexo'];
                         $tel = $row['NTelefono'];
                         $correo = $row['Correo'];
-
-
-
-
-
                         echo '
                                         <tr>
                                             <td>'. $idmatric .'</td>
@@ -120,7 +113,7 @@ include "./vistas/inc/navCoordinadorC.php"
                                             <td>'. $apellp .'</td>
                                             <td>'. $apellm .'</td>
                                             <td>'. $tel .'</td>
-                                            <td><center><button class="btnVerInfoCA" onclick="clickActividad('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
+                                            <td><center><button class="btnVerInfoCA" onclick="clickVerJefe('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCArea" ><i class="fas fa-eye" style="font-size: 15px;"></i></button>
                                             </center></td>
                                             
                                         </tr>
@@ -137,7 +130,7 @@ include "./vistas/inc/navCoordinadorC.php"
 
 
 <script type="text/javascript">
-    function clickActividad(idInfoCA){
+    function clickVerJefe(idInfoCA){
         var datos = new FormData();
         datos.append("idInfoCArea",idInfoCA);
         $imagenPrevisualizacion = document.querySelector("#image-infoCArea");
@@ -159,10 +152,10 @@ include "./vistas/inc/navCoordinadorC.php"
                 $("#SexoCA").val(respuesta[0][4]);
                 $("#numeroTelefonoCA").val(respuesta[0][5]);
                 $("#EmailCA").val(respuesta[0][6]);
-                $("#AreaCA").val(respuesta[0][8]);
+                $("#AreaCA").val(respuesta[0][7]);
 
                 var image = "<?php echo SERVERURL;?>"
-                image = image +respuesta[0][9];
+                image = image +respuesta[0][8];
                 $imagenPrevisualizacion.src = image;
                 console.log("imagen coord:"+image);
 
