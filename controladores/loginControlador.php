@@ -91,7 +91,7 @@
             if(SERVERURL.$row['Foto']==""){
                $img_perfil=SERVERURL."directory/img-person/default.png";
             }
-            
+
             session_start(['name'=>'STI']);
 
             $_SESSION['last_time_sti'] = time();

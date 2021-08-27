@@ -203,7 +203,7 @@ include "./vistas/inc/navTutor.php";
                                             <td>'. $apellm .'</td>
                                             <td>Coordinador de Carrera</td>
                                             <td>'. $tel .'</td>
-                                            <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickActividad2('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
+                                            <td><center><abbr title="Ver información"><button class="btnVerInfo" onclick="clickVerCCarrera('.$idmatric.')" data-toggle="modal" data-target="#modalInfoCCarrera" ><i class="fas fa-eye" style="font-size: 15px;"></i></button></abbr>
                                             </center></td>
                                             
                                         </tr>
@@ -260,14 +260,14 @@ include "./vistas/inc/navTutor.php";
 </script>
 
 <script type="text/javascript">
-    function clickActividad2(idInfo){
+    function clickVerCCarrera(idInfo){
         var datos = new FormData();
-        datos.append("idInformacion",idInfo);
+        datos.append("idInfCCar",idInfo);
         $imagenPrevisualizacion = document.querySelector("#image-info");
 
 
         $.ajax({
-            url: "ajax/infoAjax.php",
+            url: "ajax/infoCCarreraAjax.php",
             method: "post",
             data: datos,
             cache: false,
