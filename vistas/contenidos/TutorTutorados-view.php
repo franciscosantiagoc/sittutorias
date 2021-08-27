@@ -17,8 +17,6 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navTutor.php"; 
 
 ?>
-
-
 <div class="modal" id="modalVerTutorTutorados" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -109,8 +107,6 @@ include "./vistas/inc/navTutor.php";
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
                         </div>
-
-
                     </form>
                 </div>
             </div>
@@ -130,11 +126,12 @@ include "./vistas/inc/navTutor.php";
                         <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR LISTA DE TUTORADOS</button>
                     </div>
 
-
                     <?php
                     require_once './controladores/tutoradosController.php';
                     $ins_actividad = new tutoradosController();
                     $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
+                    echo 'Matricula: '.$_SESSION['matricula_sti'];
+                    var_dump($dat_info);
                     ?>
                     <div class="table-responsive table-bordered table  ">
                         <table class="table table-bordered table-hover tablas">
@@ -158,23 +155,23 @@ include "./vistas/inc/navTutor.php";
                             $contador=1;
                             foreach ($dat_info as $rows){
 
-                                echo '<tr class="text-center" >
-                                        <td>'.$contador.'</td>
-                                        <td>'.$rows['NControl'].'</td>
-                                        <td>'.$rows['Nombre'].'</td>
-                                        <td>'.$rows['APaterno'].'</td>
-                                        <td>'.$rows['AMaterno'].'</td>
-                                        <td>'.$rows['NTelefono'].'</td>
-                                        <td>'.$rows['NombreCar'].'</td>
-                                        <td>'.$rows['gener'].'</td>
-                                        <td>'.$rows['fecha_asig'].'</td>
-                                        <td><center>
-                                            <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
-                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
-                                            </button></abbr>
-                                        </center></td>
-                                
-                                      </tr>';
+//                                echo '<tr class="text-center" >
+//                                        <td>'.$contador.'</td>
+//                                        <td>'.$rows['NControl'].'</td>
+//                                        <td>'.$rows['Nombre'].'</td>
+//                                        <td>'.$rows['APaterno'].'</td>
+//                                        <td>'.$rows['AMaterno'].'</td>
+//                                        <td>'.$rows['NTelefono'].'</td>
+//                                        <td>'.$rows['NombreCar'].'</td>
+//                                        <td>'.$rows['gener'].'</td>
+//                                        <td>'.$rows['fecha_asig'].'</td>
+//                                        <td><center>
+//                                            <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
+//                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
+//                                            </button></abbr>
+//                                        </center></td>
+//
+//                                      </tr>';
                                 $contador++;
                             }
                             ?>
@@ -185,10 +182,7 @@ include "./vistas/inc/navTutor.php";
             </div>
 
     </div>
-
 </div>
-
-
 <script type="text/javascript">
     function clickVerTutorado(noctrl){
         var datos = new FormData();

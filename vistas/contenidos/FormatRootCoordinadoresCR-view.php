@@ -61,7 +61,7 @@ $html = '<!DOCTYPE html>
 		<div class="container">
 			<div class="details">
 				<p class="title">TUTORIAS</p>
-				<p class="date">
+				<p class="date" style="display:flex; width: 100%; text-align: right;">
 					Heroica Cd. De Juchitán de Zaragoza Oax. a  '.$datos[1].'
 				</p>
 				<p class="tutor">

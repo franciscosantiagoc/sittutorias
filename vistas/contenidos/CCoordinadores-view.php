@@ -17,6 +17,86 @@
       
     include "./vistas/inc/navCoordinadorC.php"
     ?>
+    <!-- Trabajador existente -->
+    <div class="modal" id="modalTrabExist" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Seleccione nuevo coordinador</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php
+                require_once './controladores/tutoresController.php';
+                $ins_actividad = new tutoresController();
+                $dat_info = $ins_actividad->consulta_tutores_controlador();
+                ?>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="matjd" value="<?php echo $_SESSION['matricula_sti'] ?>" >
+                                <label for="ccarrea">Ingrese Nombre/Matrícula</label>
+                                <input type="text" id="ccarreramat" name="ccarreramat" list="lista-tutores">
+                                <datalist id="lista-tutores">
+                                    <?php
+                                    foreach ($dat_info as $row) {
+                                        $idmatric = $row['Matricula'];
+                                        $name = $row['Nombre'];
+                                        $apellp = $row['APaterno'];
+                                        $apellm = $row['AMaterno'];
+                                        echo '
+                                 <option value="'.$idmatric.'">'.$name.' '.$apellp.' '.$apellm.'</option>';
+                                    }
+                                    ?>
+                                </datalist>
+
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Definir como coordinador</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    if(isset($_POST['ccarreramat'])){
+        require_once "./controladores/coordinadorescController.php";
+
+        $ins_usuario= new coordinadorescController();
+
+        echo $ins_usuario->actualiza_coordinadortj_controlador();
+    }
+    ?>
+    <!-- Lista CCarrea -->
+
+    <div class="modal" id="modalListCCarrera" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Descargar lista coordinadores de carrera</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form action="<?php echo SERVERURL;?>FormatCCordinadores" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="format_rootcoordinadorescr_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Actualizar -->
     <div class="modal" id="modalActualizarCCarrera" tabindex="-1" role="dialog" aria-hidden="true">
@@ -113,12 +193,17 @@
 
         <div id="importcsvregis" class="form-container">
             <h2 class="text-center"><strong>Coordinadores de Carrera</strong></h2>
-            <div class="form-group">
-                <a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
+            <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-around">
+                <a style="width: 250px; height: 50px;" class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
+                <button style="width: 250px; height: 50px;" class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalTrabExist" >Trabajador existente </button>
             </div>
 
         </div>
         <div class="form-container" id="contain">
+            <div class="form-group pull-left col-lg-4">
+
+                <button class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalListCCarrera" type="submit" >DESCARGAR LISTA COORDINADORES DE CARRERA </button>
+            </div>
             <div class="col-md-12 search-table-col">
 
                 <?php

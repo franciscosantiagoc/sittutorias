@@ -49,7 +49,7 @@
        include "inc/footer.php";
        /* include "inc/LogOut.php";  */
         if(isset($_SESSION['matricula_sti']) || isset($_SESSION['NControl_sti'])) {
-            include "inc/notificacion.php";
+            //include "inc/notificacion.php";
         }
        include "inc/Script.php";
        
