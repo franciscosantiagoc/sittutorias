@@ -7,21 +7,28 @@ if ($peticionAjax) {
 
 class tutoradosController extends usuarioModel
 {
+    // Exclusivo para tutores
     public function consulta_tutorados_controlador($matricula)
     {
-        if($_SESSION['roll_sti'] == "Docente"){
-            $consulta="SELECT tu.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono, c.Nombre as NombreCar,  CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', 
-            DATE_FORMAT(g.fecha_fin,'%M %Y')) as gener, tt.fecha_asig 
-            FROM trabajador_tutorados tt, persona p , tutorado tu,  carrera c, generacion g  
-            WHERE tt.Trabajador_Matricula= $matricula AND tu.NControl=tt.Tutorado_NControl AND p.idPersona=tu.Persona_idPersona AND c.idCarrera=tu.Carrera_idCarrera AND g.idGeneracion=tu.Generacion_idGeneracion;";
-            $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);
-            $dat_info = $consulta_tutorados -> fetchAll();
-        }else{
-            $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , tutorado c  WHERE p.idPersona=c.Persona_idPersona    ORDER BY p.Nombre";
-            $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);
-            $dat_info = $consulta_tutorados -> fetchAll();
-        }
+
+        $consulta="SELECT tu.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono, c.Nombre as NombreCar,  CONCAT( DATE_FORMAT(g.fecha_inicio,'%M %Y') ,'-', 
+        DATE_FORMAT(g.fecha_fin,'%M %Y')) as gener, tt.fecha_asig 
+        FROM trabajador_tutorados tt, persona p , tutorado tu,  carrera c, generacion g  
+        WHERE tt.Trabajador_Matricula= $matricula AND tu.NControl=tt.Tutorado_NControl AND p.idPersona=tu.Persona_idPersona AND c.idCarrera=tu.Carrera_idCarrera AND g.idGeneracion=tu.Generacion_idGeneracion;";
+        $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);
+        $dat_info = $consulta_tutorados -> fetchAll();
         return $dat_info;
+
+    }
+
+    // Para saber los tutorados en general
+    public function consulta_gral_tutorados_controlador($matricula)
+    {
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , tutorado c  WHERE p.idPersona=c.Persona_idPersona    ORDER BY p.Nombre";
+        $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);
+        $dat_info = $consulta_tutorados -> fetchAll();
+
+    return $dat_info;
     }
 
     public function consulta_asignacion_controlador(){

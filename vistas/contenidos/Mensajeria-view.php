@@ -4,9 +4,9 @@ if(isset($_SESSION['roll_sti'])){
         include "./vistas/inc/navTutor.php";
     }else if($_SESSION['roll_sti'] == "Tutorado"){
         include "./vistas/inc/navStudent.php";
-    }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+    }else  if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
         include "./vistas/inc/navCoordinadorC.php";
-    }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+    }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
         include "./vistas/inc/navCoordinadorA.php";
     }else  if($_SESSION['roll_sti'] == "Admin"){
         include "./vistas/inc/navRoot.php";

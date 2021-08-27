@@ -37,7 +37,7 @@ class tutoresController extends usuarioModel
     public function conocer_tutores2_controlador()
     {
         $mat=mainModel::limpiar_cadena($_POST['idInfoTutores']);
-        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname,  p.Foto  FROM persona p , trabajador t, areas a, trabajador_tutorados b WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas AND t.Matricula=$mat AND b.Trabajador_Matricula=$mat AND t.Roll='Docente' ORDER BY p.Nombre ";
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname,  p.Foto  FROM persona p , trabajador t, areas a, trabajador_tutorados b WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas AND t.Matricula=$mat AND b.Trabajador_Matricula=$mat  ORDER BY p.Nombre ";
         $consulta_tutores = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_tutores -> fetchAll();
         return $dat_info;

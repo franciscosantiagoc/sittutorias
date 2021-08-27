@@ -9,9 +9,9 @@ if(isset($_SESSION['roll_sti'])){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
     }else  if($_SESSION['roll_sti'] == "Admin"){
         include "./vistas/inc/navRoot.php";
-    }if($_SESSION['roll_sti'] == "Coordinador De Area"){
+    }if($_SESSION['roll_sti'] == "Coordinador de Area"){
         include "./vistas/inc/navCoordinadorA.php";
-    }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+    }else if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
         include "./vistas/inc/navCoordinadorC.php";
     }
     //}
@@ -38,10 +38,10 @@ if(isset($_SESSION['roll_sti'])){
                                 <select id="Mselect_user" class="form-control js-example-basic-single" name="Mselect_user" onchange="ShowCarAr(this.value,2)">
                                     <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
                                     <?php            
-                                        if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+                                        if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
                                         echo '<option value="15">Tutor</option>
                                                 <option value="16">Tutorado</option> ';
-                                        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+                                        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
                                             echo '<option value="14">Coordinador de Carrera</option>
                                                 <option value="15">Tutor</option>
                                                 <option value="16">Tutorado</option> 
@@ -135,10 +135,10 @@ if(isset($_SESSION['roll_sti'])){
                 <select id="select_user" class="form-control js-example-basic-single" name="select_usertype" onchange="ShowCarAr(this.value,1)">
                     <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
                     <?php            
-                        if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+                        if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
                           echo '<option value="15">Tutor</option>
                                 <option value="16">Tutorado</option> ';
-                        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+                        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
                              echo '<option value="14">Coordinador de Carrera</option>
                                    <option value="15">Tutor</option>
                                    <option value="16">Tutorado</option> 

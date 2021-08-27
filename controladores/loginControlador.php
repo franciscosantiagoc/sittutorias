@@ -118,10 +118,10 @@
             }elseif($_SESSION['roll_sti'] == "Docente"){
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuTutor";</script>';
-            }elseif($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+            }elseif($_SESSION['roll_sti'] == "Coordinador de Carrera"){
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-            }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+            }elseif($_SESSION['roll_sti'] == "Coordinador de Area"){
                echo'<script type="text/javascript"> 
                window.location.href="'.SERVERURL.'MenuCordArea";</script>';
             }elseif($_SESSION['roll_sti'] == "Admin"){

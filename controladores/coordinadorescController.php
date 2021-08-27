@@ -39,7 +39,7 @@ class coordinadorescController extends usuarioModel
 
         if($_SESSION['roll_sti'] == "Admin"){
             $url = "RootCoordinadoresCR";
-        }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+        }elseif($_SESSION['roll_sti'] == "Coordinador de Area"){
             $url = "CCoordinadores";
         }
 
@@ -291,13 +291,33 @@ class coordinadorescController extends usuarioModel
     }
 
     public function actualiza_coordinador_controlador(){
-        $idmatricula=mainModel::limpiar_cadena($_POST['rootccarrera']);
-        $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t SET t.Roll='Coordinador de Carrera', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula ;"  );
         if($_SESSION['roll_sti'] == "Admin"){
             $url = "RootCoordinadoresCR";
-        }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+        }elseif($_SESSION['roll_sti'] == "Coordinador de Area"){
             $url = "CCoordinadores";
         }
+        $idmatricula=mainModel::limpiar_cadena($_POST['rootccarrera']);
+        $sentencia=mainModel::ejecutar_consulta_simple("SELECT * FROM trabajador t, trabajador t2 WHERE t2.Matricula= $idmatricula AND t.Areas_idAreas=t2.Areas_idAreas AND t.Roll='Coordinador de Carrera'");
+        if($sentencia->rowCount() != 0 ){
+            echo '
+            <script>
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al asignar al nuevo coordinador, ya existe uno en el area ",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.$url.'"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }
+        $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t SET t.Roll='Coordinador de Carrera', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula ;"  );
+
         if($respuesta->rowCount() == 0){
 
 

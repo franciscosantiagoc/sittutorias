@@ -4,9 +4,9 @@ if(isset($_SESSION['roll_sti'])){
     if($_SESSION['roll_sti'] != "Docente"){
         if($_SESSION['roll_sti'] == "Tutorado"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
         }else  if($_SESSION['roll_sti'] == "Admin"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
@@ -131,7 +131,8 @@ include "./vistas/inc/navTutor.php";
                     $ins_actividad = new tutoradosController();
                     $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
                     echo 'Matricula: '.$_SESSION['matricula_sti'];
-                    var_dump($dat_info);
+                    //var_dump($dat_info);
+                    echo 'roll: '.$_SESSION['roll_sti'];
                     ?>
                     <div class="table-responsive table-bordered table  ">
                         <table class="table table-bordered table-hover tablas">
@@ -155,23 +156,23 @@ include "./vistas/inc/navTutor.php";
                             $contador=1;
                             foreach ($dat_info as $rows){
 
-//                                echo '<tr class="text-center" >
-//                                        <td>'.$contador.'</td>
-//                                        <td>'.$rows['NControl'].'</td>
-//                                        <td>'.$rows['Nombre'].'</td>
-//                                        <td>'.$rows['APaterno'].'</td>
-//                                        <td>'.$rows['AMaterno'].'</td>
-//                                        <td>'.$rows['NTelefono'].'</td>
-//                                        <td>'.$rows['NombreCar'].'</td>
-//                                        <td>'.$rows['gener'].'</td>
-//                                        <td>'.$rows['fecha_asig'].'</td>
-//                                        <td><center>
-//                                            <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
-//                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
-//                                            </button></abbr>
-//                                        </center></td>
-//
-//                                      </tr>';
+                                echo '<tr class="text-center" >
+                                        <td>'.$contador.'</td>
+                                        <td>'.$rows['NControl'].'</td>
+                                        <td>'.$rows['Nombre'].'</td>
+                                        <td>'.$rows['APaterno'].'</td>
+                                        <td>'.$rows['AMaterno'].'</td>
+                                        <td>'.$rows['NTelefono'].'</td>
+                                        <td>'.$rows['NombreCar'].'</td>
+                                        <td>'.$rows['gener'].'</td>
+                                        <td>'.$rows['fecha_asig'].'</td>
+                                        <td><center>
+                                            <abbr title="Ver información"><button class="btnVerTutor" onclick="clickVerTutorado('.$rows['NControl'].')" data-toggle="modal" data-target="#modalVerTutorTutorados" >
+                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                            </button></abbr>
+                                        </center></td>
+
+                                      </tr>';
                                 $contador++;
                             }
                             ?>

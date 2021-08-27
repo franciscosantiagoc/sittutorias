@@ -9,9 +9,9 @@ if(isset($_SESSION['roll_sti'])){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
         }else  if($_SESSION['roll_sti'] == "Admin"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
-        }if($_SESSION['roll_sti'] == "Coordinador De Area"){
+        }if($_SESSION['roll_sti'] == "Coordinador de Area"){
             include "./vistas/inc/navCoordinadorA.php";
-        }else if($_SESSION['roll_sti'] == "Coordinador De Carrera"){
+        }else if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
             include "./vistas/inc/navCoordinadorC.php";
         }
     //}
