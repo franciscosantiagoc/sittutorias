@@ -5,7 +5,7 @@
 	
 	if( !defined( 'SERVERURL' ) ) {
         define( 'SERVERURL', "http://localhost:8081/tutorias/" );
-       //define( 'SERVERURL', "https://sit-itistmo.website/" );
+       /*define( 'SERVERURL', "https://sit-itistmo.website/" );*/
 	}
 
 	if( !defined( 'COMPANY' ) ) { 

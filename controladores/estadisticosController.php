@@ -13,7 +13,11 @@ class estadisticosController extends mainModel
         /* $consulta_coordinadoresc = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_coordinadoresc -> fetchAll();
         return $dat_info;  */
-        
+        /*
+         * Riesgo desercion
+         SELECT COUNT(*),aa.Puntuacion,t.Generacion_idGeneracion,CONCAT(DATE_FORMAT(g.fecha_inicio,'%M %Y'),' - ',DATE_FORMAT(g.fecha_fin,'%M %Y')) AS Generacion FROM actividades_asignadas aa, actividades a, tutorado t, carrera c,generacion g WHERE a.idActividades=aa.Actividades_idActividades AND
+t.NControl=aa.Tutorado_NControl AND c.idCarrera=t.Carrera_idCarrera AND g.idGeneracion=t.Generacion_idGeneracion AND aa.Puntuacion!='NULL' GROUP BY aa.Puntuacion,t.Generacion_idGeneracion;
+         * */
         if($_POST['g_data']=="Bajas"){
 
         }else if($_POST['g_data']=="Alumnos"){

@@ -7,8 +7,8 @@ const PASS="";
 const SERR="localhost";
 const DB="u760563657_sistutorias";
 const USER="u760563657_sit_tutorias";
-const PASS="sistemaTutorias21";
-*/
+const PASS="sistemaTutorias21";*/
+
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;
     if( !defined( 'TIMESESSION' ) ) { 
