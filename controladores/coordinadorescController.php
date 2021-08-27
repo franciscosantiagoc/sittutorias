@@ -293,6 +293,11 @@ class coordinadorescController extends usuarioModel
     public function actualiza_coordinador_controlador(){
         $idmatricula=mainModel::limpiar_cadena($_POST['rootccarrera']);
         $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t SET t.Roll='Coordinador de Carrera', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula ;"  );
+        if($_SESSION['roll_sti'] == "Admin"){
+            $url = "RootCoordinadoresCR";
+        }elseif($_SESSION['roll_sti'] == "Coordinador De Area"){
+            $url = "CCoordinadores";
+        }
         if($respuesta->rowCount() == 0){
 
 
@@ -305,7 +310,7 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'RootCoordinadoresCR"
+                     window.location="'.SERVERURL.$url.'"
                   }
                });
             </script>
@@ -323,7 +328,53 @@ class coordinadorescController extends usuarioModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                 if(result.value){
-                    window.location="'.SERVERURL.'RootCoordinadoresCR"
+                    window.location="'.SERVERURL.$url.'"
+                  }
+            });
+            </script>
+            ';
+            exit();
+
+        }
+    }
+
+    // ccarrera trabajador existente
+    public function actualiza_coordinadortj_controlador(){
+        $idjdepto = mainModel::limpiar_cadena($_SESSION['matricula_sti']);
+        $idmatricula=mainModel::limpiar_cadena($_POST['ccarreramat']);
+        $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t , trabajador t2 SET t.Roll='Coordinador de Carrera', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula AND t2.Matricula=$idjdepto AND t.Areas_idAreas=t2.Areas_idAreas ;"  );
+
+        if($respuesta->rowCount() == 0){
+
+
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al asignar al nuevo coordinador",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCoordinadores"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }else{
+            echo '
+        
+            <script>
+            Swal.fire({
+                  title: "Asignación exitosa",
+                  text: "Se definido el nuevo coordinador",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                if(result.value){
+                    window.location="'.SERVERURL.'CCoordinadores"
                   }
             });
             </script>
