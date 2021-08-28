@@ -1,4 +1,18 @@
 <?php
+if(isset($_SESSION['roll_sti'])){
+    if($_SESSION['roll_sti'] != "Docente"){
+        if($_SESSION['roll_sti'] == "Tutorado"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+        }else  if($_SESSION['roll_sti'] == "Admin"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+        }
+    }
+
+}
 
     require_once "./vendor/autoload.php";
     //require_once __DIR__ . '/vendor/autoload.php';

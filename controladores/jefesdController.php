@@ -249,9 +249,79 @@ class jefesdController extends usuarioModel
 
     }
 
+    // RootCoordinadoresAR trabajador existente
+    public function asignar_jdeptote_controlador(){
+        if($_SESSION['roll_sti'] == "Admin"){
+            $url = "RootCoordinadoresAR";
+        }elseif($_SESSION['roll_sti'] == "Coordinador de Area"){
+            $url = "CCoordinadores";
+        }
+        $idmatricula=mainModel::limpiar_cadena($_POST['rootjdepto']);
+        $sentencia=mainModel::ejecutar_consulta_simple("SELECT * FROM trabajador t, trabajador t2 WHERE t2.Matricula= $idmatricula AND t.Areas_idAreas=t2.Areas_idAreas AND t.Roll='Coordinador de Area'");
+        if($sentencia->rowCount() != 0 ){
+            echo '
+            <script>
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al asignar al nuevo coordinador, ya existe uno en el area ",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.$url.'"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }
+        $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t SET t.Roll='Coordinador de Area', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula ;"  );
+
+        if($respuesta->rowCount() == 0){
+
+
+            echo '
+            <script> 
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al asignar al nuevo coordinador",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.$url.'"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }else{
+            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como jefe de departamento',CURDATE(),0);");
+            echo '
+        
+            <script>
+            Swal.fire({
+                  title: "Asignación exitosa",
+                  text: "Se definido el nuevo coordinador",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                if(result.value){
+                    window.location="'.SERVERURL.$url.'"
+                  }
+            });
+            </script>
+            ';
+            exit();
+
+        }
+    }
+
     public function eliminar_jdepto_controlador(){
         $idmatricula=mainModel::limpiar_cadena($_POST['del_idJDepto']);
-        $respuesta=mainModel::ejecutar_consulta_simple("DELETE persona,trabajador FROM persona JOIN trabajador ON persona.idPersona=trabajador.Persona_idPersona WHERE trabajador.Matricula=$idmatricula"  );
+        $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t SET t.Roll='Docente', t.Disponibilidad=1 WHERE t.Matricula = $idmatricula ;"  );
         if($respuesta->rowCount() == 0){
             $alerta=[
                 'Titulo'=> "Error",
