@@ -16,6 +16,60 @@
     
     include "./vistas/inc/navRoot.php";
     ?>
+    <!-- Trabajador existente -->
+    <div class="modal" id="modalTrabExist" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Seleccione nuevo coordinador</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php
+                require_once './controladores/tutoresController.php';
+                $ins_actividad = new tutoresController();
+                $dat_info = $ins_actividad->consulta_tutores_controlador();
+                ?>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="rootjdepto">Ingrese Nombre/Matrícula</label>
+                                <input type="text" id="rootjdepto" name="rootjdepto" list="lista-tutores">
+                                <datalist id="lista-tutores">
+                                    <?php
+                                    foreach ($dat_info as $row) {
+                                        $idmatric = $row['Matricula'];
+                                        $name = $row['Nombre'];
+                                        $apellp = $row['APaterno'];
+                                        $apellm = $row['AMaterno'];
+                                        echo '
+                                 <option value="'.$idmatric.'">'.$name.' '.$apellp.' '.$apellm.'</option>';
+                                    }
+                                    ?>
+                                </datalist>
+
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Definir como coordinador</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    if(isset($_POST['rootjdepto'])){
+        require_once "./controladores/jefesdController.php";
+
+        $ins_usuario= new jefesdController();
+
+        echo $ins_usuario->asignar_jdeptote_controlador();
+    }
+    ?>
+
     <!-- Lista jefes -->
     <div class="modal" id="modalListJefes" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -101,7 +155,6 @@
                                     $dat_info =$ins_usuario->datos_ta_controlador(" idAreas,Nombre ","areas",";");
                                     $dat_info=$dat_info->fetchAll();
                                     foreach($dat_info as $row){
-                                        /*$n=$dat_info->rowCount(); */
                                         $id = $row['idAreas'];
                                         $name = $row['Nombre'];
 
@@ -132,15 +185,13 @@
     <div class="register-photo">
 
         <div id="importcsvregis" class="form-container">
-            <form id="regisTutcsv" method="post" data-form="default" autocomplete="off">
-                <h2 class="text-center"><strong>Jefes de departamento</strong></h2>
 
-                <div class="form-group"><a class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a></div>
-                <div class="team-boxed">
-                    <div class="container">
-                    </div>
-                </div>
-            </form>
+            <h2 class="text-center"><strong>Jefes de departamento</strong></h2>
+            <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-around">
+                <a style="width: 250px; height: 50px;" class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
+                <button style="width: 250px; height: 50px;" class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalTrabExist" >Trabajador existente </button>
+            </div>
+
         </div>
 
         <div class="form-container" id="contain">
@@ -237,7 +288,6 @@
                         if(sex==='F')
                             $("#Act_sexo_JDepto option[value='F']").attr("selected", true);
                         else $("#Act_sexo_JDepto option[value='M']").attr("selected", true);
-
                 }
             });
         }
@@ -271,21 +321,14 @@
                             Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo).then(res=> {
                                 if (res.value) {
                                     location.reload();
-
                                 }
                             })
-
-
                         }
                     });
-
                 }
 
             });
-
-
         }
-
     </script>
 
 

@@ -290,6 +290,7 @@ class coordinadorescController extends usuarioModel
         }
     }
 
+    // Ocupado en RootCoordinadoresCR
     public function actualiza_coordinador_controlador(){
         if($_SESSION['roll_sti'] == "Admin"){
             $url = "RootCoordinadoresCR";
@@ -338,6 +339,7 @@ class coordinadorescController extends usuarioModel
             exit();
 
         }else{
+            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como coordinador de area académica',CURDATE(),0);");
             echo '
         
             <script>
@@ -358,10 +360,33 @@ class coordinadorescController extends usuarioModel
         }
     }
 
+
     // ccarrera trabajador existente
     public function actualiza_coordinadortj_controlador(){
         $idjdepto = mainModel::limpiar_cadena($_SESSION['matricula_sti']);
         $idmatricula=mainModel::limpiar_cadena($_POST['ccarreramat']);
+
+        $sentencia=mainModel::ejecutar_consulta_simple("SELECT * FROM trabajador t, trabajador t2 WHERE t2.Matricula= $idmatricula AND t.Areas_idAreas=t2.Areas_idAreas AND t.Roll='Coordinador de Carrera'");
+        if($sentencia->rowCount() != 0 ){
+            echo '
+            <script>
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al asignar al nuevo coordinador, ya existe uno en el area ",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'CCoordinadores"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }
+
+
         $respuesta=mainModel::ejecutar_consulta_simple("UPDATE trabajador t , trabajador t2 SET t.Roll='Coordinador de Carrera', t.Disponibilidad=0 WHERE t.Matricula = $idmatricula AND t2.Matricula=$idjdepto AND t.Areas_idAreas=t2.Areas_idAreas ;"  );
 
         if($respuesta->rowCount() == 0){
@@ -384,6 +409,7 @@ class coordinadorescController extends usuarioModel
             exit();
 
         }else{
+            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como coordinador de area académica',CURDATE(),0);");
             echo '
         
             <script>

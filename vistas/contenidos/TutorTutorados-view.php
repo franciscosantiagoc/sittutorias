@@ -130,9 +130,6 @@ include "./vistas/inc/navTutor.php";
                     require_once './controladores/tutoradosController.php';
                     $ins_actividad = new tutoradosController();
                     $dat_info = $ins_actividad->consulta_tutorados_controlador($_SESSION['matricula_sti']);
-                    echo 'Matricula: '.$_SESSION['matricula_sti'];
-                    //var_dump($dat_info);
-                    echo 'roll: '.$_SESSION['roll_sti'];
                     ?>
                     <div class="table-responsive table-bordered table  ">
                         <table class="table table-bordered table-hover tablas">
