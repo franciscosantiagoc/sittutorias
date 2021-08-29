@@ -3,7 +3,7 @@
     nidentificacion='<?php if(isset($_SESSION['matricula_sti'])) echo $_SESSION['matricula_sti']; else echo $_SESSION['NControl_sti']; ?>';
 
     function notificaciones() {
-        console.log('llamada de notificaciones')
+        //console.log('llamada de notificaciones')
         var datos = new FormData();
         datos.append("idnotifi",nidentificacion);
         $.ajax({
@@ -15,7 +15,7 @@
             processData: false,
             dataType: 'JSON',
             success: function(resp){
-                console.log('Respuesta notif'+resp);
+                //console.log('Respuesta notif'+resp);
                 if(resp){
                     for(i=0;i<resp.length;i++) {
                         Swal.fire({

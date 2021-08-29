@@ -303,8 +303,9 @@ if(isset($_POST['nameCoordinadoracte'])){
             processData: false,
             dataType: 'JSON',
             success: function(respuesta){
+                console.log(respuesta);
                 if(func===1) {
-                    //console.log(respuesta);/**/
+
                     $("#matriculaTE").val(respuesta[0][0]);
                     $("#nameCoordinadorTE").val(respuesta[0][1]);
                     $("#apellidoPTE").val(respuesta[0][2]);
@@ -312,11 +313,11 @@ if(isset($_POST['nameCoordinadoracte'])){
                     $("#SexoTE").val(respuesta[0][4]);
                     $("#numeroTelefonoTE").val(respuesta[0][5]);
                     $("#EmailTE").val(respuesta[0][6]);
-                    $("#AreaTE").val(respuesta[0][8]);
+                    $("#AreaTE").val(respuesta[0][7]);
 
 
                     var image = "<?php echo SERVERURL;?>"
-                    image = image + respuesta[0][9];
+                    image = image + respuesta[0][8];
                     $imagenPrevisualizacion.src = image;
                     console.log("imagen coord:" + image);
                 }else{
@@ -328,7 +329,7 @@ if(isset($_POST['nameCoordinadoracte'])){
                     $("#numeroTelefonoACTE").val(respuesta[0][5]);
                     $("#EmailACTE").val(respuesta[0][6]);
                     //$("#areaACTE").val(respuesta[0][8]);
-                    $("#areaACTE option[value='"+respuesta[0][10]+"']").attr("selected", true);
+                    $("#areaACTE option[value='"+respuesta[0][9]+"']").attr("selected", true);
 
 
                     let sex = respuesta[0][4];
