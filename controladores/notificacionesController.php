@@ -19,7 +19,7 @@ class notificacionesController extends mainModel {
 
 
     public function consultanotifiones_controlador(){
-        $iduser=mainModel::limpiar_cadena($_POST['idnotifi']);
+        $iduser=isset($_SESSION['matricula_sti']) ? $_SESSION['matricula_sti'] : $_SESSION['NControl_sti'];
         $consulta=mainModel::ejecutar_consulta_simple("SELECT * FROM notificaciones WHERE Destinatario=$iduser");
         $dat_consulta=$consulta->fetchAll();
 
