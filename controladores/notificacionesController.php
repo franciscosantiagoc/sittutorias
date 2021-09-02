@@ -16,4 +16,19 @@ class notificacionesController extends mainModel {
         if($consulta->rowCount()!=0)
             echo json_encode($dat_consulta);
     }
+
+
+    public function consultanotifiones_controlador(){
+        $iduser=isset($_SESSION['matricula_sti']) ? $_SESSION['matricula_sti'] : $_SESSION['NControl_sti'];
+        $consulta=mainModel::ejecutar_consulta_simple("SELECT * FROM notificaciones WHERE Destinatario=$iduser");
+        $dat_consulta=$consulta->fetchAll();
+
+        return $dat_consulta;
+    }
+
+    public function deletenotificaciones_controlador(){
+        $idnotif=mainModel::limpiar_cadena($_POST['idnotifi']);
+        $consulta=mainModel::ejecutar_consulta_simple("DELETE FROM notificaciones WHERE idNotif=$idnotif");
+
+    }
 }
