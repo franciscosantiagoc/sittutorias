@@ -22,7 +22,7 @@ class tutoradosController extends usuarioModel
     }
 
     // Para saber los tutorados en general
-    public function consulta_gral_tutorados_controlador($matricula)
+    public function consulta_gral_tutorados_controlador()
     {
         $consulta="SELECT SQL_CALC_FOUND_ROWS  c.NControl,p.Nombre,p.APaterno,p.AMaterno,p.NTelefono FROM persona p , tutorado c  WHERE p.idPersona=c.Persona_idPersona    ORDER BY p.Nombre";
         $consulta_tutorados = mainModel::ejecutar_consulta_simple($consulta);

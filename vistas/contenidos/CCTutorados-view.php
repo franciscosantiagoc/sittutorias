@@ -96,9 +96,9 @@ include "./vistas/inc/navCoordinadorC.php"
         </div>
     </div>
     <div class="register-photo">
-        <div id="register-options" class="form-container">
-             <a class="btn btn-primary" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a >
-             <a class="btn btn-primary" href="<?php echo SERVERURL;?>CCAsignTutorado">Asignar tutorado</a >
+        <div class="form-container" style="display: flex; flex-direction: row; justify-content: space-around">
+            <a class="btn btn-primary" style="width: 250px; height: 50px;" href="<?php echo SERVERURL;?>CCAsignTutorado">Asignar tutorado</a >
+            <a style="width: 250px; height: 50px;" class="btn btn-primary btn-block" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a>
         </div>
         <div class="form-container" id="contain">
             <div class="col-md-12 search-table-col">
