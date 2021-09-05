@@ -36,6 +36,11 @@ require_once "../controladores/tutoradosController.php";
      echo $ins_usuario->ver_tutorado_controlador();
      /*echo 'respuesta';*/
      /*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */
+ }elseif(isset($_POST['idtutorado_solic'])){
+     $ins_usuario = new usuarioController();
+     echo $ins_usuario->ver_tutorado_solic_controlador();
+     /*echo 'respuesta';*/
+     /*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */
  }elseif( isset($_POST['ed_carr_tu']) && isset($_POST['ed_gen_tu']) && isset($_POST['ed_noctrl_tu']) ){
    $ins_usuario = new usuarioController();
    echo $ins_usuario->actualiza_tutorado_controlador();

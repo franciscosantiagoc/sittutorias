@@ -223,6 +223,7 @@ if(isset($_POST['nameCoordinadoracte'])){
                             <h2 class="text-center"><strong>Tutores</strong></h2>
                         </div>
                         <div class="form-group pull-left col-lg-4">
+                            <a class="btn btn-primary" href="<?php echo SERVERURL;?>Registro">REGISTRAR</a >
                             <button class="btn btn-primary btn-block"  data-toggle="modal"  data-target="#modalListTutAct" type="submit" >DESCARGAR LISTA DE TUTORES </button>
                         </div>
 
