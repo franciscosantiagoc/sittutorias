@@ -13,7 +13,9 @@
         <div class="container bg-white">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
-                <div class="form-group pull-right col-lg-4"><button class="btn btn-primary btn-block border rounded" type="submit" style="background-color: rgb(245,124,56);">Enviar Mensajes</button></div>
+                <div class="form-group pull-right col-lg-4">
+                    <button class="btn btn-primary btn-block border rounded" type="submit" style="background-color: rgb(245,124,56);">Enviar Mensajes</button>
+                </div>
                 <span
                     class="counter pull-right"></span>
                     <?php

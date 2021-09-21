@@ -6,6 +6,9 @@ if($peticionAjax){
 }
 
 class notificacionesController extends mainModel {
+
+
+
     public function consultanotif_controlador(){
         $iduser=mainModel::limpiar_cadena($_POST['idnotifi']);
         $consulta=mainModel::ejecutar_consulta_simple("SELECT * FROM notificaciones WHERE Destinatario=$iduser AND Leido=0");
