@@ -106,6 +106,7 @@ class tutoradosController extends usuarioModel
 
         $data = usuarioModel::actualizar_asignacion_modelo($datos_asignacion_upd);
         usuarioModel::agregar_historicoasig_modelo($datos_asignacion_upd);
+
         if($data->rowCount()==0){
             $alerta = [
                 "Titulo" => "Error inesperado",
