@@ -185,7 +185,7 @@ include "./vistas/inc/navStudent.php";
             datos.append("idtutorado_solic",noctrl);
 
             $.ajax({
-                url: "ajax/usuarioAjax.php",
+                url: "ajax/solicitudAjax.php",
                 method: "post",
                 data: datos,
                 cache: false,

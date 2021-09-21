@@ -16,4 +16,27 @@ class solicitudModel extends mainModel
 
 
     }
+    protected static function actualizar_asignacion_modelo($datos){
+        $sql = mainModel::conectar()->prepare("UPDATE trabajador_tutorados SET Trabajador_Matricula=:matricula WHERE Tutorado_NControl=:ncontrol;");
+        $sql->bindParam(":matricula", $datos['Matricula']);
+        $sql->bindParam(":ncontrol", $datos['NControl']);
+        $sql->execute();
+        return $sql;
+    }
+    protected static function agregar_historicoasig_modelo($datos){
+        $sql = mainModel::conectar()->prepare("INSERT INTO historico_asignacion (idHistorico,Tutorado_NControl,Trabajador_Matricula,Fecha) VALUES (CONCAT(HOUR(NOW()),MINUTE(NOW()),DAY(CURDATE()),MONTH(CURDATE()), YEAR(CURDATE()),:ncontrol),:ncontrol,:matricula,CURDATE())");
+        $sql->bindParam(":matricula", $datos['Matricula']);
+        $sql->bindParam(":ncontrol", $datos['NControl']);
+        $sql->execute();
+        return $sql;
+    }
+    protected static function actualizar_solicitud_modelo($estado,$idsolic){
+        $sql = mainModel::conectar()->prepare("UPDATE solicitudes SET estado=:estado WHERE idSolicitud=:idsolic");
+        $sql->bindParam(":estado",$estado);
+        $sql->bindParam(":idsolic",$idsolic);
+        $sql->execute();
+        return $sql;
+
+
+    }
 }

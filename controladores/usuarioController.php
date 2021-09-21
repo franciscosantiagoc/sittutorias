@@ -913,7 +913,6 @@ class usuarioController extends usuarioModel
          exit();
       }
 
-      
       $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT p.idPersona, p.Nombre, p.APaterno, p.AMaterno, p.Correo, p.Foto, t.Carrera_idCarrera, t.Generacion_idGeneracion FROM persona p, tutorado t WHERE t.NControl=$noctrl AND p.idPersona=t.Persona_idPersona");
       
       if($busqueda_tutorado->rowCount()==0){
@@ -929,6 +928,8 @@ class usuarioController extends usuarioModel
       return json_encode($dat_info); 
 
    }
+
+
     public function ver_tutorado_controlador(){
         $noctrl = mainModel::limpiar_cadena($_POST['idtutorado_ver']);
         if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
