@@ -11,7 +11,7 @@ echo $ins_usuario->solicitudes_tutorado_controlador();
 
 }elseif(isset($_POST['idtutorado_solic'])){
 
-    $ins_usuario = new usuarioController();
+    $ins_usuario = new solicitudesController();
     echo $ins_usuario->ver_tutorado_solic_controlador();
     /*echo 'respuesta';*/
     /*-------------------------------  editar tutorados carrera, generacion  -------------------------------  */

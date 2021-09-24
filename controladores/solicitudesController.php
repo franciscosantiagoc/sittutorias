@@ -17,6 +17,10 @@ class solicitudesController extends solicitudModel
         $cambio_tutor = mainModel::limpiar_cadena($_POST['Cambio_Tutor']);
         $solicitud= "";
 
+        if($this->valida_liberacion()){
+            $select_solicitud = 6;
+        }
+
         if($select_solicitud == 1){
             $solicitud = "Solicitar cambio de Tutor";
 
@@ -83,20 +87,20 @@ class solicitudesController extends solicitudModel
         }
 
         $check_matricula=mainModel::ejecutar_consulta_simple("SELECT Matricula  FROM trabajador Where Matricula=$cambio_tutor");
-        if($check_matricula->rowCount()==0 && $select_solicitud == 1){
+        if($check_matricula->rowCount() == 0 && $select_solicitud == 1){
             echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "Error al cargar los datos del docente",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnSolic"
-                  }
-               });
-            </script>';
+                <script> 
+                   Swal.fire({
+                      title: "Ocurrio un error inesperado",
+                      text: "Error al cargar los datos del docente",
+                      type: "error",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                      if(result.value){
+                         window.location="'.SERVERURL.'AlumnSolic"
+                      }
+                   });
+                </script>';
             exit();
         }
 
@@ -110,41 +114,38 @@ class solicitudesController extends solicitudModel
         //echo $consulta;
         if($consulta->rowCount() == 0){
             echo '
-            <script>
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "Error al enviar la solicitud",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnSolic"
-                  }
-               });
-            </script>
+                <script>
+                   Swal.fire({
+                      title: "Ocurrio un error inesperado",
+                      text: "Error al enviar la solicitud",
+                      type: "error",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                      if(result.value){
+                         window.location="'.SERVERURL.'AlumnSolic"
+                      }
+                   });
+                </script>
             ';
             exit();
 
         }else{
             echo '
-            <script>
-               Swal.fire({
-                  title: "Solicitud enviada",
-                  text: "Se ha enviado correctamente su solicitud",
-                  type: "success",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'AlumnSolic"
-                  }
-               });
-            </script>
+                <script>
+                   Swal.fire({
+                      title: "Solicitud enviada",
+                      text: "Se ha enviado correctamente su solicitud",
+                      type: "success",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                      if(result.value){
+                         window.location="'.SERVERURL.'AlumnSolic"
+                      }
+                   });
+                </script>
             ';
             exit();
         }
-
-
-
     }
 
     /* == controlador actualizar trabajador */
@@ -161,7 +162,6 @@ class solicitudesController extends solicitudModel
 
 
     }
-
     // AlumnSolic
     public function consulta_solicitudtutorado_controlador(){
         $ncontrol = $_SESSION['NControl_sti'];
@@ -209,7 +209,37 @@ class solicitudesController extends solicitudModel
 
     }
 
+    //AlumnSolic solicitudes
+    public function ver_tutorado_solic_controlador(){
+        //$noctrl = mainModel::limpiar_cadena($_SESSION['NControl_sti']);
+        $noctrl = mainModel::limpiar_cadena($_POST['idtutorado_solic']);
+        if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
+            $alerta = [
+                "Response" => "error",
+                "Titulo" => "Ocurrio un error inesperado",
+                "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
 
+
+        $busqueda_tutorado = usuarioModel::ejecutar_consulta_simple("SELECT t.NControl, p.Nombre, p.APaterno, p.AMaterno, r.Nombre as NombreCar  FROM persona p, tutorado t,  carrera r,generacion g WHERE t.NControl=$noctrl AND r.idCarrera = t.Carrera_idCarrera AND p.idPersona=t.Persona_idPersona");
+
+        if($busqueda_tutorado->rowCount()==0){
+            $alerta = [
+                "Titulo" => "Ocurrio un error inesperado",
+                "Texto" => "Ha ocurrido un error al consultar los datos, recargue la pagina para continuar",
+                "Tipo" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        $dat_info = $busqueda_tutorado -> fetchAll();
+        return json_encode($dat_info);
+
+    }
 
     public function solicitud_cambio_tutor($nocontrol,$matricula){
         //$nocontrol = mainModel::limpiar_cadena($_POST['asig_ed_noctrl']);
@@ -219,9 +249,7 @@ class solicitudesController extends solicitudModel
             "Matricula" => $matricula,
             "NControl" =>  $nocontrol
         ];
-
         $data = solicitudModel::actualizar_asignacion_modelo($datos_asignacion_upd);
-
         if($data->rowCount()==0){
             return 0;
         }else{
@@ -230,7 +258,6 @@ class solicitudesController extends solicitudModel
 
         }
     }
-
     public function validacion_solicitud_controlador(){
         $idSolicitud = mainModel::limpiar_cadena($_POST['idsolic']);
         $nocntrol = mainModel::limpiar_cadena($_POST['solic_nctrl']);
@@ -240,24 +267,23 @@ class solicitudesController extends solicitudModel
 
         if($consulta->rowCount() == 0) {
             echo '
-            <script>
-                Swal.fire({
-                  title: "Error al validar la solictud",
-                  text: "Ha ocurrido un error al validar la solicitud, inténtelo de nuevo ",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                if(result.value){
-                    window.location="' . SERVERURL . 'CCSolicitudes"
-                  }
-            });
-            </script>
+                <script>
+                    Swal.fire({
+                      title: "Error al validar la solictud",
+                      text: "Ha ocurrido un error al validar la solicitud, inténtelo de nuevo ",
+                      type: "error",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                    if(result.value){
+                        window.location="' . SERVERURL . 'CCSolicitudes"
+                      }
+                });
+                </script>
             
             ';
             exit();
 
         }
-
         $consulta=$consulta->fetch();
         $tipo = $consulta['tipo_solicitud'];
         $respuesta = '';
@@ -266,43 +292,40 @@ class solicitudesController extends solicitudModel
             if($tipo == 'Solicitar cambio de Tutor'){
                 $matricula = $consulta['Trabajador_Matriculanuevo'];
                 $respuesta = $this->solicitud_cambio_tutor($nocntrol,$matricula);
-
-
             }elseif($tipo == 'Solicitar constancia'){
+                $consulta = mainModel::ejecutar_consulta_simple("SELECT idActividades FROM actividades");
+                $consul_act = mainModel::ejecutar_consulta_simple("SELECT Actividades_idActividades FROM actividades_asignadas WHERE Tutorado_NControl = $nocntrol AND Estatus = 'Validado'");
 
+                $datAct = $consulta->fetchAll(); // id de Actividades asignadas
+                $datAcTu = $consul_act->fetchAll(); // id de Actividades validadas alumnos
+                $aux = '' ;
+//                $exit = false;
+                for ($i = 0 ; $i < $consulta->rowCount() ; $i++){
+                    $exit = false;
+                    for ($j = 0 ; $j < $consul_act->rowCount() ; $j++){
+                        if($datAct[$i][0] == $datAcTu[$j][0]){
+                            $exit = true;
+                        }
+
+                    }
+                    $aux = $datAct[$i][0];
+                    if($exit == false){
+                        $valid = '2';
+                        break;
+                    }
+                }
+                if($valid == 1){
+                    $respuesta = 1;
+                    solicitudModel::ejecutar_consulta_simple("INSERT INTO  liberacion_const(Tutorado_NControl,Coordinador_Matricula,Fecha_liberacion) VALUES ($nocntrol,".$_SESSION['matricula_sti'].",CURDATE())");
+                }
             }elseif ($tipo == 'Solicitar revisión de actividad'){
 
             }else{
                 echo '
-                        <script>
-                            Swal.fire({
-                              title: "Error al validar la solictud",
-                              text: "El tipo de solicitud no existe",
-                              type: "error",
-                              confirmButtonText: "Aceptar"
-                           }).then((result)=>{
-                            if(result.value){
-                                window.location="'.SERVERURL.'CCSolicitudes"
-                              }
-                        });
-                        </script>
-                        
-                        ';
-            }
-
-        }
-
-        if (($valid == '1' && $respuesta == 1)  || $valid == '2'){
-            echo '<script>alert("solicitud cambio tutor '.$matricula.' atendida , status'.$valid.', respuesta: '.$respuesta.'")</script>';
-            solicitudModel::actualizar_solicitud_modelo($valid,$idSolicitud);
-
-
-        }else{
-            echo '
                     <script>
                         Swal.fire({
-                          title: "Ocurrió un error inesperado",
-                          text: "Ha ocurrido un error al validar la solicitud, inténtelo de nuevo  status'.$valid.', respuesta: '.$respuesta.'",
+                          title: "Error al validar la solictud",
+                          text: "El tipo de solicitud no existe",
                           type: "error",
                           confirmButtonText: "Aceptar"
                        }).then((result)=>{
@@ -313,17 +336,40 @@ class solicitudesController extends solicitudModel
                     </script>
                     
                     ';
+            }
 
         }
+        if (($valid == '1' && $respuesta == 1)  || $valid == '2' ){
+            echo '<script>alert("solicitud atendida , status'.$valid.', respuesta: '.$respuesta.'")</script>';
+            solicitudModel::actualizar_solicitud_modelo($valid,$idSolicitud);
+        }else{
+            echo '
+                <script>
+                    Swal.fire({
+                      title: "Ocurrió un error inesperado",
+                      text: "Ha ocurrido un error al validar la solicitud, inténtelo de nuevo  status'.$valid.', respuesta: '.$respuesta.'",
+                      type: "error",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                    if(result.value){
+                        window.location="'.SERVERURL.'CCSolicitudes"
+                      }
+                });
+                </script>
 
+                ';
 
+        }
+    }
+    public function valida_liberacion(){
+        $respuesta = mainModel::ejecutar_consulta_simple("SELECT * FROM liberacion_const WHERE Tutorado_NControl = '".$_SESSION['NControl_sti']."'");
 
+        if($respuesta->rowCount() == 0 ){
+            return false;
 
-
-
+        }
+        return true;
 
     }
-
-
 
 }

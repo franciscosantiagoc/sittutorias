@@ -211,8 +211,12 @@ section .details .tutor {
  }
 
  footer .notice {
+     display: flex;
      align-items: center;
-     height: 100px;
+     height: 300px;
+     justify-content: center;
+     flex-shrink: 0;
+     flex-wrap: wrap;
  }
  footer .notice .contain{
      /*display: flex;*/

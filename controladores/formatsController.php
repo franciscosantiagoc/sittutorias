@@ -144,6 +144,14 @@ class formatsController extends mainModel {
 
     }
 
+    public function obtener_datos_tutorado_controlador(){
+        $ncontrol = $_SESSION['NControl_sti'];
+        $consulta = mainModel::ejecutar_consulta_simple("SELECT p.Nombre, p.APaterno, p.AMaterno, c.Nombre AS carrera, CONCAT(DATE_FORMAT(g.fecha_inicio,'%M%Y'), '-', DATE_FORMAT(g.fecha_fin,'%M%Y')) as periodo,  DATE_FORMAT(lc.Fecha_liberacion,'%D de %M de %Y') as fecha_lib FROM tutorado t INNER JOIN persona p ON p.idPersona = t.Persona_idPersona INNER JOIN carrera c ON c.idCarrera = t.Carrera_idCarrera INNER JOIN generacion g ON g.idGeneracion=t.Generacion_idGeneracion INNER JOIN liberacion_const lc ON lc.Tutorado_NControl = t.NControl  WHERE t.NControl = $ncontrol ");
+        $consulta = $consulta->fetch();
+        return $consulta;
+
+    }
+
 }
 
 

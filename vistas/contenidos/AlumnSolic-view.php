@@ -15,7 +15,8 @@
     }
 }
 
-include "./vistas/inc/navStudent.php"; 
+include "./vistas/inc/navStudent.php";
+require_once "./modelos/mainModel.php";
 
     
     ?>
@@ -115,16 +116,35 @@ include "./vistas/inc/navStudent.php";
             $dat_info = $ins_actividad->consulta_gral_tutorados_controlador($_SESSION['NControl_sti']);
             $ncontrl=$_SESSION['NControl_sti'];
 
+            require_once './controladores/solicitudesController.php';
+            $ins_lib = new solicitudesController();
+            $consultalib = $ins_lib->valida_liberacion();
+            $disabled = $consultalib ? "disabled" : "";
+
             echo '
                     <div class="form-container" style="display: flex; flex-direction: row; justify-content: space-around">
                         <center>
-                            <button class="btn btn-primary btn-block border rounded" onclick="clickSolic('.$ncontrl.')" data-toggle="modal" data-target="#modalAActividad" >REALIZAR SOLICITUD</button>
+                            <button class="btn btn-primary btn-block border rounded" onclick="clickSolic('.$ncontrl.')" data-toggle="modal" data-target="#modalAActividad" '.$disabled.' >REALIZAR SOLICITUD</button>
                         </center>
                     </div>             
                     
-                
                 ';
+            if($consultalib){
+                echo '  
 
+                    <br><div id="register-options" class="form-container" style="justify-content: center; align-items: center;">
+                        <div style="background-color: mediumseagreen; color: white; width: 350px; padding: 10px; border: solid 2px black;">
+                           <p>Felicidades: Has culminado correctamente la actividad de Tutorías, a continuación podras descargar tu constancia.</p>
+                        </div> 
+                    </div><br>
+                      <div class="form-container" style="display: flex; flex-direction: row; justify-content: space-around">
+                      
+                        <center>
+                            <a href="'. SERVERURL.'FormatConstancia" class="btn btn-primary btn-block border rounded"  >DESCARGAR CONSTANCIA</a>
+                        </center>
+                      </div><br> 
+                ';
+            }
             require_once './controladores/solicitudesController.php';
             $ins_solicitudes = new solicitudesController();
             $dat_info = $ins_solicitudes->consulta_solicitudtutorado_controlador();
@@ -147,9 +167,6 @@ include "./vistas/inc/navStudent.php";
                         <?php
                         $contador=1;
                         foreach ($dat_info as $row){
-
-
-
                             $idsolicitud = $row['idSolicitud'];
                             $tipo_solic = $row['tipo_solicitud'];
                             $fecha_solic = $row['fecha_solicitud'];
