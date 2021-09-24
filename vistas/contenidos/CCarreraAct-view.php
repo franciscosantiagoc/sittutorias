@@ -99,12 +99,29 @@ include "./vistas/inc/navCoordinadorC.php"
                         require_once './controladores/usuarioController.php';
                         $matricula=$_SESSION['matricula_sti'];
                         $ins_consulta = new usuarioController();
-                        $actividades = $ins_consulta->datos_usuario_controlador("Consulta","","SELECT aa.Estatus,a.Nombre AS Activity,DATE_FORMAT(aa.Fecha,'%d-%m-%y'),
-CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre, t.NControl, aa.Actividades_idActividades as idAct
-FROM trabajador tr INNER JOIN carrera c ON c.Areas_idAreas = tr.Areas_idAreas INNER JOIN tutorado t ON t.Carrera_idCarrera = c.idCarrera
-INNER JOIN persona p ON p.idPersona = t.Persona_idPersona INNER JOIN actividades_asignadas aa ON aa.Tutorado_NControl = t.NControl
-INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
- WHERE tr.Matricula = $matricula;");
+
+                        $tamaño= count($pagina);
+                       // echo 'la longitud del arreglo es: '.$tamaño;
+                        $actividades=null;
+                        if($tamaño>1){
+                            $ncontrol = $pagina[1];
+                            echo "recibi $ncontrol";
+
+                            $actividades = $ins_consulta->datos_usuario_controlador("Consulta","","SELECT aa.Estatus,a.Nombre AS Activity,DATE_FORMAT(aa.Fecha,'%d-%m-%y'),
+                                CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre, t.NControl, aa.Actividades_idActividades as idAct
+                                FROM trabajador tr INNER JOIN carrera c ON c.Areas_idAreas = tr.Areas_idAreas INNER JOIN tutorado t ON t.Carrera_idCarrera = c.idCarrera
+                                INNER JOIN persona p ON p.idPersona = t.Persona_idPersona INNER JOIN actividades_asignadas aa ON aa.Tutorado_NControl = t.NControl
+                                INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
+                                 WHERE tr.Matricula = $matricula AND t.NControl=$ncontrol");
+                        }else{
+
+                            $actividades = $ins_consulta->datos_usuario_controlador("Consulta","","SELECT aa.Estatus,a.Nombre AS Activity,DATE_FORMAT(aa.Fecha,'%d-%m-%y'),
+                            CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre, t.NControl, aa.Actividades_idActividades as idAct
+                            FROM trabajador tr INNER JOIN carrera c ON c.Areas_idAreas = tr.Areas_idAreas INNER JOIN tutorado t ON t.Carrera_idCarrera = c.idCarrera
+                            INNER JOIN persona p ON p.idPersona = t.Persona_idPersona INNER JOIN actividades_asignadas aa ON aa.Tutorado_NControl = t.NControl
+                            INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
+                             WHERE tr.Matricula = $matricula;");
+                        }
                         $actividades = $actividades->fetchAll();
             $total_act=count($actividades);
             //echo "<script>alert('$total_act')</script>";
@@ -210,18 +227,5 @@ INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
             }
         })
     }
+
 </script>
-<?php
-if(isset($_POST['ncontrol'])){
-    $ncontrol = $_POST['ncontrol'];
-
-    echo $ncontrol;
-    echo "<script>
-            let input = document.querySelectorAll('.input-sm')[1];
-            input.value = $ncontrol ; 
-          </script>";
-
-}
-
-
-?>

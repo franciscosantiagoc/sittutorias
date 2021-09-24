@@ -29,7 +29,7 @@
             /* session_start(['name'=>'STI']);*/ //no funciona debidamente por lo que se coloco en index
            $pagina=explode("/",$_GET['views']); // variable get, tiene todos los parametros de la url, pagina ahhora los tendrá
             require_once "./controladores/loginControlador.php";
-           $lc = new loginControlador();
+            $lc = new loginControlador();
 
             if(!isset($_SESSION['token_sti']) || !isset($_SESSION['nombre_sti']) || !isset($_SESSION['roll_sti']) || !isset($_SESSION['id_sti'])){
                 echo $lc->forzar_cierre_sesion_controlador();
