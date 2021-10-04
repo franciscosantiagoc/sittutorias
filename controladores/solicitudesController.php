@@ -319,6 +319,7 @@ class solicitudesController extends solicitudModel
                     solicitudModel::ejecutar_consulta_simple("INSERT INTO  liberacion_const(Tutorado_NControl,Coordinador_Matricula,Fecha_liberacion) VALUES ($nocntrol,".$_SESSION['matricula_sti'].",CURDATE())");
                 }
             }elseif ($tipo == 'Solicitar revisión de actividad'){
+                $respuesta=1;
 
             }else{
                 echo '
@@ -340,7 +341,32 @@ class solicitudesController extends solicitudModel
 
         }
         if (($valid == '1' && $respuesta == 1)  || $valid == '2' ){
-            echo '<script>alert("solicitud atendida , status'.$valid.', respuesta: '.$respuesta.'")</script>';
+            $texto='';
+            $urlenvio = '';
+            if ($tipo == 'Solicitar revisión de actividad'){
+                $texto='Esta a punto de ser redireccionado al apartado de revisión de actividades del Tutorado con NControl: '.$nocntrol;
+                $urlenvio = 'CCarreraAct/'.$nocntrol;
+
+            }else{
+                $texto='Solicitud atendida y validada correctamente';
+                $urlenvio = 'CCSolicitudes';
+            }
+
+            echo '
+                <script>
+                    Swal.fire({
+                      title: "Solicitud atendida",
+                      text: "'.$texto.'",
+                      type: "success",
+                      confirmButtonText: "Aceptar"
+                   }).then((result)=>{
+                    if(result.value){
+                        window.location="'.SERVERURL.$urlenvio.'"
+                      }
+                });
+                </script>
+
+                ';
             solicitudModel::actualizar_solicitud_modelo($valid,$idSolicitud);
         }else{
             echo '

@@ -14,12 +14,12 @@
                     <div class="dropdown-menu" role="menu" style="background-color: #fffff;">
                     <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutores">Gestión de Tutores</a>
                     <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutorados">Gestión de Tutorados</a>
-                    <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCActividades">Gestión de Actividades</a></div>
                 </li>
                 <li class="nav-item dropdown menu"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">Tutor</a>
                     <div class="dropdown-menu" role="menu" style="background-color: #fffff;">
-                        <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCActividades">Seguimiento Actividades</a>
+                        <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCActividades">Actividades</a>
                         <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCTutorados">Tutorados Asignados</a>
+                        <a class="dropdown-item" role="presentation" href="<?php echo SERVERURL;?>CCarreraAct">Seguimiento de Actividades</a>
                     </div>
                 </li>
                 <li class="nav-item menu" role="presentation"><a class="nav-link" href="<?php echo SERVERURL;?>Estadistics" style="color: #ffffffff;">Estadísticas</a></li>

@@ -50,8 +50,8 @@ include "./vistas/inc/navCoordinadorC.php"
             <div class="col"><a href="<?php echo SERVERURL;?>CCInfo"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Contacto</strong></p>
             </div>
-            <div class="col"><a href="<?php echo SERVERURL;?>CCarreraAct"><img style="background-image: url(vistas/assets/img/Icons/solicitudes.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
-                <p><strong>Actividades</strong></p>
+            <div class="col"><a href="<?php echo SERVERURL;?>CCSolicitudes"><img style="background-image: url(vistas/assets/img/Icons/solicitudes.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+                <p><strong>Solicitudes</strong></p>
             </div>
         </div>
     </div>

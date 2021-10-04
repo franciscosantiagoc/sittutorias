@@ -34,5 +34,11 @@ include "./vistas/inc/navRoot.php";
             <div class="col"><a href="<?php echo SERVERURL;?>Estadistics"><img style="background-image: url(vistas/assets/img/Icons/estadistic.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Estadísticas</strong></p>
             </div>
+            <div class="col"><a href="<?php echo SERVERURL;?>RootActividades"><img style="background-image: url(vistas/assets/img/Icons/activities.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+                <p><strong>Gestion de Actividades</strong></p>
+            </div>
+            <div class="col"><a href="<?php echo SERVERURL;?>RootOtros"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+                <p><strong>Otros(Areas etc...)</strong></p>
+            </div>
         </div>
     </div>

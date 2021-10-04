@@ -1,23 +1,50 @@
 
-<?php 
+<?php
 
 if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] != "Coordinador De Carrera" && "Coordinador De Area"){
+    if($_SESSION['roll_sti'] != "Admin"){
         if($_SESSION['roll_sti'] == "Docente"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
-        }/* else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
-        } */else  if($_SESSION['roll_sti'] == "Tutorado"){
+        }else  if($_SESSION['roll_sti'] == "Tutorado"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
-        }else  if($_SESSION['roll_sti'] == "Admin"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
         }
     }
 }
-  
-include "./vistas/inc/navCoordinadorC.php" 
+
+include "./vistas/inc/navRoot.php";
 
 ?>
+<!-- Descargar lista -->
+<div class="modal" id="modalDescargarLista" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Descargar formato de actividades a realizar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="<?php echo SERVERURL;?>FormatRootActividades" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="format_tutortutorado_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Generar documento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Actualizar -->
 <div class="modal" id="modalActActividad" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -43,10 +70,10 @@ include "./vistas/inc/navCoordinadorC.php"
                             <label for="descripcionac">Descripción</label>
                             <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAcAct" name="descripcionacact">
                         </div>
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label for="semestresugac">Semestre Sugerido</label>
                             <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSugAc" name="semestresugac">
-                        </div>-->
+                        </div>
 
                         <div class="form-group">
                             <label for="semestresugac">Semestre Sugerido</label>
@@ -90,73 +117,73 @@ if(isset($_POST['idacactividad'])){
 }
 ?>
 
-<!-- Agregar Actividad -->
-<div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-container">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <center><img src="" height="300px" id="image-infoTE"></center>
-                        <div class="form-group">
-                            <label for="idActividad">Id de la Actividad</label>
-                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >
-                        </div>
-                        <div class="form-group">
-                            <label for="nombreACt">Nombre de la actividad</label>
-                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >
-                        </div>
-                        <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">
-                        </div>
-                        <div class="form-group">
-                            <label for="semestresug">Semestre Sugerido</label>
-                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">
-                        </div>
-                        <div class="form-group">
-                            <label for="semestresug">Semestre obligatorio</label>
-                            <!--<input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug"> -->
-                            <input type="checkbox" id="ActOblig" name="actoblig" value="activo"><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Archivo</label>
-                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Agregar Actividad #modalAActividad -->
+<!--<div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="form-container">-->
+<!--                    <form action="" method="post" enctype="multipart/form-data">-->
+<!--                        <center><img src="" height="300px" id="image-infoTE"></center>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="idActividad">Id de la Actividad</label>-->
+<!--                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="nombreACt">Nombre de la actividad</label>-->
+<!--                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="descripcion">Descripción</label>-->
+<!--                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="semestresug">Semestre Sugerido</label>-->
+<!--                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="semestresug">Semestre obligatorio</label>-->
+<!--                            <!--<input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug"> -->
+<!--                            <input type="checkbox" id="ActOblig" name="actoblig" value="activo"><br>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Archivo</label>-->
+<!--                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <?php
-if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
-    require_once "./controladores/actividadesController.php";
-
-    $ins_actividad= new actividadesController();
-
-    echo $ins_actividad->agregar_actividad_controlador();
-
-}
-?>
+//if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
+//    require_once "./controladores/actividadesController.php";
+//
+//    $ins_actividad= new actividadesController();
+//
+//    echo $ins_actividad->agregar_actividad_controlador();
+//
+//}
+//?>
 
     <div class="register-photo">
         <div class="form-container">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
                 <!-- Descargar formato de actividades a realizar -->
-<!--                <div class="form-group pull-right col-lg-4">-->
-<!--                    <button class="btn btn-primary btn-block border rounded" onclick="clickTE()" data-toggle="modal"  data-target="#modalAActividad" type="submit" >agregar NUEVA ACTIVIDAD</button>-->
-<!--                </div>-->
+                <div class="form-group pull-right col-lg-4">
+                    <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR FORMATO DE ACTIVIDADES A REALIZAR</button>
+                </div>
 
                 <?php
                 require_once './controladores/actividadesController.php';
@@ -176,8 +203,8 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
                             <th>Fecha de registro</th>
                             <th>Descripción</th>
                             <th>Semestre sugerido</th>
-<!--                            <th>ACTUALIZAR</th>-->
-<!--                            <th>ELIMINAR</th>-->
+                            <th>ACTUALIZAR</th>
+                            <th>ELIMINAR</th>
                         </tr>
                         </thead>
 
@@ -202,7 +229,7 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
                             <td>'.$fechareg.'</td>
                             <td>'.$desc.'</td>
                             <td>'.$semestrere.'</td>
-                            <!--<td>
+                            <td>
                                  <center><abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE('.$idactividad.')" data-toggle="modal" data-target="#modalActActividad" ><i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
                                  </center>
                             </td>
@@ -211,7 +238,7 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
                                        <i class="far fa-trash-alt"></i>
                                 </button></abbr>
                                
-                            </td>-->
+                            </td>
                         </tr>';
                         $contador++;
 

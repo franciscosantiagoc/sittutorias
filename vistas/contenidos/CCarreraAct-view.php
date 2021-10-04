@@ -105,8 +105,7 @@ include "./vistas/inc/navCoordinadorC.php"
                         $actividades=null;
                         if($tamaño>1){
                             $ncontrol = $pagina[1];
-                            echo "recibi $ncontrol";
-
+                            //Visualización de actividades de tutorados asig. como coordinador
                             $actividades = $ins_consulta->datos_usuario_controlador("Consulta","","SELECT aa.Estatus,a.Nombre AS Activity,DATE_FORMAT(aa.Fecha,'%d-%m-%y'),
                                 CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre, t.NControl, aa.Actividades_idActividades as idAct
                                 FROM trabajador tr INNER JOIN carrera c ON c.Areas_idAreas = tr.Areas_idAreas INNER JOIN tutorado t ON t.Carrera_idCarrera = c.idCarrera
@@ -114,13 +113,14 @@ include "./vistas/inc/navCoordinadorC.php"
                                 INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
                                  WHERE tr.Matricula = $matricula AND t.NControl=$ncontrol");
                         }else{
-
+                            // Visualización de actividades de tutorados asig. como tutor
                             $actividades = $ins_consulta->datos_usuario_controlador("Consulta","","SELECT aa.Estatus,a.Nombre AS Activity,DATE_FORMAT(aa.Fecha,'%d-%m-%y'),
                             CONCAT(p.Nombre,' ',p.APaterno,' ',p.AMaterno) AS Nombre, t.NControl, aa.Actividades_idActividades as idAct
-                            FROM trabajador tr INNER JOIN carrera c ON c.Areas_idAreas = tr.Areas_idAreas INNER JOIN tutorado t ON t.Carrera_idCarrera = c.idCarrera
+                            FROM trabajador_tutorados tt 
+                            INNER JOIN tutorado t ON t.NControl= tt.Tutorado_NControl
                             INNER JOIN persona p ON p.idPersona = t.Persona_idPersona INNER JOIN actividades_asignadas aa ON aa.Tutorado_NControl = t.NControl
                             INNER JOIN actividades a ON a.idActividades = aa.Actividades_idActividades
-                             WHERE tr.Matricula = $matricula;");
+                            WHERE tt.Trabajador_Matricula=$matricula;");
                         }
                         $actividades = $actividades->fetchAll();
             $total_act=count($actividades);
