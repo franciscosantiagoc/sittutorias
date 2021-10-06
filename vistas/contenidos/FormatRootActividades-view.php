@@ -1,17 +1,16 @@
 <?php
 if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] != "Docente"){
-        if($_SESSION['roll_sti'] == "Tutorado"){
+    if($_SESSION['roll_sti'] != "Admin"){
+        if($_SESSION['roll_sti'] == "Docente"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
+        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
+            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
+        }else  if($_SESSION['roll_sti'] == "Tutorado"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuAlumno";</script>';
         }else  if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
             echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordCa";</script>';
-        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuCordArea";</script>';
-        }else  if($_SESSION['roll_sti'] == "Admin"){
-            echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuRoot";</script>';
         }
     }
-
 }
 
     require_once "./vendor/autoload.php";
@@ -19,7 +18,7 @@ if(isset($_SESSION['roll_sti'])){
     require_once "./controladores/formatsController.php";
 
     $ins_format= new formatsController();
-    $datos_info=$ins_format->create_format_tutortutorados_controlador();
+    $datos_info=$ins_format->create_format_rootActividades_controlador();
 
     $consulta_tutorados=$datos_info["tutorados"];
     $consulta_actividades=$datos_info["actividades"];
@@ -61,10 +60,10 @@ $html = '<!DOCTYPE html>
 			<div class="details">
 				<p class="title">ACTIVIDADES</p>
 				<p class="date" style="display:flex; width: 100%; text-align: right;">
-					                           Heroica Cd. De Juchitán de Zaragoza Oax. a 15 de Agostro de 2021
+					                           Heroica Cd. De Juchitán de Zaragoza Oax. a '.$datos[1].'
 				</p>
 				<p class="tutor">
-					Director: Victor Manuel Jiménez Cruz
+					Director: '.$datos[0].'
 				</p>
 			</div>
 			<div class="details-activitys">

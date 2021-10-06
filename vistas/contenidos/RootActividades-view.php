@@ -182,7 +182,7 @@ if(isset($_POST['idacactividad'])){
             <div class="col-md-12 search-table-col">
                 <!-- Descargar formato de actividades a realizar -->
                 <div class="form-group pull-right col-lg-4">
-                    <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista" type="submit" >DESCARGAR FORMATO DE ACTIVIDADES A REALIZAR</button>
+                    <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista"  >DESCARGAR FORMATO DE ACTIVIDADES A REALIZAR</button>
                 </div>
 
                 <?php

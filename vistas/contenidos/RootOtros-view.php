@@ -1,3 +1,4 @@
+
 <?php
 
 if(isset($_SESSION['roll_sti'])){
@@ -17,262 +18,367 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navRoot.php";
 
 ?>
-
-
-
-<div class="modal" id="modalregistro" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" style = "width: 900px; max-width:800px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Envio de actividad</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<!-- Registrar Area -->
+<div class="modal" id="modalRegistrarArea" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Area</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-container">
-                        <h2 class="text-center"><strong>Importar Alumnos</strong></h2>
-                        <form id="form_imp" action='#' enctype="multipart/form-data">
-                            <div class="form-group">
-                                <select id="Mselect_user" class="form-control js-example-basic-single" name="Mselect_user" onchange="ShowCarAr(this.value,2)">
-                                    <option value="" selected="">Seleccione el tipo de usuario a registrar</option>
-                                    <?php            
-                                        if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
-                                        echo '<option value="15">Tutor</option>
-                                                <option value="16">Tutorado</option> ';
-                                        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
-                                            echo '<option value="14">Coordinador de Carrera</option>
-                                                <option value="15">Tutor</option>
-                                                <option value="16">Tutorado</option> 
-                                                ';
-                                        }else  if($_SESSION['roll_sti'] == "Admin"){
-                                            echo '<option value="13">Coordinador de Area</option>
-                                                <option value="14">Coordinador de Carrera</option>
-                                                <option value="15">Tutor</option>
-                                                <option value="16">Tutorado</option> 
-                                                ';
-                                        }
-                                    ?>     
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select id="MSel_CarrA" class="form-control" name="MSel_CarrA">
-                                    <option selected="" value="">Carrera</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="id_GenM">
-                                <select class="form-control" id="gen_regM" name="gen_regM">
-                                    <option selected="" value="">Seleccione la Generación</option>
-                                    <?php
-                                    require_once './controladores/usuarioController.php';
-                                    $ins_usuario = new usuarioController();
-                                    $dat_info =$ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
-                                    $dat_info=$dat_info->fetchAll(); 
-                                    foreach($dat_info as $row){
-                                        /*$n=$dat_info->rowCount(); */
-                                        $id = $row['idgeneracion'];
-                                        $da_in = $row['date_ini'];
-                                        $da_fn = $row['date_fin'];
-                                        echo "<option value='$id'>$da_in-$da_fn</option>";
-                                    }
-                                    ?>
-                                                
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-10">
-                                    <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".xls"/>
-                                </div>
-                                <div class="col-lg-2">
-                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xlsx" download="Formato Multiregistro.pdf">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
-                                </div>
-                            </div>
-                            
-                        </form>
-                        
-                        <div class="table-bordered table table-hover table-bordered results" id="content-result" style="overflow: scroll;">
-                            <table id="table_dat" class="table table-striped table-bordered nowrap tablas">
-                                <thead class="bg-primary bill-header cs">
-                                    <tr>
-                                        <!-- <th id="trs-hd"><br><strong>No.</strong><br></th> -->
-                                        <th id="trs-hd"><br><strong>Nombre</strong><br></th>
-                                        <th id="trs-hd"><br><strong>Apellido Paterno</strong><br></th>
-                                        <th id="trs-hd"><br><strong>Apellido Materno</strong><br></th>
-                                        <th id="trs-hd"><br><strong>Sexo</strong><br></th>
-                                        <th id="trs-hd"><br><strong>N Control</strong><br></th>
-                                        <!-- <th id="trs-hd"><br>Generación</th> -->
-                                        <th id="trs-hd"><br>Correo</th>
-                                         <th id="trs-hd"><br>Acciones</th> <!---->
-                                    </tr>
-                                </thead>
-                                <tbody id="table_dat_es"></tbody>
-                                
-                            </table>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="<?php echo SERVERURL;?>FormatRootActividades" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="format_tutortutorado_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
                         </div>
-                        <div class="form-group" id="div-regis">
-                            <button class="btn btn-primary" id="btn-regis">Registrar</button>
-                            <a class="btn btn-primary"  id="btn-cancel" href="<?php echo SERVERURL;?>Registro">Cancelar</a>
-                        </div>       
+                        <div class="form-group">
+                            <label for="idArea">Id del Área</label>
+                            <input class="form-control" type="text" placeholder="Id del Área" id="idArea" name="idarea"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreArea">Nombre del Área</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="NombreArea" name="nombrearea" >
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionArea">Descripción</label>
+                            <input class="form-control" type="text" placeholder="Descripción" id="DescripcionArea" name="descripcionarea">
+                        </div>
 
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <p>Advertencia: El formato admitido es xls</p>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Registrar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<!-- Actualizar Area-->
+<div class="modal" id="modalActArea" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Área</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="idAcArea">Id del Área</label>
+                            <input class="form-control" type="text" placeholder="Id del Área" id="idAcArea" name="idacarea" readonly  >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreAcArea">Nombre del Área</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="NombreAcArea" name="nombreacarea" >
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionAcArea">Descripción</label>
+                            <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAcArea" name="descripcionacarea">
+                        </div>
 
-<div class="register-photo">
-    <div class="form-container">
-        <!--<form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/usuarioAjax.php"  method="POST" data-form="save" autocomplete="off">-->
-         <form action=""  method="post" autocomplete="off">
-            <img id="imgreg" src="vistas/assets/img/meeting.jpg">
-            <h2 class="text-center"><strong>Crear Cuenta</strong></h2>
-            <div class="form-group">
-                <select id="select_user" class="form-control js-example-basic-single" name="select_usertype" onchange="ShowCarAr(this.value,1)">
-                    <option value="0" selected="">Seleccione el tipo de usuario a registrar</option>
-                    <?php            
-                        if($_SESSION['roll_sti'] == "Coordinador de Carrera"){
-                          echo '<option value="15">Tutor</option>
-                                <option value="16">Tutorado</option> ';
-                        }else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
-                             echo '<option value="14">Coordinador de Carrera</option>
-                                   <option value="15">Tutor</option>
-                                   <option value="16">Tutorado</option> 
-                                   ';
-                        }else  if($_SESSION['roll_sti'] == "Admin"){
-                            echo '<option value="13">Coordinador de Area</option>
-                                  <option value="14">Coordinador de Carrera</option>
-                                  <option value="15">Tutor</option>
-                                  <option value="16">Tutorado</option> 
-                                   ';
-                        }
-                    ?>     
-                </select>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Actualizar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Nombre" name="name_reg" >
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text"  placeholder="Apellido Paterno" name="apellidop_reg">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text"  placeholder="Apellido Materno" name="apellidom_reg">
-            </div>
-            <div class="form-group">
-                <label>Fecha de Nacimiento</label>
-                <input class="form-control" name="fecha_reg" type="date">
-            </div> 
-            <div class="form-group">
-                <select class="form-control" name="sexo_reg">
-                    <option value="" selected="">Sexo</option>
-                    <option value="M">Hombre</option>
-                    <option value="F">Mujer</option>
-                </select>
-            </div>
-            <div class="form-group">    
-                <input class="form-control" type="tel" placeholder="Número de Telefono" name="numero_tel_reg">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text"  placeholder="Dirección" name="direccion_reg">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="email" placeholder="Email" name="email_reg">
-            </div>
-            <div class="form-group">
-                <select id="Sel_CarrA" class="form-control" name="carrera_reg">
-                    <option selected="" value="">Carrera</option>              
-                </select>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Numero de Control/Matricula" name="no_ctrl_reg">
-            </div>
-            <div class="form-group" id="id_Gen">
-                <select class="form-control" id="gen_reg" name="gen_reg">
-                    <option selected="" value="">Seleccione la Generación</option>
-                    <?php
-                    require_once './controladores/usuarioController.php';
-                    $ins_usuario = new usuarioController();
-                    $dat_info =$ins_usuario->datos_ta_controlador("idgeneracion, DATE_FORMAT(fecha_inicio,'%M %Y') as date_ini, DATE_FORMAT(fecha_fin,'%M %Y') as date_fin","generacion",";");
-                    $dat_info=$dat_info->fetchAll(); 
-                    foreach($dat_info as $row){
-                        /*$n=$dat_info->rowCount(); */
-                        $id = $row['idgeneracion'];
-                        $da_in = $row['date_ini'];
-                        $da_fn = $row['date_fin'];
-                        echo "<option value='$id'>$da_in-$da_fn</option>";
-                    }
-                    ?>
-                                   
-                </select>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Registrar</button>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalregistro" >Importar csv</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
 <?php
-       if(isset($_POST['name_reg'])){
-            /*echo 'Envio detectado';*/
-             require_once "./controladores/usuarioController.php";
+if(isset($_POST['idacactividad'])){
+    require_once "./controladores/actividadesController.php";
 
-            $ins_usuario= new usuarioController(); 
+    $ins_usuario= new actividadesController();
 
-            echo $ins_usuario->registro_usuario_controlador();
-        }  
-    ?>
+    echo $ins_usuario->actualizar_actividad_controlador();
+}
+?>
+
+<!-- Registrar Carrera -->
+<div class="modal" id="modalRegistrarCarrera" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Carrera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="<?php echo SERVERURL;?>FormatRootActividades" method="post">
+                        <div class="form-group">
+                            <label for="idCarrera">Id Carrera</label>
+                            <input class="form-control" type="text" placeholder="Id Carrera" id="idCarrera" name="idcarrera"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreCarrera">Nombre de la Carrera</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="NombreCarrera" name="nombrecarrera" >
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Actualizar Carrera-->
+<div class="modal" id="modalActCarrera" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Carrera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="idAcCarrera">Id Carrera</label>
+                            <input class="form-control" type="text" placeholder="Id Carrera" id="idAcCarrera" name="idaccarrera" readonly >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreAcCarrera">Nombre de la Carrera</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="NombreAcCarrera" name="nombreaccarrera" >
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+if(isset($_POST['idacactividad'])){
+    require_once "./controladores/actividadesController.php";
+
+    $ins_usuario= new actividadesController();
+
+    echo $ins_usuario->actualizar_actividad_controlador();
+}
+?>
+
+    <div class="register-photo">
+        <div class="form-container">
+            <p id="tit-activities"><strong>REGISTRAR</strong></p>
+            <div class="col-md-12 search-table-col">
+                <!-- Registrar Area -->
+                <div class="form-group pull-right col-lg-4">
+                    <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalRegistrarArea">Registrar Area</button>
+                </div>
+                <?php
+                require_once './controladores/actividadesController.php';
+                $ins_actividad = new actividadesController();
+                $resultado='';
+                $ncontrol='';
+                $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
+                ?>
+                <div class="table-responsive table-bordered table  ">
+                    <table class="table table-bordered table-hover tablas">
+                        <thead class="bg-primary bill-header cs">
+                        <tr class="text-center roboto-medium">
+                            <th>#</th>
+                            <th>Id de Area</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php
+                        $contador=1;
+//                        foreach($dat_info as $row){
+//                            $idactividad = $row['idActividades'];
+//                            $name = $row['Nombre'];
+//                            $fechareg = $row['Fecha_registro'];
+//                            $desc = $row['Descripcion'];
+//                            $semestrere = $row['Semestrerealizacion_sug'];
 
 
+
+
+
+                        echo '<tr>
+                            <td>'.$contador.'</td>
+                           <td>Id Area</td>
+                            <td>Nombre</td>
+                            <td>Descripción</td>
+                            
+                            <td>
+                                 <center>
+                                     <abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE()" data-toggle="modal" data-target="#modalActArea" >
+                                     <i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
+                                     
+                                     <abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity()">
+                                           <i class="far fa-trash-alt"></i></button></abbr>
+                                    
+                                </center>
+                            </td>
+                           
+                        </tr>';
+                        $contador++;
+
+                        //}
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+            <!-- Registrar Carrera -->
+
+            <div class="col-md-12 search-table-col">
+
+                <div class="form-group pull-right col-lg-4">
+                    <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalRegistrarCarrera">Registrar Carrera</button>
+                </div>
+                <?php
+                require_once './controladores/actividadesController.php';
+                $ins_actividad = new actividadesController();
+                $resultado='';
+                $ncontrol='';
+                $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
+                ?>
+                <div class="table-responsive table-bordered table  ">
+                    <table class="table table-bordered table-hover tablas">
+                        <thead class="bg-primary bill-header cs">
+                        <tr class="text-center roboto-medium">
+                            <th>#</th>
+                            <th>Id Carrera</th>
+                            <th>Nombre</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php
+                        $contador=1;
+                        //                        foreach($dat_info as $row){
+                        //                            $idactividad = $row['idActividades'];
+                        //                            $name = $row['Nombre'];
+                        //                            $fechareg = $row['Fecha_registro'];
+                        //                            $desc = $row['Descripcion'];
+                        //                            $semestrere = $row['Semestrerealizacion_sug'];
+
+
+
+
+
+                        echo '<tr>
+                            <td>'.$contador.'</td>
+                           <td>Id Area</td>
+                            <td>Nombre</td>
+                            
+                            <td>
+                                 <center>
+                                     <abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE()" data-toggle="modal" data-target="#modalActCarrera" >
+                                     <i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
+                                     
+                                     <abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity()">
+                                           <i class="far fa-trash-alt"></i></button></abbr>
+                                </center>
+                            </td>
+                           
+                        </tr>';
+                        $contador++;
+
+                        //}
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
 
 <script type="text/javascript">
-    function ShowCarAr(x,opt){
-        // console.log("select tipo");  
-        var userType = document.getElementById("select_user").value=x;
-        var dataus = 'selectCarReg='+userType;
-        const sel = document.querySelector("#Sel_CarrA");
-        const sel2 = document.querySelector("#MSel_CarrA");
-        $.ajax({
-                url: '<?php echo SERVERURL; ?>ajax/usuarioAjax.php',
-                type: 'post',
-                data: dataus,
-                success: function (resp){
-                    /*alert(resp);*/ 
-                    if(opt===1){
-                        sel.innerHTML =resp;
-                        if(userType=='16'){
-                            document.getElementById("id_Gen").style.display = "block";
-                            $("#gen_reg option[value='']").attr("selected",false);
-                        }else{
-                            document.getElementById("id_Gen").style.display = "none";
-                            $("#gen_reg option[value='']").attr("selected",true);
-                        }
-                    }else {
-                        sel2.innerHTML = resp;
 
-                        if(userType=='16'){
-                            document.getElementById("id_GenM").style.display = "block";
-                            $("#gen_regM option[value='']").attr("selected",false);
-                        }else{
-                            document.getElementById("id_GenM").style.display = "none";
-                            $("#gen_regM option[value='']").attr("selected",true);
-                        }
-                    }
-                }
-        });   
+
+    function clickTE(idAcAct){
+        var datos = new FormData();
+        datos.append("idAcActividad",idAcAct);
+
+        $.ajax({
+            url: "ajax/acactividadAjax.php",
+            method: "post",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: function(respuesta){
+                $("#idAcActividad").val(respuesta[0][0]);
+                $("#NombreAcAct").val(respuesta[0][1]);
+                $("#DescripcionAcAct").val(respuesta[0][2]);
+                $("#SemestreSugAc").val(respuesta[0][3]);
+
+            }
+        });
     }
 
+    function eliminarActivity(idDelAct){
+        var datos = new FormData();
+        datos.append("del_idActividad",idDelAct);
 
+        Swal.fire({
+            title: "Advertencia",
+            text: "¿Esta seguro de eliminar esta actividad?",
+            showCancelButton:true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+
+        }).then(resultado=>{
+            if(resultado.value){
+                $.ajax({
+                    url: "ajax/acactividadAjax.php",
+                    method: "post",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'JSON',
+                    success: function(respuesta){
+                        Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo).then(res=> {
+                            if (res.value) {
+                                location.reload();
+
+                            }
+                        })
+
+                    }
+                });
+            }
+
+        });
+
+
+    }
 
 </script>
     
-
-
-<script src="<?php echo SERVERURL;?>vistas/assets/js/xlsx.js"></script>
-<script language="JavaScript" src="<?php echo SERVERURL;?>vistas/assets/js/registrocsv.js"> 
-</script>
