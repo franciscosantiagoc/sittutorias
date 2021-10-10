@@ -80,6 +80,7 @@ class actividadesController extends actividadesModel
 
     if ($idac_actividad == "" || $nombre == "" || $descripcion == "" || $semestre_sug == "" ) {
         echo '
+            </script>
              
                Swal.fire({
                   title: "Ocurrio un error inesperado",
@@ -91,7 +92,7 @@ class actividadesController extends actividadesModel
                      window.location="'.SERVERURL.'CCActividades"
                   }
                });
-            
+            </script>
             ';
         exit();
     }
@@ -432,14 +433,14 @@ class actividadesController extends actividadesModel
                   }
                });
          </script>
-         '; 
+         ';
          exit();
       }
       //$date = date('YY-mm-dd');
        $check_idact = mainModel::ejecutar_consulta_simple("SELECT * FROM actividades_asignadas WHERE Actividades_idActividades=$idact AND Tutorado_NControl=$nctrl");
 
-     
-      
+
+
       $datos_actividad_upd = [
          "idActividad" => $idact,
          "NControl" => $nctrl,
@@ -449,14 +450,14 @@ class actividadesController extends actividadesModel
       ];
        //echo "<script>alert($date);</script>"; /**/
 
-       
+
       if($check_idact->rowCount()!=0){
           $registro_actividad = actividadesModel::actualizar_actividadasignada_modelo($datos_actividad_upd);
        }else {
           $registro_actividad = actividadesModel::entregar_actividad_modelo($datos_actividad_upd);
       }
       /**/
-      
+
      if($registro_actividad){//comprobando realizacion de actualizacion
         echo '
            <script> 
@@ -498,7 +499,6 @@ class actividadesController extends actividadesModel
         $nombre = mainModel::limpiar_cadena($_POST['rnombreact']);
         $descripcion = mainModel::limpiar_cadena($_POST['rdescripcionact']);
         $semestresug =mainModel::limpiar_cadena($_POST['semestresug']);
-        //$semestreoblig = false;
         if(isset($_POST['actoblig'])){
             $semestreoblig="activo";
 
@@ -506,14 +506,6 @@ class actividadesController extends actividadesModel
             $semestreoblig = "inactivo";
 
         }
-
-
-
-        //$semestreoblig =$_POST['actoblig'];
-        //$file = $_FILES['Ractivity-file'];
-
-
-
 
         $check_idact = mainModel::ejecutar_consulta_simple("SELECT * FROM actividades WHERE idActividades=$idact");
         if ($check_idact->rowCount() != 0) {
@@ -526,7 +518,7 @@ class actividadesController extends actividadesModel
                confirmButtonText: "Aceptar"
             }).then((result)=>{
                if(result.value){
-                  window.location="'.SERVERURL.'CCActividades"
+                  window.location="'.SERVERURL.'RootActividades"
                }
             });
          </script>
@@ -546,7 +538,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -595,7 +587,7 @@ class actividadesController extends actividadesModel
                 confirmButtonText: "Aceptar"
              }).then((result)=>{
                 if(result.value){
-                    window.location="'.SERVERURL.'CCActividades"
+                    window.location="'.SERVERURL.'RootActividades"
                 }
               });
            </script>
@@ -611,7 +603,7 @@ class actividadesController extends actividadesModel
                  confirmButtonText: "Aceptar"
               }).then((result)=>{
                  if(result.value){
-                    window.location="'.SERVERURL.'CCActividades"
+                    window.location="'.SERVERURL.'RootActividades"
                  }
               });
            </script>

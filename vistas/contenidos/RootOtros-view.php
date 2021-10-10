@@ -30,9 +30,9 @@ include "./vistas/inc/navRoot.php";
             </div>
             <div class="modal-body">
                 <div class="form-container">
-                    <form action="<?php echo SERVERURL;?>FormatRootActividades" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <input type="hidden" name="format_tutortutorado_matricula" value="<?php echo $_SESSION['matricula_sti'];?>">
+                            <input type="hidden" name="" value="<?php echo $_SESSION['matricula_sti'];?>">
                         </div>
                         <div class="form-group">
                             <label for="idArea">Id del Área</label>
@@ -56,6 +56,16 @@ include "./vistas/inc/navRoot.php";
         </div>
     </div>
 </div>
+<?php
+if(isset($_POST['idarea']) && isset($_POST['nombrearea'])){
+    require_once "./controladores/areasController.php";
+
+    $ins_actividad= new areasController();
+
+    echo $ins_actividad->registrar_area_controlador();
+
+}
+?>
 
 <!-- Actualizar Area-->
 <div class="modal" id="modalActArea" tabindex="-1" role="dialog" aria-hidden="true">
@@ -94,12 +104,12 @@ include "./vistas/inc/navRoot.php";
 </div>
 
 <?php
-if(isset($_POST['idacactividad'])){
-    require_once "./controladores/actividadesController.php";
+if(isset($_POST['idacarea'])){
+    require_once "./controladores/areasController.php";
 
-    $ins_usuario= new actividadesController();
+    $ins_area= new areasController();
 
-    echo $ins_usuario->actualizar_actividad_controlador();
+    echo $ins_area->actualizar_area_controlador();
 }
 ?>
 
@@ -119,6 +129,22 @@ if(isset($_POST['idacactividad'])){
                         <div class="form-group">
                             <label for="idCarrera">Id Carrera</label>
                             <input class="form-control" type="text" placeholder="Id Carrera" id="idCarrera" name="idcarrera"  >
+                        </div>
+                        <div class="form-group" id="idArea">
+                            <select class="form-control" id="id_Area_reg" name="idarea">
+                                <option selected="" value="">Seleccione el Área</option>
+                                <?php
+                                require_once './controladores/usuarioController.php';
+                                $ins_usuario = new usuarioController();
+                                $dat_info =$ins_usuario->datos_ta_controlador("idAreas, Nombre","areas",";");
+                                $dat_info=$dat_info->fetchAll();
+                                foreach($dat_info as $row){
+                                    $id = $row['idAreas'];
+                                    $nombre = $row['Nombre'];
+                                    echo "<option value='$id'>$nombre</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="nombreCarrera">Nombre de la Carrera</label>
@@ -184,11 +210,11 @@ if(isset($_POST['idacactividad'])){
                     <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalRegistrarArea">Registrar Area</button>
                 </div>
                 <?php
-                require_once './controladores/actividadesController.php';
-                $ins_actividad = new actividadesController();
+                require_once './controladores/areasController.php';
+                $ins_area = new areasController();
                 $resultado='';
                 $ncontrol='';
-                $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
+                $dat_info = $ins_area->consulta_de_areas_controlador();
                 ?>
                 <div class="table-responsive table-bordered table  ">
                     <table class="table table-bordered table-hover tablas">
@@ -205,29 +231,24 @@ if(isset($_POST['idacactividad'])){
                         <tbody>
                         <?php
                         $contador=1;
-//                        foreach($dat_info as $row){
-//                            $idactividad = $row['idActividades'];
-//                            $name = $row['Nombre'];
-//                            $fechareg = $row['Fecha_registro'];
-//                            $desc = $row['Descripcion'];
-//                            $semestrere = $row['Semestrerealizacion_sug'];
-
-
-
+                        foreach($dat_info as $row){
+                            $idarea = $row['idAreas'];
+                            $name = $row['Nombre'];
+                            $descripcion = $row['Descripcion'];
 
 
                         echo '<tr>
                             <td>'.$contador.'</td>
-                           <td>Id Area</td>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
+                           <td>'.$idarea.'</td>
+                            <td>'.$name.'</td>
+                            <td>'.$descripcion.'</td>
                             
                             <td>
                                  <center>
-                                     <abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE()" data-toggle="modal" data-target="#modalActArea" >
+                                     <abbr title="Actualizar area"><button class="btnVerInfoArea" onclick="clickActArea('.$idarea.')" data-toggle="modal" data-target="#modalActArea" >
                                      <i class="fas fa-sync-alt" style="font-size: 15px;"></i></button></abbr>
                                      
-                                     <abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity()">
+                                     <abbr title="Eliminar area"><button type="submit" onclick="eliminarArea('.$idarea.')">
                                            <i class="far fa-trash-alt"></i></button></abbr>
                                     
                                 </center>
@@ -236,7 +257,7 @@ if(isset($_POST['idacactividad'])){
                         </tr>';
                         $contador++;
 
-                        //}
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -253,11 +274,11 @@ if(isset($_POST['idacactividad'])){
                     <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalRegistrarCarrera">Registrar Carrera</button>
                 </div>
                 <?php
-                require_once './controladores/actividadesController.php';
-                $ins_actividad = new actividadesController();
+                require_once './controladores/carrerasController.php';
+                $ins_actividad = new carrerasController();
                 $resultado='';
                 $ncontrol='';
-                $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
+                $dat_info = $ins_actividad->consulta_de_carreras_controlador();
                 ?>
                 <div class="table-responsive table-bordered table  ">
                     <table class="table table-bordered table-hover tablas">
@@ -265,7 +286,8 @@ if(isset($_POST['idacactividad'])){
                         <tr class="text-center roboto-medium">
                             <th>#</th>
                             <th>Id Carrera</th>
-                            <th>Nombre</th>
+                            <th>Área</th>
+                            <th>Carrera</th>
                             <th>ACCIONES</th>
                         </tr>
                         </thead>
@@ -273,22 +295,15 @@ if(isset($_POST['idacactividad'])){
                         <tbody>
                         <?php
                         $contador=1;
-                        //                        foreach($dat_info as $row){
-                        //                            $idactividad = $row['idActividades'];
-                        //                            $name = $row['Nombre'];
-                        //                            $fechareg = $row['Fecha_registro'];
-                        //                            $desc = $row['Descripcion'];
-                        //                            $semestrere = $row['Semestrerealizacion_sug'];
-
-
-
-
-
+                        foreach($dat_info as $row){
+                            $idcarrera = $row['idCarrera'];
+                            $namearea = $row['Nombre_area'];
+                            $namecarrera = $row['Nombre'];
                         echo '<tr>
-                            <td>'.$contador.'</td>
-                           <td>Id Area</td>
-                            <td>Nombre</td>
-                            
+                                <td>'.$contador.'</td>
+                                <td>'.$idcarrera.'</td>
+                                <td>'.$namearea.'</td>
+                                <td>'.$namecarrera.'</td>
                             <td>
                                  <center>
                                      <abbr title="Actualizar actividad"><button class="btnVerInfoTE" onclick="clickTE()" data-toggle="modal" data-target="#modalActCarrera" >
@@ -301,8 +316,7 @@ if(isset($_POST['idacactividad'])){
                            
                         </tr>';
                         $contador++;
-
-                        //}
+                        }
                         ?>
                         </tbody>
                     </table>
@@ -318,12 +332,12 @@ if(isset($_POST['idacactividad'])){
 <script type="text/javascript">
 
 
-    function clickTE(idAcAct){
+    function clickActArea(idAcArea){
         var datos = new FormData();
-        datos.append("idAcActividad",idAcAct);
+        datos.append("idAcArea",idAcArea);
 
         $.ajax({
-            url: "ajax/acactividadAjax.php",
+            url: "ajax/areaAjax.php",
             method: "post",
             data: datos,
             cache: false,
@@ -331,22 +345,21 @@ if(isset($_POST['idacactividad'])){
             processData: false,
             dataType: 'JSON',
             success: function(respuesta){
-                $("#idAcActividad").val(respuesta[0][0]);
-                $("#NombreAcAct").val(respuesta[0][1]);
-                $("#DescripcionAcAct").val(respuesta[0][2]);
-                $("#SemestreSugAc").val(respuesta[0][3]);
+                $("#idAcArea").val(respuesta[0][0]);
+                $("#NombreAcArea").val(respuesta[0][1]);
+                $("#DescripcionAcArea").val(respuesta[0][2]);
 
             }
         });
     }
 
-    function eliminarActivity(idDelAct){
+    function eliminarArea(idDelArea){
         var datos = new FormData();
-        datos.append("del_idActividad",idDelAct);
+        datos.append("del_idArea",idDelArea);
 
         Swal.fire({
             title: "Advertencia",
-            text: "¿Esta seguro de eliminar esta actividad?",
+            text: "¿Esta seguro de eliminar esta área?",
             showCancelButton:true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -356,7 +369,7 @@ if(isset($_POST['idacactividad'])){
         }).then(resultado=>{
             if(resultado.value){
                 $.ajax({
-                    url: "ajax/acactividadAjax.php",
+                    url: "ajax/areaAjax.php",
                     method: "post",
                     data: datos,
                     cache: false,
@@ -381,4 +394,3 @@ if(isset($_POST['idacactividad'])){
     }
 
 </script>
-    

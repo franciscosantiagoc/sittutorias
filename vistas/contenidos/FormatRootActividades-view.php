@@ -69,17 +69,41 @@ $html = '<!DOCTYPE html>
 			<div class="details-activitys">
 				<p class="activity-desc">
 					Actividades del plan de acción tutorial a realizarse:
-				</p>';
+				</p>
+				
+				<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th class="qty">No.</th>
+						<th class="unit">Nombre</th>
+						<th class="desc">Descripción</th>
+						<th class="unit">Semestre sugerido</th>
+						<th class="unit">Fecha registro</th>
+						
+						
+					</tr>
+				</thead>
+				<tbody>';
+
+
 
 
 $total_AC = count($consulta_actividades);
 for($i=0; $i<$total_AC;$i++) {
-    $html .= '<p class="activity">
-					'.($i+1).'. '. $consulta_actividades[$i][0].'
-				</p>';
+    $html .= '<tr>
+                <td class="qty">'.($i+1).'</td>
+                <td class="unit">'.$consulta_actividades[$i][0].'</td>
+                <td class="desc">'.$consulta_actividades[$i][1].'</td>
+                <td class="unit">'.$consulta_actividades[$i][2].'</td>
+                 <td class="unit">'.$consulta_actividades[$i][3].'</td>  
+              </tr>
+
+                ';
 }
 
-$html .='<p class="activity-descf">
+$html .='</tbody>
+         </table>   
+            <p class="activity-descf">
 					Reporte Semestral que integren las actividades ya descritas
 				</p>
 				

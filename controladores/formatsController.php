@@ -53,7 +53,7 @@ class formatsController extends mainModel {
 
         $consulta_tutorados = $consulta_tutorados ->fetchAll();
 
-        $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT ac.Nombre FROM actividades ac ORDER BY ac.Semestrerealizacion_sug;");
+        $consulta_actividades = mainModel::ejecutar_consulta_simple("SELECT ac.Nombre,ac.Descripcion,ac.Semestrerealizacion_sug, DATE_FORMAT(ac.Fecha_registro,'%d-%m-%Y') as fecha FROM actividades ac ORDER BY ac.Semestrerealizacion_sug;");
 
         $consulta_actividades = $consulta_actividades  ->fetchAll();
 

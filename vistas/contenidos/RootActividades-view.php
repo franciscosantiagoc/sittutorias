@@ -117,69 +117,72 @@ if(isset($_POST['idacactividad'])){
 }
 ?>
 
-<!-- Agregar Actividad #modalAActividad -->
-<!--<div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <div class="form-container">-->
-<!--                    <form action="" method="post" enctype="multipart/form-data">-->
-<!--                        <center><img src="" height="300px" id="image-infoTE"></center>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="idActividad">Id de la Actividad</label>-->
-<!--                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="nombreACt">Nombre de la actividad</label>-->
-<!--                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="descripcion">Descripción</label>-->
-<!--                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="semestresug">Semestre Sugerido</label>-->
-<!--                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="semestresug">Semestre obligatorio</label>-->
-<!--                            <!--<input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug"> -->
-<!--                            <input type="checkbox" id="ActOblig" name="actoblig" value="activo"><br>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Archivo</label>-->
-<!--                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+ <!-- Agregar Actividad  -->
+<div class="modal" id="modalAActividad" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Agregar nueva actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <center><img src="" height="300px" id="image-infoTE"></center>
+                        <div class="form-group">
+                            <label for="idActividad">Id de la Actividad</label>
+                            <input class="form-control" type="text" placeholder="Id de la Actividad" id="RidActividad" name="ridactividad" >
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreACt">Nombre de la actividad</label>
+                            <input class="form-control" type="text" placeholder="Nombre" id="RNombreAct" name="rnombreact" >
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input class="form-control" type="text" placeholder="Descripción" id="RDescripcionAct" name="rdescripcionact">
+                        </div>
+                        <div class="form-group">
+                            <label for="semestresug">Semestre Sugerido</label>
+                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSug" name="semestresug">
+                        </div>
+                        <div class="form-group">
+                            <label for="semestresug">Semestre obligatorio</label>
+                            <input type="checkbox" id="ActOblig" name="actoblig" value="activo"><br>
+                        </div>
+                        <div class="form-group">
+                            <label>Archivo</label>
+                            <input type="file" name="Ractivity-file" id="ractivity-file" accept=".pdf">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit" >Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php
-//if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
-//    require_once "./controladores/actividadesController.php";
-//
-//    $ins_actividad= new actividadesController();
-//
-//    echo $ins_actividad->agregar_actividad_controlador();
-//
-//}
-//?>
+if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
+    require_once "./controladores/actividadesController.php";
+
+    $ins_actividad= new actividadesController();
+
+    echo $ins_actividad->agregar_actividad_controlador();
+
+}
+?>
 
     <div class="register-photo">
         <div class="form-container">
             <p id="tit-activities"><strong>ACTIVIDADES</strong></p>
             <div class="col-md-12 search-table-col">
+
+                <div class="form-group pull-right col-lg-4">
+                    <button class="btn btn-primary btn-block border rounded" onclick="clickTE()" data-toggle="modal"  data-target="#modalAActividad" type="submit" >agregar NUEVA ACTIVIDAD</button>
+                </div>
                 <!-- Descargar formato de actividades a realizar -->
                 <div class="form-group pull-right col-lg-4">
                     <button class="btn btn-primary btn-block border rounded"  data-toggle="modal"  data-target="#modalDescargarLista"  >DESCARGAR FORMATO DE ACTIVIDADES A REALIZAR</button>
@@ -234,9 +237,9 @@ if(isset($_POST['idacactividad'])){
                                  </center>
                             </td>
                             <td>
-                                <abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity('.$idactividad.')">
+                                <center><abbr title="Eliminar actividad"><button type="submit" onclick="eliminarActivity('.$idactividad.')">
                                        <i class="far fa-trash-alt"></i>
-                                </button></abbr>
+                                </button></abbr></center>
                                
                             </td>
                         </tr>';
