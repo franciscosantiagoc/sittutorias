@@ -3,25 +3,25 @@
    
    class carrerasModel extends mainModel{
 
-      //modelo registro de actividad
-      protected static function registrar_area_modelo($datos){
-           $sql = mainModel::conectar()->prepare("INSERT INTO areas(idAreas, Nombre, Descripcion) VALUES(:idArea, :NombreArea, :Descripcion)");
 
-           $sql->bindParam(":idArea", $datos['idArea']);
-           $sql->bindParam(":NombreArea", $datos['NombreArea']);
-           $sql->bindParam(":Descripcion",$datos['Descripcion']);
+      protected static function registrar_carrera_modelo($datos){
+           $sql = mainModel::conectar()->prepare("INSERT INTO carrera(idCarrera, Areas_idAreas, Nombre) VALUES(:idCarrera, :idAreas, :Nombre)");
+
+           $sql->bindParam(":idCarrera", $datos['idCarrera']);
+           $sql->bindParam(":idAreas", $datos['idArea']);
+           $sql->bindParam(":Nombre",$datos['Nombre']);
            $sql->execute();
           return $sql;
       }
 
 
-       protected static function actualizar_areas_modelo($datos){
+       protected static function actualizar_carreras_modelo($datos){
 
-           $sql = mainModel::conectar()->prepare("UPDATE areas  SET idAreas=:idAcArea, Nombre=:Nombre, Descripcion=:Descripcion WHERE idAreas=:idAcArea ");
+           $sql = mainModel::conectar()->prepare("UPDATE carrera  SET idCarrera=:idActCarrera, Areas_idAreas=:idActArea, Nombre=:NombreCarrera WHERE idCarrera=:idActCarrera ");
 
-           $sql->bindParam(":idAcArea", $datos['idAcArea']);
-           $sql->bindParam(":Nombre", $datos['Nombre']);
-           $sql->bindParam(":Descripcion",$datos['Descripcion']);
+           $sql->bindParam(":idActCarrera", $datos['idAcCarrera']);
+           $sql->bindParam(":idActArea", $datos['idActArea']);
+           $sql->bindParam(":NombreCarrera",$datos['NombreActCarrera']);
            $sql->execute();
 
 

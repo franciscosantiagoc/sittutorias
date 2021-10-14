@@ -1,36 +1,34 @@
 <?php
 if ($peticionAjax) {
-   require_once "../modelos/areasModel.php";
+   require_once "../modelos/carrerasModel.php";
 } else {
-   require_once "./modelos/areasModel.php";
+   require_once "./modelos/carrerasModel.php";
 }
 
-class carrerasController extends areasModel
+class carrerasController extends carrerasModel
 {
 
-
-
-    public function consulta_acarea_controlador()
+    public function consulta_ac_carrera_controlador()
     {
-        $idarea=mainModel::limpiar_cadena($_POST['idAcArea']);
-        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT idAreas,Nombre,Descripcion FROM areas WHERE idAreas=$idarea;");
-        $dat_info = $consulta_areas -> fetchAll();
+        $idCarrera=mainModel::limpiar_cadena($_POST['idAcCarrera']);
+        $idAcArea=mainModel::limpiar_cadena($_POST['idAcCArea']);
+        $consulta_carrera = mainModel::ejecutar_consulta_simple("SELECT c.idCarrera,a.Nombre AS Nombre_Area,c.Nombre,c.Areas_idAreas FROM  carrera c,areas a  WHERE a.idAreas=c.Areas_idAreas AND c.Areas_idAreas = $idAcArea AND c.idCarrera=$idCarrera;");
+        $dat_info = $consulta_carrera -> fetchAll();
         return $dat_info;
+
 
     }
 
-    public function actualizar_area_controlador()
+    public function actualizar_carrera_controlador()
     {
-        $idac_area = mainModel::limpiar_cadena($_POST['idacarea']);
-        $nombrearea = mainModel::limpiar_cadena($_POST['nombreacarea']);
-        $descripcion = mainModel::limpiar_cadena($_POST['descripcionacarea']);
+        $idac_carrera = mainModel::limpiar_cadena($_POST['idaccarrera']);
+        $idac_area = mainModel::limpiar_cadena($_POST['idaccarea']);
+        $nombrecarrera = mainModel::limpiar_cadena($_POST['nombreaccarrera']);
 
 
-
-
-        if ($idac_area == "" || $nombrearea == "" || $descripcion == ""  ) {
+        if ($idac_carrera == ""  || $nombrecarrera == ""  ) {
             echo '
-             
+
                Swal.fire({
                   title: "Ocurrio un error inesperado",
                   text: "Algunos campos estan vacios, por favor rellénelos",
@@ -41,18 +39,16 @@ class carrerasController extends areasModel
                      window.location="'.SERVERURL.'RootOtros"
                   }
                });
-            
+
             ';
             exit();
         }
-
-
-        if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_area)) {
+        if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_carrera)) {
             echo '
-            <script> 
+            <script>
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "El formato del id del área no es válido",
+                  text: "El formato del id de la carrera no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
@@ -65,9 +61,9 @@ class carrerasController extends areasModel
             exit();
         }
 
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombrearea)) {
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombrecarrera)) {
             echo '
-            <script> 
+            <script>
                Swal.fire({
                   title: "Ocurrio un error inesperado",
                   text: "El formato del Nombre del área no es válido",
@@ -82,12 +78,39 @@ class carrerasController extends areasModel
             ';
             exit();
         }
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,70}", $descripcion)) {
+
+        $datos_carrera_upd = [
+            "idAcCarrera" =>$idac_carrera,
+            "idActArea" => $idac_area,
+            "NombreActCarrera" => $nombrecarrera
+
+        ];
+
+        $actualizar_carrera = carrerasModel::actualizar_carreras_modelo($datos_carrera_upd);
+
+        if($actualizar_carrera->rowCount()==1){
             echo '
-            <script> 
+            <script>
+               Swal.fire({
+                  title: "Carrera Actualizada",
+                  text: "Los datos se han actualizado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'RootOtros"
+                  }
+               });
+            </script>
+            ';
+            exit();
+
+        }else{
+            echo '
+            <script>
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "El formato de la descripcion del área, no es válido",
+                  text: "Error al actualizar los datos, modifique los datos para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
@@ -100,56 +123,20 @@ class carrerasController extends areasModel
             exit();
         }
 
-
-
-        $datos_area_upd = [
-            "idAcArea" =>$idac_area,
-            "Nombre" => $nombrearea,
-            "Descripcion" => $descripcion
-
-        ];
-
-        $actualizar_area = areasModel::actualizar_areas_modelo($datos_area_upd);
-
-        if($actualizar_area->rowCount()==1){
-            echo '
-            <script> 
-               Swal.fire({
-                  title: "Àrea Actualizada",
-                  text: "Los datos se han actualizado correctamente",
-                  type: "success",
-                  confirmButtonText: "Aceptar"
-               });
-            </script>
-            ';
-
-        }else{
-            echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "Error al actualizar los datos, modifique los datos para continuar",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               });
-            </script>
-            ';
-        }
-
     }
 
-    public function registrar_area_controlador(){
+    public function registrar_carrera_controlador(){
+        $idcarrera = mainModel::limpiar_cadena($_POST['idcarrera']);
         $idarea = mainModel::limpiar_cadena($_POST['idarea']);
-        $nombrearea = mainModel::limpiar_cadena($_POST['nombrearea']);
-        $descripcion = mainModel::limpiar_cadena($_POST['descripcionarea']);
+        $nombrecarrera = mainModel::limpiar_cadena($_POST['nombrecarrera']);
 
-        $check_idarea = mainModel::ejecutar_consulta_simple("SELECT * FROM areas WHERE idAreas=$idarea");
-        if ($check_idarea->rowCount() != 0) {
+        $check_idcarrera = mainModel::ejecutar_consulta_simple("SELECT * FROM carrera WHERE idCarrera=$idcarrera");
+        if ($check_idcarrera->rowCount() != 0) {
             echo '
          <script> 
             Swal.fire({
                title: "Ocurrio un error inesperado",
-               text: "Se ha detectado un error, el id de la actividad ya existe ",
+               text: "Se ha detectado un error, el id de la carrera ya existe ",
                type: "error",
                confirmButtonText: "Aceptar"
             }).then((result)=>{
@@ -164,7 +151,7 @@ class carrerasController extends areasModel
 
 
 
-        if ($idarea == "" || $nombrearea == "" || $descripcion == "" ) {
+        if ($idcarrera == "" || $nombrecarrera == "" ) {
             echo '
             
             <script> 
@@ -185,12 +172,12 @@ class carrerasController extends areasModel
         }
 
 
-        if (mainModel::verificar_datos("[0-9-]{4,8}", $idarea)) {
+        if (mainModel::verificar_datos("[0-9-]{4,8}", $idcarrera)) {
             echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "El formato del id de la actividad no es válido",
+                  text: "El formato del id de la carrera no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
@@ -203,29 +190,12 @@ class carrerasController extends areasModel
             exit();
         }
 
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombrearea)) {
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombrecarrera)) {
             echo '
             <script> 
                Swal.fire({
                   title: "Ocurrio un error inesperado",
-                  text: "El formato del Nombre del área no es válido",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'RootOtros"
-                  }
-               });
-            </script>
-            ';
-            exit();
-        }
-        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,70}", $descripcion)) {
-            echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "El formato de la descripcion del área, no es válido",
+                  text: "El formato del Nombre de la carrera no es válido",
                   type: "error",
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
@@ -239,24 +209,22 @@ class carrerasController extends areasModel
         }
 
 
-
-
-        $datos_area_upd = [
-            "idArea" => $idarea,
-            "NombreArea"=> $nombrearea,
-            "Descripcion" => $descripcion
+        $datos_carrera_upd = [
+            "idCarrera" => $idcarrera,
+            "idArea"=> $idarea,
+            "Nombre" => $nombrecarrera
 
         ];
 
-        $registro_area = areasModel::registrar_area_modelo($datos_area_upd);
+        $registro_carrera = carrerasModel::registrar_carrera_modelo($datos_carrera_upd);
 
-        if($registro_area->rowCount()!= 0 ){//comprobando realizacion de actualizacion
+        if($registro_carrera->rowCount()!= 0 ){//comprobando realizacion de actualizacion
 
             echo '
           <script> 
              Swal.fire({
-                title: "Registro de área exitoso",
-                text: "Se ha registrado el área correctamente",
+                title: "Registro de carrera exitoso",
+                text: "Se ha registrado la carrera correctamente",
                 type: "success",
                 confirmButtonText: "Aceptar"
              }).then((result)=>{
@@ -272,7 +240,7 @@ class carrerasController extends areasModel
            <script> 
               Swal.fire({
                  title: "Ocurrio un error inesperado",
-                 text: "Error al registrar el área, recargue la pagina para continuar",
+                 text: "Error al registrar la carrera, recargue la pagina para continuar",
                  type: "error",
                  confirmButtonText: "Aceptar"
               }).then((result)=>{
@@ -287,13 +255,13 @@ class carrerasController extends areasModel
 
     }
 
-   public function eliminar_area_controlador(){
-       $idarea=mainModel::limpiar_cadena($_POST['del_idArea']);
-       $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM areas WHERE idAreas=$idarea");
+   public function eliminar_carrera_controlador(){
+       $id_del_carrera=mainModel::limpiar_cadena($_POST['del_idCarrera']);
+       $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM carrera WHERE idCarrera=$id_del_carrera");
        if($respuesta->rowCount() == 0){
            $alerta=[
                'Titulo'=> "Error",
-               'Texto' => "Error al eliminar el área, intente de nuevo",
+               'Texto' => "Error al eliminar la carrera, intente de nuevo",
                'Tipo' => "error"
            ];
            echo json_encode($alerta);
@@ -301,8 +269,8 @@ class carrerasController extends areasModel
 
        }else{
            $alerta=[
-               'Titulo'=> "Área eliminada",
-               'Texto' => "El Área se ha eliminado correctamente",
+               'Titulo'=> "Carrera eliminada",
+               'Texto' => "La carrera se ha eliminado correctamente",
                'Tipo' => "success"
            ];
            echo json_encode($alerta);
@@ -315,7 +283,7 @@ class carrerasController extends areasModel
     {
         // Por parte de Direct
         //$idarea=mainModel::limpiar_cadena($_POST['idAcActividad']);
-        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT c.idCarrera,a.Nombre AS Nombre_area,c.Nombre FROM areas a, carrera c WHERE c.Areas_idAreas=a.idAreas;");
+        $consulta_areas = mainModel::ejecutar_consulta_simple("SELECT c.idCarrera,a.Nombre AS Nombre_Area,c.Nombre, c.Areas_idAreas FROM areas a, carrera c WHERE c.Areas_idAreas=a.idAreas ;");
         $dat_info = $consulta_areas -> fetchAll();
         return $dat_info;
     }

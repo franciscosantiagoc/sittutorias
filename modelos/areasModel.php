@@ -3,7 +3,6 @@
    
    class areasModel extends mainModel{
 
-      //modelo registro de actividad
       protected static function registrar_area_modelo($datos){
            $sql = mainModel::conectar()->prepare("INSERT INTO areas(idAreas, Nombre, Descripcion) VALUES(:idArea, :NombreArea, :Descripcion)");
 

@@ -7,9 +7,6 @@ if ($peticionAjax) {
 
 class areasController extends areasModel
 {
-
-
-
     public function consulta_acarea_controlador()
     {
         $idarea=mainModel::limpiar_cadena($_POST['idAcArea']);
@@ -25,12 +22,9 @@ class areasController extends areasModel
         $nombrearea = mainModel::limpiar_cadena($_POST['nombreacarea']);
         $descripcion = mainModel::limpiar_cadena($_POST['descripcionacarea']);
 
-
-
-
         if ($idac_area == "" || $nombrearea == "" || $descripcion == ""  ) {
             echo '
-             
+            <script>
                Swal.fire({
                   title: "Ocurrio un error inesperado",
                   text: "Algunos campos estan vacios, por favor rellénelos",
@@ -41,11 +35,11 @@ class areasController extends areasModel
                      window.location="'.SERVERURL.'RootOtros"
                   }
                });
+             </script>
             
             ';
             exit();
         }
-
 
         if (mainModel::verificar_datos("[0-9-]{4,8}", $idac_area)) {
             echo '
@@ -99,16 +93,12 @@ class areasController extends areasModel
             ';
             exit();
         }
-
-
-
         $datos_area_upd = [
             "idAcArea" =>$idac_area,
             "Nombre" => $nombrearea,
             "Descripcion" => $descripcion
 
         ];
-
         $actualizar_area = areasModel::actualizar_areas_modelo($datos_area_upd);
 
         if($actualizar_area->rowCount()==1){
@@ -119,10 +109,14 @@ class areasController extends areasModel
                   text: "Los datos se han actualizado correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'RootOtros"
+                  }
                });
             </script>
             ';
-
+            exit();
         }else{
             echo '
             <script> 
@@ -131,13 +125,17 @@ class areasController extends areasModel
                   text: "Error al actualizar los datos, modifique los datos para continuar",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'RootOtros"
+                  }
                });
             </script>
             ';
+            exit();
         }
 
     }
-
     public function registrar_area_controlador(){
         $idarea = mainModel::limpiar_cadena($_POST['idarea']);
         $nombrearea = mainModel::limpiar_cadena($_POST['nombrearea']);
@@ -162,8 +160,6 @@ class areasController extends areasModel
             exit();
         }
 
-
-
         if ($idarea == "" || $nombrearea == "" || $descripcion == "" ) {
             echo '
             
@@ -183,8 +179,6 @@ class areasController extends areasModel
             ';
             exit();
         }
-
-
         if (mainModel::verificar_datos("[0-9-]{4,8}", $idarea)) {
             echo '
             <script> 
@@ -202,7 +196,6 @@ class areasController extends areasModel
             ';
             exit();
         }
-
         if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,50}", $nombrearea)) {
             echo '
             <script> 
@@ -237,10 +230,6 @@ class areasController extends areasModel
             ';
             exit();
         }
-
-
-
-
         $datos_area_upd = [
             "idArea" => $idarea,
             "NombreArea"=> $nombrearea,
@@ -250,7 +239,7 @@ class areasController extends areasModel
 
         $registro_area = areasModel::registrar_area_modelo($datos_area_upd);
 
-        if($registro_area->rowCount()!= 0 ){//comprobando realizacion de actualizacion
+        if($registro_area->rowCount()!= 0 ){
 
             echo '
           <script> 
@@ -283,13 +272,11 @@ class areasController extends areasModel
            </script>
            ';
         }
-
-
     }
 
    public function eliminar_area_controlador(){
-       $idarea=mainModel::limpiar_cadena($_POST['del_idArea']);
-       $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM areas WHERE idAreas=$idarea");
+       $id_del_area=mainModel::limpiar_cadena($_POST['del_idArea']);
+       $respuesta=mainModel::ejecutar_consulta_simple("DELETE FROM areas WHERE idAreas=$id_del_area");
        if($respuesta->rowCount() == 0){
            $alerta=[
                'Titulo'=> "Error",
