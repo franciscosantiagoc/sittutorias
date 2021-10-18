@@ -166,8 +166,8 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
                 $dat_info = $ins_actividad->consulta_de_actividad_controlador($resultado);
 
                 ?>
-                <div class="table-responsive table-bordered table  ">
-                    <table class="table table-bordered table-hover tablas">
+                <div class="table-responsive" >
+                    <table class="table-striped table-bordered dataTable display tablas">
                         <thead class="bg-primary bill-header cs">
                         <tr class="text-center roboto-medium">
                             <th>#</th>
@@ -176,8 +176,6 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
                             <th>Fecha de registro</th>
                             <th>Descripción</th>
                             <th>Semestre sugerido</th>
-<!--                            <th>ACTUALIZAR</th>-->
-<!--                            <th>ELIMINAR</th>-->
                         </tr>
                         </thead>
 
@@ -231,7 +229,7 @@ if(isset($_POST['ridactividad']) && isset($_POST['rnombreact'])){
 <script type="text/javascript">
 
 
-    function clickTE(idAcAct){//1 - ver 2- actualizar
+    function clickTE(idAcAct){
         var datos = new FormData();
         datos.append("idAcActividad",idAcAct);
 

@@ -89,39 +89,13 @@
   margin-top: 60px;
 }
 
-#container-alummenu {
-  margin: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 #menu {
   height: 00px;
 }
 
-@media (min-width: 768px) {
-  labelnot {
-    margin-left: 230px;
-  }
-}
 
-@media (max-width: 768px) {
-  #labelnot {
-    margin-left: 230px;
-  }
-}
-
-@media (min-width: 300px) {
-  #col-solic {
-    margin-top: 230px;
-  }
-}
-
-@media (min-width: 300px) {
-  #col-solic {
-    margin-top: 0px;
-  }
-}
 
 p {
   text-align: center;
@@ -188,6 +162,28 @@ p {
   display: grid;
 }
 
-.buttons {
+
+
+@media (min-width: 768px) {
+  #labelnot {
+    margin-left: 230px;
+  }
 }
 
+@media (max-width: 768px) {
+  #labelnot {
+    margin-left: 230px;
+  }
+}
+
+@media (min-width: 300px) {
+  #col-solic {
+    margin-top: 230px;
+  }
+}
+
+@media (min-width: 300px) {
+  #col-solic {
+    margin-top: 0px;
+  }
+}

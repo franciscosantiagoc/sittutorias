@@ -22,13 +22,13 @@
     ?>  
         
     
-    <div class="container" id="container-alummenu">
-        <div class="row" id="row">
+    <div class="container" id="container-menu">
+        <div class="row">
             <div class="col">
                 <p><strong class="encabezado">TUTOR</strong></p>
             </div>
         </div>
-        <div class="row" id="row">
+        <div class="row row-menu">
             <div class="col"><a href="<?php echo SERVERURL;?>TutorTutorados"><img id="imgactivities" style="background-repeat: no-repeat;background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;background-image: url(vistas/assets/img/Icons/ver-tutorados.png);"></a>
                 <p><strong>Tutorados</strong></p>
             </div>

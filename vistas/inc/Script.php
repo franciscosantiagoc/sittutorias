@@ -61,29 +61,14 @@
                }
       });
    });
+
 </script>
-<!-- <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script> -->
-<!-- <script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-<script src="<?php echo SERVERURL;?>vistas/datatables/datatables.net-bs/js/responsive.bootstrap.min.js"></script>  -->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
-
-
-
-
-
-
-
-
-
-<script src="<?php echo SERVERURL;?>vistas/assets/js/Table-With-Search.js"></script>
 
 <script> //funcion para checar el tiempo de inactividad del usuario en tiempo en tiempo real
     /* $(function() {
