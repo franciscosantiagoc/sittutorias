@@ -204,7 +204,7 @@ include "./vistas/inc/navCoordinadorC.php"
         datos.append("idActividad_tutor",idAct);
         datos.append("ncontrolActividad_tutor",Ncontrol);
         $.ajax({
-            url: "ajax/actividadAjax.php",
+            url: `${server}/ajax/actividadAjax.php`,
             method: "post",
             data: datos,
             cache: false,

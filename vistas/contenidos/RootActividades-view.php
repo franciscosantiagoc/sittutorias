@@ -70,10 +70,10 @@ include "./vistas/inc/navRoot.php";
                             <label for="descripcionac">Descripción</label>
                             <input class="form-control" type="text" placeholder="Descripción" id="DescripcionAcAct" name="descripcionacact">
                         </div>
-                        <div class="form-group">
-                            <label for="semestresugac">Semestre Sugerido</label>
-                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSugAc" name="semestresugac">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="semestresugac">Semestre Sugerido</label>-->
+<!--                            <input class="form-control" type="text" placeholder="Semestre sugerido" id="SemestreSugAc" name="semestresugac">-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <label for="semestresugac">Semestre Sugerido</label>
