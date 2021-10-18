@@ -85,7 +85,7 @@ include "./vistas/inc/navStudent.php"
                     $ins_actividad = new usuarioController();
                     $ncontrol=$_SESSION['NControl_sti'];
 
-                    $dat_info = $ins_actividad->datos_usuario_controlador("Consulta","","SELECT FLOOR(TIMESTAMPDIFF(MONTH, g.fecha_inicio, CURDATE())/6) AS semester FROM tutorado t, generacion g WHERE g.idGeneracion=t.Generacion_idGeneracion AND t.NControl=$ncontrol");
+                    $dat_info = $ins_actividad->datos_usuario_controlador("Consulta","","SELECT CEIL(TIMESTAMPDIFF(MONTH, g.fecha_inicio, CURDATE())/6) AS semester FROM tutorado t, generacion g WHERE g.idGeneracion=t.Generacion_idGeneracion AND t.NControl=$ncontrol");
                     $dat_info = $dat_info->fetch();
                     $semetre = (int)$dat_info['semester'];
 
@@ -119,6 +119,11 @@ include "./vistas/inc/navStudent.php"
                                         <p>Atención: se han detectado Actividades importantes a entregar</p>
                                     </div>";
                     }
+                    $messages .="
+                                
+                                    <div style=' width: 350px; padding: 10px; border: solid 2px black;'>
+                                        <p>Semestre actual: $semetre</p>
+                                    </div>";
                     $messages .="</div>";
                     echo $messages;
 

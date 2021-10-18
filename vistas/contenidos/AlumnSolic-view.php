@@ -70,26 +70,26 @@ require_once "./modelos/mainModel.php";
                             $ins_actividad = new tutoresController();
                             $dat_info = $ins_actividad->consulta_tutores_controlador();
                             ?>
-                            <div class="modal-body">
-                                <div class="form-container">
-                                    <div class="form-group" id="tutores">
-                                        <label for="cambio_tutor" id="label_tutor" style="display: none">Ingrese Nombre/Matrícula</label>
-                                        <input type="text" id="cambio_tutor" name="Cambio_Tutor" list="lista-tutores" style="display: none">
-                                        <datalist id="lista-tutores">
-                                            <?php
-                                            foreach ($dat_info as $row) {
-                                                $idmatric = $row['Matricula'];
-                                                $name = $row['Nombre'];
-                                                $apellp = $row['APaterno'];
-                                                $apellm = $row['AMaterno'];
-                                                echo '
-                                                    <option value="'.$idmatric.'">'.$name.' '.$apellp.' '.$apellm.'</option>';
-                                            }
-                                            ?>
-                                        </datalist>
-                                    </div>
+                            
+                            <div class="form-container">
+                                <div class="form-group" id="tutores">
+                                    <label for="cambio_tutor" id="label_tutor" style="display: none">Ingrese Nombre/Matrícula</label>
+                                    <input type="text" id="cambio_tutor" name="Cambio_Tutor" list="lista-tutores" style="display: none">
+                                    <datalist id="lista-tutores">
+                                        <?php
+                                        foreach ($dat_info as $row) {
+                                            $idmatric = $row['Matricula'];
+                                            $name = $row['Nombre'];
+                                            $apellp = $row['APaterno'];
+                                            $apellm = $row['AMaterno'];
+                                            echo '
+                                                <option value="'.$idmatric.'">'.$name.' '.$apellp.' '.$apellm.'</option>';
+                                        }
+                                        ?>
+                                    </datalist>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <input class="btn btn-primary btn-block" type="submit" >
                             </div>
