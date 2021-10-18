@@ -129,7 +129,14 @@ a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
 }
 
 /*------------------------- BODY -------------------------*/
-
+.dropdown-menu.show {
+    width: fit-content;
+    height: fit-content;
+}
+input[type='checkbox']{
+    width: 25px;
+    height: 25px;
+}
 .row-menu{
     justify-content: center;
 }

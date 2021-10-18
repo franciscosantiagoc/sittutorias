@@ -2,7 +2,7 @@
 <?php 
 
 if(isset($_SESSION['roll_sti'])){
-    if($_SESSION['roll_sti'] != "Docente"){
+    if($_SESSION['roll_sti'] == "Docente"){
         include "./vistas/inc/navTutor.php";
     }else if($_SESSION['roll_sti'] == "Tutorado"){
         include "./vistas/inc/navStudent.php";
@@ -13,6 +13,8 @@ if(isset($_SESSION['roll_sti'])){
     }else  if($_SESSION['roll_sti'] == "Admin"){
         include "./vistas/inc/navRoot.php";
     }
+
+    echo '|'.$_SESSION['roll_sti'].'|';
     
 
 } 
@@ -70,9 +72,17 @@ if(isset($_SESSION['roll_sti'])){
                 <div class="form-group">
                     <input class="form-control" type="email" value="<?php echo $row['Correo'];?>" placeholder="Email" name="email_upd">
                 </div>
+                <?php if(isset($_SESSION['matricula_sti'])){ ?>
+                <div class="form-group">
+                    <label>Tutor Activo:</label>
+                    <input type="checkbox" placeholder="active" name="check_upd" <?php if($row['Disponibilidad']=='1')echo 'checked'; ?>>
+                </div>
+                    <?php }?>
+
                 <div class="form-group">
                     <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php if(isset($_SESSION['NControl_sti'])) echo $_SESSION['NControl_sti']; else echo  $_SESSION['matricula_sti'];?>" name="no_upd">
                 </div>
+                
                 <div class="form-group">
                     <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php echo $_SESSION['id_sti'];?>" name="noUs_upd">
                 </div>

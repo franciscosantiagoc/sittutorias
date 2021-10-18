@@ -173,7 +173,7 @@ class solicitudesController extends solicitudModel
     // CCSolicitudes modal
     public function solicitudes_tutorado_controlador(){
         $noctrl = mainModel::limpiar_cadena($_POST['solic_tutorado']);
-        $idsolicitud = "". mainModel::limpiar_cadena($_POST['id_solicitud']);
+        $idsolicitud = mainModel::limpiar_cadena($_POST['id_solicitud']);
         if (mainModel::verificar_datos("[0-9-]{8,10}", $noctrl)) {
             $alerta = [
                 "Response" => "error",
@@ -263,7 +263,7 @@ class solicitudesController extends solicitudModel
         $nocntrol = mainModel::limpiar_cadena($_POST['solic_nctrl']);
         $valid = mainModel::limpiar_cadena($_POST['validar_solic']);
 
-        $consulta = mainModel::ejecutar_consulta_simple("SELECT * FROM solicitudes WHERE idSolicitud=$idSolicitud");
+        $consulta = mainModel::ejecutar_consulta_simple("SELECT * FROM solicitudes WHERE idSolicitud='$idSolicitud'");
 
         if($consulta->rowCount() == 0) {
             echo '
@@ -292,6 +292,8 @@ class solicitudesController extends solicitudModel
             if($tipo == 'Solicitar cambio de Tutor'){
                 $matricula = $consulta['Trabajador_Matriculanuevo'];
                 $respuesta = $this->solicitud_cambio_tutor($nocntrol,$matricula);
+                /* echo "<script>alert('nctrl:|$nocntrol| matricula:|$matricula| resp:|$respuesta| val:|$valid|  id:|$idSolicitud|')</script>";
+                exit(); */
             }elseif($tipo == 'Solicitar constancia'){
                 $consulta = mainModel::ejecutar_consulta_simple("SELECT idActividades FROM actividades");
                 $consul_act = mainModel::ejecutar_consulta_simple("SELECT Actividades_idActividades FROM actividades_asignadas WHERE Tutorado_NControl = $nocntrol AND Estatus = 'Validado'");
@@ -299,7 +301,7 @@ class solicitudesController extends solicitudModel
                 $datAct = $consulta->fetchAll(); // id de Actividades asignadas
                 $datAcTu = $consul_act->fetchAll(); // id de Actividades validadas alumnos
                 $aux = '' ;
-//                $exit = false;
+            //                $exit = false;
                 for ($i = 0 ; $i < $consulta->rowCount() ; $i++){
                     $exit = false;
                     for ($j = 0 ; $j < $consul_act->rowCount() ; $j++){
