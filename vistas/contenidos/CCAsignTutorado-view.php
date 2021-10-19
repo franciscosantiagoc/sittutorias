@@ -257,7 +257,8 @@ if(isset($_SESSION['roll_sti'])){
                 dataType: 'JSON',
                 success: function(resp){
                     if(resp.hasOwnProperty('Titulo')){
-                        Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
+                        Swal.fire(resp.Titulo,resp.Texto,resp.Tipo)
+
                     }else{
                         $("#v_nombre").val(resp[0][0]);
                         $("#v_apellidoP").val(resp[0][1]);
@@ -352,7 +353,19 @@ if(isset($_SESSION['roll_sti'])){
                         processData: false,
                         dataType: 'JSON',
                         success: function(respuesta){
-                            Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo);
+                            //Swal.fire(respuesta.Titulo,respuesta.Texto,respuesta.Tipo);
+                            console.log(respuesta.Tipo);
+                            Swal.fire({
+                                title: respuesta.Titulo,
+                                text: respuesta.Text,
+                                icon: respuesta.Tipo
+
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+
+                                window.location = window.location;
+
+                            })
                         }
                     });
                 }

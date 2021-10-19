@@ -110,7 +110,7 @@ class tutoradosController extends usuarioModel
         if($data->rowCount()==0){
             $alerta = [
                 "Titulo" => "Error inesperado",
-                "Texto" => "Error el usuario seleccionado no existe, recargue la página para continuar matri: $matricula ncontrol:$nocontrol",
+                "Texto" => "Error el usuario seleccionado no existe, recargue la página para continuar",
                 "Tipo" => "error"
             ];
             echo json_encode($alerta);
