@@ -65,19 +65,20 @@
          $condNpass='';
          $condicionNPass = '';
          $tabla = ','.$datos['Tabla'];
-         if($datos['Tabla']!="tutorado")
-            $campo='Matricula';
+         if($datos['Tabla']!="tutorado") {
+             $campo = 'Matricula';
+         }
          if($datos['Foto']!="")
             $condfoto= ', Foto=:Foto';
           if($datos['NPass']!=""){
              $condNpass= ', contraseña=:NPass';
              $condicionNPass = 'AND '.$campo.'=:IDUS AND contraseña=:Pass';
-          }else{
-             $tabla = '';
-          }
+          }//else{
+             //$tabla = '';
+          //}
             
          
-         
+
          $sql = mainModel::conectar()->prepare("UPDATE persona $tabla SET Nombre=:Nombre, APaterno=:APaterno, AMaterno=:AMaterno, Sexo=:Sexo, Correo=:Correo, NTelefono=:NTelefono, Direccion=:Direccion $condfoto $condNpass WHERE idPersona=:ID $condicionNPass");
    
    
@@ -90,6 +91,8 @@
          $sql->bindParam(":Direccion", $datos['Direccion']);
          $sql->bindParam(":ID", $datos['ID']);
 
+         
+
           if($condfoto!="")
             $sql->bindParam(":Foto",$datos['Foto']);
          if($condNpass!=""){
@@ -99,6 +102,14 @@
          }
         
          $sql->execute();
+         
+        /*  if($tabla=='trabajador' && $sql){ 
+           $matri=$datos['IDUS'];
+          $sql2 = mainModel::conectar()->prepare("UPDATE $tabla SET Disponibilidad=:Dispo WHERE Matricula=$matri"); 
+          $sql2->bindParam(":Dispo", $datos['Disp']);
+          $sql2->execute();
+          return $sql2;
+         } */
 
 
          return $sql;
@@ -198,8 +209,10 @@
 
        /*------------------------Modelo datos usuario------------------------*/
        protected static function datos_usuario_modelo($tipo,$tabla,$condicion){
+           $extra='';
+           if($tabla=='trabajador')$extra=',Disponibilidad';
           if($tipo=="Unico"){
-            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
+            $sql=mainModel::conectar()->prepare("SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion$extra FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;");
             //echo "SELECT idPersona,Nombre,Apaterno,Amaterno,FechaNac,Correo,Sexo,NTelefono,Direccion FROM persona, $tabla WHERE idPersona=Persona_idPersona AND $condicion ;";
           }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT * FROM $tabla $condicion");

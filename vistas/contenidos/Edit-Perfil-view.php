@@ -13,8 +13,6 @@ if(isset($_SESSION['roll_sti'])){
     }else  if($_SESSION['roll_sti'] == "Admin"){
         include "./vistas/inc/navRoot.php";
     }
-
-    echo '|'.$_SESSION['roll_sti'].'|';
     
 
 } 
@@ -73,11 +71,12 @@ if(isset($_SESSION['roll_sti'])){
                     <input class="form-control" type="email" value="<?php echo $row['Correo'];?>" placeholder="Email" name="email_upd">
                 </div>
                 <?php if(isset($_SESSION['matricula_sti'])){ ?>
-                <div class="form-group">
-                    <label>Tutor Activo:</label>
-                    <input type="checkbox" placeholder="active" name="check_upd" <?php if($row['Disponibilidad']=='1')echo 'checked'; ?>>
-                </div>
-                    <?php }?>
+                    <div class="form-group">
+                        <label for="upd_check">Tutor Activo:</label>
+                        <input id="upd_check" type="checkbox" placeholder="active" name="check_upd" <?php if($row['Disponibilidad']=='1')echo 'checked';?>>
+                        <abbr title="Definir disponibilidad para recibir asignación de tutorados"><i class="far fa-question-circle" style="font-size:30px"></i></abbr>
+                    </div>
+                <?php }?>
 
                 <div class="form-group">
                     <input class="form-control" type="hidden" pattern="[0-9-]{8,10}" value="<?php if(isset($_SESSION['NControl_sti'])) echo $_SESSION['NControl_sti']; else echo  $_SESSION['matricula_sti'];?>" name="no_upd">
@@ -108,7 +107,7 @@ if(isset($_SESSION['roll_sti'])){
 
             $ins_usuario= new usuarioController(); 
 
-            echo $ins_usuario->actualizar_usuario_controlador();
+            var_dump($ins_usuario->actualizar_usuario_controlador());
         }
     ?>
 
