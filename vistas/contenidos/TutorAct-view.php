@@ -29,7 +29,7 @@ include "./vistas/inc/navTutor.php";
             </div>
             <div class="modal-body">
                 <div class="form-container" style=" display: flex;flex-direction: row;width: 890px;">
-                    <embed id="activityfile-view" type="application/pdf" style="width: 500px;  height: 600px; border: solid 2px gray; margin-right:20px;">
+                    <embed id="activityfile-view" type="application/pdf" style="width: 500px;  height: auto; border: solid 2px gray; margin-right:20px;">
                     <form method="post" >
 
                         <div class="form-group">

@@ -60,6 +60,7 @@ class actividadesController extends actividadesModel
 
     }
 
+   
    public function consulta_acactividad_controlador()
     {
         $idactividad=mainModel::limpiar_cadena($_POST['idAcActividad']);
@@ -236,6 +237,7 @@ class actividadesController extends actividadesModel
         $id_actividad = mainModel::limpiar_cadena($_POST['idEditActividad']);
         $ncontrol = mainModel::limpiar_cadena($_POST['idAlEditActividad']);
         $calif = mainModel::limpiar_cadena($_POST['caleditact']);
+        $comment= mainModel::limpiar_cadena($_POST['commeditact']);
 
         $check_act=mainModel::ejecutar_consulta_simple("SELECT idActividades FROM actividades Where idActividades=$id_actividad");
         if($check_act->rowCount()==0){
@@ -289,11 +291,13 @@ class actividadesController extends actividadesModel
             </script>';
             exit();
         }
+        if($comment=="") $comment='Buen trabajo';
 
         $datos_usuario_upd = [
             "idActividad" =>$id_actividad,
             "NControl"=>$ncontrol,
-            "calif"=>$calif
+            "calif"=>$calif,
+            "comment"=>$comment
 
         ];
 
