@@ -89,7 +89,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -108,7 +108,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -126,7 +126,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -143,7 +143,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -161,7 +161,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -180,7 +180,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'CCActividades"
+                     window.location="'.SERVERURL.'RootActividades"
                   }
                });
             </script>
@@ -188,7 +188,6 @@ class actividadesController extends actividadesModel
         exit();
     }
 
-    $temp = $_FILES['Acactivity-file']['tmp_name'];
     $link_file='/directory/formats/'.$idac_actividad.'_'.$nombre.".pdf";
     $link_file=trim($link_file,' ');
     $archivo = '.'.$link_file;
@@ -209,8 +208,8 @@ class actividadesController extends actividadesModel
         echo '
             <script> 
                Swal.fire({
-                  title: "Usuario Actualizado",
-                  text: "Los datos se han actualizado correctamente",
+                  title: "Actividad Actualizada",
+                  text: "Los datos de la actividad se han actualizado correctamente",
                   type: "success",
                   confirmButtonText: "Aceptar"
                });
