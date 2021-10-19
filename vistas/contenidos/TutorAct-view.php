@@ -20,7 +20,7 @@ include "./vistas/inc/navTutor.php";
 
 <div class="modal" id="modalEditarActividad" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 890px;max-width: 870px;">
-        <div class="modal-content" style="width: 890px;">
+        <div class="modal-content" style="width: fit-content;">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Envio de actividad</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@ include "./vistas/inc/navTutor.php";
             </div>
             <div class="modal-body">
                 <div class="form-container" style=" display: flex;flex-direction: row;width: 890px;">
-                    <embed id="activityfile-view" type="application/pdf" style="width: 500px;  height: 600px; border: solid 2px gray; margin-right:20px;">
+                    <embed id="activityfile-view" type="application/pdf" style="width: 500px;  height: auto; border: solid 2px gray; margin-right:20px;">
                     <form method="post" >
 
                         <div class="form-group">
@@ -69,6 +69,10 @@ include "./vistas/inc/navTutor.php";
                             <label>1 Materias NA (Buena)</label><br>
                             <label>2-3 Materias NA (Regular)</label><br>
                             <label>4 Materias NA (Riesgo)</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="commentEditActividad">Agregar un comentario</label>
+                            <textarea id="commentEditActividad" name="commeditact"></textarea>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit" >Enviar revisión</button>
@@ -185,7 +189,7 @@ include "./vistas/inc/navTutor.php";
         datos.append("idActividad_tutor",idAct);
         datos.append("ncontrolActividad_tutor",Ncontrol);
         $.ajax({
-            url: "ajax/actividadAjax.php",
+            url: `${server}ajax/actividadAjax.php`,
             method: "post",
             data: datos,
             cache: false,

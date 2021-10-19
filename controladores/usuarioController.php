@@ -562,6 +562,8 @@ class usuarioController extends usuarioModel
       $pass = mainModel::limpiar_cadena($_POST['pass_upd']);
       $passn = mainModel::limpiar_cadena($_POST['npass_upd']);
       $passn_repeat = mainModel::limpiar_cadena($_POST['rnpass_upd']);
+
+      $check_tutor= isset($_POST['check_upd'])?'1':'0';
        
         /*$img = $_FILES['imgperfil_upd']; */
       $iduser = mainModel::limpiar_cadena($_POST['no_upd']);
@@ -726,7 +728,7 @@ class usuarioController extends usuarioModel
         exit();
       }
 
-      if (mainModel::verificar_datos("[0-9-]{8,10}", $iduser)) {
+      if (mainModel::verificar_datos("[0-9]{4,10}", $iduser)) {
          echo '
             <script> 
                Swal.fire({
@@ -863,9 +865,14 @@ class usuarioController extends usuarioModel
       
       /* echo $actualizar_usuario;
       exit(); */
+      $sentencia=false;
+      if(isset($_SESSION['matricula_sti'])){
+         $sentencia=mainModel::ejecutar_consulta_simple("UPDATE trabajador SET Disponibilidad='$check_tutor' WHERE Matricula='".$_SESSION['matricula_sti']."'");
+         $sentencia=$sentencia->rowCount()==1?true:false;
+      }
       $actualizar_usuario = usuarioModel::actualizar_usuario_modelo($datos_usuario_upd);
-      
-      if($actualizar_usuario->rowCount()==1){//comprobando realizacion de actualizacion
+
+      if($actualizar_usuario->rowCount()==1 || $sentencia){//comprobando realizacion de actualizacion
          echo '
             <script> 
                Swal.fire({

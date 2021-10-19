@@ -219,6 +219,10 @@ a:hover {
     #title-nav {
         margin-left: 100px;
     }
+
+    table{
+        height: 630px;
+    }
 }
 
 
