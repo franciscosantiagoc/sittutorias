@@ -237,7 +237,9 @@ class actividadesController extends actividadesModel
         $id_actividad = mainModel::limpiar_cadena($_POST['idEditActividad']);
         $ncontrol = mainModel::limpiar_cadena($_POST['idAlEditActividad']);
         $calif = mainModel::limpiar_cadena($_POST['caleditact']);
-        $comment= mainModel::limpiar_cadena($_POST['commeditact']);
+        //$comment= mainModel::limpiar_cadena($_POST['commeditact']);
+
+        $comment=$_POST['commeditact'];
 
         $check_act=mainModel::ejecutar_consulta_simple("SELECT idActividades FROM actividades Where idActividades=$id_actividad");
         if($check_act->rowCount()==0){
@@ -250,7 +252,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'TutorAct"
+                     window.location=window.location;
                   }
                });
             </script>';
@@ -268,7 +270,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'TutorAct"
+                     window.location=window.location;
                   }
                });
             </script>';
@@ -285,12 +287,55 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'TutorAct"
+                     window.location=window.location;
                   }
                });
             </script>';
             exit();
         }
+        /* echo "
+            <script> console.log('$comment');
+            </script>
+            "; 
+        exit();*/
+        if($calif=="no-check" && $comment==""){
+         echo '
+         <script> 
+         
+            Swal.fire({
+               title: "Ocurrio un error inesperado",
+               text: "Debe agregar el motivo por el cual rechazó la actividad",
+               type: "error",
+               confirmButtonText: "Aceptar"
+            }).then((result)=>{
+               if(result.value){
+                  window.location=window.location;
+               }
+            });
+         </script>
+         ';
+         exit();
+        }
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,. ]{0,150}", $comment)) {
+         echo '
+            <script> 
+            
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "El campo comentario solo acepta carácteres alfanumericos",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location=window.location;
+                  }
+               });
+            </script>
+            ';
+            exit();
+         }
+
+        
         if($comment=="") $comment='Buen trabajo';
 
         $datos_usuario_upd = [
@@ -314,7 +359,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'TutorAct"
+                     window.location=window.location;
                   }
                });
             </script>';
@@ -330,7 +375,7 @@ class actividadesController extends actividadesModel
                   confirmButtonText: "Aceptar"
                }).then((result)=>{
                   if(result.value){
-                     window.location="'.SERVERURL.'TutorAct"
+                     window.location=window.location;
                   }
                });
             </script>';

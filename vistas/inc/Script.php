@@ -4,6 +4,10 @@
 
 <script>
    $(document).ready(function() {
+   
+
+
+
       $( ".logout-sesion" ).click(function() {
          Swal.fire({
             title: '¿Quiere salir del sistema?',

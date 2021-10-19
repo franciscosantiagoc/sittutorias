@@ -57,7 +57,7 @@ include "./vistas/inc/navCoordinadorC.php"
                                 <option value="10">Excelente</option>
                                 <option value="9">Buena</option>
                                 <option value="8">Regular</option>
-                                <option value="5">Riesgo</option>
+                                <option value="5">Muy escaso</option>
                                 <option value="no-check">Rechazar Actividad</option>
                             </select>
                             <abbr title="La valoración es acorde a la puntuación de la actividad"><i class="fas fa-question-circle primary"></i></abbr>
@@ -67,15 +67,15 @@ include "./vistas/inc/navCoordinadorC.php"
                             <label>0 Materias NA (Excelentes)</label><br>
                             <label>1 Materias NA (Buena)</label><br>
                             <label>2-3 Materias NA (Regular)</label><br>
-                            <label>4 Materias NA (Riesgo)</label>
+                            <label>4 Materias NA (Muy escaso)</label>
                         </div>
 
                         <div class="form-group">
                             <label for="commentEditActividad">Agregar un comentario</label>
-                            <textarea id="commentEditActividad" name="commeditact"></textarea>
+                            <textarea id="commentEditActividad" name="commeditact" maxlength="150"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-block" type="submit" >Enviar revisión</button>
+                            <button class="btn btn-primary btn-block" type="submit">Enviar revisión</button>
                         </div>
                     </form>
                 </div>
@@ -183,7 +183,7 @@ include "./vistas/inc/navCoordinadorC.php"
                         <td><center>'.$actividades[$i][3].'</center></td>
                         <td><center>'.$actividades[$i][4].'</center></td>                        
                         <td>';
-                        if($actividades[$i][0]!="Validado"){
+                        if($actividades[$i][0]!="Validado" && $actividades[$i][0]!="Rechazado"){
                             $fila .=' <center><abbr title="Click para revisar actividad">
                             <button data-toggle="modal" data-target="#modalEditarActividad" onclick="clickActividad('.$actividades[$i][5].','.$actividades[$i][4].')"><i class="fa fa-edit" style="font-size: 15px;"></i>
                             </button></abbr></center>';
