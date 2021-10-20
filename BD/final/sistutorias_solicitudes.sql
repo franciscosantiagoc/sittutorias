@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `solicitudes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solicitudes` (
-  `idSolicitud` varchar(30) NOT NULL DEFAULT '',
+  `idSolicitud` varchar(50) NOT NULL DEFAULT '',
   `tipo_solicitud` varchar(150) NOT NULL,
   `Trabajador_Matriculanuevo` varchar(45) DEFAULT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
+  `Tutorado_NControl` int(15) NOT NULL,
   `fecha_solicitud` date NOT NULL,
   `estado` tinyint(4) NOT NULL,
   PRIMARY KEY (`idSolicitud`),

@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `liberacion_const`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `liberacion_const` (
-  `Tutorado_NControl` int(11) NOT NULL,
+  `Tutorado_NControl` int(15) NOT NULL,
   `Coordinador_Matricula` varchar(50) DEFAULT NULL,
   `Fecha_liberacion` date DEFAULT NULL,
   PRIMARY KEY (`Tutorado_NControl`),

@@ -104,7 +104,7 @@ include "./vistas/inc/navRoot.php";
      <div class="modal-dialog modal-dialog-centered" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLongTitle">Actualizar coordinador de carrera</h5>
+                 <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Coordinador de Carrera</h5>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                  </button>
@@ -302,7 +302,7 @@ include "./vistas/inc/navRoot.php";
 
          Swal.fire({
              title: "Advertencia",
-             text: "¿Esta seguro de eliminar este coordinador de carrera?",
+             text: "¿Esta seguro de eliminar este Coordinador de Carrera?",
              showCancelButton:true,
              confirmButtonColor: '#3085d6',
              cancelButtonColor: '#d33',

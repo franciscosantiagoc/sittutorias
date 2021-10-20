@@ -9,7 +9,7 @@ class coordinadorescController extends usuarioModel
 {
     public function consulta_coordinadoresc_controlador()
     {
-        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador De Carrera'  ORDER BY p.Nombre ";
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona  AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador de Carrera'  ORDER BY p.Nombre ";
         $consulta_coordinadoresc = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_coordinadoresc -> fetchAll();
 
@@ -18,7 +18,7 @@ class coordinadorescController extends usuarioModel
     public function consulta_ccinfo_controlador()
     {
         $matricula=mainModel::limpiar_cadena($_POST['idInfCCar']);
-        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona AND t.Matricula=$matricula AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador De Carrera'  ORDER BY p.Nombre ";
+        $consulta="SELECT SQL_CALC_FOUND_ROWS  t.Matricula,p.Nombre,p.APaterno,p.AMaterno, p.Sexo, p.NTelefono, p.Correo, a.Nombre as aname, p.Foto, a.idAreas FROM persona p , trabajador t, areas a WHERE p.idPersona=t.Persona_idPersona AND t.Matricula=$matricula AND a.idAreas=t.Areas_idAreas  AND t.Roll='Coordinador de Carrera'  ORDER BY p.Nombre ";
         $consulta_coordinadoresc = mainModel::ejecutar_consulta_simple($consulta);
         $dat_info = $consulta_coordinadoresc -> fetchAll();
 
@@ -280,8 +280,8 @@ class coordinadorescController extends usuarioModel
 
         }else{
             $alerta=[
-                'Titulo'=> "Coordinador de carrera eliminado",
-                'Texto' => "El coordinador de carrera se ha eliminado correctamente",
+                'Titulo'=> "Coordinador de Carrera eliminado",
+                'Texto' => "El Coordinador de Carrera se ha eliminado correctamente",
                 'Tipo' => "success"
             ];
             echo json_encode($alerta);
@@ -339,7 +339,7 @@ class coordinadorescController extends usuarioModel
             exit();
 
         }else{
-            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como coordinador de area académica',CURDATE(),0);");
+            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como Coordinador de Area académica',CURDATE(),0);");
             echo '
         
             <script>
@@ -409,7 +409,7 @@ class coordinadorescController extends usuarioModel
             exit();
 
         }else{
-            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como coordinador de area académica',CURDATE(),0);");
+            mainModel::ejecutar_consulta_simple("INSERT INTO notificaciones(idNotif,Destinatario,Mensaje,Fecha,Leido) VALUES (DATE_FORMAT(NOW(),'%d%m%y%h%i%S'),$idmatricula,'Haz sido asignado como Coordinador de Area académica',CURDATE(),0);");
             echo '
         
             <script>

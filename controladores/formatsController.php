@@ -103,7 +103,7 @@ class formatsController extends mainModel {
 
         //mainModel::ejecutar_consulta_simple("SET lc_time_names = 'es_MX';");
         $consulta_tutoracti = mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.nombre,' ', p.APaterno,' ', p.AMaterno) AS	nombre, tr.Matricula, a.Nombre AS AREA, tr.Roll FROM  trabajador tr, persona p, areas a
-        WHERE   tr.Roll='Coordinador De Area' AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
+        WHERE   tr.Roll='Coordinador de Area' AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
         ORDER BY  p.APaterno ASC;");
 
         $consulta_tutoracti = $consulta_tutoracti ->fetchAll();
@@ -128,7 +128,7 @@ class formatsController extends mainModel {
 
 
         $consulta_tutoracti = mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.nombre,' ', p.APaterno,' ', p.AMaterno) AS	nombre, tr.Matricula, a.Nombre AS AREA, tr.Roll FROM  trabajador tr, persona p, areas a
-        WHERE   tr.Roll='Coordinador De Carrera' AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
+        WHERE   tr.Roll='Coordinador de Carrera' AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
         ORDER BY  p.APaterno ASC;");
 
         $consulta_tutoracti = $consulta_tutoracti ->fetchAll();
@@ -154,7 +154,7 @@ class formatsController extends mainModel {
 
         $idmatjf=mainModel::limpiar_cadena($_SESSION['matricula_sti']);
         $consulta_tutoracti = mainModel::ejecutar_consulta_simple("SELECT CONCAT(p.nombre,' ', p.APaterno,' ', p.AMaterno) AS	nombre, tr.Matricula, a.Nombre AS AREA, tr.Roll FROM  trabajador tr,trabajador tr2, persona p, areas a
-        WHERE  tr2.Matricula=$idmatjf AND tr.Roll='Coordinador De Carrera' AND tr.Areas_idAreas=tr2.Areas_idAreas AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
+        WHERE  tr2.Matricula=$idmatjf AND tr.Roll='Coordinador de Carrera' AND tr.Areas_idAreas=tr2.Areas_idAreas AND p.idPersona=tr.Persona_idPersona AND a.idAreas=tr.Areas_idAreas
         ORDER BY  p.APaterno ASC;");
 
         $consulta_tutoracti = $consulta_tutoracti ->fetchAll();

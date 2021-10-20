@@ -18,7 +18,7 @@ if(isset($_SESSION['roll_sti'])){
 include "./vistas/inc/navStudent.php"; 
 
 ?>
-<!-- Ver Coordinador de carrera -->
+<!-- Ver Coordinador de Carrera -->
 <div class="modal" id="modalInfoCCarrera" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `historico_asignacion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historico_asignacion` (
   `idHistorico` varchar(50) NOT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
+  `Tutorado_NControl` int(15) NOT NULL,
   `Trabajador_Matricula` varchar(50) NOT NULL,
   `Fecha` date NOT NULL,
   PRIMARY KEY (`idHistorico`),

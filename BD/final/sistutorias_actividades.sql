@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `actividades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `actividades` (
-  `idActividades` int(11) NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
+  `idActividades` varchar(30) NOT NULL,
+  `Nombre` varchar(75) DEFAULT NULL,
   `Descripcion` varchar(200) DEFAULT NULL,
-  `Semestrerealizacion_sug` int(11) DEFAULT NULL,
+  `Semestrerealizacion_sug` int(4) DEFAULT NULL,
   `Semestre_obligatorio` tinyint(4) NOT NULL DEFAULT '0',
   `Fecha_registro` date DEFAULT NULL,
-  `URLFormato` varchar(200) DEFAULT NULL,
+  `URLFormato` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`idActividades`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

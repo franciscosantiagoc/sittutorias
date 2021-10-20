@@ -64,7 +64,7 @@
             </script>';
             exit();
          }
-         /* $clave=mainModel::encryption($clave); */
+         $clave=mainModel::encryption($clave); /**/
          $user = false;
          $datos_login=[
             "Usuario"=>$usuario,
@@ -80,16 +80,15 @@
          }
          
          if($datos_cuenta->rowCount()==1){
+            
             $row=$datos_cuenta->fetch();
-             /*print_r($row); */
-
+             /*print_r($row); 
+             echo 'el usuario existe: '.$row['Nombre'].' '.$row['APaterno'];
+             exit();*/
             /* $imgen = file_get_contents(SERVERURL.$row['Foto']);
             $img_base64= chunk_split(base64_encode($imgen )); */
             $img_perfil = SERVERURL.$row['Foto'];/* "data:image/jpeg;base64, $img_base64";*/
-            if(SERVERURL.$row['Foto']==""){
-               $img_perfil=SERVERURL."directory/img-person/default.png";
-            }
-
+            
             session_start(['name'=>'STI']);
 
             $_SESSION['last_time_sti'] = time();
@@ -195,8 +194,7 @@
       }/*-------------- fin controlador cierre de sesion --------------*/
 
       public function cierre_sesiontiempo_controlador(){
-         session_unset();
-         session_destroy();
+         
          echo '<script> 
                Swal.fire({
                   title: "Sesion Caducada",
@@ -209,6 +207,8 @@
                
             </script>
             ';
+         session_unset();
+         session_destroy();
          /* echo'<script type="text/javascript"> 
          alert("Su sesion ha caducado, por favor inicie sesion nuevamente");
          window.location.href="'.SERVERURL.'home";</script>'; */

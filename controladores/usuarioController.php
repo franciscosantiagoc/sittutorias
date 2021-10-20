@@ -322,8 +322,8 @@ class usuarioController extends usuarioModel
         exit();
       }
       $roll='';   
-      if($select_usuario=="13") $roll="Coordinador De Area";
-      if($select_usuario=="14") $roll="Coordinador De Carrera";
+      if($select_usuario=="13") $roll="Coordinador de Area";
+      if($select_usuario=="14") $roll="Coordinador de Carrera";
       if($select_usuario=="15") $roll="Docente";
 
       $datos_usuario_reg = [
@@ -554,8 +554,8 @@ class usuarioController extends usuarioModel
         $consulta="SELECT Matricula FROM trabajador WHERE Matricula=";
      }
      $roll='';   
-      if($select_usuario=="13") $roll="Coordinador De Area";
-      if($select_usuario=="14") $roll="Coordinador De Carrera";
+      if($select_usuario=="13") $roll="Coordinador de Area";
+      if($select_usuario=="14") $roll="Coordinador de Carrera";
       if($select_usuario=="15") $roll="Docente";
 
      for($i = 0; $i < count($datos_reg); ++$i) {
@@ -639,7 +639,7 @@ class usuarioController extends usuarioModel
       $num_tel = mainModel::limpiar_cadena($_POST['numtel_upd']);
       $direccion = mainModel::limpiar_cadena($_POST['direc_upd']);
       $email = mainModel::limpiar_cadena($_POST['email_upd']);
-      $pass = mainModel::limpiar_cadena($_POST['pass_upd']);
+      $pass = mainModel::encryption(mainModel::limpiar_cadena($_POST['pass_upd']));
       $passn = mainModel::limpiar_cadena($_POST['npass_upd']);
       $passn_repeat = mainModel::limpiar_cadena($_POST['rnpass_upd']);
 
@@ -872,6 +872,11 @@ class usuarioController extends usuarioModel
             '; 
             exit();
       }
+      if($passn!=""){
+         $passn=mainModel::encryption($passn);
+      }
+      
+
       if($pass == $passn && $passn!=""){
         echo '
             <script> 

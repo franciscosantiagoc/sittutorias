@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `actividades_asignadas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `actividades_asignadas` (
-  `Actividades_idActividades` int(11) NOT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
-  `URLFile` varchar(50) NOT NULL DEFAULT '',
+  `Actividades_idActividades` varchar(30) NOT NULL,
+  `Tutorado_NControl` int(15) NOT NULL,
+  `URLFile` varchar(100) NOT NULL DEFAULT '',
   `Fecha` date DEFAULT NULL,
   `Estatus` varchar(20) NOT NULL,
   `Puntuacion` varchar(50) DEFAULT NULL,

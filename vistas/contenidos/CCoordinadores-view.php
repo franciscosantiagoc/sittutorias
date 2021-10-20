@@ -2,7 +2,7 @@
     <?php 
 
     if(isset($_SESSION['roll_sti'])){
-        if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
+        if($_SESSION['roll_sti'] != "Coordinador de Carrera" && $_SESSION['roll_sti'] != "Coordinador de Area"){
             if($_SESSION['roll_sti'] == "Docente"){
                 echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
             }/* else  if($_SESSION['roll_sti'] == "Coordinador de Area"){
@@ -103,7 +103,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar coordinador de carrera</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Coordinador de Carrera</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -310,7 +310,7 @@
 
             Swal.fire({
                 title: "Advertencia",
-                text: "¿Esta seguro de eliminar este coordinador de carrera?",
+                text: "¿Esta seguro de eliminar este Coordinador de Carrera?",
                 showCancelButton:true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

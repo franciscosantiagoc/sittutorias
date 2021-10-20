@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `tutorado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tutorado` (
-  `NControl` int(11) NOT NULL,
+  `NControl` int(15) NOT NULL,
   `Persona_idPersona` int(10) unsigned NOT NULL,
-  `Carrera_idCarrera` varchar(15) NOT NULL,
-  `contraseña` varchar(200) NOT NULL,
-  `Generacion_idGeneracion` int(11) DEFAULT NULL,
+  `Carrera_idCarrera` varchar(50) NOT NULL,
+  `contraseña` varchar(300) NOT NULL,
+  `Generacion_idGeneracion` varchar(50) DEFAULT NULL,
   `Estado` varchar(45) NOT NULL,
   PRIMARY KEY (`Persona_idPersona`,`NControl`),
   UNIQUE KEY `NControl` (`NControl`),

@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `trabajador_tutorados`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trabajador_tutorados` (
   `Trabajador_Matricula` varchar(45) NOT NULL,
-  `Tutorado_NControl` int(11) NOT NULL,
+  `Tutorado_NControl` int(15) NOT NULL,
   `fecha_asig` date DEFAULT NULL,
   PRIMARY KEY (`Trabajador_Matricula`,`Tutorado_NControl`),
   KEY `fk_Trabajador_has_Tutorado_Tutorado1_idx` (`Tutorado_NControl`),

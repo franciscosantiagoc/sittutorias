@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `carrera`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carrera` (
-  `idCarrera` varchar(15) NOT NULL,
-  `Areas_idAreas` int(11) NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
+  `idCarrera` varchar(50) NOT NULL,
+  `Areas_idAreas` varchar(50) NOT NULL,
+  `Nombre` varchar(75) DEFAULT NULL,
   PRIMARY KEY (`idCarrera`,`Areas_idAreas`),
   KEY `fk_Carrera_Areas1_idx` (`Areas_idAreas`),
   CONSTRAINT `fk_Carrera_Areas1` FOREIGN KEY (`Areas_idAreas`) REFERENCES `areas` (`idAreas`) ON DELETE NO ACTION ON UPDATE NO ACTION

@@ -2,7 +2,7 @@
 <?php 
 
 if(isset($_SESSION['roll_sti'])){
-    //if($_SESSION['roll_sti'] != "Coordinador De Carrera" && $_SESSION['roll_sti'] != "Coordinador De Area"){
+    //if($_SESSION['roll_sti'] != "Coordinador de Carrera" && $_SESSION['roll_sti'] != "Coordinador de Area"){
     if($_SESSION['roll_sti'] == "Docente"){
         echo'<script type="text/javascript"> window.location.href="'.SERVERURL.'MenuTutor";</script>';
     }else    if($_SESSION['roll_sti'] == "Tutorado"){
@@ -41,7 +41,7 @@ if(isset($_SESSION['roll_sti'])){
                         </div>
                     </div>
                     <?php
-                        $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Coordinador De Area';");
+                        $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Coordinador de Area';");
                     ?>
                     <div  class="tile">
                         <div class="tile-tittle">CoordinadoresA</div>
@@ -52,7 +52,7 @@ if(isset($_SESSION['roll_sti'])){
                     </div>
 
                     <?php
-                        $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Coordinador De Carrera';");
+                        $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo","trabajador"," WHERE Roll='Coordinador de Carrera';");
                     ?>
                     <div class="tile">
                         <div class="tile-tittle">CoordinadoresC</div>

@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `areas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `areas` (
-  `idAreas` int(11) NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
-  `Descripcion` varchar(45) DEFAULT NULL,
+  `idAreas` varchar(50) NOT NULL,
+  `Nombre` varchar(100) DEFAULT NULL,
+  `Descripcion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idAreas`),
   UNIQUE KEY `idAreas` (`idAreas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
