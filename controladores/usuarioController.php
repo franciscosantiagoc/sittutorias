@@ -558,12 +558,12 @@ class usuarioController extends usuarioModel
       if($select_usuario=="14") $roll="Coordinador de Carrera";
       if($select_usuario=="15") $roll="Docente";
 
-     for($i = 0; $i < count($datos_reg); ++$i) {
+     for($i = 0; $i < count($datos_reg); $i++) {
          $check_userdat = mainModel::ejecutar_consulta_simple($consulta.$datos_reg[$i][4]); 
          if ($check_userdat->rowCount() > 0) {
             $alerta = [
                "Titulo" => "Ocurrio un error inesperado",
-               "Texto" => "El usuario con Matricula/NControl ".$datos_reg[0][4]." ya existe, verifique los datos para continuar",
+               "Texto" => "El usuario con Matricula/NControl ".$datos_reg[$i][4]." ya existe, verifique los datos para continuar",
                "Tipo" => "error"
             ];
             echo json_encode($alerta);
@@ -599,25 +599,38 @@ class usuarioController extends usuarioModel
             "Passw" => $pass,
             "Gener" => $gener,
             "status"=>"Inactivo",
+            "Foto"=>'/directory/img-person/default.png',
    
             "TipoUs"=> $select_usuario //16 tutorado  13-15 tra
              
          ];
+        /*  print_r($datos_usuario_reg);
+         exit(); */
          $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
          $cont++;
-         //$users = $users."$nombre $apellido_paterno $sexo -------------- ";        
+         //$users = $users."$nombre $apellido_paterno $sexo -------------- ";    
+         if($agregar_usuario->rowCount()==0){  
+            $alerta = [
+               "Titulo" => "Error inesperado",
+               "Texto" => "Error al registrar al usuario $nombre $apellido_paterno $noctrl",
+               "Tipo" => "error"
+               ];
+               echo json_encode($alerta);
+               exit();
+         }
+         
      }
 
-     if($agregar_usuario->rowCount()==0){  
+     /* if($agregar_usuario->rowCount()==0){  
          $alerta = [
             "Titulo" => "Error inesperado",
             "Texto" => "Error al registrar al usuario $nombre $apellido_paterno $noctrl",
             "Tipo" => "error"
             ];
             echo json_encode($alerta);
-            exit();
+            exit(); */
 
-      }else{
+      //}else{
          $alerta = [
             "Titulo" => "Registro exitoso de usuarios",
             "Texto" => "Se han registrado correctamente $cont datos",
@@ -625,7 +638,7 @@ class usuarioController extends usuarioModel
             ];
             echo json_encode($alerta);
             exit();
-      }
+      //}
          
    }
 

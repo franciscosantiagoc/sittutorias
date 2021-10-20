@@ -17,7 +17,7 @@
          $sql->bindParam(":Direccion", $datos['Direccion']);
          $sql->bindParam(":Foto", $datos['Foto']);
          $sql->execute();
-
+        
           if($sql->rowCount() == 1){
             $sql2=mainModel::conectar()->prepare("SELECT idPersona FROM persona ORDER BY idPersona DESC LIMIT 1");
             $sql2->execute();
@@ -57,7 +57,7 @@
          }
 
 
-         return $sql3;
+         return $sql->rowCount()==0?$sql:$sql3;
       }
 
        protected static function actualizar_usuario_modelo($datos){

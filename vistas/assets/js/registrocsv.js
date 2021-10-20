@@ -75,9 +75,8 @@ function mostrardatosExcel(){
         let rowerror=false;
         
          for(let j=i+1;j<dat_row.length; j++){//recorriendo en busca de duplicados
-            console.log("verificacion i: ",dat_row[i][4],"      j:",dat_row[j][4])
-            if(dat_row[i][4]==dat_row[j][4]){
-                console.log("repetido",dat_row[i][4])
+            if(dat_row[i][4]===dat_row[j][4]){
+
                 C_Error=1
                 rowerror=true;
                 break;
@@ -86,11 +85,8 @@ function mostrardatosExcel(){
 
         let aux=dat_row[i];
         let aux2=aux.concat(['<button onclick="deleteData('+i+')"><i class="fas fa-trash-alt"></i></button>']);
-        //aux.push()
+
         var rowNode = table.row.add(aux2 ).draw().node();
-        if(rowerror){
-            $( rowNode ).find('td').addClass('error');
-        }
         
     }
 }
@@ -105,7 +101,7 @@ $("#btn-regis").click(function(event){
     event.preventDefault();
    
     if(C_Error!=0){
-        Swal.fire("Advertencia","Se ha detectado un error en los datos ERRORES:"+C_Error,"error");
+        Swal.fire("Advertencia","Se ha detectado un error en los datos No. Errores:"+C_Error+", verifique los datos para continuar","error");
     }else if(dat_row.length==0){
         Swal.fire("Advertencia","No ha cargado datos para registrar","error");
     }else{
@@ -119,7 +115,7 @@ $("#btn-regis").click(function(event){
         formData.append('dataexcel', JSON.stringify(dat_row));//array datos
         formData.append('datauser',sel_user);
         formData.append('dataCAR',sel_carAr);
-        formData.append('datagen',sel_gen); /**/
+        formData.append('datagen',sel_gen);
         $.ajax({
             url: 'ajax/usuarioAjax.php',
             type: 'post',
@@ -128,8 +124,7 @@ $("#btn-regis").click(function(event){
             contentType: false,
             processData: false,
             success: function (resp){
-                //Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
-                console.log('respuesta: '+resp.Texto);
+                Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
             }
         });
     }
