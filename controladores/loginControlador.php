@@ -31,7 +31,7 @@
          }
 
          /* == Verificando integridad de los datos ==*/
-         if(mainModel::verificar_datos("[0-9-]{4,13}",$usuario)){
+         if(mainModel::verificar_datos("[0-9A-Za-z]{4,13}",$usuario)){
             echo '
             <script> 
                Swal.fire({
@@ -48,7 +48,7 @@
             exit();
          }
          
-         if(mainModel::verificar_datos("[a-zA-Z0-9]{4,16}",$clave)){
+         if(mainModel::verificar_datos("[0-9A-Za-z]{4,16}",$clave)){
             echo '
             <script> 
                Swal.fire({
@@ -73,9 +73,7 @@
          
          $datos_cuenta=loginModelo::iniciar_sesion_modelo_trab($datos_login);
          if($datos_cuenta->rowCount()==0){
-            /*echo 'trabajador';*/
             $datos_cuenta=loginModelo::iniciar_sesion_modelo_tut($datos_login);
-            /*echo 'tutorados';*/
             if($datos_cuenta->rowCount()==1){
                $user = true;
             }
@@ -99,6 +97,7 @@
             $_SESSION['nombre_sti']=$row['Nombre'];
             $_SESSION['apellPat_sti']=$row['APaterno'];
             $_SESSION['apellMat_sti']=$row['AMaterno'];
+            $img=
             $_SESSION['imgperfil_sti']=$img_perfil;
             $_SESSION['id_sti']=$row['Persona_idPersona'];
             $_SESSION['status']=$row['Estado'];
@@ -130,28 +129,29 @@
             }
 
          }else{
+            $consulta_datos=mainModel::ejecutar_consulta_simple("SELECT Matricula FROM trabajador");
+            if($consulta_datos->rowCount()==0 && $usuario=='Admin'){
+               require_once "./controladores/usuarioController.php";
+               $ins_user= new usuarioController();
+               echo $ins_user->registro_admin_controlador();
+               exit();
 
-            /*echo'<script> 
-               alert("usuario o clave incorrectos");
+            }else{
+               echo '
+               <script> 
+                  Swal.fire({
+                     title: "Ocurrio un error inesperado",
+                     text: "El USUARIO o CLAVES son incorrectos user:|'.$usuario.'| pass:|'.$clave.'|",
+                     type: "error",
+                     confirmButtonText: "Aceptar"
+                  }).then((result)=>{
+                     if(result.value){
+                        window.location="'.SERVERURL.'"
+                     }
+                  });
                </script>';
-             echo 'NO EXISTE USUARIO';*/
-           echo '
-            <script> 
-               Swal.fire({
-                  title: "Ocurrio un error inesperado",
-                  text: "El USUARIO o CLAVES son incorrectos",
-                  type: "error",
-                  confirmButtonText: "Aceptar"
-               }).then((result)=>{
-                  if(result.value){
-                     window.location="'.SERVERURL.'"
-                  }
-               });
-            </script>';
-            exit();
-           /* echo "<script>
-               alertify.alert('El usuario o claves son incorrectos');
-            </script>";*/
+               exit();
+            }
          }
       }/*-------------- fin controlador iniciar sesion --------------*/
 
@@ -195,21 +195,24 @@
       }/*-------------- fin controlador cierre de sesion --------------*/
 
       public function cierre_sesiontiempo_controlador(){
-         /*echo '<script> 
+         session_unset();
+         session_destroy();
+         echo '<script> 
                Swal.fire({
                   title: "Sesion Caducada",
                   text: "Su sesion ha caducado, por favor inicie sesion nuevamente",
                   type: "error",
                   confirmButtonText: "Aceptar"
+               }).then(()=>{
+                  window.location=window.location;
                });
                
             </script>
-            ';*/
-         echo'<script type="text/javascript"> 
+            ';
+         /* echo'<script type="text/javascript"> 
          alert("Su sesion ha caducado, por favor inicie sesion nuevamente");
-         window.location.href="'.SERVERURL.'home";</script>';
-         session_unset();
-         session_destroy();
+         window.location.href="'.SERVERURL.'home";</script>'; */
+         
 
          
 

@@ -5,7 +5,7 @@
       /*-------------- Modelo agregar usuario --------------*/
        protected static function agregar_usuario_modelo($datos){
 
-         $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion,'')");
+         $sql = mainModel::conectar()->prepare("INSERT INTO persona(Nombre, APaterno, AMaterno, FechaNac, Sexo, Correo, NTelefono, Direccion, Foto) VALUES(:Nombre, :APaterno, :AMaterno, :FechaNac, :Sexo, :Correo, :NTelefono, :Direccion,:Foto)");
 
          $sql->bindParam(":Nombre", $datos['Nombre']);
          $sql->bindParam(":APaterno",$datos['APaterno']);
@@ -15,6 +15,7 @@
          $sql->bindParam(":Correo",$datos['Correo']);
          $sql->bindParam(":NTelefono", $datos['NTelefono']);
          $sql->bindParam(":Direccion", $datos['Direccion']);
+         $sql->bindParam(":Foto", $datos['Foto']);
          $sql->execute();
 
           if($sql->rowCount() == 1){
@@ -44,7 +45,7 @@
           if($datos['TipoUs']=='15'){
             $disp='1';
             $sql3->bindParam(":Disp",$disp);}
-          if($datos['TipoUs']=='13' || $datos['TipoUs']=='14'){
+          if($datos['TipoUs']=='13' || $datos['TipoUs']=='14' || $datos['TipoUs']=='Admin'){
             $disp='0';
             $sql3->bindParam(":Disp",$disp);
           }

@@ -85,7 +85,7 @@ if(isset($_SESSION['roll_sti'])){
                                     <input type="file"  id="file_input_st" class="form-control" name="file_import" accept=".xls"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xlsx" download="Formato Multiregistro.pdf">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
+                                    <abbr title="Click para descargar el formato"><a class="btn" href="<?php echo SERVERURL;?>directory/formats/Formato_Multiregistro.xls" download="Formato Multiregistro.xls">Formato<i class="fa fa-download" style="font-size: 15px;"></i></a></abbr>
                                 </div>
                             </div>
                             

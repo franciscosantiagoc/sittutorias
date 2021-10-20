@@ -1,6 +1,7 @@
 <?php
 const SERVER="localhost";
-const DB="sistutorias";
+//const DB="sistutorias";
+const DB="prueba";
 const USER="root";
 const PASS="";
 /*

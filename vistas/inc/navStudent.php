@@ -18,8 +18,8 @@
                     <a class="nav-link" href="<?php echo SERVERURL;?>AlumnSolic" style="color: #ffffffff;">Solicitudes</a></li>
                 <li class="nav-item menu" role="presentation">
                     <a class="nav-link" href="<?php echo SERVERURL;?>AlumnInfo" style="color: #ffffffff;">Contacto</a></li>
-                <li class="nav-item menu" role="presentation">
-                    <a class="nav-link" href="<?php echo SERVERURL;?>AlumnNotif" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li>
+                <!-- <li class="nav-item menu" role="presentation">
+                    <a class="nav-link" href="<?php echo SERVERURL;?>AlumnNotif" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li> -->
                 <li class="nav-item dropdown menu">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: #ffffffff;">
                         <img class="rounded-circle" id="img-perfil" src="<?php echo $_SESSION['imgperfil_sti']; ?>">

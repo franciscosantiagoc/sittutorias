@@ -39,7 +39,7 @@ function filePicked(oEvent) {
                 header: 1,
             });
             var cont = 0; //contador filas
-            var contE = 0; //Contador de errores
+            //var contE = 0; //Contador de errores
             dat_row = []; //array filas
             
            
@@ -54,7 +54,7 @@ function filePicked(oEvent) {
                 }
                 cont += 1;
             });
-            C_Error = contE;
+            //C_Error = contE;
             mostrardatosExcel();
             //div.style.overflow = "scroll";
         });
@@ -74,8 +74,10 @@ function mostrardatosExcel(){
     for(let i=0; i<dat_row.length; i++){
         let rowerror=false;
         
-         for(let j=0;j<dat_row.length; j++){//recorriendo en busca de duplicados
-            if(dat_row[i][4]==dat_row[j][4] && j!=i){
+         for(let j=i+1;j<dat_row.length; j++){//recorriendo en busca de duplicados
+            console.log("verificacion i: ",dat_row[i][4],"      j:",dat_row[j][4])
+            if(dat_row[i][4]==dat_row[j][4]){
+                console.log("repetido",dat_row[i][4])
                 C_Error=1
                 rowerror=true;
                 break;
@@ -103,7 +105,7 @@ $("#btn-regis").click(function(event){
     event.preventDefault();
    
     if(C_Error!=0){
-        Swal.fire("Advertencia","Se ha detectado un error en los datos","error");
+        Swal.fire("Advertencia","Se ha detectado un error en los datos ERRORES:"+C_Error,"error");
     }else if(dat_row.length==0){
         Swal.fire("Advertencia","No ha cargado datos para registrar","error");
     }else{
@@ -126,8 +128,8 @@ $("#btn-regis").click(function(event){
             contentType: false,
             processData: false,
             success: function (resp){
-                Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
-                //console.log('respuesta: '+resp.Texto);
+                //Swal.fire(resp.Titulo,resp.Texto,resp.Tipo);
+                console.log('respuesta: '+resp.Texto);
             }
         });
     }

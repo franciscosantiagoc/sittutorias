@@ -44,9 +44,9 @@ include "./vistas/inc/navCoordinadorC.php"
             <div class="col"><a href="<?php echo SERVERURL;?>Edit-Perfil"><img style="background-image: url(vistas/assets/img/Icons/perfil.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Perfil</strong></p>
             </div>
-            <div class="col"><a href="<?php echo SERVERURL;?>CCNotification"><img style="background-image: url(vistas/assets/img/Icons/notification.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
+            <!-- <div class="col"><a href="<?php echo SERVERURL;?>Notifications"><img style="background-image: url(vistas/assets/img/Icons/notification.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Notificaciones</strong></p>
-            </div>
+            </div> -->
             <div class="col"><a href="<?php echo SERVERURL;?>CCInfo"><img style="background-image: url(vistas/assets/img/Icons/information.png);background-size: cover;background-position: center;display: block;margin: auto;width: 200px;height: 200px;"></a>
                 <p><strong>Contacto</strong></p>
             </div>

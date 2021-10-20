@@ -26,6 +26,7 @@ class usuarioController extends usuarioModel
       $noctrl = mainModel::limpiar_cadena($_POST['no_ctrl_reg']);
       $pass = mainModel::encryption($noctrl);
       $gener = mainModel::limpiar_cadena($_POST['gen_reg']);
+      $foto='/directory/img-person/default.png';
 
       /* == comprobar campos vacíos ==*/
 
@@ -334,6 +335,7 @@ class usuarioController extends usuarioModel
          "Correo" => $email,
          "NTelefono" => $numero_telefono,
          "Direccion" => $direccion,
+         "Foto"=>$foto,
 
          "NoUser" => $noctrl,
          "Roll"=>$roll,
@@ -343,6 +345,84 @@ class usuarioController extends usuarioModel
          "status"=>"Inactivo",
 
          "TipoUs"=> $select_usuario //16 tutorado  13-15 tra
+      ];
+
+      $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
+      //echo $agregar_usuario;
+      if($agregar_usuario->rowCount()==1){
+         echo '
+            <script>
+               Swal.fire({
+                  title: "Usuario Registrado",
+                  text: "El usuario ha sido registrado correctamente",
+                  type: "success",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
+
+      }else{
+         echo '
+            <script>
+               Swal.fire({
+                  title: "Ocurrio un error inesperado",
+                  text: "Error al registrar el usuario",
+                  type: "error",
+                  confirmButtonText: "Aceptar"
+               }).then((result)=>{
+                  if(result.value){
+                     window.location="'.SERVERURL.'Registro"
+                  }
+               });
+            </script>
+            ';
+        exit();
+      }
+   }
+
+   public function registro_admin_controlador()
+   {
+
+      $select_usuario = 'Admin';
+      $roll = 'Admin';
+      $nombre = 'Administador';
+      $apellido_paterno = 'SIT';
+      $apellido_materno = 'ITISTMO';
+      $fecha_nac = '2021-10-01';
+      $sexo = 'M';
+      $numero_telefono = '0000000000';
+      $direccion = 'predeterminada';
+      $email = 'predeterminado@predeterminado.com';
+      $carrera = null;
+      $noctrl = 'Admin';
+      $pass = mainModel::encryption('SITITISTMO');
+      $gener = null;
+      $foto='/directory/img-person/default.png';
+
+      $datos_usuario_reg = [
+         "Nombre" => $nombre,
+         "APaterno" => $apellido_paterno,
+         "AMaterno" => $apellido_materno,
+         "FechaNac" => $fecha_nac,
+         "Sexo" => $sexo,
+         "Correo" => $email,
+         "NTelefono" => $numero_telefono,
+         "Direccion" => $direccion,
+         "Foto"=>$foto,
+
+         "NoUser" => $noctrl,
+         "Roll"=>$roll,
+         "CarrAr" => $carrera,
+         "Passw" => $pass,
+         "Gener" => $gener,
+         "status"=>"Inactivo",
+
+         "TipoUs"=> $select_usuario 
       ];
 
       $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
@@ -728,7 +808,7 @@ class usuarioController extends usuarioModel
         exit();
       }
 
-      if (mainModel::verificar_datos("[0-9]{4,10}", $iduser)) {
+      if (mainModel::verificar_datos("[0-9A-Za-z]{4,10}", $iduser)) {
          echo '
             <script> 
                Swal.fire({
@@ -752,7 +832,9 @@ class usuarioController extends usuarioModel
       $total=$total_usuarios->rowCount();
       if($total==0){
         $tabla='trabajador';
-        $condicion = "WHERE Matricula='".$iduser."' AND contraseña='".$pass."';";
+        $condicion = " WHERE Matricula='$iduser' AND contraseña='$pass';";
+        /* echo "<script>console.log('$condicion');</script>";
+        exit(); */
         $total_usuarios= usuarioModel::datos_usuario_modelo("Conteo","trabajador",$condicion);
         $total=$total_usuarios->rowCount();
       }

@@ -19,13 +19,13 @@ include "./vistas/inc/navStudent.php";
 
 ?>
     
-    <div class="container" >
+    <div class="container" id="container-menu">
         <div class="row">
             <div class="col">
                 <p><strong class="encabezado">ALUMNO</strong></p>
             </div>
         </div>
-        <div class="row row-menu">
+        <div class="row row-menu" >
             <div class="col"><a href="<?php echo SERVERURL;?>AlumnAct"><img class="img-menu" style="background-image: url(vistas/assets/img/Icons/activities.png);"></a>
                 <p><strong>Actividades</strong></p>
             </div>

@@ -10,8 +10,8 @@
                 </li>
                 <li class="nav-item menu" role="presentation"><a class="nav-link active" href="<?php echo SERVERURL; ?>TutorInfo" style="color: #ffffffff;">Contacto</a></li>
 
-                <li class="nav-item menu" role="presentation">
-                    <a class="nav-link" href="<?php echo SERVERURL;?>TutorNotif" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li>
+                <!-- <li class="nav-item menu" role="presentation">
+                    <a class="nav-link" href="<?php echo SERVERURL;?>TutorNotif" style="color: #ffffffff;"><i class="material-icons">notifications_active</i></a></li> -->
 
                 <li class="dropdown menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color: #ffffffff;">
