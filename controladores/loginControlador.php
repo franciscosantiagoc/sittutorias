@@ -48,7 +48,7 @@
             exit();
          }
          
-         if(mainModel::verificar_datos("[0-9A-Za-z]{4,16}",$clave)){
+         if(mainModel::verificar_datos("[0-9A-Za-z-]{4,16}",$clave)){
             echo '
             <script> 
                Swal.fire({

@@ -397,10 +397,11 @@ class usuarioController extends usuarioModel
       $sexo = 'M';
       $numero_telefono = '0000000000';
       $direccion = 'predeterminada';
-      $email = 'predeterminado@predeterminado.com';
+      $email = 'francisco.santiago@itistmo.edu.mx';
       $carrera = null;
       $noctrl = 'Admin';
-      $pass = mainModel::encryption('SITITISTMO');
+      $resp_pass='SITTUTORIAS';
+      $pass = mainModel::encryption('SITTUTORIAS');
       $gener = null;
       $foto='/directory/img-person/default.png';
 
@@ -428,6 +429,9 @@ class usuarioController extends usuarioModel
       $agregar_usuario=usuarioModel::agregar_usuario_modelo($datos_usuario_reg);
       //echo $agregar_usuario;
       if($agregar_usuario->rowCount()==1){
+         $mensaje="Hola, $nombre $apellido_paterno, Bienvenido al Sistema Institucional de Tutorias, este mensaje ha sido enviado para confirmar tu registro exitoso. <br>Para acceder al sistema ingresa utilizando 'Admin' como usuario y '$resp_pass' como contraseña, no olvides actualizar tu contraseña una vez ingresado, esperamos sea de tu agrado, !Mucha suerte!";
+         
+         mainModel::notificacion($email, $mensaje);
          echo '
             <script>
                Swal.fire({

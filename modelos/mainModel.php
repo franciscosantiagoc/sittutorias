@@ -3,6 +3,7 @@
         require_once "../config/SERVER.php";
     }else{
         require_once "./config/SERVER.php";
+        require_once "./config/APP.php";
     }
 
     class mainModel{
@@ -173,6 +174,124 @@
             }
             $tabla.='</ul></nav>';
             return $tabla;
+        }
+
+        protected static function notificacion($email, $mensaje){
+
+            $fecha= time();
+            $fechaFormato = date("j/n/Y",$fecha);
+
+            $correoDestino = $email;
+            
+            //asunto del correo
+            $asunto = "Enviado por " .COMPANY;
+
+            $cabecera = "MIME-VERSION: 1.0\r\n";
+            $cabecera .= "Content-type: multipart/mixed;";
+            $cabecera .="boundary=\"=C=T=E=C=\"\r\n";
+            $cabecera .= "From: {$email}";
+
+            /* //Primera parte del cuerpo del mensaje
+            $cuerpo = "--=C=T=E=C=\r\n";
+            $cuerpo .= "Content-Type: text/plain; charset=UTF-8\r\n";
+            $cuerpo .= "\r\n"; // línea vacía
+            $cuerpo .= "Correo enviado por: Sistema Institucional de Tutorias del Instituto Tecnológico del Istmo";
+            $cuerpo .= "Fecha: " . $fechaFormato . "\r\n";
+            $cuerpo .= "Mensaje: " . $mensaje . "\r\n";
+            $cuerpo .= "\r\n";// línea vacía */
+
+            $cuerpo = "
+                <!DOCTYPE html>
+                <html lang='es'>
+                <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>Mensaje</title>
+                
+                <style>
+                    * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    }
+                
+                    .container {
+                    max-width: 1000px;
+                    width: 90%;
+                    margin: 0 auto;
+                    }
+                    .bg-dark {
+                    background: #343a40;
+                    margin-top: 40px;
+                    padding: 20px 0;
+                    }
+                    .alert {
+                    font-size: 1.5em;
+                    position: relative;
+                    padding: .75rem 1.25rem;
+                    margin-bottom: 2rem;
+                    border: 1px solid transparent;
+                    border-radius: .25rem;
+                    }
+                    .alert-primary {
+                    color: #004085;
+                    background-color: #cce5ff;
+                    border-color: #b8daff;
+                    }
+                
+                    .img-fluid {
+                    max-width: 100%;
+                    height: auto;
+                    }
+                
+                    .mensaje {
+                    width: 80%;
+                    font-size: 20px;
+                    margin: 0 auto 40px;
+                    color: #eee;
+                    }
+                
+                    .texto {
+                    margin-top: 20px;
+                    }
+                
+                    .footer {
+                    width: 100%;
+                    background: #48494a;
+                    text-align: center;
+                    color: #ddd;
+                    padding: 10px;
+                    font-size: 14px;
+                    }
+                    .footer span {
+                    text-decoration: underline;
+                    }
+                </style>
+                </head>
+                <body>
+                <div class='container'>
+                    <div class='bg-dark'>
+                    <div class='alert alert-primary'>
+                        <strong>Mensaje automático del </strong>".COMPANY."
+                    </div>
+                
+                    <div class='mensaje'>
+                        <img class='img-fluid' src='https://istmo.tecnm.mx/wp-content/uploads/2020/01/pleca-gob2.png' height='150px' alt='Header ITISTMO'>
+                
+                        <div class='texto'>$mensaje</div>
+                    </div>
+                
+                    <div class='footer'>
+                        Puedes verificar la pagina entrando al ".COMPANY." o pulsando <span><a href='http://sit-itistmo.website'>Aquí</a></span>
+                    </div>
+                    </div>
+                </div>
+                </body>
+                </html>
+            ";
+                
+            //Enviar el correo
+            mail($correoDestino, $asunto, $cuerpo, $cabecera)
         }
     }
 
