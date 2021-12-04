@@ -4,11 +4,6 @@ const SERVER="localhost";
 const DB="prueba";
 const USER="root";
 const PASS="";
-/*
-const SERR="localhost";
-const DB="u760563657_sistutorias";
-const USER="u760563657_sit_tutorias";
-const PASS="sistemaTutorias21";*/
 
 
     const SGBD="mysql:host=".SERVER.";dbname=".DB;
@@ -20,7 +15,7 @@ const PASS="sistemaTutorias21";*/
 	}
 
     const METHOD="AES-256-CBC";
-    const SKEY='$SISTUTORIAS@ITISTMO2020';
+    const SKEY='$SITDEMOTUTORIAS@2021';
     const SIV='349641';
 
 
